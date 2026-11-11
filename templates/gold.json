@@ -1,0 +1,14 @@
+{
+  "id": "specialty-short-name",
+  "codes": [
+    "PLACEHOLDER-FIRST-LISTED-CODE",
+    "PLACEHOLDER-SECOND-CODE"
+  ],
+  "citations": {
+    "case": "PLACEHOLDER guideline citation for the case"
+  },
+  "target_trap": "laterality",
+  "coder_notes": "PLACEHOLDER coder notes",
+  "code_set": "ICD-10-CM FY2027 (October 1, 2026 release)",
+  "date_coded": "YYYY-MM-DD"
+}
