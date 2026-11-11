@@ -1,0 +1,11 @@
+Data license notice
+
+The files under data/cases/ and data/gold/ are licensed under the Creative
+Commons Attribution 4.0 International License (CC BY 4.0), copyright (c) 2026
+mdzAI14. The full license text is at:
+
+https://creativecommons.org/licenses/by/4.0/
+
+Everything else in this repository is covered by LICENSE (MIT), except the
+unmodified public reference files under refdata/, which keep the terms of
+their original publishers as listed in refdata/MANIFEST.md.
