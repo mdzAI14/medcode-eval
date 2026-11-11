@@ -104,6 +104,48 @@ class PromptTests(unittest.TestCase):
             self.assertNotIn("SENTINEL", text)
 
 
+class SuffixTests(unittest.TestCase):
+    def test_default_is_no_suffix(self):
+        for p in probes():
+            self.assertEqual(render_prompt(p), render_prompt(p, prompt_suffix=""))
+
+    def test_suffix_on_own_last_line(self):
+        for p in probes():
+            plain = render_prompt(p)
+            text = render_prompt(p, prompt_suffix="/no_think")
+            self.assertEqual(text, plain + "\n/no_think")
+            self.assertEqual(text.splitlines()[-1], "/no_think")
+
+    def test_multiline_suffix_rejected(self):
+        with self.assertRaises(ValueError):
+            render_prompt(probes()[0], prompt_suffix="a\nb")
+
+    def test_hidden_fields_never_rendered_with_suffix(self):
+        for p, q in zip(probes(), sentinel_probes()):
+            text = render_prompt(q, prompt_suffix="/no_think")
+            self.assertNotIn("SENTINEL", text)
+            self.assertNotIn(q["id"], text)
+            self.assertEqual(text, render_prompt(p, prompt_suffix="/no_think"))
+
+    def test_backend_sees_suffix_and_no_hidden_fields(self):
+        seen = []
+        backend = FakeBackend(lambda prompt: seen.append(prompt) or "A")
+        with tempfile.TemporaryDirectory() as tmp:
+            pf = Path(tmp) / "p.jsonl"
+            write_jsonl(pf, sentinel_probes())
+            run(pf, Path(tmp) / "run", backend, prompt_suffix="/no_think")
+        self.assertEqual(len(seen), 4)
+        for text in seen:
+            self.assertNotIn("SENTINEL", text)
+            self.assertTrue(text.endswith("\n/no_think"))
+
+    def test_prompt_files_unchanged_by_suffix(self):
+        before = load_prompts()
+        render_prompt(probes()[0], prompt_suffix="/no_think")
+        self.assertEqual(load_prompts(), before)
+        self.assertNotIn("no_think", "".join(before.values()))
+
+
 class ExtractTests(unittest.TestCase):
     def test_think_block_dropped(self):
         self.assertEqual(extract_answer("<think>\nmaybe A\nor B\n</think>\n\nC"), "C")
@@ -123,7 +165,30 @@ class ExtractTests(unittest.TestCase):
         self.assertEqual(extract_answer("B.."), "B.")
 
     def test_inner_text_untouched(self):
-        self.assertEqual(extract_answer("Answer: B"), "Answer: B")
+        self.assertEqual(extract_answer("The answer is B"), "The answer is B")
+        self.assertEqual(extract_answer("B Answer: C"), "B Answer: C")
+
+    def test_answer_label_dropped(self):
+        self.assertEqual(extract_answer("**Answer:** C"), "C")
+        self.assertEqual(extract_answer("Answer: B"), "B")
+        self.assertEqual(extract_answer("answer: billable."), "billable")
+        self.assertEqual(extract_answer("Final answer: U90.0"), "U90.0")
+        self.assertEqual(extract_answer("**FINAL ANSWER:** **header**"), "header")
+        self.assertEqual(extract_answer("*Answer*: D"), "D")
+        self.assertEqual(extract_answer("**Final Answer**: **A**"), "A")
+        self.assertEqual(extract_answer("<think>x</think>\n\nAnswer: not_a_code"),
+                         "not_a_code")
+
+    def test_answer_label_only_on_kept_line(self):
+        self.assertEqual(extract_answer("Answer: A\nB"), "B")
+
+    def test_answer_label_other_marks_untouched(self):
+        # only asterisks are stripped after the label is dropped; the
+        # earlier end-strip has already taken the closing backtick
+        self.assertEqual(extract_answer("Answer: `U90.0`"), "`U90.0")
+
+    def test_answer_word_without_colon_kept(self):
+        self.assertEqual(extract_answer("Answer B"), "Answer B")
 
     def test_unclosed_think_gives_empty(self):
         # a reply cut off inside its reasoning has no answer line
@@ -222,6 +287,38 @@ class RunTests(unittest.TestCase):
         run(self.pf, self.out, FakeBackend(lambda p: "A"), limit=1)
         with self.assertRaises(ValueError):
             run(self.pf, self.out, FakeBackend(lambda p: "A", model="other"))
+
+    def test_suffix_recorded(self):
+        run(self.pf, self.out, FakeBackend(lambda p: "A"), prompt_suffix="/no_think")
+        meta = json.loads((self.out / "run.json").read_text())
+        self.assertEqual(meta["prompt_suffix"], "/no_think")
+
+    def test_empty_suffix_recorded(self):
+        run(self.pf, self.out, FakeBackend(lambda p: "A"))
+        meta = json.loads((self.out / "run.json").read_text())
+        self.assertEqual(meta["prompt_suffix"], "")
+
+    def test_resume_refuses_other_suffix(self):
+        run(self.pf, self.out, FakeBackend(lambda p: "A"), limit=1, prompt_suffix="/no_think")
+        with self.assertRaises(ValueError) as cm:
+            run(self.pf, self.out, FakeBackend(lambda p: "A"))
+        self.assertIn("prompt_suffix", str(cm.exception))
+        with self.assertRaises(ValueError):
+            run(self.pf, self.out, FakeBackend(lambda p: "A"), prompt_suffix="/think")
+        run(self.pf, self.out, FakeBackend(lambda p: "A"), prompt_suffix="/no_think")
+        self.assertEqual(len(read_jsonl(self.out / "raw.jsonl")), 4)
+
+    def test_resume_run_made_before_suffix_setting(self):
+        # a run.json written before prompt_suffix existed had no suffix
+        run(self.pf, self.out, FakeBackend(lambda p: "A"), limit=1)
+        meta_path = self.out / "run.json"
+        meta = json.loads(meta_path.read_text())
+        del meta["prompt_suffix"]
+        meta_path.write_text(json.dumps(meta))
+        with self.assertRaises(ValueError):
+            run(self.pf, self.out, FakeBackend(lambda p: "A"), prompt_suffix="/no_think")
+        run(self.pf, self.out, FakeBackend(lambda p: "A"))
+        self.assertEqual(len(read_jsonl(self.out / "raw.jsonl")), 4)
 
     def test_mixed_code_sets_rejected(self):
         rows = probes()

@@ -3,19 +3,23 @@
 Only a probe's prompt fields reach the model: code and options
 (code_to_description), description (description_to_code), code (status).
 Each is filled into the prompt file for its type under prompts/. The
-backend receives the rendered prompt text and nothing else.
+setting prompt_suffix (empty by default) is added to the rendered prompt
+on its own last line; the prompt files are not changed. The backend
+receives the rendered prompt text and nothing else.
 
 Backends (standard library only):
   fake    a Python callable from prompt to reply; for tests
   ollama  the local Ollama server's /api/generate endpoint, non-streaming.
           Only a localhost address is accepted. Settings: temperature 0,
           seed SEED, num_predict NUM_PREDICT, num_ctx NUM_CTX, per-probe
-          timeout TIMEOUT seconds. No system prompt and no reasoning switch
-          is sent, so the model's default reasoning behaviour applies.
+          timeout TIMEOUT seconds. No system prompt and no API reasoning
+          switch is sent; reasoning can only be changed through text in
+          prompt_suffix (e.g. /no_think for a model whose template reads it).
 
 Output in the run directory (runs/part_a/<run-id>/):
-  run.json         backend, model name and digest, settings, sha256 of the
-                   probe file and of each prompt file, code-set release
+  run.json         backend, model name and digest, settings, prompt_suffix,
+                   sha256 of the probe file and of each prompt file,
+                   code-set release
   raw.jsonl        one row per probe tried: id, raw reply, seconds, error
                    (plus done_reason and eval_count when the server gives
                    them)
@@ -23,12 +27,14 @@ Output in the run directory (runs/part_a/<run-id>/):
                    for medcode_eval.part_a.score
 
 A rerun with the same run directory skips ids already in raw.jsonl; it
-refuses to continue when the probe file, prompts, backend, model or
-settings differ from run.json.
+refuses to continue when the probe file, prompts, prompt_suffix, backend,
+model or settings differ from run.json. A run.json written before
+prompt_suffix existed counts as an empty suffix.
 
 Usage (from the repo root):
     venv/bin/python -m medcode_eval.run.runner --probes data/part_a/probes_lite.jsonl \
-        --run-id lite-qwen3-4b [--model qwen3:4b] [--limit N] [--ids a,b,c]
+        --run-id lite-qwen3-4b [--model qwen3:4b] [--limit N] [--ids a,b,c] \
+        [--prompt-suffix /no_think]
 """
 
 import argparse
@@ -81,14 +87,21 @@ def prompt_fields(probe):
     raise ValueError(f"unknown probe type {t!r}")
 
 
-def render_prompt(probe, prompts=None):
-    """The prompt text for a probe, without the file's trailing newline."""
+def render_prompt(probe, prompts=None, prompt_suffix=""):
+    """The prompt text for a probe, without the file's trailing newline.
+
+    A non-empty prompt_suffix is added on its own last line.
+    """
+    if "\n" in prompt_suffix or "\r" in prompt_suffix:
+        raise ValueError("prompt_suffix must be a single line")
     template = (prompts or load_prompts())[probe["type"]]
-    return template.format_map(prompt_fields(probe)).rstrip("\n")
+    text = template.format_map(prompt_fields(probe)).rstrip("\n")
+    return text + "\n" + prompt_suffix if prompt_suffix else text
 
 
 _THINK = re.compile(r"<think>.*?</think>", re.S)
 _MARKS = "\"'`*"
+_LABEL = re.compile(r"^\**\s*(?:final\s+)?answer\s*\**\s*:\s*\**\s*", re.I)
 
 
 def extract_answer(text):
@@ -96,7 +109,9 @@ def extract_answer(text):
 
     Drops reasoning wrapped in <think>...</think> (an unclosed <think> drops
     the rest of the reply), takes the last non-empty line, strips quotes,
-    backticks and asterisks at either end and one trailing full stop.
+    backticks and asterisks at either end and one trailing full stop, then
+    drops a leading "Answer:" or "Final answer:" label (any case, asterisks
+    around it allowed) and strips asterisks again.
     """
     text = _THINK.sub("", text)
     if "<think>" in text:
@@ -107,7 +122,8 @@ def extract_answer(text):
     s = lines[-1].strip().strip(_MARKS).strip()
     if s.endswith("."):
         s = s[:-1]
-    return s.strip().strip(_MARKS).strip()
+    s = s.strip().strip(_MARKS).strip()
+    return _LABEL.sub("", s).strip("*").strip()
 
 
 class FakeBackend:
@@ -192,12 +208,15 @@ def write_responses(run_dir):
                                     sort_keys=True) + "\n")
 
 
-def run(probes_path, run_dir, backend, ids=None, limit=None, log=None):
+def run(probes_path, run_dir, backend, ids=None, limit=None, log=None,
+        prompt_suffix=""):
     """Run probes (all, or those in ids, in file order) not yet in raw.jsonl.
 
-    limit caps the number of new probes tried in this call. Returns the
-    number tried.
+    limit caps the number of new probes tried in this call. prompt_suffix is
+    added to every prompt on its own last line. Returns the number tried.
     """
+    if "\n" in prompt_suffix or "\r" in prompt_suffix:
+        raise ValueError("prompt_suffix must be a single line")
     probes_path, run_dir = Path(probes_path), Path(run_dir)
     probes = load_jsonl(probes_path)
     code_sets = {p.get("code_set") for p in probes}
@@ -217,6 +236,7 @@ def run(probes_path, run_dir, backend, ids=None, limit=None, log=None):
         "probes_file": _relative(probes_path),
         "probes_sha256": _sha(probes_path),
         "prompts_sha256": {f: _sha(PROMPT_DIR / f) for f in PROMPT_FILES.values()},
+        "prompt_suffix": prompt_suffix,
         **backend.describe(),
     }
     run_dir.mkdir(parents=True, exist_ok=True)
@@ -224,6 +244,7 @@ def run(probes_path, run_dir, backend, ids=None, limit=None, log=None):
     if meta_path.exists():
         old = json.loads(meta_path.read_text(encoding="utf-8"))
         old.pop("started", None)
+        old.setdefault("prompt_suffix", "")  # run.json from before the setting
         if old != meta:
             diff = sorted(k for k in set(old) | set(meta) if old.get(k) != meta.get(k))
             raise ValueError(f"run directory was made with other inputs: {diff}")
@@ -238,7 +259,7 @@ def run(probes_path, run_dir, backend, ids=None, limit=None, log=None):
             continue
         if limit is not None and tried >= limit:
             break
-        prompt = render_prompt(p, prompts)
+        prompt = render_prompt(p, prompts, prompt_suffix)
         start = time.monotonic()
         row = {"id": p["id"], "raw": None, "error": None}
         try:
@@ -271,13 +292,15 @@ def main(argv=None):
     ap.add_argument("--host", default=DEFAULT_HOST)
     ap.add_argument("--limit", type=int)
     ap.add_argument("--ids", help="comma-separated probe ids")
+    ap.add_argument("--prompt-suffix", default="",
+                    help="text added to every prompt on its own last line")
     args = ap.parse_args(argv)
     if not re.fullmatch(r"[A-Za-z0-9._-]+", args.run_id):
         ap.error("run id: letters, digits, '.', '_' and '-' only")
     backend = OllamaBackend(args.model, host=args.host)
     ids = args.ids.split(",") if args.ids else None
     n = run(args.probes, REPO_ROOT / RUNS_DIR / args.run_id, backend, ids=ids,
-            limit=args.limit, log=print)
+            limit=args.limit, log=print, prompt_suffix=args.prompt_suffix)
     print(f"tried {n}")
 
 
