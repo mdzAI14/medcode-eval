@@ -3,17 +3,27 @@
 Three probe types, all built from refdata files only:
 
   code_to_description  a billable code and 4 long descriptions (A-D), one of
-                       them its own; the answer is the letter.
+                       them its own; the answer is the letter. Each letter
+                       is the answer equally often, in seeded order.
   description_to_code  a billable code's long description; the answer is the
-                       code. Codes whose long description is shared with
-                       another billable code are left out.
+                       code. Codes whose long description equals another
+                       row's long description (header rows included) are
+                       left out.
   status               a string shown as a code; the answer is billable,
                        header or not_a_code. not_a_code probes have a kind:
-                       deleted, substituted, extended, placeholder_prefix.
+                       substituted, extended, placeholder_prefix, in equal
+                       shares.
 
-Sampling gives each chapter the same number of probes within each type,
-within each status answer and within each generated not_a_code kind
-(allocate()). Deleted-code probes are outside that balance.
+Three files. probes_full and probes_lite (drawn from full) leave out every
+code on an "Add:" line of the order addenda, and no generated not_a_code
+string comes from one. Sampling gives each chapter the same number of
+probes within each type, within each status answer and within each
+not_a_code kind (allocate()); remainders and shortfalls go to chapters
+picked by the seeded generator. probes_changes uses every changed code with
+no sampling: a status probe for each code on an "Add:" line and for each
+removed code, and a description_to_code probe for each added billable code
+whose long description is not shared. Each carries a `change`
+(addenda.CHANGES).
 
 Codes are shown with the dot after the third character; answers store the
 code without it. One fixed seed (SEED) and the same Python version give
@@ -50,10 +60,12 @@ TYPES = ("code_to_description", "description_to_code", "status")
 FULL_SIZES = {"code_to_description": 500, "description_to_code": 500, "status": 501}
 LITE_SIZES = {"code_to_description": 50, "description_to_code": 50, "status": 51}
 STATUS_ANSWERS = ("billable", "header", "not_a_code")
-KINDS = ("deleted", "substituted", "extended", "placeholder_prefix")
-GENERATED_KINDS = KINDS[1:]
+KINDS = ("substituted", "extended", "placeholder_prefix")
+GENERATED_KINDS = KINDS
 LETTERS = "ABCD"
 ID_PREFIX = {"code_to_description": "c2d", "description_to_code": "d2c", "status": "st"}
+CHANGES_ID_PREFIX = {"description_to_code": "chg-d2c", "status": "chg-st"}
+OUTPUT_FILES = ("probes_full.jsonl", "probes_lite.jsonl", "probes_changes.jsonl")
 
 
 def display(code):
@@ -61,13 +73,13 @@ def display(code):
     return code if len(code) <= 3 else f"{code[:3]}.{code[3:]}"
 
 
-def allocate(total, caps):
+def allocate(total, caps, rng):
     """Spread `total` over chapters as equally as their capacities allow.
 
     caps: list of (chapter, capacity) in chapter order. Every chapter gets
     the same share; a chapter with too few takes all it has and the
-    shortfall is spread over the others; a remainder goes one each to the
-    first chapters in chapter order. Returns {chapter: count}.
+    shortfall is spread over the others; a remainder goes one each to
+    chapters picked by rng. Returns {chapter: count}.
     """
     cap = dict(caps)
     if total > sum(cap.values()):
@@ -79,8 +91,9 @@ def allocate(total, caps):
         share, extra = divmod(remaining, len(active))
         small = [k for k in active if cap[k] <= share]
         if not small:
-            for i, k in enumerate(active):
-                out[k] = share + (1 if i < extra else 0)
+            lucky = set(rng.sample(active, extra))
+            for k in active:
+                out[k] = share + (1 if k in lucky else 0)
             break
         for k in small:
             out[k] = cap[k]
@@ -95,10 +108,22 @@ def equal_shares(total, keys):
     return {k: base + (1 if i < extra else 0) for i, k in enumerate(keys)}
 
 
+def letter_sequence(n, rng):
+    """n answer letters: consecutive blocks of 4 are seeded permutations of
+    ABCD (the last block cut short), so each letter is used n // 4 or
+    n // 4 + 1 times and nearby probes are balanced too."""
+    out = []
+    while len(out) < n:
+        block = list(LETTERS)
+        rng.shuffle(block)
+        out.extend(block)
+    return out[:n]
+
+
 class CodeSet:
     """The refdata facts the generator needs, read once."""
 
-    def __init__(self, records, chapters, deleted, sources):
+    def __init__(self, records, chapters, deleted, sources, changes=()):
         self.records = records
         self.by_code = {r.code: r for r in records}
         self.chapter_list = chapters
@@ -116,6 +141,13 @@ class CodeSet:
         self.parents = orderfile.parent_map(records)
         self.deleted = deleted
         self.sources = sources
+        # (code, change) from addenda.changes(); added = codes on an Add line
+        self.changes = list(changes)
+        self.added = {c for c, ch in self.changes if ch != "removed"}
+
+    def main_records(self):
+        """Order-file rows the main sets may use: none on an Add line."""
+        return [r for r in self.records if r.code not in self.added]
 
     def chapter_of_code(self, code):
         cat = code[:3]
@@ -171,14 +203,20 @@ def load_codeset(paths=None, root=REPO_ROOT):
     paths = {k: root / v for k, v in (paths or DEFAULT_PATHS).items()}
     records = orderfile.load(paths["order"])
     codes = {r.code for r in records}
+    add = addenda.load(paths["addenda"])
     deleted = []
-    for r in addenda.load(paths["addenda"]).records:
+    for r in add.records:
         if r.action == "delete" and r.code not in codes and r.code not in deleted:
             deleted.append(r.code)
+    if set(added := addenda.added_codes(add.records)) - codes:
+        raise ValueError("a code on an Add line is not in the order file")
     chapters = tabular.load_chapters(paths["tabular"])
     sources = {k: p.resolve().relative_to(root.resolve()).as_posix()
                for k, p in paths.items()}
-    return CodeSet(records, chapters, deleted, sources)
+    cs = CodeSet(records, chapters, deleted, sources, addenda.changes(add.records))
+    if cs.added != set(added):
+        raise ValueError("Add-line codes and changes disagree")
+    return cs
 
 
 def _base(cs, type_, chapter, source="order"):
@@ -188,7 +226,7 @@ def _base(cs, type_, chapter, source="order"):
 
 def _sample_by_chapter(cs, total, pool, rng, code_of=lambda x: x.code):
     groups = cs.by_chapter(pool, code_of)
-    counts = allocate(total, [(ch, len(groups[ch])) for ch in cs.chapters])
+    counts = allocate(total, [(ch, len(groups[ch])) for ch in cs.chapters], rng)
     chosen = []
     for ch in cs.chapters:
         chosen.extend(rng.sample(groups[ch], counts[ch]))
@@ -196,7 +234,8 @@ def _sample_by_chapter(cs, total, pool, rng, code_of=lambda x: x.code):
 
 
 def _shared_descriptions(records):
-    counts = Counter(r.long for r in records if r.billable)
+    """Long descriptions found on more than one row, header rows included."""
+    counts = Counter(r.long for r in records)
     return {d for d, n in counts.items() if n > 1}
 
 
@@ -214,7 +253,7 @@ def _generated_candidates(cs):
     codes = set(cs.by_code)
     deleted = set(cs.deleted)
     chars = _position_chars(cs.records)
-    billable = [r for r in cs.records if r.billable]
+    billable = [r for r in cs.main_records() if r.billable]
     out = {k: {ch: [] for ch in cs.chapters} for k in GENERATED_KINDS}
 
     def ok(s):
@@ -233,7 +272,7 @@ def _generated_candidates(cs):
             if ext:
                 out["extended"][ch].append((c, ext))
     seen = set()
-    for r in cs.records:
+    for r in cs.main_records():
         c = r.code
         if len(c) > 3 and cs.parents[c] != c[:-1]:
             s = c[:-1]
@@ -248,28 +287,20 @@ def _status_probes(cs, total, rng):
         raise ValueError("status size must be a multiple of 3")
     quota = total // 3
     probes = []
-    billable = [r for r in cs.records if r.billable]
-    headers = [r for r in cs.records if not r.billable]
+    billable = [r for r in cs.main_records() if r.billable]
+    headers = [r for r in cs.main_records() if not r.billable]
     for answer, pool in (("billable", billable), ("header", headers)):
         for r in _sample_by_chapter(cs, quota, pool, rng):
             p = _base(cs, "status", cs.chapter_of_code(r.code))
             p.update(code=display(r.code), answer=answer)
             probes.append(p)
 
-    n_deleted = min(len(cs.deleted), quota // 2)
-    deleted = (list(cs.deleted) if n_deleted == len(cs.deleted)
-               else sorted(rng.sample(cs.deleted, n_deleted), key=cs.deleted.index))
-    for code in deleted:
-        p = _base(cs, "status", cs.chapter_of_code(code), "addenda")
-        p.update(code=display(code), answer="not_a_code", kind="deleted")
-        probes.append(p)
-
     used = set()
     cands = _generated_candidates(cs)
-    shares = equal_shares(quota - n_deleted, GENERATED_KINDS)
+    shares = equal_shares(quota, GENERATED_KINDS)
     for kind in GENERATED_KINDS:
         groups = cands[kind]
-        counts = allocate(shares[kind], [(ch, len(groups[ch])) for ch in cs.chapters])
+        counts = allocate(shares[kind], [(ch, len(groups[ch])) for ch in cs.chapters], rng)
         for ch in cs.chapters:
             order = list(groups[ch])
             rng.shuffle(order)
@@ -297,11 +328,13 @@ def build_full(cs, sizes, rng):
     by_type = {}
 
     c2d = []
-    pool = [r for r in cs.records if r.billable]
-    for r in _sample_by_chapter(cs, sizes["code_to_description"], pool, rng):
+    pool = [r for r in cs.main_records() if r.billable]
+    chosen = _sample_by_chapter(cs, sizes["code_to_description"], pool, rng)
+    letters = letter_sequence(len(chosen), rng)
+    for r, letter in zip(chosen, letters):
         options = cs.distractors(r.code, rng)
         rng.shuffle(options)
-        pos = rng.randrange(4)
+        pos = LETTERS.index(letter)
         options.insert(pos, r.long)
         p = _base(cs, "code_to_description", cs.chapter_of_code(r.code))
         p.update(code=display(r.code), options=options, answer=LETTERS[pos])
@@ -309,7 +342,7 @@ def build_full(cs, sizes, rng):
     by_type["code_to_description"] = c2d
 
     shared = _shared_descriptions(cs.records)
-    pool = [r for r in cs.records if r.billable and r.long not in shared]
+    pool = [r for r in cs.main_records() if r.billable and r.long not in shared]
     d2c = []
     for r in _sample_by_chapter(cs, sizes["description_to_code"], pool, rng):
         p = _base(cs, "description_to_code", cs.chapter_of_code(r.code))
@@ -341,35 +374,100 @@ def _check_not_a_code(cs, probes):
         s = p["code"].replace(".", "")
         if s in codes:
             raise ValueError(f"not_a_code string {s} is in the order file")
-        if p["kind"] != "deleted" and s in deleted:
+        if s in deleted:
             raise ValueError(f"generated not_a_code string {s} is a deleted code")
+        if p.get("derived_from") in cs.added:
+            raise ValueError(f"not_a_code string {s} comes from a changed code")
+
+
+def build_changes(cs, rng):
+    """Build the changes set from every added and removed code (no sampling).
+
+    Status answers for codes on an Add line come from the order file and
+    must agree with the change; removed codes must be absent from it.
+    """
+    shared = _shared_descriptions(cs.records)
+    by_type = {"description_to_code": [], "status": []}
+    for code, change in cs.changes:
+        ch = cs.chapter_of_code(code)
+        if change == "removed":
+            if code in cs.by_code:
+                raise ValueError(f"removed code {code} is in the order file")
+            p = _base(cs, "status", ch, "addenda")
+            p.update(code=display(code), answer="not_a_code", change=change)
+            by_type["status"].append(p)
+            continue
+        rec = cs.by_code.get(code)
+        if rec is None:
+            raise ValueError(f"added code {code} is not in the order file")
+        if rec.billable != (change == "added_billable"):
+            raise ValueError(f"{code}: order-file flag disagrees with {change}")
+        p = _base(cs, "status", ch)
+        p.update(code=display(code), answer="billable" if rec.billable else "header",
+                 change=change)
+        by_type["status"].append(p)
+        if rec.billable and rec.long not in shared:
+            p = _base(cs, "description_to_code", ch)
+            p.update(description=rec.long, answer=code, change=change)
+            by_type["description_to_code"].append(p)
+    probes = []
+    for t in ("description_to_code", "status"):
+        items = by_type[t]
+        rng.shuffle(items)
+        for i, p in enumerate(items, start=1):
+            probes.append({"id": f"{CHANGES_ID_PREFIX[t]}-{i:04d}", **p})
+    return probes
 
 
 def build_lite(full, sizes, rng):
     """Draw the lite set from the full set (same ids, same records)."""
     chapters = sorted({p["chapter"] for p in full if p["chapter"] is not None})
 
-    def pick(items, total):
+    def groups_counts(items, total):
         groups = {ch: [p for p in items if p["chapter"] == ch] for ch in chapters}
-        counts = allocate(total, [(ch, len(groups[ch])) for ch in chapters])
+        counts = allocate(total, [(ch, len(groups[ch])) for ch in chapters], rng)
+        return groups, counts
+
+    def pick(items, total):
+        groups, counts = groups_counts(items, total)
         out = []
         for ch in chapters:
             out.extend(rng.sample(groups[ch], counts[ch]))
         return out
 
-    chosen = []
-    for t in ("code_to_description", "description_to_code"):
-        chosen += pick([p for p in full if p["type"] == t], sizes[t])
+    def pick_letters(items, total):
+        """Chapter-balanced and answer-letter-balanced: each letter
+        total // 4 times, the remainder to letters picked by rng. Chapters
+        with fewest probes go first; within a chapter the next probe is
+        the first (in seeded order) whose letter has most quota left."""
+        groups, counts = groups_counts(items, total)
+        base, extra = divmod(total, len(LETTERS))
+        lucky = set(rng.sample(LETTERS, extra))
+        quota = {x: base + (x in lucky) for x in LETTERS}
+        out = []
+        for ch in sorted(chapters, key=lambda c: (len(groups[c]), c)):
+            cand = list(groups[ch])
+            rng.shuffle(cand)
+            for _ in range(counts[ch]):
+                best = max(cand, key=lambda p: quota[p["answer"]])
+                if quota[best["answer"]] <= 0:
+                    raise ValueError(f"chapter {ch}: cannot balance answer letters")
+                quota[best["answer"]] -= 1
+                cand.remove(best)
+                out.append(best)
+        return out
+
+    chosen = pick_letters([p for p in full if p["type"] == "code_to_description"],
+                          sizes["code_to_description"])
+    chosen += pick([p for p in full if p["type"] == "description_to_code"],
+                   sizes["description_to_code"])
     status = [p for p in full if p["type"] == "status"]
     if sizes["status"] % 3:
         raise ValueError("status size must be a multiple of 3")
     quota = sizes["status"] // 3
     for answer in ("billable", "header"):
         chosen += pick([p for p in status if p["answer"] == answer], quota)
-    deleted = [p for p in status if p.get("kind") == "deleted"]
-    n_deleted = min(len(deleted), quota // 2)
-    chosen += rng.sample(deleted, n_deleted)
-    shares = equal_shares(quota - n_deleted, GENERATED_KINDS)
+    shares = equal_shares(quota, GENERATED_KINDS)
     for kind in GENERATED_KINDS:
         chosen += pick([p for p in status if p.get("kind") == kind], shares[kind])
     full_kinds = {p["kind"] for p in full if "kind" in p}
@@ -381,7 +479,8 @@ def build_lite(full, sizes, rng):
 
 
 def counts(probes):
-    """Counts by type, chapter, status answer and not_a_code kind."""
+    """Counts by type, chapter, status answer, code_to_description answer,
+    not_a_code kind and, when probes have it, change."""
 
     def key(ch):
         return "none" if ch is None else str(ch)
@@ -393,8 +492,20 @@ def counts(probes):
         return {k: dict(v) for k, v in out.items()}
 
     status = [p for p in probes if p["type"] == "status"]
-    nac = [p for p in status if p["answer"] == "not_a_code"]
+    nac = [p for p in status if "kind" in p]
+    c2d = [p for p in probes if p["type"] == "code_to_description"]
+    extra = {}
+    if any("change" in p for p in probes):
+        extra["by_change"] = dict(Counter(p["change"] for p in probes))
+        extra["by_type_change"] = {
+            t: dict(Counter(p["change"] for p in probes if p["type"] == t))
+            for t in TYPES if any(p["type"] == t for p in probes)}
+        extra["status_by_change_answer"] = {
+            c: dict(Counter(p["answer"] for p in status if p["change"] == c))
+            for c in sorted({p["change"] for p in status})}
     return {
+        **extra,
+        "code_to_description_by_answer": dict(Counter(p["answer"] for p in c2d)),
         "total": len(probes),
         "by_type": dict(Counter(p["type"] for p in probes)),
         "by_type_chapter": nested(probes, lambda p: p["type"]),
@@ -422,7 +533,9 @@ def generate(out_dir=None, paths=None, root=REPO_ROOT, seed=SEED,
     rng = random.Random(seed)
     full = build_full(cs, full_sizes, rng)
     lite = build_lite(full, lite_sizes, rng)
-    files = {"probes_full.jsonl": _jsonl(full), "probes_lite.jsonl": _jsonl(lite)}
+    changes = build_changes(cs, rng)
+    files = {"probes_full.jsonl": _jsonl(full), "probes_lite.jsonl": _jsonl(lite),
+             "probes_changes.jsonl": _jsonl(changes)}
     refdata_sha = {}
     for role in ("order", "addenda", "tabular"):
         refdata_sha[cs.sources[role]] = _sha((root / (paths or DEFAULT_PATHS)[role]).read_bytes())
@@ -431,10 +544,13 @@ def generate(out_dir=None, paths=None, root=REPO_ROOT, seed=SEED,
         "seed": seed,
         "python_version": platform.python_version(),
         "generator": "medcode_eval/part_a/generate.py",
-        "sizes": {"full": dict(full_sizes), "lite": dict(lite_sizes)},
+        "sizes": {"full": dict(full_sizes), "lite": dict(lite_sizes),
+                  "changes": "every code on an Add line and every removed code; "
+                             "no sampling"},
         "refdata_sha256": refdata_sha,
         "outputs_sha256": {k: _sha(v) for k, v in files.items()},
-        "counts": {"full": counts(full), "lite": counts(lite)},
+        "counts": {"full": counts(full), "lite": counts(lite),
+                   "changes": counts(changes)},
     }
     out.mkdir(parents=True, exist_ok=True)
     for name, data in files.items():

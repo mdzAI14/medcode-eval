@@ -186,3 +186,52 @@ def removed_codes(records):
         if r.action == "delete" and r.code not in added and r.code not in out:
             out.append(r.code)
     return out
+
+
+def added_codes(records):
+    """Codes with an "Add:" line, in file order."""
+    out = []
+    for r in records:
+        if r.action == "add" and r.code not in out:
+            out.append(r.code)
+    return out
+
+
+CHANGES = ("added_billable", "added_header", "billable_to_header", "removed")
+
+
+def changes(records):
+    """Each added or deleted code with its kind of change, in file order.
+
+    added_billable      an "Add:" line as billable, no "Delete:" line
+    added_header        an "Add:" line as a header, no "Delete:" line
+    billable_to_header  an "Add:" line as a header and a "Delete:" line as
+                        billable
+    removed             a "Delete:" line and no "Add:" line
+    Revision lines are not changes. Any other combination, or a code with
+    more than one "Add:" or "Delete:" line, raises AddendaError.
+    Returns a list of (code, change).
+    """
+    adds, dels, order = {}, {}, []
+    for r in records:
+        if r.action not in ("add", "delete"):
+            continue
+        seen = adds if r.action == "add" else dels
+        if r.code in seen:
+            raise AddendaError(f"{r.code}: more than one {r.action} line")
+        seen[r.code] = r.billable
+        if r.code not in order:
+            order.append(r.code)
+    out = []
+    for code in order:
+        add, dele = adds.get(code), dels.get(code)
+        if add is None:
+            change = "removed"
+        elif dele is None:
+            change = "added_billable" if add else "added_header"
+        elif dele and not add:
+            change = "billable_to_header"
+        else:
+            raise AddendaError(f"{code}: add/delete combination not understood")
+        out.append((code, change))
+    return out

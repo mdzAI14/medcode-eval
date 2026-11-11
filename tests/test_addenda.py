@@ -10,6 +10,8 @@ from pathlib import Path
 from medcode_eval.addenda import (
     AddendaError,
     AddendaRecord,
+    added_codes,
+    changes,
     load,
     parse_line,
     parse_text,
@@ -140,6 +142,40 @@ class RemovedCodesTests(unittest.TestCase):
         result = parse_text(FIXTURE)
         # U9B is deleted and re-added (status change): not removed
         self.assertEqual(removed_codes(result.records), ["U9C1", "U9C1XXA"])
+
+
+class ChangesTests(unittest.TestCase):
+    def test_added_codes_any_add_line(self):
+        result = parse_text(FIXTURE)
+        self.assertEqual(added_codes(result.records), ["U9A1", "U9B", "U9B1"])
+
+    def test_changes_classified_in_file_order(self):
+        records = parse_text(FIXTURE).records + [
+            parse_line(arow("Add:", 0, "U9E", "Invented new header", "Invented new header"))]
+        self.assertEqual(changes(records), [
+            ("U9A1", "added_billable"),
+            ("U9B", "billable_to_header"),
+            ("U9B1", "added_billable"),
+            ("U9C1", "removed"),
+            ("U9C1XXA", "removed"),
+            ("U9E", "added_header"),
+        ])
+
+    def test_revisions_are_not_changes(self):
+        records = [parse_line(FIXTURE[6]), parse_line(FIXTURE[7])]
+        self.assertEqual(changes(records), [])
+
+    def test_unexpected_combination_rejected(self):
+        # deleted as a header and added as billable: not one of the four kinds
+        records = [parse_line(arow("Delete:", 0, "U9F", "S", "L")),
+                   parse_line(arow("Add:", 1, "U9F", "S", "L"))]
+        with self.assertRaises(AddendaError):
+            changes(records)
+
+    def test_repeated_add_rejected(self):
+        line = parse_line(arow("Add:", 1, "U9G1", "S", "L"))
+        with self.assertRaises(AddendaError):
+            changes([line, line])
 
 
 class LoadTests(unittest.TestCase):

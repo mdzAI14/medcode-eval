@@ -2,8 +2,8 @@
 
 Input: a probes file (JSONL, from generate.py) and a responses file (JSONL,
 one {"id": ..., "response": ...} per line). Output: JSON and a markdown
-table with accuracy overall, by type, by chapter and, for not_a_code probes,
-by kind. Each row gives plain accuracy and the mean of the per-chapter
+table with accuracy overall, by type, by chapter, for not_a_code probes by
+kind and, for probes that carry a `change` field, by change. Each row gives plain accuracy and the mean of the per-chapter
 accuracies (chapters present in that row; deleted-code probes with no
 chapter form the group "none").
 
@@ -95,7 +95,8 @@ def score(probes, responses):
         invalid = not missing and value is None
         correct = value is not None and value == _norm_answer(p["type"], p["answer"])
         rows.append({"type": p["type"], "chapter": _chapter_key(p["chapter"]),
-                     "kind": p.get("kind"), "correct": correct,
+                     "kind": p.get("kind"), "change": p.get("change"),
+                     "correct": correct,
                      "missing": missing, "invalid": invalid})
     by_chapter = defaultdict(list)
     for r in rows:
@@ -105,8 +106,11 @@ def score(probes, responses):
     for r in rows:
         if r["kind"] and r["kind"] not in kinds:
             kinds.append(r["kind"])
-    kind_order = ("deleted", "substituted", "extended", "placeholder_prefix")
+    kind_order = ("substituted", "extended", "placeholder_prefix")
     kinds.sort(key=lambda k: (kind_order.index(k) if k in kind_order else 99, k))
+    change_order = ("added_billable", "added_header", "billable_to_header", "removed")
+    changes = sorted({r["change"] for r in rows if r["change"]},
+                     key=lambda c: (change_order.index(c) if c in change_order else 99, c))
     return {
         "code_set": code_sets,
         "n_probes": len(probes),
@@ -118,6 +122,7 @@ def score(probes, responses):
         "by_chapter": {k: _group(by_chapter[k])
                        for k in sorted(by_chapter, key=_chapter_sort)},
         "by_kind": {k: _group([r for r in rows if r["kind"] == k]) for k in kinds},
+        "by_change": {c: _group([r for r in rows if r["change"] == c]) for c in changes},
     }
 
 
@@ -144,6 +149,8 @@ def to_markdown(result):
         out.append(line("chapter", k, g))
     for k, g in result["by_kind"].items():
         out.append(line("not_a_code kind", k, g))
+    for c, g in result.get("by_change", {}).items():
+        out.append(line("change", c, g))
     return "".join(out)
 
 

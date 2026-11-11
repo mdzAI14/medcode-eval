@@ -1,0 +1,7 @@
+Code set: ICD-10-CM FY2027 (October 1, 2026 release).
+What is the status of {code} in this code set?
+billable: a valid code that can be reported as it stands
+header: a valid category or subcategory that cannot be
+reported because more specific codes exist under it
+not_a_code: not in this code set
+Answer with one word only: billable, header or not_a_code.

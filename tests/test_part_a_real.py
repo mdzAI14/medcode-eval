@@ -1,8 +1,9 @@
 """Part A against the real ICD-10-CM FY2027 refdata files.
 
-Counts are those observed in task P3.1 (step 1 to 3 findings). The probe
-answers are derived again from the order file, independently of the
-generator's sampling. No network.
+Input counts are those observed in task P3.1 (step 1 to 3 findings);
+probe counts follow the P3.2 rules. The probe answers are derived again
+from the order and addenda files, independently of the generator. No
+network.
 """
 
 import json
@@ -22,7 +23,8 @@ ORDER = REF / "icd10cm_order_2027.txt"
 ADDENDA = REF / "icd10cm_order_addenda_2027.txt"
 TABULAR = REF / "icd10cm_tabular_2027.xml"
 OUT = ROOT / DEFAULT_OUT
-OUTPUTS = ("probes_full.jsonl", "probes_lite.jsonl", "manifest.json")
+OUTPUTS = ("probes_full.jsonl", "probes_lite.jsonl", "probes_changes.jsonl",
+           "manifest.json")
 
 # chapter: (first, last, stored 3-character categories, billable codes)
 CHAPTERS = {
@@ -87,6 +89,16 @@ class RealInputsTests(unittest.TestCase):
         c = Counter(r.long for r in self.records if r.billable)
         self.assertEqual([d for d, n in c.items() if n > 1], [])
 
+    def test_billable_long_descriptions_shared_with_any_row(self):
+        c = Counter(r.long for r in self.records)
+        shared = [r for r in self.records if r.billable and c[r.long] > 1]
+        self.assertEqual(len(shared), 342)
+
+    def test_changes(self):
+        got = Counter(ch for _, ch in addenda.changes(self.addenda.records))
+        self.assertEqual(got, {"added_billable": 190, "added_header": 48,
+                               "billable_to_header": 15, "removed": 21})
+
 
 class RealProbesTests(unittest.TestCase):
     @classmethod
@@ -95,9 +107,13 @@ class RealProbesTests(unittest.TestCase):
         cls.by_code = {r.code: r for r in cls.records}
         cls.parents = orderfile.parent_map(cls.records)
         cls.chapters = tabular.load_chapters(TABULAR)
-        cls.removed = addenda.removed_codes(addenda.load(ADDENDA).records)
+        add = addenda.load(ADDENDA).records
+        cls.removed = addenda.removed_codes(add)
+        cls.added = set(addenda.added_codes(add))
+        cls.changes = dict(addenda.changes(add))
         cls.full = load_jsonl(OUT / "probes_full.jsonl")
         cls.lite = load_jsonl(OUT / "probes_lite.jsonl")
+        cls.changes_probes = load_jsonl(OUT / "probes_changes.jsonl")
         billable = [r for r in cls.records if r.billable]
         cls.code_of_long = {r.long: r.code for r in billable}
 
@@ -121,11 +137,45 @@ class RealProbesTests(unittest.TestCase):
             self.assertEqual(Counter(p["answer"] for p in probes if p["type"] == "status"),
                              {"billable": q, "header": q, "not_a_code": q})
         self.assertEqual(Counter(p["kind"] for p in self.full if "kind" in p),
-                         {"deleted": 21, "substituted": 49, "extended": 49,
-                          "placeholder_prefix": 48})
+                         {"substituted": 56, "extended": 56, "placeholder_prefix": 55})
         self.assertEqual(Counter(p["kind"] for p in self.lite if "kind" in p),
-                         {"deleted": 8, "substituted": 3, "extended": 3,
-                          "placeholder_prefix": 3})
+                         {"substituted": 6, "extended": 6, "placeholder_prefix": 5})
+        c2d = Counter(p["answer"] for p in self.full if p["type"] == "code_to_description")
+        self.assertEqual(c2d, {x: 125 for x in "ABCD"})
+        c2d = Counter(p["answer"] for p in self.lite if p["type"] == "code_to_description")
+        self.assertEqual(sum(c2d.values()), 50)
+        self.assertTrue(set(c2d.values()) <= {12, 13}, c2d)
+
+    def test_no_changed_code_in_main_sets(self):
+        for p in self.full:
+            code = p["answer"] if p["type"] == "description_to_code" else p["code"]
+            self.assertNotIn(code.replace(".", ""), self.added, p["id"])
+            self.assertNotIn(p.get("derived_from"), self.added, p["id"])
+            self.assertNotIn(code.replace(".", ""), self.removed, p["id"])
+
+    def test_changes_set(self):
+        probes = self.changes_probes
+        self.assertEqual(Counter((p["type"], p["change"]) for p in probes), {
+            ("status", "added_billable"): 190, ("status", "added_header"): 48,
+            ("status", "billable_to_header"): 15, ("status", "removed"): 21,
+            ("description_to_code", "added_billable"): 188})
+        status = {p["code"].replace(".", ""): p for p in probes if p["type"] == "status"}
+        self.assertEqual(set(status), set(self.changes))
+        long_count = Counter(r.long for r in self.records)
+        for code, p in status.items():
+            self.assertEqual(p["change"], self.changes[code])
+            if code in self.by_code:
+                want = "billable" if self.by_code[code].billable else "header"
+            else:
+                want = "not_a_code"
+            self.assertEqual(p["answer"], want)
+            self.assertEqual(p["chapter"], tabular.chapter_of(code[:3], self.chapters))
+        d2c = [p for p in probes if p["type"] == "description_to_code"]
+        want = {c for c, ch in self.changes.items()
+                if ch == "added_billable" and long_count[self.by_code[c].long] == 1}
+        self.assertEqual({p["answer"] for p in d2c}, want)
+        for p in d2c:
+            self.assertEqual(p["description"], self.by_code[p["answer"]].long)
 
     def test_lite_is_subset(self):
         by_id = {p["id"]: p for p in self.full}
@@ -167,10 +217,6 @@ class RealProbesTests(unittest.TestCase):
                 self.assertEqual(p["chapter"], tabular.chapter_of(code[:3], self.chapters))
                 continue
             kind = p["kind"]
-            if kind == "deleted":
-                self.assertIn(code, self.removed)
-                self.assertEqual(p["chapter"], tabular.chapter_of(code[:3], self.chapters))
-                continue
             self.assertNotIn(code, self.removed)
             src = p["derived_from"]
             self.assertEqual(p["chapter"], tabular.chapter_of(src[:3], self.chapters))
@@ -186,7 +232,7 @@ class RealProbesTests(unittest.TestCase):
                 self.assertNotEqual(self.parents[src], code)
 
     def test_fake_responders(self):
-        for probes in (self.full, self.lite):
+        for probes in (self.full, self.lite, self.changes_probes):
             self.assertEqual(score(probes, oracle(probes))["overall"]["accuracy"], 1.0)
             r = score(probes, constant(probes))
             for t, g in r["by_type"].items():

@@ -85,6 +85,24 @@ class ScoreTests(unittest.TestCase):
         self.assertEqual(set(r["by_kind"]), {"deleted", "extended"})
         self.assertEqual(r["by_kind"]["deleted"]["missing"], 1)
 
+    def test_by_change(self):
+        probes = [probe("x1", "status", 1, "billable", code="U90.0", change="added_billable"),
+                  probe("x2", "description_to_code", 1, "U900", description="d",
+                        change="added_billable"),
+                  probe("x3", "status", 2, "not_a_code", code="U95.8", change="removed")]
+        r = score(probes, [{"id": "x1", "response": "billable"},
+                           {"id": "x3", "response": "header"}])
+        self.assertEqual(list(r["by_change"]), ["added_billable", "removed"])
+        self.assertEqual((r["by_change"]["added_billable"]["n"],
+                          r["by_change"]["added_billable"]["correct"]), (2, 1))
+        self.assertEqual(r["by_change"]["removed"]["correct"], 0)
+        self.assertIn("| change | removed |", to_markdown(r))
+
+    def test_no_change_group_without_field(self):
+        r = score([C2D], [{"id": "c1", "response": "B"}])
+        self.assertEqual(r["by_change"], {})
+        self.assertNotIn("| change |", to_markdown(r))
+
     def test_duplicate_response_rejected(self):
         with self.assertRaises(ValueError):
             score([C2D], [{"id": "c1", "response": "B"}, {"id": "c1", "response": "A"}])

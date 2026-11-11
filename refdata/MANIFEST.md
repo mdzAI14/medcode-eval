@@ -22,12 +22,13 @@ Code set: ICD-10-CM FY2027.
 
 Notes
 
-- The four ZIP members were extracted byte for byte; each one's size
+- The five ZIP members were extracted byte for byte; each one's size
   matches the ZIP's listing.
 - The guidelines PDF is a byte-identical copy of the downloaded file. Its
   release label comes from its file name only; the PDF has not been
   parsed. The source page and download date above cover it as well, since
   no separate source was recorded for it.
 - Other members of the three ZIPs (index, external-cause index, drug and
-  neoplasm tables, PDF versions of the tabular, the codes file and the
-  code/order addenda text files, other addenda PDFs) are not tracked.
+  neoplasm tables, PDF versions of the tabular, the codes file, the code
+  addenda text file, other addenda PDFs) are not tracked. The order
+  addenda text file is tracked (row above).

@@ -30,7 +30,7 @@ CODES = [
     ("U95", 0, "Invented epsilon"),
     ("U950", 1, "Invented epsilon zero"),
     ("U951", 1, "Invented epsilon one"),
-    ("U952", 1, "Invented epsilon two"),
+    ("U952", 1, "Invented zeta"),  # same text as header U96
     ("U96", 0, "Invented zeta"),
     ("U961", 0, "Invented zeta one"),
     ("U961XXA", 1, "Invented zeta one, initial encounter"),
@@ -42,17 +42,26 @@ CODES = [
 ORDER_LINES = [row(i, code, flag, long[:60], long)
                for i, (code, flag, long) in enumerate(CODES, start=1)]
 
+# changes: U911, U970, U971 added billable; U961 added header; U934
+# billable to header; U958 removed
 ADDENDA_LINES = [
-    arow("Delete:", 0, "U92", "Invented gamma", "Invented gamma"),
-    arow("Add:", 1, "U92", "Invented gamma", "Invented gamma"),
+    arow("Add:", 1, "U911", "Invented beta two", "Invented beta two"),
+    arow("Delete:", 1, "U934", "Invented delta four", "Invented delta four"),
+    arow("Add:", 0, "U934", "Invented delta four", "Invented delta four"),
     arow("Delete:", 1, "U958", "Invented removed", "Invented removed"),
+    arow("Add:", 0, "U961", "Invented zeta one", "Invented zeta one"),
+    arow("Add:", 1, "U970", "Invented eta zero", "Invented eta zero"),
+    arow("Add:", 1, "U971", "Invented shared text", "Invented shared text"),
     "",
     "Headers",
-    "      1 deletions",
+    "      2 additions",
+    "      0 deletions",
     "Codes",
-    "      1 additions",
-    "      1 deletions",
+    "      3 additions",
+    "      2 deletions",
 ]
+
+ADDED = {"U911", "U934", "U961", "U970", "U971"}
 
 TABULAR_XML = """<?xml version="1.0" encoding="utf-8"?>
 <ICD10CM.tabular>
@@ -63,8 +72,8 @@ TABULAR_XML = """<?xml version="1.0" encoding="utf-8"?>
 """
 
 # sizes that the fixture can fill
-FULL = {"code_to_description": 6, "description_to_code": 6, "status": 24}
-LITE = {"code_to_description": 3, "description_to_code": 3, "status": 12}
+FULL = {"code_to_description": 6, "description_to_code": 6, "status": 18}
+LITE = {"code_to_description": 3, "description_to_code": 3, "status": 9}
 
 
 def write_inputs(directory):
