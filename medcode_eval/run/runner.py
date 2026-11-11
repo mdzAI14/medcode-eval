@@ -44,8 +44,20 @@ Output in the run directory (runs/part_a/<run-id>/):
   raw.jsonl        one row per probe tried: id, raw reply, seconds, error
                    (plus done_reason and eval_count when the server gives
                    them)
-  responses.jsonl  id and extracted answer for every row without an error,
-                   for medcode_eval.part_a.score
+  responses.jsonl  id, answer reader and extracted answer for every row
+                   without an error, for medcode_eval.part_a.score
+
+Answer readers (--reader, default 2; see read_reply). Both drop think
+blocks first and read a line with the same line-level logic (read_line).
+  1  the last non-empty line (the rule before reader 2; kept so that old
+     numbers can be reproduced)
+  2  the first and the last non-empty line: if only one gives a valid
+     answer for the probe type (medcode_eval.part_a.score.parse_response),
+     that is the answer; if both do and agree, that is the answer; if both
+     do and differ, the reply is invalid (response null); if neither does,
+     the last line is kept (invalid). A one-line reply reads as under 1.
+Reader 2 needs the probes; --rederive loads them from run.json's
+probes_file and refuses when its sha256 differs from probes_sha256.
 
 A rerun with the same run directory skips ids already in raw.jsonl; it
 refuses to continue when the probe file, prompts, prompt_suffix, backend,
@@ -59,7 +71,8 @@ Usage (from the repo root):
     venv/bin/python -m medcode_eval.run.runner --backend remote --model M --key-env NAME \
         --effort medium --max-tokens N --price-in P --price-out Q --max-usd C \
         --ledger runs/spend/L.jsonl [--part b --condition C] --run-id R ...
-    venv/bin/python -m medcode_eval.run.runner --run-id lite-qwen3-4b --rederive
+    venv/bin/python -m medcode_eval.run.runner --run-id lite-qwen3-4b --rederive \
+        [--reader 1]
     venv/bin/python -m medcode_eval.run.runner --part b --condition with_checker \
         --run-id b-qwen3-4b [--model qwen3:4b] [--limit N] [--ids a,b] [--prompt-suffix S]
     venv/bin/python -m medcode_eval.run.runner --part b --run-id b-qwen3-4b --rederive
@@ -86,7 +99,7 @@ import urllib.request
 from pathlib import Path
 
 from medcode_eval.part_a.generate import CODE_SET, LETTERS, REPO_ROOT
-from medcode_eval.part_a.score import load_jsonl
+from medcode_eval.part_a.score import load_jsonl, parse_response
 
 PROMPT_DIR = Path(__file__).resolve().parent / "prompts"
 PROMPT_FILES = {
@@ -95,6 +108,8 @@ PROMPT_FILES = {
     "status": "part_a_status.txt",
 }
 RUNS_DIR = Path("runs") / "part_a"
+READERS = (1, 2)
+DEFAULT_READER = 2
 
 DEFAULT_HOST = "http://127.0.0.1:11434"  # the ollama client's default address
 SEED = 20261001
@@ -179,13 +194,43 @@ def extract_answer(text):
     around it allowed). When a label was dropped, the end-strip (quotes,
     backticks, asterisks, one trailing full stop) runs again on what is left.
     """
-    text = drop_think(text)
-    lines = [l.strip() for l in text.splitlines() if l.strip()]
-    if not lines:
-        return ""
-    s = _end_strip(lines[-1])
+    lines = _lines(text)
+    return read_line(lines[-1]) if lines else ""
+
+
+def _lines(text):
+    """Non-empty lines, stripped, after think blocks are dropped."""
+    return [l.strip() for l in drop_think(text).splitlines() if l.strip()]
+
+
+def read_line(line):
+    """One line read as an answer: the end-strip, then a leading "Answer:"
+    or "Final answer:" label dropped and the end-strip again."""
+    s = _end_strip(line)
     unlabelled = _LABEL.sub("", s)
     return s if unlabelled == s else _end_strip(unlabelled)
+
+
+def read_reply(text, probe, reader=DEFAULT_READER):
+    """The response recorded for a reply to probe under an answer reader.
+
+    Reader 1 is extract_answer. Reader 2 reads the first and the last
+    non-empty line (read_line) and checks each with parse_response for the
+    probe's type: one valid gives that line; both valid and equal gives the
+    last line; both valid and different gives None (invalid); neither valid
+    gives the last line (invalid). A reply with at most one line reads as
+    under reader 1.
+    """
+    if reader not in READERS:
+        raise ValueError(f"unknown reader {reader!r}")
+    lines = _lines(text)
+    if reader == 1 or len(lines) <= 1:
+        return extract_answer(text)
+    first, last = read_line(lines[0]), read_line(lines[-1])
+    vf, vl = parse_response(probe, first), parse_response(probe, last)
+    if vf is not None and vl is not None:
+        return last if vf == vl else None
+    return first if vf is not None else last
 
 
 def _end_strip(s):
@@ -471,23 +516,45 @@ def _append(path, row):
         fh.flush()
 
 
-def write_responses(run_dir):
-    """Rewrite responses.jsonl from raw.jsonl (rows without an error)."""
+def run_probes(run_dir):
+    """The probes of a run: run.json's probes_file (relative to REPO_ROOT),
+    refused when its sha256 differs from run.json's probes_sha256."""
+    meta = json.loads((Path(run_dir) / "run.json").read_text(encoding="utf-8"))
+    path = REPO_ROOT / meta["probes_file"]
+    if _sha(path) != meta["probes_sha256"]:
+        raise ValueError(f"{meta['probes_file']} differs from the run's probes_sha256")
+    return load_jsonl(path)
+
+
+def write_responses(run_dir, reader=DEFAULT_READER, probes=None):
+    """Rewrite responses.jsonl from raw.jsonl (rows without an error) with an
+    answer reader. Reader 2 needs the probes; when not given they come from
+    run_probes(run_dir)."""
+    if reader not in READERS:
+        raise ValueError(f"unknown reader {reader!r}")
     run_dir = Path(run_dir)
     rows = load_jsonl(run_dir / "raw.jsonl") if (run_dir / "raw.jsonl").exists() else []
+    by_id = {}
+    if reader == 2:
+        by_id = {p["id"]: p for p in (run_probes(run_dir) if probes is None else probes)}
     with open(run_dir / "responses.jsonl", "w", encoding="utf-8") as fh:
         for r in rows:
             if r["error"] is None:
-                fh.write(json.dumps({"id": r["id"], "response": extract_answer(r["raw"])},
+                if reader == 2 and r["id"] not in by_id:
+                    raise ValueError(f"raw id {r['id']!r} not in the probes")
+                fh.write(json.dumps({"id": r["id"], "reader": reader,
+                                     "response": read_reply(r["raw"], by_id.get(r["id"]),
+                                                            reader)},
                                     sort_keys=True) + "\n")
 
 
 def run(probes_path, run_dir, backend, ids=None, limit=None, log=None,
-        prompt_suffix="", ledger=None):
+        prompt_suffix="", ledger=None, reader=DEFAULT_READER):
     """Run probes (all, or those in ids, in file order) not yet in raw.jsonl.
 
     limit caps the number of new probes tried in this call. prompt_suffix is
-    added to every prompt on its own last line. Returns the number tried.
+    added to every prompt on its own last line. reader is the answer reader
+    for responses.jsonl. Returns the number tried.
 
     ledger (medcode_eval.run.spend.Ledger) is the spending stop; a remote
     backend needs one. With a ledger, run.json gains "spend" (the prices,
@@ -502,7 +569,7 @@ def run(probes_path, run_dir, backend, ids=None, limit=None, log=None,
     if "\n" in prompt_suffix or "\r" in prompt_suffix:
         raise ValueError("prompt_suffix must be a single line")
     probes_path, run_dir = Path(probes_path), Path(run_dir)
-    probes = load_jsonl(probes_path)
+    probes = all_probes = load_jsonl(probes_path)
     code_sets = {p.get("code_set") for p in probes}
     if code_sets != {CODE_SET}:
         raise ValueError(f"probe file code sets {sorted(map(str, code_sets))}, "
@@ -560,7 +627,7 @@ def run(probes_path, run_dir, backend, ids=None, limit=None, log=None,
         except (OSError, urllib.error.URLError, ValueError, TimeoutError) as exc:
             row["error"] = f"{type(exc).__name__}: {exc}"
         except RemoteAbort:
-            write_responses(run_dir)
+            write_responses(run_dir, reader, all_probes)
             raise
         row["seconds"] = round(time.monotonic() - start, 3)
         spend.after(ledger, p["id"], 1, row, chars)
@@ -570,7 +637,7 @@ def run(probes_path, run_dir, backend, ids=None, limit=None, log=None,
         if log:
             log(f"{p['id']} {row['seconds']:.1f}s"
                 + (f" error {row['error']}" if row["error"] else ""))
-    write_responses(run_dir)
+    write_responses(run_dir, reader, all_probes)
     return tried
 
 
@@ -604,6 +671,8 @@ def main(argv=None):
     ap.add_argument("--rederive", action="store_true",
                     help="only rewrite responses.jsonl or answers.jsonl from raw.jsonl; "
                          "no model call")
+    ap.add_argument("--reader", type=int, choices=READERS, default=DEFAULT_READER,
+                    help="Part A answer reader (default 2; 1 = last line only)")
     ap.add_argument("--dry-run", action="store_true",
                     help="render every first-turn prompt and the cost table; no model call")
     ap.add_argument("--backend", choices=("ollama", "remote"), default="ollama")
@@ -634,7 +703,7 @@ def main(argv=None):
     if args.rederive:
         if not (run_dir / "raw.jsonl").is_file():
             ap.error(f"no raw.jsonl in {RUNS_DIR / args.run_id}")
-        write_responses(run_dir)
+        write_responses(run_dir, args.reader)
         print(f"rewrote {RUNS_DIR / args.run_id / 'responses.jsonl'}")
         return
     if not args.probes:
@@ -645,7 +714,7 @@ def main(argv=None):
     ids = args.ids.split(",") if args.ids else None
     try:
         n = run(args.probes, run_dir, backend, ids=ids, limit=args.limit, log=print,
-                prompt_suffix=args.prompt_suffix, ledger=ledger)
+                prompt_suffix=args.prompt_suffix, ledger=ledger, reader=args.reader)
     except RemoteAbort as exc:
         print(f"run aborted: {exc}")
         raise SystemExit(2)

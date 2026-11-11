@@ -21,6 +21,10 @@ Normalisation before comparing:
 A response that is missing, or is not a valid answer for its probe type, is
 wrong; missing and invalid responses are counted separately.
 
+reader: the answer reader recorded in the responses' "reader" field
+(medcode_eval.run.runner); null when no response records one. Responses
+with different readers are refused.
+
 status_table: for status probes, counts by expected answer (rows billable,
 header, not_a_code) and response (columns billable, header, not_a_code,
 invalid, missing).
@@ -99,6 +103,9 @@ def score(probes, responses):
         if r["id"] in given:
             raise ValueError(f"duplicate response id {r['id']!r}")
         given[r["id"]] = r.get("response")
+    readers = {r.get("reader") for r in responses}
+    if len(readers) > 1:
+        raise ValueError(f"responses from more than one reader: {sorted(map(str, readers))}")
     ids = {p["id"] for p in probes}
     rows = []
     status_table = {a: {c: 0 for c in STATUS_COLUMNS} for a in STATUS_ANSWERS}
@@ -130,6 +137,7 @@ def score(probes, responses):
                      key=lambda c: (change_order.index(c) if c in change_order else 99, c))
     return {
         "code_set": code_sets,
+        "reader": next(iter(readers)) if readers else None,
         "n_probes": len(probes),
         "n_responses": len(given),
         "unknown_response_ids": len(set(given) - ids),
@@ -157,7 +165,9 @@ def to_markdown(result):
                 f"| {_fmt(g['chapter_mean_accuracy'])} | {g['chapters']} "
                 f"| {g['missing']} | {g['invalid']} |\n")
 
+    reader = result.get("reader")
     out = [f"Code set: {', '.join(result['code_set']) or 'n/a'}. "
+           f"Reader: {'not recorded' if reader is None else reader}. "
            f"Probes: {result['n_probes']}. Responses: {result['n_responses']} "
            f"({result['unknown_response_ids']} with unknown ids).\n\n", head,
            line("overall", "", result["overall"])]
