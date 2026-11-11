@@ -2,14 +2,15 @@
 
 Code set: ICD-10-CM FY2027 (October 1, 2026 release).
 
-Part B cases are written and coded by a human. Each case is three files
-that share one id:
+Each Part B case is three files that share one id. Gold codes and
+citations are drafted with AI assistance and verified by the author; each
+gold file's `method` and `method_detail` fields record how it was produced.
 
 | File | Holds | Written by |
 |---|---|---|
 | `data/specs/<id>.md` | the clinical facts the note is written from | mdzAI14 |
 | `data/cases/<id>.md` | the note text given to the tested condition | the drafter named in it |
-| `data/gold/<id>.json` | the gold codes, citations and target trap | mdzAI14 only |
+| `data/gold/<id>.json` | the gold codes, citations, target trap and method | placed by mdzAI14 only; see `method` |
 
 An id matches `^[a-z0-9-]+$` and is the file name without its extension.
 `README.md` and `.gitkeep` in these folders are not cases. Blank
@@ -70,6 +71,8 @@ Every field is required; any other field is a problem.
 | `citations` | object | either `{"case": "<citation>"}` for one citation covering the case, or one key per code (the code as written in `codes`, dotted or not) whose value is that code's citation. Both may be given. Every value is a non-empty string, and every key other than `case` is one of the codes. |
 | `target_trap` | string | one of `laterality`, `seventh_character`, `excludes1`, `combination`, `sequencing` |
 | `coder_notes` | string | the coder's notes; may be the empty string |
+| `method` | string | how the gold was produced: one of `ai_assisted_coder_verified` (drafted with AI assistance, every code and citation verified by the coder) or `coder_unassisted` (coded by the coder without AI assistance) |
+| `method_detail` | string | non-empty free text: the tools or models used and who verified what |
 | `code_set` | string | exactly `ICD-10-CM FY2027 (October 1, 2026 release)` |
 | `date_coded` | string | date coded, `YYYY-MM-DD` |
 
@@ -84,8 +87,8 @@ Problems (exit 1):
   file has a case; file names are valid ids; nothing else is in the
   folders; the `id` field equals the file name
 - fields: front matter present; required fields present and non-empty;
-  no unknown or repeated field; `specialty` and `target_trap` in their
-  lists; dates valid; the spec has a list of facts and the case has note
+  no unknown or repeated field; `specialty`, `target_trap` and `method`
+  in their lists; dates valid; the spec has a list of facts and the case has note
   text; the case's `specialty` and `setting` equal the spec's
 - gold: valid JSON object; `codes` a non-empty list of non-empty strings
   with no repeat; `code_set` exactly this code set's label; every

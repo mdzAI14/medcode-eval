@@ -11,6 +11,8 @@
   },
   "target_trap": "combination",
   "coder_notes": "Traps: Collapsing the two eyes into one code (E11.3513 bilateral, or E11.3519 unspecified eye) when each eye has a different retinopathy stage and macular edema status; coding E11.65 (hyperglycemia) from the HbA1c of 8.9% without provider documentation of hyperglycemia or poor control; dropping Z79.84 because the patient is on insulin",
+  "method": "ai_assisted_coder_verified",
+  "method_detail": "Codes drafted with commercial coding software that has AI assistance. Reviewed in the design chat by a Claude model, which also drafted corrections. All codes and citations verified by mdzAI14.",
   "code_set": "ICD-10-CM FY2027 (October 1, 2026 release)",
   "date_coded": "2026-11-11"
 }

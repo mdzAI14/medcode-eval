@@ -9,6 +9,8 @@
   },
   "target_trap": "laterality",
   "coder_notes": "PLACEHOLDER coder notes",
+  "method": "ai_assisted_coder_verified",
+  "method_detail": "PLACEHOLDER how the gold was produced and verified",
   "code_set": "ICD-10-CM FY2027 (October 1, 2026 release)",
   "date_coded": "YYYY-MM-DD"
 }

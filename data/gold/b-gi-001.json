@@ -8,6 +8,8 @@
   },
   "target_trap": "excludes1",
   "coder_notes": "H. pylori positive result and the low hemoglobin are both query opportunities; neither is coded from the lab alone. K25.4 is the combination code for chronic gastric ulcer with hemorrhage; no separate K92.2 code. K29.01 (acute gastritis with bleeding) is not reported with K25.4: each code has an Excludes1 note for the other's category, and the two conditions here are related. Traps: Coding B96.81 (H. pylori) from a positive stool antigen when the provider never documented H. pylori infection or linked it to the ulcer; coding D62 (acute blood loss anemia) from a hemoglobin of 7.8 without a provider diagnosis of anemia; adding K92.1 (melena) alongside the ulcer-with-hemorrhage code; coding the ulcer without hemorrhage (K25.7) because the gastritis also bled; reporting K29.01 together with K25.4 despite the Excludes1 notes",
+  "method": "ai_assisted_coder_verified",
+  "method_detail": "Codes drafted with commercial coding software that has AI assistance. Reviewed in the design chat by a Claude model, which also drafted corrections. All codes and citations verified by mdzAI14.",
   "code_set": "ICD-10-CM FY2027 (October 1, 2026 release)",
   "date_coded": "2026-11-11"
 }

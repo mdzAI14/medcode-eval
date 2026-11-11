@@ -47,6 +47,7 @@ def gold(case_id, codes=("U92.0",), **over):
     g = {"id": case_id, "codes": codes if isinstance(codes, str) else list(codes),
          "citations": {"case": "Invented guideline section 0.0"},
          "target_trap": "laterality", "coder_notes": "Invented fixture note.",
+         "method": "coder_unassisted", "method_detail": "Invented fixture method detail.",
          "code_set": CODE_SET, "date_coded": "2099-01-03"}
     g.update(over)
     return g
@@ -304,6 +305,48 @@ class TestGoldFields(Fixture):
     def test_empty_coder_notes_allowed(self):
         write_case(self.root, "fake-case-one", gold_obj=gold("fake-case-one", coder_notes=""))
         self.assertEqual(self.run_validate().problems, [])
+
+    def test_both_methods_accepted(self):
+        for m in ("ai_assisted_coder_verified", "coder_unassisted"):
+            with self.subTest(method=m):
+                write_case(self.root, "fake-case-one",
+                           gold_obj=gold("fake-case-one", method=m))
+                self.assertEqual(self.run_validate().problems, [])
+
+    def test_method_fields_required(self):
+        for k in ("method", "method_detail"):
+            with self.subTest(field=k):
+                g = gold("fake-case-one")
+                del g[k]
+                write_case(self.root, "fake-case-one", gold_obj=g)
+                p = self.assertProblem(self.run_validate(), "missing_field",
+                                       "gold/fake-case-one.json")
+                self.assertIn(k, p.message)
+
+    def test_bad_method(self):
+        for m in ("invented_method", "AI_ASSISTED_CODER_VERIFIED"):
+            with self.subTest(method=m):
+                write_case(self.root, "fake-case-one",
+                           gold_obj=gold("fake-case-one", method=m))
+                p = self.assertProblem(self.run_validate(), "bad_enum",
+                                       "gold/fake-case-one.json")
+                self.assertIn("method", p.message)
+
+    def test_empty_method_detail(self):
+        for v in ("", "   "):
+            with self.subTest(method_detail=v):
+                write_case(self.root, "fake-case-one",
+                           gold_obj=gold("fake-case-one", method_detail=v))
+                p = self.assertProblem(self.run_validate(), "missing_field",
+                                       "gold/fake-case-one.json")
+                self.assertIn("method_detail", p.message)
+
+    def test_method_fields_must_be_strings(self):
+        for k, v in (("method", None), ("method", 1), ("method_detail", None),
+                     ("method_detail", ["invented"])):
+            with self.subTest(field=k, value=v):
+                write_case(self.root, "fake-case-one", gold_obj=gold("fake-case-one", **{k: v}))
+                self.assertProblem(self.run_validate(), "bad_type", "gold/fake-case-one.json")
 
 
 class TestGoldChecker(Fixture):

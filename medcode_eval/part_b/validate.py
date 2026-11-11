@@ -32,12 +32,13 @@ ID_RE = re.compile(r"^[a-z0-9-]+$")
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 SPECIALTIES = ("ortho", "ophtho", "gi", "ent", "ed")
 TRAPS = ("laterality", "seventh_character", "excludes1", "combination", "sequencing")
+METHODS = ("ai_assisted_coder_verified", "coder_unassisted")
 IGNORED = {"README.md", ".gitkeep"}
 FOLDERS = {"spec": ("specs", ".md"), "case": ("cases", ".md"), "gold": ("gold", ".json")}
 SPEC_FIELDS = ("id", "specialty", "setting", "author", "date")
 CASE_FIELDS = ("id", "specialty", "setting", "origin", "drafter", "draft_date")
-GOLD_FIELDS = ("id", "codes", "citations", "target_trap", "coder_notes", "code_set",
-               "date_coded")
+GOLD_FIELDS = ("id", "codes", "citations", "target_trap", "coder_notes", "method",
+               "method_detail", "code_set", "date_coded")
 DATE_FIELDS = {"date", "draft_date", "date_coded"}
 CASE_CITATION = "case"
 _LIST_ITEM = re.compile(r"^\s*[-*]\s+\S")
@@ -210,13 +211,18 @@ def _check_gold(path, case_id, rel, data, result):
         return
     _check_fields(g, GOLD_FIELDS, rel, result)
     _check_id(g.get("id"), case_id, rel, result)
-    for k in ("id", "target_trap", "coder_notes", "code_set", "date_coded"):
+    for k in ("id", "target_trap", "coder_notes", "method", "method_detail", "code_set",
+              "date_coded"):
         if k in g and not isinstance(g[k], str):
             result.problems.append(Item("bad_type", rel, f"{k} is not a string"))
     trap = g.get("target_trap")
     if isinstance(trap, str) and trap.strip() and trap not in TRAPS:
         result.problems.append(Item("bad_enum", rel, f"target_trap {trap!r} is not one of "
                                                      f"{', '.join(TRAPS)}"))
+    method = g.get("method")
+    if isinstance(method, str) and method.strip() and method not in METHODS:
+        result.problems.append(Item("bad_enum", rel, f"method {method!r} is not one of "
+                                                     f"{', '.join(METHODS)}"))
     cs = g.get("code_set")
     if isinstance(cs, str) and cs.strip() and cs != CODE_SET:
         result.problems.append(Item("bad_code_set", rel,
