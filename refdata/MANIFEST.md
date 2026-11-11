@@ -18,6 +18,7 @@ Code set: ICD-10-CM FY2027.
 | icd10cm_tabular.xsd | 12170 | c862464d782fd1b46df7b0b7b85cc44a48a73b7fd2e815c34f872228a8c2499c | 2027-code-tables-tabular-index.zip (member `Table and Index/icd10cm_tabular.xsd`) | 37baa476323714be16f95c9b2c96812bf6f3623d9f15188866e584dc529b0298 | ICD-10-CM FY2027 (October 1, 2026 release) |
 | icd10cm_tabular_addenda_2027.pdf | 442177 | 036d0156fcb451d442f1a3f232f3071dd8f8b017d129af595951497f5c6507a0 | 2027-icd-10-addendum.zip (member `Addendum/icd10cm_tabular_addenda_2027.pdf`) | 16986a34d1458e549217229686f1a487cf6419ee6acb1043fbc770f8fabdd026 | ICD-10-CM FY2027 (October 1, 2026 release) |
 | fy-2027-icd-10-cm-coding-guidelines.pdf | 830104 | 1f0065b609b678e98f85bf047b3b012c6a88ba3222e42be2f2435889e05738ab | none: direct download, no ZIP | n/a | FY 2027 ICD-10-CM Official Guidelines for Coding and Reporting (label taken from the file name only) |
+| icd10cm_order_addenda_2027.txt | 42495 | d64c57ef4534e4f90336decf27a34ba42979c31cd88f6ea923b5b5edd3da6384 | 2027-code-descriptions-tabular-order.zip (member `Code Descriptions/icd10cm_order_addenda_2027.txt`) | 91c6c9d1117764ce72375a0f3a5493b1725dafbc1ab283b55799076c9e194965 | ICD-10-CM FY2027 (October 1, 2026 release) |
 
 Notes
 
