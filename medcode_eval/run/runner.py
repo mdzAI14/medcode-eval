@@ -24,9 +24,18 @@ first (Part B, medcode_eval.run.part_b):
           API reasoning switch is sent; reasoning can only be changed
           through text in prompt_suffix (e.g. /no_think for a model whose
           template reads it).
-  remote  a stub with the same interface: a model name and the NAME of an
-          environment variable for a key. It reads no key and sends
-          nothing; generate() raises NotImplementedError.
+  remote  the Anthropic Messages API (RemoteBackend; standard library).
+          Needs --model, --key-env (the NAME of the key variable in the
+          repo's .env), --effort and --max-tokens, and the spending stop
+          (medcode_eval.run.spend): --price-in and --price-out (USD per
+          million tokens), --max-usd and --ledger (a JSONL file under
+          runs/spend/, which several runs may share). run.json records them
+          (settings and "spend"); raw.jsonl rows also hold reply_id,
+          reply_model, stop_reason, usage, block_types, http_status,
+          attempts and request_chars. A reply whose stop_reason is not
+          "end_turn" is still parsed. Exit status 2: the run was aborted
+          (HTTP 400, 401, 403, 404, or no key); 3: the spending stop refused
+          a request (the same command resumes the run).
 
 Output in the run directory (runs/part_a/<run-id>/):
   run.json         backend, model name and digest, settings, prompt_suffix,
@@ -47,6 +56,9 @@ Usage (from the repo root):
     venv/bin/python -m medcode_eval.run.runner --probes data/part_a/probes_lite.jsonl \
         --run-id lite-qwen3-4b [--model qwen3:4b] [--limit N] [--ids a,b,c] \
         [--prompt-suffix /no_think]
+    venv/bin/python -m medcode_eval.run.runner --backend remote --model M --key-env NAME \
+        --effort medium --max-tokens N --price-in P --price-out Q --max-usd C \
+        --ledger runs/spend/L.jsonl [--part b --condition C] --run-id R ...
     venv/bin/python -m medcode_eval.run.runner --run-id lite-qwen3-4b --rederive
     venv/bin/python -m medcode_eval.run.runner --part b --condition with_checker \
         --run-id b-qwen3-4b [--model qwen3:4b] [--limit N] [--ids a,b] [--prompt-suffix S]
@@ -269,29 +281,184 @@ class OllamaBackend:
                 "eval_count": out.get("eval_count")}
 
 
-class RemoteBackend:
-    """Stub for a hosted model: same interface, no request and no key read.
+API_URL = "https://api.anthropic.com/v1/messages"
+API_VERSION = "2023-06-01"
+REMOTE_TIMEOUT = 300           # seconds per request
+RETRY_STATUSES = (429, 500, 502, 503, 504, 529)
+RETRY_WAITS = (5, 15, 45)      # seconds, when the reply has no retry-after header
+ABORT_STATUSES = (400, 401, 403, 404)
 
-    key_env is the NAME of the environment variable that would hold a key;
-    its value is never read here.
+
+class RemoteAbort(Exception):
+    """A reply that ends the whole run (HTTP 400, 401, 403, 404, or no key).
+    Not an OSError or ValueError, so the run loops do not record it as an
+    item error."""
+
+
+class RemoteError(ValueError):
+    """A failed request recorded as that item's error; the run goes on."""
+
+
+def read_env_value(path, name):
+    """The value of NAME=value in a .env file (optional export and quotes),
+    or None. The value is never part of an error message."""
+    try:
+        lines = Path(path).read_text(encoding="utf-8").splitlines()
+    except OSError:
+        return None
+    value = None
+    for line in lines:
+        m = re.match(r"\s*(?:export\s+)?([A-Za-z_][A-Za-z0-9_]*)\s*=(.*)$", line)
+        if m and m.group(1) == name:
+            v = m.group(2).strip()
+            if len(v) >= 2 and v[0] == v[-1] and v[0] in "\"'":
+                v = v[1:-1]
+            value = v
+    return value or None
+
+
+def urllib_transport(url, headers, body, timeout):
+    """POST body to url; (status, lower-cased headers, body bytes). An HTTP
+    error status is returned, not raised; a network failure raises OSError."""
+    req = urllib.request.Request(url, data=body, headers=headers, method="POST")
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            return resp.status, {k.lower(): v for k, v in resp.headers.items()}, resp.read()
+    except urllib.error.HTTPError as exc:
+        hdrs = {k.lower(): v for k, v in (exc.headers or {}).items()}
+        try:
+            data = exc.read()
+        except OSError:
+            data = b""
+        return exc.code, hdrs, data
+
+
+def _api_error(body):
+    """(error type, message) from an API error body, or placeholders."""
+    try:
+        err = json.loads(body.decode("utf-8")).get("error") or {}
+        return str(err.get("type")), str(err.get("message"))
+    except (ValueError, AttributeError, UnicodeDecodeError):
+        return "unknown", "reply body is not an API error object"
+
+
+class RemoteBackend:
+    """The Anthropic Messages API, standard library only, non-streaming.
+
+    Request: POST API_URL with headers x-api-key, anthropic-version
+    API_VERSION and content-type application/json; body model, max_tokens,
+    output_config.effort and the messages as given (string content). No
+    temperature, system prompt, thinking field, tools or streaming.
+
+    Reply: raw is the concatenation of the text blocks; other block types
+    are counted (block_types) and not stored. Kept as well: reply_id,
+    reply_model, stop_reason, the whole usage object, http_status, attempts.
+
+    key_env is the NAME of a variable in env_file (the repo's .env). Its
+    value is read at the first request, held in memory only, and never
+    appears in repr, describe(), a log line or an error. transport and
+    sleep are injectable for tests.
+
+    Errors: RETRY_STATUSES are retried up to 3 times (the retry-after
+    header when present, else RETRY_WAITS); ABORT_STATUSES raise
+    RemoteAbort; anything else, and retries used up, raise RemoteError.
     """
 
     name = "remote"
 
-    def __init__(self, model, key_env):
+    def __init__(self, model, key_env, effort, max_tokens, env_file=None,
+                 transport=None, sleep=time.sleep, timeout=REMOTE_TIMEOUT):
         if not isinstance(key_env, str) or not _ENV_NAME.fullmatch(key_env):
             raise ValueError(f"key_env must be an environment variable name, not {key_env!r}")
+        if not isinstance(effort, str) or not re.fullmatch(r"[a-z]+", effort):
+            raise ValueError("effort must be a lower-case word")
+        if not isinstance(max_tokens, int) or max_tokens < 1:
+            raise ValueError("max_tokens must be a positive integer")
         self.model = model
         self.key_env = key_env
+        self.effort = effort
+        self.max_tokens = max_tokens
+        self.env_file = Path(env_file) if env_file else REPO_ROOT / ".env"
+        self.transport = transport or urllib_transport
+        self.sleep = sleep
+        self.timeout = timeout
+        self.__key = None
+
+    def __repr__(self):
+        return f"RemoteBackend(model={self.model!r}, key_env={self.key_env!r})"
+
+    __str__ = __repr__
 
     def describe(self):
         return {"backend": self.name, "model": self.model, "model_digest": None,
-                "server_version": None, "settings": {"key_env": self.key_env}}
+                "server_version": None,
+                "settings": {"endpoint": API_URL, "api_version": API_VERSION,
+                             "key_env": self.key_env, "effort": self.effort,
+                             "max_tokens": self.max_tokens, "stream": False,
+                             "timeout_seconds": self.timeout, "system_prompt": None,
+                             "temperature": None, "retry_statuses": list(RETRY_STATUSES),
+                             "retry_waits_seconds": list(RETRY_WAITS)}}
+
+    def request_body(self, messages):
+        check_messages(messages)
+        return {"model": self.model, "max_tokens": self.max_tokens,
+                "output_config": {"effort": self.effort},
+                "messages": [dict(m) for m in messages]}
+
+    def _headers(self):
+        if self.__key is None:
+            key = read_env_value(self.env_file, self.key_env)
+            if not key:
+                raise RemoteAbort(f"no value for {self.key_env} in {self.env_file.name}")
+            self.__key = key
+        return {"x-api-key": self.__key, "anthropic-version": API_VERSION,
+                "content-type": "application/json"}
 
     def generate(self, messages):
-        raise NotImplementedError(
-            "the remote backend is a stub: it sends no request and reads no key "
-            f"(model {self.model!r}, key variable {self.key_env!r})")
+        body = json.dumps(self.request_body(messages)).encode("utf-8")
+        headers = self._headers()
+        attempt = 0
+        while True:
+            attempt += 1
+            status, hdrs, data = self.transport(API_URL, headers, body, self.timeout)
+            if status == 200:
+                return self._reply(data, attempt)
+            etype, emsg = _api_error(data)
+            if status in ABORT_STATUSES:
+                raise RemoteAbort(f"HTTP {status}: {etype}: {emsg}")
+            if status in RETRY_STATUSES and attempt <= len(RETRY_WAITS):
+                self.sleep(_retry_after(hdrs) or RETRY_WAITS[attempt - 1])
+                continue
+            tail = f" after {attempt - 1} retries" if status in RETRY_STATUSES else ""
+            raise RemoteError(f"HTTP {status}: {etype}: {emsg}{tail}")
+
+    @staticmethod
+    def _reply(data, attempt):
+        try:
+            out = json.loads(data.decode("utf-8"))
+        except (ValueError, UnicodeDecodeError) as exc:
+            raise RemoteError(f"HTTP 200 with an unreadable body ({type(exc).__name__})")
+        blocks = out.get("content") or []
+        types = {}
+        text = []
+        for b in blocks:
+            t = b.get("type") if isinstance(b, dict) else None
+            types[str(t)] = types.get(str(t), 0) + 1
+            if t == "text" and isinstance(b.get("text"), str):
+                text.append(b["text"])
+        return {"raw": "".join(text), "reply_id": out.get("id"),
+                "reply_model": out.get("model"), "stop_reason": out.get("stop_reason"),
+                "usage": out.get("usage"), "block_types": types, "http_status": 200,
+                "attempts": attempt}
+
+
+def _retry_after(headers):
+    v = (headers or {}).get("retry-after")
+    try:
+        s = float(v)
+    except (TypeError, ValueError):
+        return None
+    return s if s >= 0 else None
 
 
 def _sha(path):
@@ -316,12 +483,22 @@ def write_responses(run_dir):
 
 
 def run(probes_path, run_dir, backend, ids=None, limit=None, log=None,
-        prompt_suffix=""):
+        prompt_suffix="", ledger=None):
     """Run probes (all, or those in ids, in file order) not yet in raw.jsonl.
 
     limit caps the number of new probes tried in this call. prompt_suffix is
     added to every prompt on its own last line. Returns the number tried.
+
+    ledger (medcode_eval.run.spend.Ledger) is the spending stop; a remote
+    backend needs one. With a ledger, run.json gains "spend" (the prices,
+    the cap and the ledger name), each raw row gains request_chars, and each
+    paid reply is recorded in the ledger. When the stop refuses a request the
+    run ends there: responses.jsonl is written, ledger.stopped holds the
+    message, and the same call later resumes.
     """
+    from medcode_eval.run import spend
+    if ledger is None and getattr(backend, "name", None) == "remote":
+        raise ValueError("a remote run needs a ledger (the spending stop)")
     if "\n" in prompt_suffix or "\r" in prompt_suffix:
         raise ValueError("prompt_suffix must be a single line")
     probes_path, run_dir = Path(probes_path), Path(run_dir)
@@ -346,13 +523,15 @@ def run(probes_path, run_dir, backend, ids=None, limit=None, log=None,
         "prompt_suffix": prompt_suffix,
         **backend.describe(),
     }
+    if ledger is not None:
+        meta["spend"] = ledger.describe(_relative(ledger.path))
     run_dir.mkdir(parents=True, exist_ok=True)
     meta_path = run_dir / "run.json"
     if meta_path.exists():
         old = json.loads(meta_path.read_text(encoding="utf-8"))
         old.pop("started", None)
         old.setdefault("prompt_suffix", "")  # run.json from before the setting
-        if old != meta:
+        if not same_inputs(old, meta):
             diff = sorted(k for k in set(old) | set(meta) if old.get(k) != meta.get(k))
             raise ValueError(f"run directory was made with other inputs: {diff}")
     else:
@@ -367,13 +546,24 @@ def run(probes_path, run_dir, backend, ids=None, limit=None, log=None,
         if limit is not None and tried >= limit:
             break
         prompt = render_prompt(p, prompts, prompt_suffix)
+        messages = [user_message(prompt)]
+        try:
+            chars = spend.before(ledger, backend, messages)
+        except spend.SpendStop as exc:
+            if log:
+                log(str(exc))
+            break
         start = time.monotonic()
         row = {"id": p["id"], "raw": None, "error": None}
         try:
-            row.update(backend.generate([user_message(prompt)]))
+            row.update(backend.generate(messages))
         except (OSError, urllib.error.URLError, ValueError, TimeoutError) as exc:
             row["error"] = f"{type(exc).__name__}: {exc}"
+        except RemoteAbort:
+            write_responses(run_dir)
+            raise
         row["seconds"] = round(time.monotonic() - start, 3)
+        spend.after(ledger, p["id"], 1, row, chars)
         _append(raw_path, row)
         done.add(p["id"])
         tried += 1
@@ -382,6 +572,18 @@ def run(probes_path, run_dir, backend, ids=None, limit=None, log=None,
                 + (f" error {row['error']}" if row["error"] else ""))
     write_responses(run_dir)
     return tried
+
+
+def same_inputs(old, new):
+    """run.json equality for a resume. The spending cap alone may differ
+    (run.json keeps the cap the run started with); prices and the ledger
+    may not."""
+    def key(m):
+        m = dict(m)
+        if isinstance(m.get("spend"), dict):
+            m["spend"] = {k: v for k, v in m["spend"].items() if k != "max_usd"}
+        return m
+    return key(old) == key(new)
 
 
 def _relative(path):
@@ -404,7 +606,15 @@ def main(argv=None):
                          "no model call")
     ap.add_argument("--dry-run", action="store_true",
                     help="render every first-turn prompt and the cost table; no model call")
+    ap.add_argument("--backend", choices=("ollama", "remote"), default="ollama")
     ap.add_argument("--model", default="qwen3:4b")
+    ap.add_argument("--key-env", help="remote: NAME of the key variable in the repo's .env")
+    ap.add_argument("--effort", help="remote: output_config.effort")
+    ap.add_argument("--max-tokens", type=int, help="remote: max_tokens per request")
+    ap.add_argument("--price-in", type=float, help="remote: USD per million input tokens")
+    ap.add_argument("--price-out", type=float, help="remote: USD per million output tokens")
+    ap.add_argument("--max-usd", type=float, help="remote: spending cap over the ledger")
+    ap.add_argument("--ledger", help="remote: JSONL ledger under runs/spend/")
     ap.add_argument("--host", default=DEFAULT_HOST)
     ap.add_argument("--limit", type=int)
     ap.add_argument("--ids", help="comma-separated probe or case ids")
@@ -429,11 +639,62 @@ def main(argv=None):
         return
     if not args.probes:
         ap.error("--probes is required unless --rederive is given")
-    backend = OllamaBackend(args.model, host=args.host)
+    ledger = _ledger(ap, args)
+    backend = (_remote(args) if args.backend == "remote"
+               else OllamaBackend(args.model, host=args.host))
     ids = args.ids.split(",") if args.ids else None
-    n = run(args.probes, run_dir, backend, ids=ids,
-            limit=args.limit, log=print, prompt_suffix=args.prompt_suffix)
+    try:
+        n = run(args.probes, run_dir, backend, ids=ids, limit=args.limit, log=print,
+                prompt_suffix=args.prompt_suffix, ledger=ledger)
+    except RemoteAbort as exc:
+        print(f"run aborted: {exc}")
+        raise SystemExit(2)
     print(f"tried {n}")
+    _end(ledger)
+
+
+SPEND_OPTIONS = ("price_in", "price_out", "max_usd", "ledger")
+REMOTE_OPTIONS = ("key_env", "effort", "max_tokens")
+SPEND_DIR = Path("runs") / "spend"
+
+
+def _ledger(ap, args):
+    """The spending stop for a remote run; None for ollama. A remote run
+    without all four spend options (and key_env, effort, max_tokens) does
+    not start."""
+    from medcode_eval.run import spend
+    given = [o for o in SPEND_OPTIONS + REMOTE_OPTIONS if getattr(args, o) is not None]
+    if args.backend != "remote":
+        if given:
+            ap.error("--" + given[0].replace("_", "-") + " is for --backend remote only")
+        return None
+    missing = [o for o in REMOTE_OPTIONS + SPEND_OPTIONS if getattr(args, o) is None]
+    if missing:
+        ap.error("--backend remote needs " + ", ".join("--" + o.replace("_", "-")
+                                                        for o in missing))
+    path = Path(args.ledger)
+    path = (path if path.is_absolute() else REPO_ROOT / path).resolve()
+    spend_dir = (REPO_ROOT / SPEND_DIR).resolve()
+    if path.parent != spend_dir or path.suffix != ".jsonl":
+        ap.error(f"--ledger must be a .jsonl file directly under {SPEND_DIR}/")
+    try:
+        return spend.Ledger(path, args.price_in, args.price_out, args.max_usd,
+                            run_id=args.run_id)
+    except ValueError as exc:
+        ap.error(str(exc))
+
+
+def _remote(args):
+    return RemoteBackend(args.model, args.key_env, effort=args.effort,
+                         max_tokens=args.max_tokens)
+
+
+def _end(ledger):
+    if ledger is not None:
+        print(f"ledger total {ledger.total():.4f} USD of {ledger.max_usd:.2f}")
+        if ledger.stopped:
+            print(ledger.stopped + "; the run is resumable with the same command")
+            raise SystemExit(3)
 
 
 def _main_part_b(ap, args):
@@ -449,11 +710,18 @@ def _main_part_b(ap, args):
     if args.condition not in part_b.CONDITIONS:
         ap.error(f"--condition must be one of {', '.join(part_b.CONDITIONS)}")
     data_dir = Path(args.data_dir) if args.data_dir else REPO_ROOT / "data"
-    backend = OllamaBackend(args.model, host=args.host, endpoint="/api/chat")
+    ledger = _ledger(ap, args)
+    backend = (_remote(args) if args.backend == "remote"
+               else OllamaBackend(args.model, host=args.host, endpoint="/api/chat"))
     ids = args.ids.split(",") if args.ids else None
-    n = part_b.run(data_dir, run_dir, backend, args.condition, ids=ids, limit=args.limit,
-                   log=print, prompt_suffix=args.prompt_suffix)
+    try:
+        n = part_b.run(data_dir, run_dir, backend, args.condition, ids=ids, limit=args.limit,
+                       log=print, prompt_suffix=args.prompt_suffix, ledger=ledger)
+    except RemoteAbort as exc:
+        print(f"run aborted: {exc}")
+        raise SystemExit(2)
     print(f"cases tried {n}")
+    _end(ledger)
 
 
 if __name__ == "__main__":

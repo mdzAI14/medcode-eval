@@ -250,7 +250,7 @@ class RunTests(unittest.TestCase):
 
     def test_with_checker_finding_second_turn_once(self):
         seen = []
-        replies = iter(['["U90.012"]', '["U90.012A"]'] * 3)
+        replies = iter(['<think>hmm</think>\n["U90.012"]', '["U90.012A"]'] * 3)
 
         def fn(messages):
             seen.append(messages)
@@ -262,12 +262,17 @@ class RunTests(unittest.TestCase):
         self.assertEqual(len(first), 1)
         self.assertEqual([m["role"] for m in second], ["user", "assistant", "user"])
         self.assertEqual(second[0], first[0])
-        self.assertEqual(second[1]["content"], '["U90.012"]')
+        # the reply is resent with its think block dropped; raw.jsonl keeps it
+        self.assertEqual(second[1]["content"], '\n["U90.012"]')
+        self.assertEqual(second[1]["content"], runner.drop_think(
+            '<think>hmm</think>\n["U90.012"]'))
         findings = checker.check(["U90.012"], data=DATA)
         self.assertEqual(second[2]["content"], render_second(findings))
         raw = read_jsonl(self.out / "raw.jsonl")
         t2 = [r for r in raw if r["turn"] == 2]
         self.assertEqual(len(t2), 3)
+        self.assertEqual([r["raw"] for r in raw if r["turn"] == 1],
+                         ['<think>hmm</think>\n["U90.012"]'] * 3)
         self.assertEqual(t2[0]["findings"], json.loads(json.dumps(findings)))
         for r in raw:
             if r["turn"] == 1:

@@ -467,39 +467,28 @@ class MessagesTests(unittest.TestCase):
 
 
 class RemoteBackendTests(unittest.TestCase):
-    def test_stub_raises_when_called(self):
-        b = runner.RemoteBackend("some-model", "SOME_KEY_VAR")
-        with self.assertRaises(NotImplementedError) as cm:
-            b.generate([{"role": "user", "content": "x"}])
-        self.assertIn("stub", str(cm.exception))
+    """The remote backend's request, retry and key tests are in
+    tests/test_remote.py; this checks only that building and describing it
+    read no environment variable and send nothing."""
 
-    def test_describe_names_the_variable_only(self):
-        import os
-        os.environ.pop("P61_TEST_KEY", None)
-        d = runner.RemoteBackend("m", "P61_TEST_KEY").describe()
-        self.assertEqual(d["backend"], "remote")
-        self.assertEqual(d["model"], "m")
-        self.assertEqual(d["settings"]["key_env"], "P61_TEST_KEY")
-
-    def test_key_env_must_be_a_name(self):
-        with self.assertRaises(ValueError):
-            runner.RemoteBackend("m", "not a name")
-
-    def test_no_key_read(self):
+    def test_no_env_read_and_nothing_sent(self):
         import os
         orig = os.environ
         class Trap(dict):
             def __getitem__(self, k):
                 raise AssertionError("environment read")
             get = __getitem__
+        sent = []
         os.environ = Trap()
         try:
-            b = runner.RemoteBackend("m", "ANY_KEY")
+            b = runner.RemoteBackend("m", "ANY_KEY", effort="medium", max_tokens=10,
+                                     env_file="/nonexistent/.env",
+                                     transport=lambda *a: sent.append(a))
             b.describe()
-            with self.assertRaises(NotImplementedError):
-                b.generate([{"role": "user", "content": "x"}])
+            repr(b)
         finally:
             os.environ = orig
+        self.assertEqual(sent, [])
 
 
 if __name__ == "__main__":

@@ -13,8 +13,9 @@ Conditions:
                 checker nothing to check) the first answer is final. With any
                 finding the second turn (prompts/part_b_checker.txt, the
                 findings filled in as {findings}) is sent once, after the
-                first prompt and the first reply as given; its answer is
-                final. There is never a third turn.
+                first prompt and the first reply with its think blocks
+                dropped (runner.drop_think; raw.jsonl keeps the reply as
+                given); its answer is final. There is never a third turn.
 
 The setting prompt_suffix (empty by default) is added to every user turn on
 its own last line, as in Part A.
@@ -34,7 +35,14 @@ Output in the run directory (runs/part_b/<run-id>/):
                  seconds, error (plus done_reason and eval_count when the
                  server gives them); a turn-2 row also holds the findings sent
   answers.jsonl  per complete case: id, first answer, final answer, whether
-                 each is valid, whether a second turn happened, error
+                 each is valid, whether a second turn happened, error, and
+                 stop_reasons ({turn: stop_reason} for the turns whose raw
+                 row has one; remote backend)
+
+With a ledger (medcode_eval.run.spend) the spending stop is checked before
+every turn, as in the Part A runner; a refused turn is not sent and the run
+ends there, resumable. On a resume only the cap may differ from run.json
+(runner.same_inputs).
 
 A rerun with the same run directory skips (case, turn) pairs already in
 raw.jsonl, so an interrupted case resumes at its second turn; it refuses
@@ -52,9 +60,12 @@ from medcode_eval import checker
 from medcode_eval.part_a.generate import CODE_SET, REPO_ROOT
 from medcode_eval.part_a.score import load_jsonl
 from medcode_eval.part_b.validate import IGNORED, parse_front_matter
+from medcode_eval.run import spend
 from medcode_eval.run.runner import (
     PROMPT_DIR,
+    RemoteAbort,
     _append,
+    same_inputs,
     _relative,
     _sha,
     check_messages,
@@ -172,7 +183,7 @@ def _first_findings(row1, data):
     return checker.check(codes, data=data)
 
 
-def _meta(data_dir, condition, backend, prompt_suffix, data):
+def _meta(data_dir, condition, backend, prompt_suffix, data, ledger=None):
     cases = load_cases(data_dir)
     meta = {
         "code_set": CODE_SET,
@@ -187,24 +198,29 @@ def _meta(data_dir, condition, backend, prompt_suffix, data):
             "tabular_version": data.tree.version},
         **backend.describe(),
     }
+    if ledger is not None:
+        meta["spend"] = ledger.describe(_relative(ledger.path))
     return cases, meta
 
 
 def run(data_dir, run_dir, backend, condition, ids=None, limit=None, log=None,
-        prompt_suffix="", checker_data=None):
+        prompt_suffix="", checker_data=None, ledger=None):
     """Run the cases (all, or those in ids) not yet complete in raw.jsonl.
 
     limit caps the number of cases that get a model call in this call.
-    Returns that number.
+    Returns that number. ledger: the spending stop (see the module text);
+    a remote backend needs one.
     """
     if condition not in CONDITIONS:
         raise ValueError(f"condition must be one of {CONDITIONS}, not {condition!r}")
     _with_suffix("", prompt_suffix)
+    if ledger is None and getattr(backend, "name", None) == "remote":
+        raise ValueError("a remote run needs a ledger (the spending stop)")
     data = None
     if condition == "with_checker":
         data = checker_data or checker.default_data()
     run_dir = Path(run_dir)
-    cases, meta = _meta(data_dir, condition, backend, prompt_suffix, data)
+    cases, meta = _meta(data_dir, condition, backend, prompt_suffix, data, ledger)
     if ids is not None:
         known = {c["id"] for c in cases}
         unknown = [i for i in ids if i not in known]
@@ -217,7 +233,7 @@ def run(data_dir, run_dir, backend, condition, ids=None, limit=None, log=None,
     if meta_path.exists():
         old = json.loads(meta_path.read_text(encoding="utf-8"))
         old.pop("started", None)
-        if old != meta:
+        if not same_inputs(old, meta):
             diff = sorted(k for k in set(old) | set(meta) if old.get(k) != meta.get(k))
             raise ValueError(f"run directory was made with other inputs: {diff}")
     else:
@@ -228,13 +244,18 @@ def run(data_dir, run_dir, backend, condition, ids=None, limit=None, log=None,
 
     def call(case_id, turn, messages, extra=None):
         check_messages(messages)
+        chars = spend.before(ledger, backend, messages)  # may raise SpendStop
         start = time.monotonic()
         row = {"id": case_id, "turn": turn, "raw": None, "error": None, **(extra or {})}
         try:
             row.update(backend.generate(messages))
         except (OSError, urllib.error.URLError, ValueError, TimeoutError) as exc:
             row["error"] = f"{type(exc).__name__}: {exc}"
+        except RemoteAbort:
+            write_answers(run_dir, checker_data=data)
+            raise
         row["seconds"] = round(time.monotonic() - start, 3)
+        spend.after(ledger, case_id, turn, row, chars)
         _append(raw_path, row)
         rows[(case_id, turn)] = row
         if log:
@@ -242,6 +263,18 @@ def run(data_dir, run_dir, backend, condition, ids=None, limit=None, log=None,
                 + (f" error {row['error']}" if row["error"] else ""))
         return row
 
+    tried = 0
+    try:
+        tried = _loop(cases, rows, condition, data, prompts, prompt_suffix, limit, call)
+    except spend.SpendStop as exc:
+        tried = exc.tried
+        if log:
+            log(str(exc))
+    write_answers(run_dir, checker_data=data)
+    return tried
+
+
+def _loop(cases, rows, condition, data, prompts, prompt_suffix, limit, call):
     tried = 0
     for c in cases:
         cid = c["id"]
@@ -256,18 +289,25 @@ def run(data_dir, run_dir, backend, condition, ids=None, limit=None, log=None,
                 continue
         if limit is not None and tried >= limit:
             break
-        tried += 1
-        if row1 is None:
-            row1 = call(cid, 1, [user_message(first)])
-            if condition == "plain":
-                continue
-            findings = _first_findings(row1, data)
-            if not findings:
-                continue
-        second = render_second(findings, prompts, prompt_suffix)
-        call(cid, 2, [user_message(first), {"role": "assistant", "content": row1["raw"]},
-                      user_message(second)], extra={"findings": findings})
-    write_answers(run_dir, checker_data=data)
+        fresh = row1 is None
+        try:
+            if fresh:
+                row1 = call(cid, 1, [user_message(first)])
+                tried += 1
+                if condition == "plain":
+                    continue
+                findings = _first_findings(row1, data)
+                if not findings:
+                    continue
+            second = render_second(findings, prompts, prompt_suffix)
+            call(cid, 2, [user_message(first),
+                          {"role": "assistant", "content": drop_think(row1["raw"])},
+                          user_message(second)], extra={"findings": findings})
+            if not fresh:
+                tried += 1
+        except spend.SpendStop as exc:
+            exc.tried = tried
+            raise
     return tried
 
 
@@ -292,9 +332,12 @@ def write_answers(run_dir, checker_data=None):
         if r2 is not None:
             final = None if r2["error"] is not None else parse_answer(r2["raw"])
             error = error or r2["error"]
+        stops = {str(t): r["stop_reason"] for t, r in ((1, r1), (2, r2))
+                 if r is not None and "stop_reason" in r}
         out.append({"id": cid, "first_answer": first, "first_valid": first is not None,
                     "final_answer": final, "final_valid": final is not None,
-                    "second_turn": r2 is not None, "error": error})
+                    "second_turn": r2 is not None, "error": error,
+                    "stop_reasons": stops})
     with open(run_dir / "answers.jsonl", "w", encoding="utf-8") as fh:
         for row in out:
             fh.write(json.dumps(row, sort_keys=True) + "\n")

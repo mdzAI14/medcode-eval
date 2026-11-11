@@ -17,6 +17,10 @@ For the first and the final answer, per case and overall:
   no_answer         a gold case with no answers row
   findings          checker findings on the answer's codes, by level, and
                     the number of cases with any error finding
+  stop_reasons      counts of the stop_reason of every turn in the answers
+                    rows that carry one (remote backend), and not_end_turn,
+                    the number of cases with any turn whose stop_reason is not
+                    "end_turn"; such replies are still parsed and scored
 An invalid answer or no answer counts as no codes. Groups: overall, by
 target trap and by specialty; every group with fewer than 10 cases is
 flagged (fewer_than_10) and the markdown says so.
@@ -127,6 +131,11 @@ def score(gold, case_meta, answers, checker_data=None):
         "n_answers": len(given),
         "unknown_answer_ids": len(set(given) - set(gold)),
         "second_turns": sum(c["second_turn"] for c in cases),
+        "stop_reasons": dict(sorted(Counter(
+            str(v) for r in given.values() for v in (r.get("stop_reasons") or {}).values()
+        ).items())),
+        "not_end_turn": sum(any(v != "end_turn" for v in (r.get("stop_reasons") or {}).values())
+                            for r in given.values()),
         "small_group_threshold": SMALL,
         "cases": cases,
     }
@@ -139,6 +148,11 @@ def score(gold, case_meta, answers, checker_data=None):
 
 def _fmt(x):
     return "n/a" if x is None else f"{x:.4f}"
+
+
+def _stops(result):
+    s = result.get("stop_reasons") or {}
+    return ", ".join(f"{k} {v}" for k, v in s.items()) or "none recorded"
 
 
 def to_markdown(result):
@@ -157,7 +171,9 @@ def to_markdown(result):
 
     out = [f"Code set: {result['code_set']}. Cases: {result['n_cases']}. "
            f"Answers: {result['n_answers']} ({result['unknown_answer_ids']} with unknown "
-           f"ids). Second turns: {result['second_turns']}.\n"]
+           f"ids). Second turns: {result['second_turns']}. Stop reasons: "
+           f"{_stops(result)}; cases with a reply whose stop reason is not end_turn: "
+           f"{result.get('not_end_turn', 0)}.\n"]
     for which, title in (("first", "First answer"), ("final", "Final answer")):
         r = result[which]
         out += [f"\n{title}:\n\n", head, line("overall", "", r["overall"])]
