@@ -283,14 +283,15 @@ class Reference:
     wildcard: bool     # written with a trailing "-" or ".-"
 
 
+def _reference(m):
+    a, b, w = m.groups()
+    return Reference(m.group(0), a.replace(".", ""),
+                     b.replace(".", "") if b else None, bool(w))
+
+
 def find_references(text):
     """Code references in a note, in text order."""
-    out = []
-    for m in _REF.finditer(text):
-        a, b, w = m.groups()
-        out.append(Reference(m.group(0), a.replace(".", ""),
-                             b.replace(".", "") if b else None, bool(w)))
-    return out
+    return [_reference(m) for m in _REF.finditer(text)]
 
 
 def prefix_set(codes):
@@ -312,3 +313,36 @@ def classify_note(text, prefixes):
         return "no_refs"
     ok = sum(reference_resolves(r, prefixes) for r in refs)
     return "all" if ok == len(refs) else "some" if ok else "none_unresolved"
+
+
+def split_by_parentheses(text):
+    """(inside, outside): the references of find_references that sit inside
+    a pair of parentheses (at any depth), and the rest, each in text order.
+
+    An unmatched ")" does not take the depth below zero."""
+    depth_at, depth = [], 0
+    for ch in text:
+        depth_at.append(depth)
+        if ch == "(":
+            depth += 1
+        elif ch == ")":
+            depth = max(0, depth - 1)
+    inside, outside = [], []
+    for m in _REF.finditer(text):
+        (inside if depth_at[m.start()] > 0 else outside).append(_reference(m))
+    return inside, outside
+
+
+def reference_matches(ref, code):
+    """True when a code (no dot) falls under a reference.
+
+    A range holds the codes whose leading characters lie between its ends in
+    ASCII order (the category order chapter_of uses), each end compared on
+    its own length; a wildcard holds the codes that start with it; any other
+    reference holds only the code written."""
+    if ref.last is not None:
+        return (code[:len(ref.first)] >= ref.first
+                and code[:len(ref.last)] <= ref.last)
+    if ref.wildcard:
+        return code.startswith(ref.first)
+    return code == ref.first
