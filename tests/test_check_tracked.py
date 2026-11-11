@@ -148,6 +148,21 @@ class CheckTrackedTests(unittest.TestCase):
         r = self.run_check()
         self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
 
+    def test_non_utf8_file_is_scanned(self):
+        # Bytes that are not valid UTF-8 (as in a PDF), with a made-up
+        # pattern in a readable stretch. The file is scanned, not skipped.
+        data = (
+            b"%PDF-1.7\n\xff\xfe\x80\x81\xc3\x28 binary\x00\x01\n"
+            b"readable PLATYPUS text\n\xe2\x82\n"
+        )
+        (self.repo / "doc.pdf").write_bytes(data)
+        self.git("add", "doc.pdf")
+        r = self.run_check()
+        self.assertEqual(r.returncode, 1, r.stdout + r.stderr)
+        self.assertNotIn("Traceback", r.stderr)
+        self.assertIn("doc.pdf:3 P3", r.stdout)
+        self.assert_no_leak(r, "platypus")
+
     # all mode ------------------------------------------------------------
     def test_all_mode_scans_committed_files(self):
         self.write("old.txt", "narwhal_xyz\n")
