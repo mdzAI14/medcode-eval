@@ -9,7 +9,10 @@ chapter form the group "none").
 
 Normalisation before comparing:
   code_to_description  dots and whitespace removed, upper case; valid
-                       answers are A, B, C, D
+                       answers are A, B, C, D. A response that is one
+                       letter A-D (either case, leading whitespace allowed)
+                       followed by ".", ")" or ":" and then any text counts
+                       as that letter.
   description_to_code  dots and whitespace removed, upper case; valid
                        answers are 3-7 letters or digits
   status               dots removed, lower case, runs of whitespace
@@ -17,6 +20,10 @@ Normalisation before comparing:
                        not_a_code
 A response that is missing, or is not a valid answer for its probe type, is
 wrong; missing and invalid responses are counted separately.
+
+status_table: for status probes, counts by expected answer (rows billable,
+header, not_a_code) and response (columns billable, header, not_a_code,
+invalid, missing).
 
 Usage:
     venv/bin/python -m medcode_eval.part_a.score --probes P --responses R \
@@ -29,6 +36,8 @@ import re
 from collections import defaultdict
 
 _CODE = re.compile(r"[A-Z0-9]{3,7}")
+_LETTER_WITH_TEXT = re.compile(r"\s*([A-Da-d])[.):]", re.S)
+STATUS_COLUMNS = ("billable", "header", "not_a_code", "invalid", "missing")
 STATUS_ANSWERS = ("billable", "header", "not_a_code")
 TYPES = ("code_to_description", "description_to_code", "status")
 
@@ -46,7 +55,10 @@ def parse_response(probe, response):
     t = probe["type"]
     v = _norm_answer(t, response)
     if t == "code_to_description":
-        return v if len(v) == 1 and v in "ABCD" else None
+        if len(v) == 1 and v in "ABCD":
+            return v
+        m = _LETTER_WITH_TEXT.match(response)
+        return m.group(1).upper() if m else None
     if t == "description_to_code":
         return v if _CODE.fullmatch(v) else None
     if t == "status":
@@ -89,6 +101,7 @@ def score(probes, responses):
         given[r["id"]] = r.get("response")
     ids = {p["id"] for p in probes}
     rows = []
+    status_table = {a: {c: 0 for c in STATUS_COLUMNS} for a in STATUS_ANSWERS}
     for p in probes:
         missing = p["id"] not in given
         value = None if missing else parse_response(p, given[p["id"]])
@@ -98,6 +111,10 @@ def score(probes, responses):
                      "kind": p.get("kind"), "change": p.get("change"),
                      "correct": correct,
                      "missing": missing, "invalid": invalid})
+        if p["type"] == "status":
+            gold = _norm_answer("status", p["answer"])
+            col = "missing" if missing else "invalid" if invalid else value
+            status_table[gold][col] += 1
     by_chapter = defaultdict(list)
     for r in rows:
         by_chapter[r["chapter"]].append(r)
@@ -123,6 +140,7 @@ def score(probes, responses):
                        for k in sorted(by_chapter, key=_chapter_sort)},
         "by_kind": {k: _group([r for r in rows if r["kind"] == k]) for k in kinds},
         "by_change": {c: _group([r for r in rows if r["change"] == c]) for c in changes},
+        "status_table": status_table,
     }
 
 
@@ -151,6 +169,14 @@ def to_markdown(result):
         out.append(line("not_a_code kind", k, g))
     for c, g in result.get("by_change", {}).items():
         out.append(line("change", c, g))
+    table = result.get("status_table")
+    if table:
+        out.append("\nStatus probes, answer by response:\n\n"
+                   "| Answer \\ response | " + " | ".join(STATUS_COLUMNS) + " |\n"
+                   "|---|" + "---|" * len(STATUS_COLUMNS) + "\n")
+        for a, row in table.items():
+            out.append(f"| {a} | " + " | ".join(str(row[c]) for c in STATUS_COLUMNS)
+                       + " |\n")
     return "".join(out)
 
 

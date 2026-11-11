@@ -182,10 +182,16 @@ class ExtractTests(unittest.TestCase):
     def test_answer_label_only_on_kept_line(self):
         self.assertEqual(extract_answer("Answer: A\nB"), "B")
 
-    def test_answer_label_other_marks_untouched(self):
-        # only asterisks are stripped after the label is dropped; the
-        # earlier end-strip has already taken the closing backtick
-        self.assertEqual(extract_answer("Answer: `U90.0`"), "`U90.0")
+    def test_answer_label_then_end_strip_again(self):
+        # after the label is dropped the end-strip runs again
+        self.assertEqual(extract_answer("Answer: `U90.0`"), "U90.0")
+        self.assertEqual(extract_answer('Answer: "billable".'), "billable")
+        self.assertEqual(extract_answer("**Answer:** `header`."), "header")
+        self.assertEqual(extract_answer("Answer: 'B'"), "B")
+
+    def test_second_end_strip_one_full_stop_only(self):
+        # first pass takes one stop, second pass one more, never a third
+        self.assertEqual(extract_answer("Answer: B..."), "B.")
 
     def test_answer_word_without_colon_kept(self):
         self.assertEqual(extract_answer("Answer B"), "Answer B")
@@ -326,6 +332,50 @@ class RunTests(unittest.TestCase):
         write_jsonl(self.pf, rows)
         with self.assertRaises(ValueError):
             run(self.pf, self.out, FakeBackend(lambda p: "A"))
+
+
+class RederiveTests(unittest.TestCase):
+    """--rederive rewrites responses.jsonl from raw.jsonl with no model call."""
+
+    def setUp(self):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        self.root = Path(tmp.name)
+        self.out = self.root / runner.RUNS_DIR / "r1"
+        pf = self.root / "probes.jsonl"
+        write_jsonl(pf, probes())
+        run(pf, self.out, FakeBackend(lambda p: "Answer: `B`"))
+        (self.out / "responses.jsonl").write_text("stale\n")
+        self.raw = (self.out / "raw.jsonl").read_bytes()
+        self.meta = (self.out / "run.json").read_bytes()
+
+    def test_rederive_no_backend(self):
+        def no_backend(*a, **k):
+            raise AssertionError("a backend was built")
+        orig_root, orig_backend = runner.REPO_ROOT, runner.OllamaBackend
+        runner.REPO_ROOT, runner.OllamaBackend = self.root, no_backend
+        try:
+            runner.main(["--run-id", "r1", "--rederive"])
+        finally:
+            runner.REPO_ROOT, runner.OllamaBackend = orig_root, orig_backend
+        resp = read_jsonl(self.out / "responses.jsonl")
+        self.assertEqual([r["response"] for r in resp], ["B"] * 4)
+        self.assertEqual((self.out / "raw.jsonl").read_bytes(), self.raw)
+        self.assertEqual((self.out / "run.json").read_bytes(), self.meta)
+
+    def test_rederive_missing_run_dir(self):
+        orig_root = runner.REPO_ROOT
+        runner.REPO_ROOT = self.root
+        try:
+            with self.assertRaises(SystemExit):
+                runner.main(["--run-id", "nope", "--rederive"])
+        finally:
+            runner.REPO_ROOT = orig_root
+        self.assertFalse((self.root / runner.RUNS_DIR / "nope").exists())
+
+    def test_probes_required_without_rederive(self):
+        with self.assertRaises(SystemExit):
+            runner.main(["--run-id", "r1"])
 
 
 class OllamaBackendTests(unittest.TestCase):

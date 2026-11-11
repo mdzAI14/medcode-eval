@@ -60,7 +60,9 @@ def load_patterns():
 
 
 def git(*args):
-    proc = subprocess.run(["git", *args], capture_output=True)
+    # input=b"": git gets an empty stdin, never the caller's (hash-object
+    # --stdin below would otherwise wait on it for ever).
+    proc = subprocess.run(["git", *args], capture_output=True, input=b"")
     if proc.returncode != 0:
         msg = proc.stderr.decode("utf-8", "replace").strip()
         raise SetupError(f"git {args[0]} failed: {msg}")
@@ -68,7 +70,8 @@ def git(*args):
 
 
 def git_ok(*args):
-    return subprocess.run(["git", *args], capture_output=True).returncode == 0
+    return subprocess.run(["git", *args], capture_output=True,
+                          stdin=subprocess.DEVNULL).returncode == 0
 
 
 def matching(patterns, text):

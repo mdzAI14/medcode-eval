@@ -41,6 +41,21 @@ class ParseResponseTests(unittest.TestCase):
         self.assertIsNone(parse_response(C2D, "AB"))
         self.assertIsNone(parse_response(C2D, ""))
 
+    def test_letter_with_text(self):
+        self.assertEqual(parse_response(C2D, "B. Invented second option"), "B")
+        self.assertEqual(parse_response(C2D, "C) something"), "C")
+        self.assertEqual(parse_response(C2D, "D: text"), "D")
+        self.assertEqual(parse_response(C2D, "A.x"), "A")
+        self.assertEqual(parse_response(C2D, "A)"), "A")
+        self.assertEqual(parse_response(C2D, "a) lower case"), "A")
+        self.assertIsNone(parse_response(C2D, "E. no such option"))
+        self.assertIsNone(parse_response(C2D, "B - text"))
+        self.assertIsNone(parse_response(C2D, "B text"))
+        self.assertIsNone(parse_response(C2D, "AB. text"))
+        self.assertIsNone(parse_response(C2D, "Option B. text"))
+        # other probe types are not affected
+        self.assertIsNone(parse_response(ST_B, "B. billable"))
+
     def test_code(self):
         self.assertEqual(parse_response(D2C, "u93.12"), "U9312")
         self.assertEqual(parse_response(D2C, " U9312\n"), "U9312")
@@ -102,6 +117,40 @@ class ScoreTests(unittest.TestCase):
         r = score([C2D], [{"id": "c1", "response": "B"}])
         self.assertEqual(r["by_change"], {})
         self.assertNotIn("| change |", to_markdown(r))
+
+    def test_status_table(self):
+        probes = [ST_B, ST_N, ST_D,
+                  probe("s4", "status", 1, "header", code="U91"),
+                  probe("s5", "status", 1, "billable", code="U92.0"),
+                  probe("s6", "status", 1, "billable", code="U92.1"), C2D]
+        responses = [{"id": "s1", "response": "billable"},
+                     {"id": "s2", "response": "header"},
+                     {"id": "s3", "response": "who knows"},
+                     {"id": "s4", "response": "not a code"},
+                     {"id": "s5", "response": "Header"},
+                     {"id": "c1", "response": "B"}]
+        t = score(probes, responses)["status_table"]
+        cols = ["billable", "header", "not_a_code", "invalid", "missing"]
+        self.assertEqual(list(t), ["billable", "header", "not_a_code"])
+        for row in t.values():
+            self.assertEqual(list(row), cols)
+        self.assertEqual(t["billable"], {"billable": 1, "header": 1, "not_a_code": 0,
+                                         "invalid": 0, "missing": 1})
+        self.assertEqual(t["header"], {"billable": 0, "header": 0, "not_a_code": 1,
+                                       "invalid": 0, "missing": 0})
+        self.assertEqual(t["not_a_code"], {"billable": 0, "header": 1, "not_a_code": 0,
+                                           "invalid": 1, "missing": 0})
+
+    def test_status_table_markdown(self):
+        md = to_markdown(score([ST_B], [{"id": "s1", "response": "header"}]))
+        self.assertIn("| Answer \\ response | billable | header | not_a_code "
+                      "| invalid | missing |", md)
+        self.assertIn("| billable | 0 | 1 | 0 | 0 | 0 |", md)
+        self.assertIn("| header | 0 | 0 | 0 | 0 | 0 |", md)
+
+    def test_status_table_without_status_probes(self):
+        r = score([C2D], [{"id": "c1", "response": "B"}])
+        self.assertEqual(sum(sum(v.values()) for v in r["status_table"].values()), 0)
 
     def test_duplicate_response_rejected(self):
         with self.assertRaises(ValueError):

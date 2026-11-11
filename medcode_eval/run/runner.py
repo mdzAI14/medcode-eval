@@ -35,6 +35,11 @@ Usage (from the repo root):
     venv/bin/python -m medcode_eval.run.runner --probes data/part_a/probes_lite.jsonl \
         --run-id lite-qwen3-4b [--model qwen3:4b] [--limit N] [--ids a,b,c] \
         [--prompt-suffix /no_think]
+    venv/bin/python -m medcode_eval.run.runner --run-id lite-qwen3-4b --rederive
+
+--rederive rewrites responses.jsonl from the run's raw.jsonl with the
+current extract_answer(); no backend is built and no model is called;
+raw.jsonl and run.json are not touched.
 """
 
 import argparse
@@ -111,7 +116,8 @@ def extract_answer(text):
     the rest of the reply), takes the last non-empty line, strips quotes,
     backticks and asterisks at either end and one trailing full stop, then
     drops a leading "Answer:" or "Final answer:" label (any case, asterisks
-    around it allowed) and strips asterisks again.
+    around it allowed). When a label was dropped, the end-strip (quotes,
+    backticks, asterisks, one trailing full stop) runs again on what is left.
     """
     text = _THINK.sub("", text)
     if "<think>" in text:
@@ -119,11 +125,18 @@ def extract_answer(text):
     lines = [l.strip() for l in text.splitlines() if l.strip()]
     if not lines:
         return ""
-    s = lines[-1].strip().strip(_MARKS).strip()
+    s = _end_strip(lines[-1])
+    unlabelled = _LABEL.sub("", s)
+    return s if unlabelled == s else _end_strip(unlabelled)
+
+
+def _end_strip(s):
+    """Strip quotes, backticks and asterisks at either end and one trailing
+    full stop (then the marks again)."""
+    s = s.strip().strip(_MARKS).strip()
     if s.endswith("."):
         s = s[:-1]
-    s = s.strip().strip(_MARKS).strip()
-    return _LABEL.sub("", s).strip("*").strip()
+    return s.strip().strip(_MARKS).strip()
 
 
 class FakeBackend:
@@ -286,8 +299,10 @@ def _relative(path):
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description="Run Part A probes through a model.")
-    ap.add_argument("--probes", required=True)
+    ap.add_argument("--probes")
     ap.add_argument("--run-id", required=True)
+    ap.add_argument("--rederive", action="store_true",
+                    help="only rewrite responses.jsonl from raw.jsonl; no model call")
     ap.add_argument("--model", default="qwen3:4b")
     ap.add_argument("--host", default=DEFAULT_HOST)
     ap.add_argument("--limit", type=int)
@@ -297,9 +312,18 @@ def main(argv=None):
     args = ap.parse_args(argv)
     if not re.fullmatch(r"[A-Za-z0-9._-]+", args.run_id):
         ap.error("run id: letters, digits, '.', '_' and '-' only")
+    run_dir = REPO_ROOT / RUNS_DIR / args.run_id
+    if args.rederive:
+        if not (run_dir / "raw.jsonl").is_file():
+            ap.error(f"no raw.jsonl in {RUNS_DIR / args.run_id}")
+        write_responses(run_dir)
+        print(f"rewrote {RUNS_DIR / args.run_id / 'responses.jsonl'}")
+        return
+    if not args.probes:
+        ap.error("--probes is required unless --rederive is given")
     backend = OllamaBackend(args.model, host=args.host)
     ids = args.ids.split(",") if args.ids else None
-    n = run(args.probes, REPO_ROOT / RUNS_DIR / args.run_id, backend, ids=ids,
+    n = run(args.probes, run_dir, backend, ids=ids,
             limit=args.limit, log=print, prompt_suffix=args.prompt_suffix)
     print(f"tried {n}")
 

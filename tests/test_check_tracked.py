@@ -240,6 +240,31 @@ class CheckTrackedTests(unittest.TestCase):
         self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
         self.assertIn("items=0", r.stdout)
 
+    # stdin -----------------------------------------------------------------
+    def test_does_not_read_callers_stdin(self):
+        # No commits yet: staged mode compares with the empty tree. The guard
+        # must finish while its stdin is an open pipe that never sends EOF.
+        self.write("a.txt", "clean\n")
+        self.git("add", "a.txt")
+        env = dict(self.env, MEDCODE_EVAL_DENYLIST=str(self.denylist))
+        for args in ([], ["--all"], ["--unpushed"]):
+            proc = subprocess.Popen(
+                [sys.executable, str(SCRIPT), *args], cwd=self.repo, env=env,
+                stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE)
+            try:
+                proc.wait(timeout=30)
+            except subprocess.TimeoutExpired:
+                proc.kill()
+                proc.wait()
+                self.fail(f"guard {args} still running after 30 s with stdin open")
+            finally:
+                proc.stdin.close()
+                out, err = proc.stdout.read(), proc.stderr.read()
+                proc.stdout.close()
+                proc.stderr.close()
+            self.assertEqual(proc.returncode, 0, out + err)
+
     # denylist problems ---------------------------------------------------
     def test_unset_variable(self):
         self.write("a.txt", "clean\n")
