@@ -7,7 +7,7 @@
     "Z79.84"
   ],
   "citations": {
-    "case": "ICD-10-CM Official Guidelines FY2027, Section I.A.13 (laterality: when each eye has a different condition or stage, assign a code for each eye rather than a bilateral code); Section I.C.4.a (diabetes: assign as many codes from E11 as needed to describe all complications); Section I.C.4.a.3 (type 2 diabetes on both insulin and oral hypoglycemics: assign both Z79.4 and Z79.84); Section I.B.5 (blurred vision is integral to the retinopathy and macular edema, not coded separately)"
+    "case": "ICD-10-CM Official Guidelines FY2027, Section I.B.13 (laterality: when each eye has a different condition or stage, assign a code for each eye rather than a bilateral code); Section I.C.4.a (diabetes: assign as many codes from E11 as needed to describe all complications); Section I.C.4.a.3 (type 2 diabetes on both insulin and oral hypoglycemics: assign both Z79.4 and Z79.84); Section I.B.5 (blurred vision is integral to the retinopathy and macular edema, not coded separately)"
   },
   "target_trap": "combination",
   "coder_notes": "Traps: Collapsing the two eyes into one code (E11.3513 bilateral, or E11.3519 unspecified eye) when each eye has a different retinopathy stage and macular edema status; coding E11.65 (hyperglycemia) from the HbA1c of 8.9% without provider documentation of hyperglycemia or poor control; dropping Z79.84 because the patient is on insulin",
