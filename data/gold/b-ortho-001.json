@@ -3,6 +3,7 @@
   "codes": [
     "M17.11"
   ],
+  "optional_codes": [],
   "citations": {
     "case": "ICD-10-CM Official Guidelines FY2027, Section I.B.5 (signs and symptoms integral to a definitive diagnosis are not coded separately); Section IV.G and IV.H (outpatient: code the documented definitive diagnosis to the highest level of specificity)"
   },

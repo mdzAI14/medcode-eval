@@ -37,10 +37,11 @@ IGNORED = {"README.md", ".gitkeep"}
 FOLDERS = {"spec": ("specs", ".md"), "case": ("cases", ".md"), "gold": ("gold", ".json")}
 SPEC_FIELDS = ("id", "specialty", "setting", "author", "date")
 CASE_FIELDS = ("id", "specialty", "setting", "origin", "drafter", "draft_date")
-GOLD_FIELDS = ("id", "codes", "citations", "target_trap", "coder_notes", "method",
+GOLD_FIELDS = ("id", "codes", "optional_codes", "citations", "target_trap", "coder_notes", "method",
                "method_detail", "code_set", "date_coded")
 DATE_FIELDS = {"date", "draft_date", "date_coded"}
 CASE_CITATION = "case"
+OPTIONAL_KEYS = {"code", "reason"}
 _LIST_ITEM = re.compile(r"^\s*[-*]\s+\S")
 
 
@@ -234,12 +235,26 @@ def _check_gold(path, case_id, rel, data, result):
     norm = None
     if "codes" in g:
         norm = _check_codes(codes, rel, result)
+    optional = None
+    if "optional_codes" in g:
+        optional = _check_optional(g["optional_codes"], norm, rel, result)
     if "citations" in g:
-        _check_citations(g["citations"], codes, norm, rel, result)
+        _check_citations(g["citations"], codes, norm, rel, result, optional or [])
     if norm:
         for f in checker.check(codes, data=data):
-            item = Item("checker_" + f["level"], rel, f["message"], rule=f["rule"])
-            (result.problems if f["level"] == "error" else result.reviews).append(item)
+            _add_finding(f, rel, result)
+    if norm and optional:
+        # codes then optional codes, in that order; only findings that involve an
+        # optional code are added, the rest were reported by the check above
+        opt = set(optional)
+        for f in checker.check(norm + optional, data=data):
+            if opt & set(f["codes"]):
+                _add_finding(f, rel, result)
+
+
+def _add_finding(f, rel, result):
+    item = Item("checker_" + f["level"], rel, f["message"], rule=f["rule"])
+    (result.problems if f["level"] == "error" else result.reviews).append(item)
 
 
 def _check_codes(codes, rel, result):
@@ -264,7 +279,45 @@ def _check_codes(codes, rel, result):
     return norm
 
 
-def _check_citations(cit, codes, norm, rel, result):
+def _check_optional(optional, norm, rel, result):
+    """Normalised optional codes (possibly empty), or None when malformed."""
+    def bad(msg):
+        result.problems.append(Item("bad_optional", rel, msg))
+
+    if not isinstance(optional, list):
+        bad("optional_codes must be a list (it may be empty)")
+        return None
+    out, ok = [], True
+    for i, e in enumerate(optional):
+        if not isinstance(e, dict) or set(e) != OPTIONAL_KEYS:
+            bad(f"optional_codes entry {i} must be an object with exactly the keys "
+                "code and reason")
+            ok = False
+            continue
+        if not all(isinstance(e[k], str) and e[k].strip() for k in ("code", "reason")):
+            bad(f"optional_codes entry {i}: code and reason must be non-empty strings")
+            ok = False
+            continue
+        code = e["code"]
+        n = checker.normalise(code)
+        if code != checker.dotted(n):
+            bad(f"optional code {code!r} is not in the dotted form used by codes "
+                f"({checker.dotted(n)})")
+            ok = False
+            continue
+        if n in out:
+            bad(f"optional code {code} is listed more than once")
+            ok = False
+            continue
+        if norm is not None and n in norm:
+            bad(f"optional code {code} is also in codes")
+            ok = False
+            continue
+        out.append(n)
+    return out if ok else None
+
+
+def _check_citations(cit, codes, norm, rel, result, optional=()):
     def bad(msg):
         result.problems.append(Item("bad_citation", rel, msg))
 
@@ -281,7 +334,9 @@ def _check_citations(cit, codes, norm, rel, result):
             nk = checker.normalise(k)
         except checker.UsageError:
             nk = k
-        if norm is not None and nk not in norm:
+        if nk in optional:
+            bad(f"citation key {k!r} names an optional code; optional codes are not cited")
+        elif norm is not None and nk not in norm:
             bad(f"citation key {k!r} is not one of the codes")
         by_norm[nk] = k
     if CASE_CITATION not in cit and norm is not None:

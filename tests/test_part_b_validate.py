@@ -45,6 +45,7 @@ Invented note text for a fixture. Not a real patient.
 
 def gold(case_id, codes=("U92.0",), **over):
     g = {"id": case_id, "codes": codes if isinstance(codes, str) else list(codes),
+         "optional_codes": [],
          "citations": {"case": "Invented guideline section 0.0"},
          "target_trap": "laterality", "coder_notes": "Invented fixture note.",
          "method": "coder_unassisted", "method_detail": "Invented fixture method detail.",
@@ -377,6 +378,97 @@ class TestGoldChecker(Fixture):
         self.assertEqual(r.problems, [])
         self.assertEqual([x.rule for x in r.reviews], ["excludes1_pair"])
         self.assertEqual(r.reviews[0].file, "gold/fake-case-one.json")
+
+
+def opt(*codes):
+    return [{"code": c, "reason": f"Invented reason for {c}."} for c in codes]
+
+
+class TestOptionalCodes(Fixture):
+    F = "gold/fake-case-one.json"
+
+    def write(self, optional, codes=("U92.0",), **over):
+        write_case(self.root, "fake-case-one",
+                   gold_obj=gold("fake-case-one", codes, optional_codes=optional, **over))
+        return self.run_validate()
+
+    def assertOptionalProblem(self, optional, **kw):
+        return self.assertProblem(self.write(optional, **kw), "bad_optional", self.F)
+
+    def test_field_is_required(self):
+        g = gold("fake-case-one")
+        del g["optional_codes"]
+        write_case(self.root, "fake-case-one", gold_obj=g)
+        p = self.assertProblem(self.run_validate(), "missing_field", self.F)
+        self.assertIn("optional_codes", p.message)
+
+    def test_empty_list_and_valid_entries_accepted(self):
+        for optional in ([], opt("U95"), opt("U95", "U94.0")):
+            with self.subTest(optional=optional):
+                r = self.write(optional, codes=("U94.1",))
+                self.assertEqual((r.problems, r.reviews), ([], []))
+
+    def test_not_a_list(self):
+        for optional in ("U95", None, {}, {"code": "U95", "reason": "x"}):
+            with self.subTest(optional=optional):
+                self.assertOptionalProblem(optional)
+
+    def test_bad_entries(self):
+        for entry in ("U95", ["U95"], {"code": "U95"}, {"reason": "Invented."},
+                      {"code": "U95", "reason": "Invented.", "extra": 1},
+                      {"code": "", "reason": "Invented."}, {"code": "  ", "reason": "Invented."},
+                      {"code": "U95", "reason": ""}, {"code": "U95", "reason": "  "},
+                      {"code": 95, "reason": "Invented."}, {"code": "U95", "reason": None}):
+            with self.subTest(entry=entry):
+                self.assertOptionalProblem([entry])
+
+    def test_code_must_be_dotted_form(self):
+        for code in ("U920", "u92.0", " U92.0"):
+            with self.subTest(code=code):
+                p = self.assertOptionalProblem(opt(code), codes=("U95",))
+                self.assertIn("dotted", p.message)
+
+    def test_code_given_twice(self):
+        p = self.assertOptionalProblem(opt("U95", "U95"))
+        self.assertIn("U95", p.message)
+
+    def test_code_also_in_codes(self):
+        for codes in (("U92.0",), ("u920",)):
+            with self.subTest(codes=codes):
+                p = self.assertOptionalProblem(opt("U92.0"), codes=codes)
+                self.assertIn("U92.0", p.message)
+
+    def test_citation_key_may_not_name_an_optional_code(self):
+        for key in ("U95", "u95"):
+            with self.subTest(key=key):
+                r = self.write(opt("U95"), citations={"case": "Invented 1", key: "Invented 2"})
+                p = self.assertProblem(r, "bad_citation", self.F)
+                self.assertIn("optional", p.message)
+
+    def test_error_finding_on_optional_code_is_problem(self):
+        r = self.write(opt("U90", "U99.9"), codes=("U95",))
+        rules = sorted(p.rule for p in r.problems if p.kind == "checker_error")
+        self.assertEqual(rules, ["header_not_billable", "not_in_code_set"])
+
+    def test_optional_codes_checked_after_codes(self):
+        # U91.1 is a manifestation: an error only when first-listed
+        r = self.write(opt("U91.1"), codes=("U92.0",))
+        self.assertEqual((r.problems, r.reviews), ([], []))
+
+    def test_error_on_codes_not_repeated(self):
+        r = self.write(opt("U95"), codes=("U90",))
+        self.assertEqual([p.rule for p in r.problems], ["header_not_billable"])
+
+    def test_review_finding_with_optional_code_is_listed(self):
+        r = self.write(opt("U92.1"), codes=("U91.0",))
+        self.assertEqual(r.problems, [])
+        self.assertEqual([x.rule for x in r.reviews], ["excludes1_pair"])
+        self.assertEqual(r.reviews[0].file, self.F)
+
+    def test_review_on_codes_not_repeated(self):
+        r = self.write(opt("U94.0"), codes=("U91.0", "U92.1"))
+        self.assertEqual(r.problems, [])
+        self.assertEqual([x.rule for x in r.reviews], ["excludes1_pair"])
 
 
 class TestCodesInText(Fixture):

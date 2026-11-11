@@ -45,6 +45,25 @@ class CommittedCasesTests(unittest.TestCase):
             self.assertEqual(g["findings"], {"error": 0, "review": 0})
         self.assertEqual(r["second_turns"], 0)
 
+    def test_required_plus_optional_codes_score_exact(self):
+        rows = []
+        for cid, g in self.gold.items():
+            codes = [checker.normalise(c) for c in g["codes"]]
+            opt = score.optional_codes(g)
+            rows.append({"id": cid, "first_answer": opt + codes, "first_valid": True,
+                         "final_answer": codes + opt, "final_valid": True,
+                         "second_turn": False, "error": None})
+        n_opt = sum(len(score.optional_codes(g)) for g in self.gold.values())
+        r = score.score(self.gold, self.meta, rows)
+        for which in ("first", "final"):
+            g = r[which]["overall"]
+            self.assertEqual(g["exact"], self.n)
+            self.assertEqual((g["missing"], g["extra"]), (0, 0))
+            self.assertEqual(g["optional_given"], n_opt)
+        self.assertEqual(r["first"]["overall"]["first_listed"], self.n - sum(
+            bool(score.optional_codes(g)) for g in self.gold.values()))
+        self.assertEqual(r["final"]["overall"]["first_listed"], self.n)
+
     def test_wrong_answer_draws_a_second_turn_everywhere(self):
         self.assertTrue(checker.check(responders.WRONG))
         backend = FakeBackend(responders.fixed(responders.WRONG), messages=True)

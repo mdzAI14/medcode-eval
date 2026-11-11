@@ -68,6 +68,7 @@ Every field is required; any other field is a problem.
 |---|---|---|
 | `id` | string | the case id; equal to the file name |
 | `codes` | list of strings | ICD-10-CM codes in claim order; the first is first-listed. Dotted form: three characters, a dot, then the rest. No code twice. |
+| `optional_codes` | list of objects | codes that are neither required nor penalized; may be empty (`[]`). Each entry is `{"code": "<code>", "reason": "<why>"}` with exactly these two keys, both non-empty strings. The code is in the dotted form used by `codes`; no code twice, and none that is also in `codes`. |
 | `citations` | object | either `{"case": "<citation>"}` for one citation covering the case, or one key per code (the code as written in `codes`, dotted or not) whose value is that code's citation. Both may be given. Every value is a non-empty string, and every key other than `case` is one of the codes. |
 | `target_trap` | string | one of `laterality`, `seventh_character`, `excludes1`, `combination`, `sequencing` |
 | `coder_notes` | string | the coder's notes; may be the empty string |
@@ -77,7 +78,12 @@ Every field is required; any other field is a problem.
 | `date_coded` | string | date coded, `YYYY-MM-DD` |
 
 A citation names the guideline it rests on, e.g. a section of the
-ICD-10-CM Official Guidelines for Coding and Reporting FY2027.
+ICD-10-CM Official Guidelines for Coding and Reporting FY2027. A citation
+key may not name an optional code.
+
+An optional code is one the coder judges defensible either way for this
+case. The scorer neither requires nor penalizes it: it is removed from an
+answer before the answer is compared with `codes`.
 
 ## What the validator checks
 
@@ -94,9 +100,15 @@ Problems (exit 1):
   with no repeat; `code_set` exactly this code set's label; every
   citation non-empty and every code covered (by its own key or by
   `case`)
+- optional codes: `optional_codes` a list (may be empty) of objects with
+  exactly the keys `code` and `reason`, both non-empty strings; each code
+  in dotted form, not given twice and not also in `codes`; no citation key
+  names an optional code
 - gold codes: `medcode_eval.checker.check` is run on the codes in order.
   Every error-level finding (not in the code set, header not billable,
-  manifestation first-listed) is a problem
+  manifestation first-listed) is a problem. It is run again on `codes`
+  followed by the optional codes, in that order: every error-level
+  finding that involves an optional code is a problem
 - codes in text: a dotted string in a spec or a case (front matter
   included, any letter case) that is a stored code or a prefix of stored
   codes, for example a string of the shape `Ann.n` or `Ann.-`
@@ -110,7 +122,8 @@ Warnings (listed, not problems):
 Checker review findings (listed, not problems):
 
 - review-level findings of the checker on the gold codes (excludes1 pairs,
-  codeFirst order). They are for the coder to confirm.
+  codeFirst order), and those of the second run that involve an optional
+  code. They are for the coder to confirm.
 
 Code facts come from `refdata/icd10cm_fy2027/` only, through
 `medcode_eval.checker`, `medcode_eval.orderfile` and

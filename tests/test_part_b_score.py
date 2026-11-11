@@ -1,11 +1,15 @@
 """Tests for medcode_eval.part_b.score on invented fixtures. No network."""
 
+import hashlib
 import json
 import tempfile
 import unittest
 
+from medcode_eval.part_b import responders
 from medcode_eval.part_b import score as sc
-from tests.part_b_fixture import CODE_SET, TempDir, make_data_dir, make_refdata
+from medcode_eval.run.part_b import load_cases, render_first
+from tests.part_b_fixture import (CASES, CODE_SET, OPTIONAL, TempDir, make_data_dir,
+                                  make_refdata)
 
 
 def setUpModule():
@@ -107,6 +111,127 @@ class ScoreTests(unittest.TestCase):
 
     def test_json_serialisable(self):
         json.dumps(self.result())
+
+
+def row(cid, first, final=None):
+    final = first if final is None else final
+    return {"id": cid, "first_answer": first, "first_valid": first is not None,
+            "final_answer": final, "final_valid": final is not None,
+            "second_turn": False, "error": None}
+
+
+class OptionalCodeTests(unittest.TestCase):
+    """b-t-002: gold U91.0 U96, optional U94.0 (tests/part_b_fixture.py)."""
+
+    def setUp(self):
+        self.dir = make_data_dir(TempDir(self).path)
+        self.gold = sc.load_gold(self.dir)
+        self.meta = sc.load_case_meta(self.dir)
+
+    def case(self, answer, cid="b-t-002", gold=None):
+        r = sc.score(gold or self.gold, self.meta, [row(cid, answer)], checker_data=DATA)
+        return next(c for c in r["cases"] if c["id"] == cid), r
+
+    def test_fixture_has_the_optional_code(self):
+        self.assertEqual([o["code"] for o in self.gold["b-t-002"]["optional_codes"]],
+                         ["U94.0"])
+
+    def test_required_plus_optional_is_exact(self):
+        c, _ = self.case(["U910", "U96", "U940"])
+        self.assertTrue(c["first"]["exact"])
+        self.assertTrue(c["first"]["first_listed"])
+        self.assertEqual((c["first"]["correct"], c["first"]["missing"], c["first"]["extra"]),
+                         (2, 0, 0))
+        self.assertEqual(c["first"]["optional_given"], 1)
+        self.assertEqual(c["optional"], ["U940"])
+
+    def test_optional_first_is_not_first_listed(self):
+        c, _ = self.case(["U940", "U910", "U96"])
+        self.assertTrue(c["first"]["exact"])
+        self.assertFalse(c["first"]["first_listed"])
+
+    def test_optional_alone_is_neither_correct_nor_extra(self):
+        c, r = self.case(["U940"])
+        self.assertFalse(c["first"]["exact"])
+        self.assertEqual((c["first"]["correct"], c["first"]["missing"], c["first"]["extra"]),
+                         (0, 2, 0))
+        g = r["first"]["by_specialty"]["ent"]
+        self.assertIsNone(g["precision"])
+        self.assertEqual(g["optional_given"], 1)
+
+    def test_not_given_counts_zero_and_changes_nothing(self):
+        c, _ = self.case(["U910", "U96"])
+        self.assertTrue(c["first"]["exact"])
+        self.assertEqual(c["first"]["optional_given"], 0)
+
+    def test_optional_of_another_case_is_extra(self):
+        c, _ = self.case(["U95", "U940"], cid="b-t-001")
+        self.assertFalse(c["first"]["exact"])
+        self.assertEqual((c["first"]["extra"], c["first"]["optional_given"]), (1, 0))
+
+    def test_optional_given_summed_in_groups(self):
+        r = sc.score(self.gold, self.meta,
+                     [row("b-t-001", ["U95"]), row("b-t-002", ["U910", "U96", "U940"],
+                                                   ["U910", "U96"])],
+                     checker_data=DATA)
+        self.assertEqual(r["first"]["overall"]["optional_given"], 1)
+        self.assertEqual(r["final"]["overall"]["optional_given"], 0)
+        self.assertEqual(r["first"]["overall"]["exact"], 2)
+        self.assertEqual(r["first"]["overall"]["precision"], 1.0)
+
+    def test_findings_counted_on_the_answer_as_given(self):
+        gold = json.loads(json.dumps(self.gold))
+        gold["b-t-001"]["optional_codes"] = [{"code": "U90", "reason": "Invented."}]
+        c, _ = self.case(["U95", "U90"], cid="b-t-001", gold=gold)
+        self.assertTrue(c["first"]["exact"])
+        self.assertEqual(c["first"]["findings"]["error"], 1)
+
+    def test_optional_given_in_markdown(self):
+        _, r = self.case(["U910", "U96", "U940"])
+        md = sc.to_markdown(r)
+        self.assertIn("Optional given", md)
+        self.assertIn("U94.0", md)
+
+    def test_oracle_returns_required_codes_only(self):
+        fn = responders.oracle(self.dir)
+        for c in load_cases(self.dir):
+            reply = json.loads(fn([{"role": "user", "content": render_first(c)}]))
+            self.assertEqual(reply, CASES[c["id"]][2])
+            for code in OPTIONAL.get(c["id"], []):
+                self.assertNotIn(code, reply)
+
+
+class GoldHashTests(unittest.TestCase):
+    def setUp(self):
+        self.tmp = TempDir(self).path
+        self.dir = make_data_dir(self.tmp)
+
+    def expected(self):
+        lines = "".join(f"{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.name}\n"
+                        for p in sorted((self.dir / "gold").glob("*.json")))
+        return hashlib.sha256(lines.encode("ascii")).hexdigest()
+
+    def test_hash_over_gold_files(self):
+        (self.dir / "gold" / "README.md").write_text("invented readme\n")
+        self.assertEqual(sc.gold_sha256(self.dir), self.expected())
+
+    def test_hash_changes_with_a_gold_file(self):
+        before = sc.gold_sha256(self.dir)
+        p = self.dir / "gold" / "b-t-001.json"
+        p.write_text(p.read_text() + " ")
+        self.assertNotEqual(sc.gold_sha256(self.dir), before)
+
+    def test_main_records_hash_in_json_and_markdown(self):
+        answers = self.tmp / "answers.jsonl"
+        answers.write_text("".join(json.dumps(row(c, codes)) + "\n"
+                                   for c, codes in (("b-t-001", ["U95"]),)))
+        oj, om = self.tmp / "s.json", self.tmp / "s.md"
+        sc.main(["--answers", str(answers), "--data-dir", str(self.dir),
+                 "--out-json", str(oj), "--out-md", str(om)], checker_data=DATA)
+        h = self.expected()
+        self.assertEqual(json.loads(oj.read_text())["gold_sha256"], h)
+        first_line = om.read_text().splitlines()[0]
+        self.assertIn(f"Gold sha256: {h}", first_line)
 
 
 if __name__ == "__main__":

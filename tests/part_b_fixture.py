@@ -22,6 +22,8 @@ CASES = {
                 ["U91.0", "U96"], "excludes1"),
     "b-t-003": ("ortho", "Invented note three.", ["U90.012A"], "seventh_character"),
 }
+# id -> optional codes (codes neither required nor penalized); others have none
+OPTIONAL = {"b-t-002": ["U94.0"]}
 
 
 def make_refdata(root):
@@ -32,7 +34,7 @@ def make_refdata(root):
     return checker.load(root=root, paths=PATHS)
 
 
-def make_data_dir(root, cases=CASES, sentinel=False):
+def make_data_dir(root, cases=CASES, sentinel=False, optional=OPTIONAL):
     """specs/, cases/ and gold/ under root/data; returns that folder.
 
     With sentinel=True every front-matter value, the spec and every gold
@@ -53,7 +55,10 @@ def make_data_dir(root, cases=CASES, sentinel=False):
             f"---\nid: {cid}\nspecialty: {spec}\nsetting: {mark('setting')}\n"
             f"author: {mark('author')}\ndate: 2026-11-11\n---\n- {mark('spec')}\n",
             encoding="utf-8")
-        gold = {"id": cid, "codes": codes, "citations": {"case": mark("citation")},
+        gold = {"id": cid, "codes": codes,
+                "optional_codes": [{"code": c, "reason": mark("reason")}
+                                   for c in optional.get(cid, [])],
+                "citations": {"case": mark("citation")},
                 "target_trap": trap, "coder_notes": mark("notes"),
                 "method": "coder_unassisted", "method_detail": mark("detail"),
                 "code_set": CODE_SET, "date_coded": "2026-11-11"}

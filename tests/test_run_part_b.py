@@ -121,6 +121,7 @@ class PromptTests(unittest.TestCase):
             for m in messages:
                 if m["role"] == "user":
                     self.assertNotIn("U90.012A", m["content"])
+                    self.assertNotIn("U94.0", m["content"])
 
 
 class FindingsLayoutTests(unittest.TestCase):

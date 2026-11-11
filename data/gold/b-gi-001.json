@@ -3,6 +3,7 @@
   "codes": [
     "K25.4"
   ],
+  "optional_codes": [],
   "citations": {
     "case": "ICD-10-CM Official Guidelines FY2027, Section II (principal diagnosis: condition established after study chiefly responsible for the admission); Section I.B.5 (melena is integral to the bleeding ulcer; K92.1 not coded separately); Section III.B (abnormal findings are not coded unless the provider indicates their clinical significance); Section I.B.2 (code to the highest level of detail documented); Section I.A.12 (Excludes1 notes: the two conditions are not reported together unless they are unrelated)"
   },
