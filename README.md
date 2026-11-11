@@ -1,6 +1,6 @@
 # medcode-eval
 
-A coder-authored test set that measures how large language models handle
+A coder-verified test set that measures how large language models handle
 ICD-10-CM diagnosis coding, plus a deterministic ICD-10-CM rules checker
 that is one of the tested conditions.
 

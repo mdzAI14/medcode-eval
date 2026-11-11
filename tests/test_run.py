@@ -402,5 +402,105 @@ class OllamaBackendTests(unittest.TestCase):
         self.assertNotIn("/no_think", body["prompt"])
 
 
+class MessagesTests(unittest.TestCase):
+    """Backends take a list of messages; Part A sends one user message."""
+
+    def test_part_a_sends_one_user_message_with_the_prompt(self):
+        seen = []
+        backend = FakeBackend(lambda m: seen.append(m) or "A", messages=True)
+        with tempfile.TemporaryDirectory() as tmp:
+            pf = Path(tmp) / "p.jsonl"
+            write_jsonl(pf, probes())
+            run(pf, Path(tmp) / "run", backend, prompt_suffix="/no_think")
+        self.assertEqual(len(seen), 4)
+        for m, p in zip(seen, probes()):
+            self.assertEqual(m, [{"role": "user",
+                                  "content": render_prompt(p, prompt_suffix="/no_think")}])
+
+    def test_fake_backend_prompt_form_gets_last_user_text(self):
+        b = FakeBackend(lambda prompt: prompt.upper())
+        self.assertEqual(b.generate([{"role": "user", "content": "hi"}]), {"raw": "HI"})
+
+    def test_fake_backend_rejects_bad_messages(self):
+        b = FakeBackend(lambda m: "x", messages=True)
+        for bad in ([], "hello", [{"role": "user"}], [{"role": "robot", "content": "x"}]):
+            with self.assertRaises(ValueError):
+                b.generate(bad)
+
+    def test_generate_body_unchanged_for_one_message(self):
+        b = OllamaBackend("qwen3:4b")
+        self.assertEqual(b.request_body([{"role": "user", "content": "hello"}]),
+                         b.request_body("hello"))
+        self.assertEqual(set(b.request_body("hello")),
+                         {"model", "prompt", "stream", "options"})
+
+    def test_generate_endpoint_takes_one_user_message_only(self):
+        b = OllamaBackend("qwen3:4b")
+        with self.assertRaises(ValueError):
+            b.request_body([{"role": "user", "content": "a"},
+                            {"role": "assistant", "content": "b"},
+                            {"role": "user", "content": "c"}])
+
+    def test_chat_body(self):
+        b = OllamaBackend("qwen3:4b", endpoint="/api/chat")
+        msgs = [{"role": "user", "content": "a"}, {"role": "assistant", "content": "b"},
+                {"role": "user", "content": "c"}]
+        body = b.request_body(msgs)
+        self.assertEqual(body["messages"], msgs)
+        self.assertNotIn("prompt", body)
+        self.assertIs(body["stream"], False)
+        self.assertEqual(body["options"], b.request_body("x")["options"])
+        self.assertNotIn("think", body)
+        self.assertNotIn("system", body)
+
+    def test_chat_reply_read_from_message(self):
+        b = OllamaBackend("qwen3:4b", endpoint="/api/chat")
+        b._call = lambda path, body=None, timeout=30: {
+            "message": {"role": "assistant", "content": "[]"}, "done_reason": "stop",
+            "eval_count": 3}
+        self.assertEqual(b.generate([{"role": "user", "content": "a"}]),
+                         {"raw": "[]", "done_reason": "stop", "eval_count": 3})
+
+    def test_unknown_endpoint(self):
+        with self.assertRaises(ValueError):
+            OllamaBackend("qwen3:4b", endpoint="/api/embed")
+
+
+class RemoteBackendTests(unittest.TestCase):
+    def test_stub_raises_when_called(self):
+        b = runner.RemoteBackend("some-model", "SOME_KEY_VAR")
+        with self.assertRaises(NotImplementedError) as cm:
+            b.generate([{"role": "user", "content": "x"}])
+        self.assertIn("stub", str(cm.exception))
+
+    def test_describe_names_the_variable_only(self):
+        import os
+        os.environ.pop("P61_TEST_KEY", None)
+        d = runner.RemoteBackend("m", "P61_TEST_KEY").describe()
+        self.assertEqual(d["backend"], "remote")
+        self.assertEqual(d["model"], "m")
+        self.assertEqual(d["settings"]["key_env"], "P61_TEST_KEY")
+
+    def test_key_env_must_be_a_name(self):
+        with self.assertRaises(ValueError):
+            runner.RemoteBackend("m", "not a name")
+
+    def test_no_key_read(self):
+        import os
+        orig = os.environ
+        class Trap(dict):
+            def __getitem__(self, k):
+                raise AssertionError("environment read")
+            get = __getitem__
+        os.environ = Trap()
+        try:
+            b = runner.RemoteBackend("m", "ANY_KEY")
+            b.describe()
+            with self.assertRaises(NotImplementedError):
+                b.generate([{"role": "user", "content": "x"}])
+        finally:
+            os.environ = orig
+
+
 if __name__ == "__main__":
     unittest.main()

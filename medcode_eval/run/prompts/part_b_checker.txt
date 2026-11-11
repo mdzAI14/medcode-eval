@@ -1,0 +1,10 @@
+A rules checker compared your codes with the ICD-10-CM FY2027
+files and reported the findings below.
+An error finding means the code cannot be reported as written.
+A review finding points to a note in the code set that may or
+may not apply here: keep the code if the note does not apply to
+this encounter.
+
+{findings}
+
+Give your final answer as a JSON list of codes only.

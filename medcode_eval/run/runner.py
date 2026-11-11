@@ -5,16 +5,28 @@ Only a probe's prompt fields reach the model: code and options
 Each is filled into the prompt file for its type under prompts/. The
 setting prompt_suffix (empty by default) is added to the rendered prompt
 on its own last line; the prompt files are not changed. The backend
-receives the rendered prompt text and nothing else.
+receives one user message whose text is the rendered prompt, and nothing
+else.
 
-Backends (standard library only):
-  fake    a Python callable from prompt to reply; for tests
-  ollama  the local Ollama server's /api/generate endpoint, non-streaming.
-          Only a localhost address is accepted. Settings: temperature 0,
-          seed SEED, num_predict NUM_PREDICT, num_ctx NUM_CTX, per-probe
-          timeout TIMEOUT seconds. No system prompt and no API reasoning
-          switch is sent; reasoning can only be changed through text in
-          prompt_suffix (e.g. /no_think for a model whose template reads it).
+Backends (standard library only) take a list of messages, each a dict with
+role ("user" or "assistant") and content, so a second turn can follow the
+first (Part B, medcode_eval.run.part_b):
+  fake    a Python callable; for tests. By default it gets the last
+          message's text (the Part A form); with messages=True it gets the
+          whole list.
+  ollama  the local Ollama server, non-streaming. Only a localhost address
+          is accepted. Endpoint /api/generate (Part A; takes exactly one
+          user message, sent as "prompt", so the request is the same as
+          before messages existed) or /api/chat (Part B; "messages"; both
+          endpoints are in the installed server 0.6.8). Settings:
+          temperature 0, seed SEED, num_predict NUM_PREDICT, num_ctx
+          NUM_CTX, per-call timeout TIMEOUT seconds. No system prompt and no
+          API reasoning switch is sent; reasoning can only be changed
+          through text in prompt_suffix (e.g. /no_think for a model whose
+          template reads it).
+  remote  a stub with the same interface: a model name and the NAME of an
+          environment variable for a key. It reads no key and sends
+          nothing; generate() raises NotImplementedError.
 
 Output in the run directory (runs/part_a/<run-id>/):
   run.json         backend, model name and digest, settings, prompt_suffix,
@@ -36,10 +48,19 @@ Usage (from the repo root):
         --run-id lite-qwen3-4b [--model qwen3:4b] [--limit N] [--ids a,b,c] \
         [--prompt-suffix /no_think]
     venv/bin/python -m medcode_eval.run.runner --run-id lite-qwen3-4b --rederive
+    venv/bin/python -m medcode_eval.run.runner --part b --condition with_checker \
+        --run-id b-qwen3-4b [--model qwen3:4b] [--limit N] [--ids a,b] [--prompt-suffix S]
+    venv/bin/python -m medcode_eval.run.runner --part b --run-id b-qwen3-4b --rederive
+    venv/bin/python -m medcode_eval.run.runner --dry-run --run-id p61 [--prompt-suffix S]
 
---rederive rewrites responses.jsonl from the run's raw.jsonl with the
-current extract_answer(); no backend is built and no model is called;
-raw.jsonl and run.json are not touched.
+--rederive rewrites responses.jsonl (Part A) or answers.jsonl (Part B) from
+the run's raw.jsonl with the current answer reader; no backend is built and
+no model is called; raw.jsonl and run.json are not touched.
+
+--dry-run renders every first-turn prompt of Part A (lite, full, changes)
+and Part B (plain, with_checker) into runs/dryrun/<run-id>/ with counts,
+estimated tokens and a cost table (medcode_eval.run.dryrun). No backend is
+built and no model is called.
 """
 
 import argparse
@@ -105,6 +126,33 @@ def render_prompt(probe, prompts=None, prompt_suffix=""):
 
 
 _THINK = re.compile(r"<think>.*?</think>", re.S)
+ROLES = ("user", "assistant")
+_ENV_NAME = re.compile(r"[A-Za-z_][A-Za-z0-9_]*")
+
+
+def user_message(text):
+    return {"role": "user", "content": text}
+
+
+def check_messages(messages):
+    """Raise ValueError unless messages is a non-empty list of role/content
+    dicts with known roles and string content."""
+    if not isinstance(messages, list) or not messages:
+        raise ValueError("messages must be a non-empty list")
+    for m in messages:
+        if (not isinstance(m, dict) or set(m) != {"role", "content"}
+                or m["role"] not in ROLES or not isinstance(m["content"], str)):
+            raise ValueError(f"bad message {m!r}")
+    return messages
+
+
+def drop_think(text):
+    """Text without <think>...</think> blocks; an unclosed <think> drops
+    the rest of the text."""
+    text = _THINK.sub("", text)
+    if "<think>" in text:
+        text = text[:text.index("<think>")]
+    return text
 _MARKS = "\"'`*"
 _LABEL = re.compile(r"^\**\s*(?:final\s+)?answer\s*\**\s*:\s*\**\s*", re.I)
 
@@ -119,9 +167,7 @@ def extract_answer(text):
     around it allowed). When a label was dropped, the end-strip (quotes,
     backticks, asterisks, one trailing full stop) runs again on what is left.
     """
-    text = _THINK.sub("", text)
-    if "<think>" in text:
-        text = text[:text.index("<think>")]
+    text = drop_think(text)
     lines = [l.strip() for l in text.splitlines() if l.strip()]
     if not lines:
         return ""
@@ -140,40 +186,59 @@ def _end_strip(s):
 
 
 class FakeBackend:
-    """Replies with fn(prompt). For tests; no model is called."""
+    """Replies with fn(last message text), or fn(messages) when messages is
+    true. For tests; no model is called."""
 
     name = "fake"
 
-    def __init__(self, fn, model="fake"):
+    def __init__(self, fn, model="fake", messages=False):
         self.fn = fn
         self.model = model
+        self.messages = messages
 
     def describe(self):
         return {"backend": self.name, "model": self.model, "model_digest": None,
                 "server_version": None, "settings": {}}
 
-    def generate(self, prompt):
-        return {"raw": self.fn(prompt)}
+    def generate(self, messages):
+        check_messages(messages)
+        return {"raw": self.fn(list(messages) if self.messages else messages[-1]["content"])}
+
+
+ENDPOINTS = ("/api/generate", "/api/chat")
 
 
 class OllamaBackend:
-    """The local Ollama server, /api/generate, stream off."""
+    """The local Ollama server, /api/generate or /api/chat, stream off."""
 
     name = "ollama"
 
-    def __init__(self, model, host=DEFAULT_HOST, timeout=TIMEOUT):
+    def __init__(self, model, host=DEFAULT_HOST, timeout=TIMEOUT, endpoint="/api/generate"):
         u = urllib.parse.urlparse(host)
         if u.scheme != "http" or u.hostname not in _LOCAL:
             raise ValueError(f"only a local Ollama server is allowed, not {host!r}")
+        if endpoint not in ENDPOINTS:
+            raise ValueError(f"endpoint must be one of {ENDPOINTS}, not {endpoint!r}")
         self.model = model
         self.host = host.rstrip("/")
         self.timeout = timeout
+        self.endpoint = endpoint
         self.options = {"temperature": 0, "seed": SEED,
                         "num_predict": NUM_PREDICT, "num_ctx": NUM_CTX}
 
-    def request_body(self, prompt):
-        return {"model": self.model, "prompt": prompt, "stream": False,
-                "options": dict(self.options)}
+    def request_body(self, messages):
+        """The request for a list of messages (a string is one user message).
+        /api/generate takes exactly one user message, sent as "prompt"."""
+        if isinstance(messages, str):
+            messages = [user_message(messages)]
+        check_messages(messages)
+        if self.endpoint == "/api/generate":
+            if len(messages) != 1 or messages[0]["role"] != "user":
+                raise ValueError("/api/generate takes exactly one user message")
+            return {"model": self.model, "prompt": messages[0]["content"], "stream": False,
+                    "options": dict(self.options)}
+        return {"model": self.model, "messages": [dict(m) for m in messages],
+                "stream": False, "options": dict(self.options)}
 
     def _call(self, path, body=None, timeout=30):
         data = None if body is None else json.dumps(body).encode("utf-8")
@@ -189,15 +254,44 @@ class OllamaBackend:
             raise ValueError(f"model {self.model!r} is not on the local server")
         return {"backend": self.name, "model": self.model, "model_digest": digest,
                 "server_version": self._call("/api/version")["version"],
-                "settings": {"endpoint": "/api/generate", "stream": False,
+                "settings": {"endpoint": self.endpoint, "stream": False,
                              "options": dict(self.options),
                              "timeout_seconds": self.timeout,
                              "system_prompt": None, "reasoning_switch": None}}
 
-    def generate(self, prompt):
-        out = self._call("/api/generate", self.request_body(prompt), timeout=self.timeout)
-        return {"raw": out.get("response", ""), "done_reason": out.get("done_reason"),
+    def generate(self, messages):
+        out = self._call(self.endpoint, self.request_body(messages), timeout=self.timeout)
+        if self.endpoint == "/api/chat":
+            raw = (out.get("message") or {}).get("content", "")
+        else:
+            raw = out.get("response", "")
+        return {"raw": raw, "done_reason": out.get("done_reason"),
                 "eval_count": out.get("eval_count")}
+
+
+class RemoteBackend:
+    """Stub for a hosted model: same interface, no request and no key read.
+
+    key_env is the NAME of the environment variable that would hold a key;
+    its value is never read here.
+    """
+
+    name = "remote"
+
+    def __init__(self, model, key_env):
+        if not isinstance(key_env, str) or not _ENV_NAME.fullmatch(key_env):
+            raise ValueError(f"key_env must be an environment variable name, not {key_env!r}")
+        self.model = model
+        self.key_env = key_env
+
+    def describe(self):
+        return {"backend": self.name, "model": self.model, "model_digest": None,
+                "server_version": None, "settings": {"key_env": self.key_env}}
+
+    def generate(self, messages):
+        raise NotImplementedError(
+            "the remote backend is a stub: it sends no request and reads no key "
+            f"(model {self.model!r}, key variable {self.key_env!r})")
 
 
 def _sha(path):
@@ -276,7 +370,7 @@ def run(probes_path, run_dir, backend, ids=None, limit=None, log=None,
         start = time.monotonic()
         row = {"id": p["id"], "raw": None, "error": None}
         try:
-            row.update(backend.generate(prompt))
+            row.update(backend.generate([user_message(prompt)]))
         except (OSError, urllib.error.URLError, ValueError, TimeoutError) as exc:
             row["error"] = f"{type(exc).__name__}: {exc}"
         row["seconds"] = round(time.monotonic() - start, 3)
@@ -298,20 +392,34 @@ def _relative(path):
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(description="Run Part A probes through a model.")
+    ap = argparse.ArgumentParser(description="Run Part A probes or Part B cases "
+                                             "through a model.")
+    ap.add_argument("--part", choices=("a", "b"), default="a")
     ap.add_argument("--probes")
+    ap.add_argument("--condition", help="Part B: plain or with_checker")
+    ap.add_argument("--data-dir", help="Part B: folder with cases/ (default data/)")
     ap.add_argument("--run-id", required=True)
     ap.add_argument("--rederive", action="store_true",
-                    help="only rewrite responses.jsonl from raw.jsonl; no model call")
+                    help="only rewrite responses.jsonl or answers.jsonl from raw.jsonl; "
+                         "no model call")
+    ap.add_argument("--dry-run", action="store_true",
+                    help="render every first-turn prompt and the cost table; no model call")
     ap.add_argument("--model", default="qwen3:4b")
     ap.add_argument("--host", default=DEFAULT_HOST)
     ap.add_argument("--limit", type=int)
-    ap.add_argument("--ids", help="comma-separated probe ids")
+    ap.add_argument("--ids", help="comma-separated probe or case ids")
     ap.add_argument("--prompt-suffix", default="",
                     help="text added to every prompt on its own last line")
     args = ap.parse_args(argv)
     if not re.fullmatch(r"[A-Za-z0-9._-]+", args.run_id):
         ap.error("run id: letters, digits, '.', '_' and '-' only")
+    if args.dry_run:
+        from medcode_eval.run import dryrun
+        out = dryrun.main_dry_run(REPO_ROOT, args.run_id, args.prompt_suffix)
+        print(f"wrote {out}")
+        return
+    if args.part == "b":
+        return _main_part_b(ap, args)
     run_dir = REPO_ROOT / RUNS_DIR / args.run_id
     if args.rederive:
         if not (run_dir / "raw.jsonl").is_file():
@@ -326,6 +434,26 @@ def main(argv=None):
     n = run(args.probes, run_dir, backend, ids=ids,
             limit=args.limit, log=print, prompt_suffix=args.prompt_suffix)
     print(f"tried {n}")
+
+
+def _main_part_b(ap, args):
+    from medcode_eval.run import part_b
+    rel = part_b.RUNS_DIR / args.run_id
+    run_dir = REPO_ROOT / rel
+    if args.rederive:
+        if not (run_dir / "raw.jsonl").is_file():
+            ap.error(f"no raw.jsonl in {rel}")
+        part_b.write_answers(run_dir)
+        print(f"rewrote {rel / 'answers.jsonl'}")
+        return
+    if args.condition not in part_b.CONDITIONS:
+        ap.error(f"--condition must be one of {', '.join(part_b.CONDITIONS)}")
+    data_dir = Path(args.data_dir) if args.data_dir else REPO_ROOT / "data"
+    backend = OllamaBackend(args.model, host=args.host, endpoint="/api/chat")
+    ids = args.ids.split(",") if args.ids else None
+    n = part_b.run(data_dir, run_dir, backend, args.condition, ids=ids, limit=args.limit,
+                   log=print, prompt_suffix=args.prompt_suffix)
+    print(f"cases tried {n}")
 
 
 if __name__ == "__main__":
