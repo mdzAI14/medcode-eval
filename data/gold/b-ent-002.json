@@ -1,0 +1,16 @@
+{
+  "id": "b-ent-002",
+  "codes": [
+    "H66.011"
+  ],
+  "optional_codes": [],
+  "citations": {
+    "case": "ICD-10-CM Tabular List FY2027, Excludes1 note at category H72 (acute suppurative otitis media with rupture of the tympanic membrane is coded to H66.01-); ICD-10-CM Official Guidelines FY2027, Section I.A.12.a (Excludes1: the two codes are not reported together); Section I.B.9 (combination code: one code that classifies a diagnosis with its associated complication); Section I.B.13 (laterality: right ear); Section I.B.5 (signs and symptoms integral to a definitive diagnosis are not coded separately)"
+  },
+  "target_trap": "excludes1",
+  "coder_notes": "The provider documents acute suppurative otitis media of the right ear and a perforation of the right tympanic membrane that resulted from the infection and is not traumatic. The combination code includes the rupture, so the perforation is not coded separately. First episode, so not recurrent. Ear pain, drainage and muffled hearing are integral to the diagnosis. The inflamed tympanic membrane is part of the otitis media. The preceding cold is history and was not diagnosed or treated at this visit. No organism was identified. The left ear is normal. Traps: adding a perforation code (H72.01) with the otitis media code, against the Excludes1 note at H72; a traumatic rupture code; a recurrent otitis media code; coding otorrhea or hearing loss separately",
+  "method": "ai_assisted_coder_verified",
+  "method_detail": "Codes drafted with commercial coding software that has AI assistance; explanations and formatting drafted with a Claude model. Reviewed in the design chat by a Claude model, which drafted the wording of the citations and notes from mdzAI14's rulings. All codes and citations verified by mdzAI14.",
+  "code_set": "ICD-10-CM FY2027 (October 1, 2026 release)",
+  "date_coded": "2026-11-12"
+}
