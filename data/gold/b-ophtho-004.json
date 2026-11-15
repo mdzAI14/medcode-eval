@@ -1,0 +1,17 @@
+{
+  "id": "b-ophtho-004",
+  "codes": [
+    "L71.9",
+    "H10.823"
+  ],
+  "optional_codes": [],
+  "citations": {
+    "case": "ICD-10-CM Tabular List FY2027, code first note at H10.82 (code first underlying rosacea dermatitis, L71.-); ICD-10-CM Official Guidelines FY2027, Section I.A.13 (etiology/manifestation convention: the underlying condition is sequenced first, followed by the manifestation) and Section I.B.7 (where a code first note exists and an underlying condition is present, the underlying condition is sequenced first); Section I.B.13 (laterality: the code names whether the condition is on the left, the right or bilateral); Section I.B.5 (signs and symptoms associated routinely with a disease process are not assigned as additional codes)"
+  },
+  "target_trap": "sequencing",
+  "coder_notes": "The provider lists rosacea conjunctivitis of both eyes first and rosacea second, and states the conjunctivitis is due to the rosacea. The rosacea conjunctivitis code carries a code first note for the underlying rosacea, so the rosacea code is sequenced first; the order in which the provider lists the diagnoses does not change that. The type of rosacea is not specified. Both eyes are affected, so the bilateral code is used and not one code for each eye. Burning, grittiness and redness are symptoms of the conjunctivitis. Blepharitis is ruled out. Traps: listing the conjunctivitis code first, as the note does; leaving off the rosacea code; a right-eye code and a left-eye code in place of the bilateral code; an unspecified conjunctivitis code",
+  "method": "ai_assisted_coder_verified",
+  "method_detail": "Codes drafted with commercial coding software that has AI assistance; explanations and formatting drafted with a Claude model. Reviewed in the design chat by a Claude model, which drafted the wording of the citations and notes from mdzAI14's rulings. All codes and citations verified by mdzAI14.",
+  "code_set": "ICD-10-CM FY2027 (October 1, 2026 release)",
+  "date_coded": "2026-11-15"
+}

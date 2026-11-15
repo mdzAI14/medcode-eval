@@ -1,0 +1,17 @@
+{
+  "id": "b-ent-004",
+  "codes": [
+    "S01.411D",
+    "V18.4XXD"
+  ],
+  "optional_codes": [],
+  "citations": {
+    "case": "ICD-10-CM Official Guidelines FY2027, Section I.C.19.a (7th character D is used after active treatment is complete, for routine care during the healing or recovery phase; the 7th character depends on active treatment, not on whether the provider is seeing the patient for the first time; aftercare Z codes are not used for injuries); Section I.C.20.a.2 (the external cause code is assigned, with the matching 7th character, for each encounter at which the injury is treated); Sections I.C.20.b and I.C.20.c (place of occurrence and activity codes are used only at the initial encounter); Section I.B.13 (laterality: the code names whether the condition is on the left, the right or bilateral)"
+  },
+  "target_trap": "seventh_character",
+  "coder_notes": "A right cheek laceration repaired in the emergency department 3 weeks ago, now healing routinely with no complication: the injury code takes 7th character D. There is no foreign body. The external cause is a fall from a bicycle he was riding on a street, with no collision, reported with the same 7th character. Place of occurrence and activity are not reported at a follow-up visit. External cause status is not stated. Aftercare Z codes are not used for an injury. Traps: 7th character A because the clinic is seeing the wound; 7th character S; the left or unspecified cheek; an unspecified open wound code (S01.401D) when the wound is documented as a laceration; place of occurrence and activity codes; an aftercare code",
+  "method": "ai_assisted_coder_verified",
+  "method_detail": "Codes drafted with commercial coding software that has AI assistance; explanations and formatting drafted with a Claude model. Reviewed in the design chat by a Claude model, which drafted the wording of the citations and notes from mdzAI14's rulings. All codes and citations verified by mdzAI14.",
+  "code_set": "ICD-10-CM FY2027 (October 1, 2026 release)",
+  "date_coded": "2026-11-15"
+}

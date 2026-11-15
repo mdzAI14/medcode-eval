@@ -1,0 +1,16 @@
+{
+  "id": "b-ed-004",
+  "codes": [
+    "N13.2"
+  ],
+  "optional_codes": [],
+  "citations": {
+    "case": "ICD-10-CM Tabular List FY2027, Excludes1 note at category N20 (calculus of kidney and ureter with hydronephrosis is coded to N13.2), with ICD-10-CM Official Guidelines FY2027, Section I.A.12.a (an Excludes1 note means the excluded code is never used at the same time as the code above the note); Section I.B.9 (combination code: assign only the combination code when it fully identifies the conditions documented); Section I.B.5 (signs and symptoms associated routinely with a disease process are not assigned as additional codes); Section IV.G (list first the diagnosis chiefly responsible for the services provided)"
+  },
+  "target_trap": "excludes1",
+  "coder_notes": "The provider lists a left ureteral stone and left hydronephrosis, and states the hydronephrosis is due to obstruction by the stone. One code covers hydronephrosis with ureteral calculous obstruction. The ureteral stone code (N20.1) is not reported with it: category N20 has an Excludes1 note for a stone with hydronephrosis. The code has no laterality. There is no infection. Flank pain, nausea and vomiting are symptoms of the stone, and the microscopic hematuria is a finding the provider does not list as a diagnosis. Traps: reporting the stone code (N20.1) with a hydronephrosis code; unspecified hydronephrosis (N13.30); a renal colic code (N23); a kidney stone code (N20.0) when no kidney stone is present; coding hematuria, nausea or vomiting",
+  "method": "ai_assisted_coder_verified",
+  "method_detail": "Codes drafted with commercial coding software that has AI assistance; explanations and formatting drafted with a Claude model. Reviewed in the design chat by a Claude model, which drafted the wording of the citations and notes from mdzAI14's rulings. All codes and citations verified by mdzAI14.",
+  "code_set": "ICD-10-CM FY2027 (October 1, 2026 release)",
+  "date_coded": "2026-11-15"
+}

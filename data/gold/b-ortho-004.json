@@ -1,0 +1,16 @@
+{
+  "id": "b-ortho-004",
+  "codes": [
+    "M51.16"
+  ],
+  "optional_codes": [],
+  "citations": {
+    "case": "ICD-10-CM Official Guidelines FY2027, Section I.B.9 (combination code: assign only the combination code when it fully identifies the conditions documented); ICD-10-CM Tabular List FY2027, Excludes1 notes at M54.1 (radiculopathy with lumbar and other intervertebral disc disorder is coded to M51.1-) and at M51.1 (lumbar radiculitis NOS and sciatica NOS are coded elsewhere), with Section I.A.12.a (an Excludes1 note means the excluded code is never used at the same time as the code above the note); Section I.B.5 (signs and symptoms associated routinely with a disease process are not assigned as additional codes); Section IV.G (list first the diagnosis chiefly responsible for the services provided)"
+  },
+  "target_trap": "combination",
+  "coder_notes": "The provider lists a lumbar disc herniation at L4-L5 and a right lumbar radiculopathy, and states the radiculopathy is due to the herniation. One code covers a lumbar disc disorder with radiculopathy. L4-L5 is the lumbar region. The code has no laterality, so the right side is not coded. The separate radiculopathy code (M54.16) is not reported with it: M54.1 has an Excludes1 note for radiculopathy with a lumbar disc disorder. Low back pain, leg pain and toe numbness are symptoms of the condition. The naproxen is a short course, so there is no long-term drug therapy code. Traps: reporting a disc displacement code (M51.26) and a radiculopathy code (M54.16) as two codes; a sciatica code (M54.31) for the right leg; a low back pain code; the lumbosacral code (M51.17)",
+  "method": "ai_assisted_coder_verified",
+  "method_detail": "Codes drafted with commercial coding software that has AI assistance; explanations and formatting drafted with a Claude model. Reviewed in the design chat by a Claude model, which drafted the wording of the citations and notes from mdzAI14's rulings. All codes and citations verified by mdzAI14.",
+  "code_set": "ICD-10-CM FY2027 (October 1, 2026 release)",
+  "date_coded": "2026-11-15"
+}
