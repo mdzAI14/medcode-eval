@@ -1,0 +1,16 @@
+{
+  "id": "b-ent-005",
+  "codes": [
+    "H90.42"
+  ],
+  "optional_codes": [],
+  "citations": {
+    "case": "ICD-10-CM Official Guidelines FY2027, Section I.B.13 (laterality: the code names whether the condition is on the left, the right or bilateral); Section IV.F.3 (code to the highest level of specificity supported by the documentation); ICD-10-CM Tabular List FY2027, code title of H90.42 (sensorineural hearing loss, unilateral, left ear, with unrestricted hearing on the contralateral side)"
+  },
+  "target_trap": "laterality",
+  "coder_notes": "Sensorineural hearing loss is documented in the left ear only, and the audiogram shows hearing in the right ear within normal limits. The code names the left ear and unrestricted hearing on the other side. The ear canals and tympanic membranes are normal, so the loss is not conductive or mixed. Noise exposure is denied. The MRI is normal. Traps: the right-ear code (H90.41); a bilateral code; the unspecified sensorineural code (H90.5); the left-ear code with restricted hearing on the other side (H90.A22)",
+  "method": "ai_assisted_coder_verified",
+  "method_detail": "Codes drafted with commercial coding software that has AI assistance; explanations and formatting drafted with a Claude model. Reviewed in the design chat by a Claude model, which drafted the wording of the citations and notes from mdzAI14's rulings. All codes and citations verified by mdzAI14.",
+  "code_set": "ICD-10-CM FY2027 (October 1, 2026 release)",
+  "date_coded": "2026-11-15"
+}

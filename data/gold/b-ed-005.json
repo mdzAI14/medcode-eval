@@ -1,0 +1,16 @@
+{
+  "id": "b-ed-005",
+  "codes": [
+    "K80.00"
+  ],
+  "optional_codes": [],
+  "citations": {
+    "case": "ICD-10-CM Official Guidelines FY2027, Section I.B.9 (combination code: assign only the combination code when it fully identifies the conditions documented); ICD-10-CM Tabular List FY2027, Excludes1 note at category K81 (cholecystitis with cholelithiasis is coded to K80.-), with Section I.A.12.a (an Excludes1 note means the excluded code is never used at the same time as the code above the note); Section I.B.5 (signs and symptoms associated routinely with a disease process are not assigned as additional codes); Section IV.G (list first the diagnosis chiefly responsible for the services provided)"
+  },
+  "target_trap": "combination",
+  "coder_notes": "The provider lists acute cholecystitis and cholelithiasis. One code covers a gallbladder stone with acute cholecystitis. There is no obstruction and no stone in the bile duct. The separate acute cholecystitis code (K81.0) is not reported with a gallstone code: category K81 has an Excludes1 note for cholecystitis with cholelithiasis. Fever, the raised white cell count, nausea, vomiting and abdominal pain are part of the cholecystitis. Sepsis is not documented. Lipase is normal. Traps: reporting acute cholecystitis (K81.0) and gallbladder stone without cholecystitis (K80.20) as two codes; the with-obstruction code (K80.01); a bile duct stone code; coding fever, vomiting or the white cell count",
+  "method": "ai_assisted_coder_verified",
+  "method_detail": "Codes drafted with commercial coding software that has AI assistance; explanations and formatting drafted with a Claude model. Reviewed in the design chat by a Claude model, which drafted the wording of the citations and notes from mdzAI14's rulings. All codes and citations verified by mdzAI14.",
+  "code_set": "ICD-10-CM FY2027 (October 1, 2026 release)",
+  "date_coded": "2026-11-15"
+}

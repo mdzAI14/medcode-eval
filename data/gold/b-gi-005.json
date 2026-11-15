@@ -1,0 +1,17 @@
+{
+  "id": "b-gi-005",
+  "codes": [
+    "K25.3",
+    "T39.315A"
+  ],
+  "optional_codes": [],
+  "citations": {
+    "case": "ICD-10-CM Official Guidelines FY2027, Section I.C.19.e.5.a (adverse effect of a drug correctly prescribed and properly administered: the code for the nature of the adverse effect is followed by the code for the adverse effect of the drug, with a 5th or 6th character 5); Section I.C.19.a (7th character A is used for each encounter where the patient is receiving active treatment for the condition); Section IV.J (conditions that were previously treated and no longer exist are not coded); Section I.B.5 (signs and symptoms associated routinely with a disease process are not assigned as additional codes)"
+  },
+  "target_trap": "seventh_character",
+  "coder_notes": "An acute gastric ulcer found at endoscopy today, with no hemorrhage and no perforation, documented as an adverse effect of ibuprofen taken as prescribed. The ulcer is coded first and the adverse effect code for the drug second. The drug was correctly prescribed and properly taken, so this is an adverse effect and not a poisoning. Ibuprofen is classified with the propionic acid derivatives. The ulcer is newly diagnosed and under active treatment, so the drug code takes 7th character A. The Helicobacter pylori test is negative. Epigastric pain is a symptom of the ulcer. The back strain has resolved and was not treated at this visit. The ibuprofen was stopped, so there is no long-term drug therapy code. Traps: leaving the 7th character off the drug code, or using D or S; a poisoning code (T39.311A) in place of the adverse effect code; the other-NSAID adverse effect code (T39.395A); listing the drug code first; a chronic or unspecified gastric ulcer code (K25.7, K25.9); a Helicobacter pylori code",
+  "method": "ai_assisted_coder_verified",
+  "method_detail": "Codes drafted with commercial coding software that has AI assistance; explanations and formatting drafted with a Claude model. Reviewed in the design chat by a Claude model, which drafted the wording of the citations and notes from mdzAI14's rulings. All codes and citations verified by mdzAI14.",
+  "code_set": "ICD-10-CM FY2027 (October 1, 2026 release)",
+  "date_coded": "2026-11-15"
+}
