@@ -1,0 +1,18 @@
+{
+  "id": "b-gi-003",
+  "codes": [
+    "E11.43",
+    "K31.84",
+    "Z79.4"
+  ],
+  "optional_codes": [],
+  "citations": {
+    "case": "ICD-10-CM Tabular List FY2027, code first note at K31.84 (code first underlying disease, if known, such as diabetes mellitus); ICD-10-CM Official Guidelines FY2027, Section I.A.13 (etiology/manifestation convention: the underlying condition is sequenced first, followed by the manifestation) and Section I.B.7 (where a code first note exists and an underlying condition is present, the underlying condition is sequenced first); Section I.C.4.a (diabetes codes are combination codes that include the type of diabetes, the body system affected and the complication); Section I.C.4.a.3 (an additional code from category Z79 identifies the long-term use of insulin); Section I.B.5 (signs and symptoms associated routinely with a disease process are not assigned as additional codes)"
+  },
+  "target_trap": "sequencing",
+  "coder_notes": "The provider lists gastroparesis first and type 2 diabetes mellitus second, and states that the gastroparesis is due to the diabetes. The diabetes is coded with its complication, not as uncomplicated, and it is sequenced first because the gastroparesis code carries a code first note for the underlying disease; the order in which the provider lists the diagnoses does not change that. Insulin use is reported with the long-term insulin code. Nausea, vomiting and early fullness are symptoms of the gastroparesis and are not coded. No other diabetic complication is documented, and no glucose control status is documented. The gastric emptying study and the EGD are earlier results. Traps: listing the gastroparesis code first, as the note does; coding the diabetes as without complications (E11.9); leaving off the gastroparesis code or the insulin code; coding nausea and vomiting; a hyperglycemia code",
+  "method": "ai_assisted_coder_verified",
+  "method_detail": "Codes drafted with commercial coding software that has AI assistance; explanations and formatting drafted with a Claude model. Reviewed in the design chat by a Claude model, which drafted the wording of the citations and notes from mdzAI14's rulings. All codes and citations verified by mdzAI14.",
+  "code_set": "ICD-10-CM FY2027 (October 1, 2026 release)",
+  "date_coded": "2026-11-15"
+}

@@ -1,0 +1,22 @@
+{
+  "id": "b-ed-003",
+  "codes": [
+    "L03.115",
+    "I10"
+  ],
+  "optional_codes": [
+    {
+      "code": "Z79.899",
+      "reason": "Hydrochlorothiazide is taken for hypertension, a chronic condition, so the long-term drug therapy code is supportable. The note does not state that it has been taken for an extended period, so the code is not required. Either answer is defensible."
+    }
+  ],
+  "citations": {
+    "case": "ICD-10-CM Official Guidelines FY2027, Section IV.G (list first the diagnosis chiefly responsible for the services provided; list additional codes for coexisting conditions); Section IV.J (code all documented conditions that coexist at the time of the visit and that require or affect patient care, treatment or management); Section I.B.13 (laterality: the code names the side documented); Section I.B.5 (signs and symptoms associated routinely with a disease process are not assigned as additional codes); Section I.C.21.c.3 (category Z79 is assigned when a medication is taken for an extended period as treatment of a chronic condition)"
+  },
+  "target_trap": "laterality",
+  "coder_notes": "Cellulitis is documented in the right lower leg only. The left leg is normal apart from a healed scar from 2019, which is incidental and not coded. Hypertension is documented and was managed at this visit (medication continued), so it is reported as a coexisting condition. The long-term drug therapy code for hydrochlorothiazide is accepted but not required, because the note does not say how long the medication has been taken (see optional_codes). Fever and the raised white cell count are attributed to the cellulitis and are not coded separately. Sepsis is not documented. There is no abscess, ulcer or open wound. Traps: the left-leg code (L03.116) because the left shin is mentioned; an unspecified-side or bilateral code; coding fever or the white cell count; assigning sepsis from the vital signs and white cell count",
+  "method": "ai_assisted_coder_verified",
+  "method_detail": "Codes drafted with commercial coding software that has AI assistance; explanations and formatting drafted with a Claude model. Reviewed in the design chat by a Claude model, which drafted the wording of the citations and notes from mdzAI14's rulings. All codes and citations verified by mdzAI14.",
+  "code_set": "ICD-10-CM FY2027 (October 1, 2026 release)",
+  "date_coded": "2026-11-15"
+}
