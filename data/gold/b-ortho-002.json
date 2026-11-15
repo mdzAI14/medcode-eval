@@ -2,16 +2,16 @@
   "id": "b-ortho-002",
   "codes": [
     "S82.61XD",
-    "W19.XXXD"
+    "W18.30XD"
   ],
   "optional_codes": [],
   "citations": {
     "case": "ICD-10-CM Official Guidelines FY2027, Section I.C.19.a (7th character: a follow-up visit during the healing phase is a subsequent encounter; active treatment decides, not whether the provider is new to the patient); Section I.C.19.c (a fracture not indicated as displaced or nondisplaced is coded as displaced), with the matching note at category S82 in the Tabular List; Section I.C.20.a.2 (the external cause code is reported for each encounter, with the matching 7th character); Sections I.C.20.b and I.C.20.c (place of occurrence and activity codes are reported only at the initial encounter)"
   },
   "target_trap": "seventh_character",
-  "coder_notes": "Follow-up visit with cast removal and an X-ray read as routine healing: 7th character D. Displacement is not stated in the note, so the fracture is coded as displaced. The note says she fell from standing height while walking and does not state a fall on the same level, so the unspecified fall code is used; the same-level fall code (W18.30XD) is not accepted. Place of occurrence (her house) and activity (walking) are in the note but are not reported on a subsequent encounter. External cause status is not stated. Mild ankle stiffness is an exam finding, not a diagnosis, and is not coded. Aftercare Z codes are not used for an injury reported with a subsequent-encounter 7th character. The earlier closed reduction and cast are procedure history. Traps: 7th character A because this is the first visit to this clinic; the nondisplaced code (S82.64XD) from good alignment on the follow-up X-ray; a delayed healing, nonunion or malunion character when healing is documented as routine; place of occurrence and activity codes on a follow-up visit",
+  "coder_notes": "Follow-up visit with cast removal and an X-ray read as routine healing: 7th character D. Displacement is not stated in the note, so the fracture is coded as displaced. The note says she fell from standing height while walking, with no slip, trip, stairs or ladder: a fall on the same level with no further cause stated, so the unspecified same-level fall code is used; the unspecified fall code (W19.XXXD) is not accepted. Place of occurrence (her house) and activity (walking) are in the note but are not reported on a subsequent encounter. External cause status is not stated. Mild ankle stiffness is an exam finding, not a diagnosis, and is not coded. Aftercare Z codes are not used for an injury reported with a subsequent-encounter 7th character. The earlier closed reduction and cast are procedure history. Traps: 7th character A because this is the first visit to this clinic; the nondisplaced code (S82.64XD) from good alignment on the follow-up X-ray; a delayed healing, nonunion or malunion character when healing is documented as routine; place of occurrence and activity codes on a follow-up visit",
   "method": "ai_assisted_coder_verified",
-  "method_detail": "Codes drafted with commercial coding software that has AI assistance; explanations and formatting drafted with a Claude model. Reviewed in the design chat by a Claude model, which drafted the wording of the citations and notes from mdzAI14's rulings. All codes and citations verified by mdzAI14.",
+  "method_detail": "Codes drafted with commercial coding software that has AI assistance; explanations and formatting drafted with a Claude model. Reviewed in the design chat by a Claude model, which drafted the wording of the citations and notes from mdzAI14's rulings. All codes and citations verified by mdzAI14. The fall code was changed from W19.XXXD to W18.30XD on 2026-11-15 by mdzAI14 after reading a review run in which the evaluated model, Claude Opus 5.5, gave the same-level code.",
   "code_set": "ICD-10-CM FY2027 (October 1, 2026 release)",
-  "date_coded": "2026-11-12"
+  "date_coded": "2026-11-15"
 }
