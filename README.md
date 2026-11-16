@@ -5,8 +5,8 @@ handle ICD-10-CM diagnosis coding, together with a rules checker that reads
 the current code-set files and is itself one of the tested conditions.
 
 - Version: 0.1.0
-- Code set: ICD-10-CM FY2027, October 1, 2026 release. Everything here is
-  pinned to that release. A later release, including an April 1, 2027
+- Code set: ICD-10-CM FY2027 (October 1, 2026 release). Everything here
+  is pinned to that release. A later release, including an April 1, 2027
   update, is a different code set.
 - Author: mdzAI14
 
@@ -111,7 +111,8 @@ Correct answers out of the probes asked [S1, S2]:
   replies, 71 open by saying it cannot confirm the answer (a pattern
   count, not a reading) [S2].
 - qwen3:4b's 21 of 21 on removed codes is not knowledge: it answered "not
-  a code" to 263 of the 274 status probes on the changes set.
+  a code" to nearly every status probe on the changes set, including 184
+  of the 190 new billable codes [S2].
 
 Run alone over the stored answers, the checker marks 60 of the 71 wrong
 codes Opus gave for new descriptions as errors: 50 are not in the code set
