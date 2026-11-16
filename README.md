@@ -356,8 +356,8 @@ gold file has changed since.
   files, listed with their sources in `refdata/MANIFEST.md`.
 - `tests/`, `docs/`, `templates/`, `scripts/`.
 
-This project is a companion to MedCode
-(https://github.com/mdzAI14/medcode-ai) and is independent of it.
+MedCode (https://github.com/mdzAI14/medcode-ai) is a separate project by
+the same author.
 
 ## Licenses
 
