@@ -6,14 +6,19 @@
     "Y92.014",
     "Y93.H9"
   ],
-  "optional_codes": [],
+  "optional_codes": [
+    {
+      "code": "Y99.8",
+      "reason": "The note says he was painting the outside of his own home and does not say whether this was paid work. Section I.C.20.k says a status code should accompany other external cause codes, and the note can be read as an activity not done for income or pay (Y99.8 includes 'Activity NEC'). The status is not stated outright, so the code is not required. Either answer is defensible."
+    }
+  ],
   "citations": {
-    "case": "ICD-10-CM Official Guidelines FY2027, Section I.C.19.c (fractures: a fracture not indicated as open or closed is closed; a displaced fracture with no specified type is coded to the unspecified fracture of that site); Section I.C.19.a (7th character A for initial encounter while receiving active treatment, which includes ED evaluation and closed reduction); Section I.C.20.a and I.C.20.b (external cause, place of occurrence and activity codes are assigned at the initial encounter); Section I.C.20 (external cause status: the unspecified status code is not assigned when the status is not stated)"
+    "case": "ICD-10-CM Official Guidelines FY2027, Section I.C.19.c (fractures are coded by site to the level of detail in the record; a fracture not indicated as open or closed is closed; no fracture type is documented here, so the unspecified fracture of that site is used); Section I.C.19.a (7th character A while the patient is receiving active treatment; the emergency department evaluation and closed reduction here are active treatment); Section I.C.20.a.2 (the external cause code is reported with the 7th character that matches the injury code); Sections I.C.20.b and I.C.20.c (place of occurrence and activity codes are assigned once, at the initial encounter); Section I.C.20.k (external cause status: a status code should accompany other external cause codes; the unspecified status code is not assigned when the status is not stated)"
   },
   "target_trap": "seventh_character",
-  "coder_notes": "S52.501A is the correct code even though 'displaced' is documented; the S52.5- series captures displacement only within specific fracture types, and no type is given. Y92.014 because the note documents his own single-family home and its driveway. No external cause status code is assigned: the note does not say whether this was paid work, and the unspecified status code is not used when the status is not stated. Traps: Assuming a Colles' fracture (S52.531A) because a displaced distal radius fracture in a fall sounds like one, when no fracture type is documented; assigning 7th character D because orthopedic follow-up is arranged; dropping the external cause codes or using W19 (unspecified fall) instead of W11 (fall from ladder); coding the wrist as S63.- (sprain) because the chief complaint says wrist pain; assigning Y99.9 (unspecified status) or Y99.8 when the status is not stated",
+  "coder_notes": "S52.501A is the correct code even though 'displaced' is documented; the S52.5- series captures displacement only within specific fracture types, and no type is given. Y92.014 because the note documents his own single-family home and its driveway. No external cause status code is required: the note does not say whether this was paid work, and the unspecified status code (Y99.9) is not used when the status is not stated. Y99.8 is accepted but not required (see optional_codes). Traps: Assuming a Colles' fracture (S52.531A) because a displaced distal radius fracture in a fall sounds like one, when no fracture type is documented; assigning 7th character D because orthopedic follow-up is arranged; dropping the external cause codes or using W19 (unspecified fall) instead of W11 (fall from ladder); coding the wrist as S63.- (sprain) because the chief complaint says wrist pain; assigning Y99.9 (unspecified status) when the status is not stated",
   "method": "ai_assisted_coder_verified",
-  "method_detail": "Codes drafted with commercial coding software that has AI assistance. Reviewed in the design chat by a Claude model, which also drafted corrections. All codes and citations verified by mdzAI14.",
+  "method_detail": "Codes drafted with commercial coding software that has AI assistance; explanations and formatting drafted with a Claude model. Reviewed in the design chat by a Claude model, which drafted the wording of the citations and notes from mdzAI14's rulings. All codes and citations verified by mdzAI14. Y99.8 was changed from left off to optional on 2026-11-16 by mdzAI14, after the citations were checked against the guidelines text (Section I.C.20.k). The evaluated model, Claude Opus 5.5, had given Y99.8 in both pilot runs.",
   "code_set": "ICD-10-CM FY2027 (October 1, 2026 release)",
-  "date_coded": "2026-11-11"
+  "date_coded": "2026-11-16"
 }

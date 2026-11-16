@@ -11,12 +11,12 @@
     }
   ],
   "citations": {
-    "case": "ICD-10-CM Official Guidelines FY2027, Section I.C.1.d.1.a (sepsis: assign the systemic infection code; A40.0 is the combination code for group A streptococcal sepsis, so B95.0 is not added for the sepsis); Section I.C.1.d.4 (sepsis with a localized infection present on admission: the systemic infection code is sequenced first, the localized infection second); Section I.C.1.d.1.b (severe sepsis requires provider documentation of associated acute organ dysfunction; R65.2- is not assigned from vital signs or lactate alone)"
+    "case": "ICD-10-CM Official Guidelines FY2027, Section I.C.1.d.1.a (sepsis: assign the systemic infection code; A40.0 is the combination code for group A streptococcal sepsis, so B95.0 is not added for the sepsis; a code from R65.2- is not assigned unless severe sepsis or an associated acute organ dysfunction is documented, so not from vital signs or lactate alone); Section I.C.1.d.4 (sepsis with a localized infection present on admission: the systemic infection code is sequenced first, the localized infection second)"
   },
   "target_trap": "sequencing",
   "coder_notes": "Hypotension and elevated lactate without a provider statement of severe sepsis or organ dysfunction is a query opportunity, not a coding decision. B95.0 reported with J36 is accepted but not required (see optional_codes). Traps: Assigning R65.20/R65.21 (severe sepsis / septic shock) from the hypotension and lactate of 3.2 when the provider documented only sepsis without organ dysfunction; sequencing J36 as principal because the abscess was the surgical focus; using A41.9 or A40.9 plus B95.0 instead of the specific group A combination code",
   "method": "ai_assisted_coder_verified",
-  "method_detail": "Codes drafted with commercial coding software that has AI assistance. Reviewed in the design chat by a Claude model, which also drafted corrections. All codes and citations verified by mdzAI14.",
+  "method_detail": "Codes drafted with commercial coding software that has AI assistance; explanations and formatting drafted with a Claude model. Reviewed in the design chat by a Claude model, which drafted the wording of the citations and notes from mdzAI14's rulings. All codes and citations verified by mdzAI14.",
   "code_set": "ICD-10-CM FY2027 (October 1, 2026 release)",
   "date_coded": "2026-11-11"
 }
