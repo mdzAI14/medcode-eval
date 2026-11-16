@@ -9,8 +9,8 @@ run wrote. Each run was made once.
 - part_a/ and part_b/: the reported runs. Each folder holds the run
   settings (run.json), the model's replies as received (raw.jsonl),
   the answers as read from them (responses.jsonl or answers.jsonl),
-  and the scores (score.json, score.md). Runs through a paid API
-  also hold a usage summary (usage.json).
+  and the scores (score.json, score.md). Most runs through a paid
+  API also hold a usage summary (usage.json).
 - review/part_b/: runs that are not reported results. They were
   made while the Part B cases were being written, as a second look
   at the gold codes, on the gold as it stood on the day of each

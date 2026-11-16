@@ -1,10 +1,16 @@
 Data license notice
 
-The files under data/cases/ and data/gold/ are licensed under the Creative
-Commons Attribution 4.0 International License (CC BY 4.0), copyright (c) 2026
+The files under data/ and results/ are licensed under the Creative Commons
+Attribution 4.0 International License (CC BY 4.0), copyright (c) 2026
 mdzAI14. The full license text is at:
 
 https://creativecommons.org/licenses/by/4.0/
+
+data/ holds the test items: the Part A probes, which are generated from the
+public reference files, and the Part B specs, notes and gold labels.
+results/ holds the stored outputs of model runs and the scores computed from
+them. The model replies are offered under these terms to the extent the
+author holds rights in them.
 
 Everything else in this repository is covered by LICENSE (MIT), except the
 unmodified public reference files under refdata/, which keep the terms of
