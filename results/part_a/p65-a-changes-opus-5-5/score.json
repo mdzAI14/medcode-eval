@@ -1,0 +1,237 @@
+{
+  "by_change": {
+    "added_billable": {
+      "accuracy": 0.24338624338624337,
+      "chapter_mean_accuracy": 0.2386464370480764,
+      "chapters": 15,
+      "correct": 92,
+      "invalid": 74,
+      "missing": 0,
+      "n": 378
+    },
+    "added_header": {
+      "accuracy": 0.125,
+      "chapter_mean_accuracy": 0.03148148148148148,
+      "chapters": 9,
+      "correct": 6,
+      "invalid": 0,
+      "missing": 0,
+      "n": 48
+    },
+    "billable_to_header": {
+      "accuracy": 0.06666666666666667,
+      "chapter_mean_accuracy": 0.125,
+      "chapters": 4,
+      "correct": 1,
+      "invalid": 0,
+      "missing": 0,
+      "n": 15
+    },
+    "removed": {
+      "accuracy": 0.047619047619047616,
+      "chapter_mean_accuracy": 0.047619047619047616,
+      "chapters": 1,
+      "correct": 1,
+      "invalid": 0,
+      "missing": 0,
+      "n": 21
+    }
+  },
+  "by_chapter": {
+    "10": {
+      "accuracy": 0.23076923076923078,
+      "chapter_mean_accuracy": 0.23076923076923078,
+      "chapters": 1,
+      "correct": 3,
+      "invalid": 4,
+      "missing": 0,
+      "n": 13
+    },
+    "11": {
+      "accuracy": 0.14285714285714285,
+      "chapter_mean_accuracy": 0.14285714285714285,
+      "chapters": 1,
+      "correct": 2,
+      "invalid": 4,
+      "missing": 0,
+      "n": 14
+    },
+    "12": {
+      "accuracy": 0.5,
+      "chapter_mean_accuracy": 0.5,
+      "chapters": 1,
+      "correct": 1,
+      "invalid": 0,
+      "missing": 0,
+      "n": 2
+    },
+    "13": {
+      "accuracy": 0.1527777777777778,
+      "chapter_mean_accuracy": 0.1527777777777778,
+      "chapters": 1,
+      "correct": 11,
+      "invalid": 8,
+      "missing": 0,
+      "n": 72
+    },
+    "14": {
+      "accuracy": 0.2,
+      "chapter_mean_accuracy": 0.2,
+      "chapters": 1,
+      "correct": 1,
+      "invalid": 1,
+      "missing": 0,
+      "n": 5
+    },
+    "15": {
+      "accuracy": 0.26,
+      "chapter_mean_accuracy": 0.26,
+      "chapters": 1,
+      "correct": 26,
+      "invalid": 13,
+      "missing": 0,
+      "n": 100
+    },
+    "17": {
+      "accuracy": 0.0,
+      "chapter_mean_accuracy": 0.0,
+      "chapters": 1,
+      "correct": 0,
+      "invalid": 3,
+      "missing": 0,
+      "n": 14
+    },
+    "18": {
+      "accuracy": 0.0,
+      "chapter_mean_accuracy": 0.0,
+      "chapters": 1,
+      "correct": 0,
+      "invalid": 1,
+      "missing": 0,
+      "n": 2
+    },
+    "19": {
+      "accuracy": 0.20481927710843373,
+      "chapter_mean_accuracy": 0.20481927710843373,
+      "chapters": 1,
+      "correct": 34,
+      "invalid": 26,
+      "missing": 0,
+      "n": 166
+    },
+    "2": {
+      "accuracy": 0.16666666666666666,
+      "chapter_mean_accuracy": 0.16666666666666666,
+      "chapters": 1,
+      "correct": 1,
+      "invalid": 2,
+      "missing": 0,
+      "n": 6
+    },
+    "21": {
+      "accuracy": 0.2,
+      "chapter_mean_accuracy": 0.2,
+      "chapters": 1,
+      "correct": 7,
+      "invalid": 6,
+      "missing": 0,
+      "n": 35
+    },
+    "3": {
+      "accuracy": 0.6,
+      "chapter_mean_accuracy": 0.6,
+      "chapters": 1,
+      "correct": 3,
+      "invalid": 1,
+      "missing": 0,
+      "n": 5
+    },
+    "4": {
+      "accuracy": 0.0,
+      "chapter_mean_accuracy": 0.0,
+      "chapters": 1,
+      "correct": 0,
+      "invalid": 1,
+      "missing": 0,
+      "n": 5
+    },
+    "5": {
+      "accuracy": 0.0,
+      "chapter_mean_accuracy": 0.0,
+      "chapters": 1,
+      "correct": 0,
+      "invalid": 1,
+      "missing": 0,
+      "n": 2
+    },
+    "9": {
+      "accuracy": 0.5238095238095238,
+      "chapter_mean_accuracy": 0.5238095238095238,
+      "chapters": 1,
+      "correct": 11,
+      "invalid": 3,
+      "missing": 0,
+      "n": 21
+    }
+  },
+  "by_kind": {},
+  "by_type": {
+    "description_to_code": {
+      "accuracy": 0.22872340425531915,
+      "chapter_mean_accuracy": 0.20742424242424243,
+      "chapters": 15,
+      "correct": 43,
+      "invalid": 74,
+      "missing": 0,
+      "n": 188
+    },
+    "status": {
+      "accuracy": 0.20802919708029197,
+      "chapter_mean_accuracy": 0.20446359609716114,
+      "chapters": 15,
+      "correct": 57,
+      "invalid": 0,
+      "missing": 0,
+      "n": 274
+    }
+  },
+  "code_set": [
+    "ICD-10-CM FY2027 (October 1, 2026 release)"
+  ],
+  "n_probes": 462,
+  "n_responses": 462,
+  "overall": {
+    "accuracy": 0.21645021645021645,
+    "chapter_mean_accuracy": 0.21211330793258507,
+    "chapters": 15,
+    "correct": 100,
+    "invalid": 74,
+    "missing": 0,
+    "n": 462
+  },
+  "reader": 2,
+  "status_table": {
+    "billable": {
+      "billable": 49,
+      "header": 1,
+      "invalid": 0,
+      "missing": 0,
+      "not_a_code": 140
+    },
+    "header": {
+      "billable": 15,
+      "header": 7,
+      "invalid": 0,
+      "missing": 0,
+      "not_a_code": 41
+    },
+    "not_a_code": {
+      "billable": 15,
+      "header": 5,
+      "invalid": 0,
+      "missing": 0,
+      "not_a_code": 1
+    }
+  },
+  "unknown_response_ids": 0
+}

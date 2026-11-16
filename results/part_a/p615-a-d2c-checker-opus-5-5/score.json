@@ -1,0 +1,58 @@
+{
+  "code_set": "ICD-10-CM FY2027 (October 1, 2026 release)",
+  "final": {
+    "correct": 65,
+    "invalid": 90,
+    "missing": 0,
+    "n": 188,
+    "wrong": 33
+  },
+  "first": {
+    "correct": 43,
+    "invalid": 74,
+    "missing": 0,
+    "n": 188,
+    "wrong": 71
+  },
+  "first_matches_source": true,
+  "model": "claude-opus-5-5",
+  "reader": 2,
+  "second_turn": {
+    "by_rule": {
+      "header_not_billable": {
+        "final_correct": 8,
+        "final_invalid": 1,
+        "final_same_as_first": 0,
+        "final_wrong_no_rule": 1,
+        "final_wrong_still_rule": 0,
+        "n": 10
+      },
+      "not_in_code_set": {
+        "final_correct": 14,
+        "final_invalid": 15,
+        "final_same_as_first": 0,
+        "final_wrong_no_rule": 16,
+        "final_wrong_still_rule": 5,
+        "n": 50
+      }
+    },
+    "total": {
+      "final_correct": 22,
+      "final_invalid": 16,
+      "final_same_as_first": 0,
+      "final_wrong_no_rule": 17,
+      "final_wrong_still_rule": 5,
+      "n": 60
+    }
+  },
+  "source_run": "runs/part_a/p65-a-changes-opus-5-5",
+  "source_score": {
+    "accuracy": 0.22872340425531915,
+    "chapter_mean_accuracy": 0.20742424242424243,
+    "chapters": 15,
+    "correct": 43,
+    "invalid": 74,
+    "missing": 0,
+    "n": 188
+  }
+}

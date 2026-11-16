@@ -1,0 +1,425 @@
+{
+  "cost_usd": 0.734928,
+  "input_ratio_to_chars_div_4": 1.5258939025488607,
+  "input_tokens": {
+    "max": 372,
+    "mean": 282.3666666666667,
+    "min": 206,
+    "total": 16942
+  },
+  "items": 60,
+  "model": "claude-opus-5-5",
+  "output_tokens": {
+    "max": 1434,
+    "mean": 555.9666666666667,
+    "min": 74,
+    "total": 33358
+  },
+  "per_item": {
+    "chg-d2c-0004": {
+      "cost_usd": 0.009832,
+      "input_tokens": 333,
+      "output_tokens": 425,
+      "replies": 1
+    },
+    "chg-d2c-0014": {
+      "cost_usd": 0.007828,
+      "input_tokens": 217,
+      "output_tokens": 348,
+      "replies": 1
+    },
+    "chg-d2c-0015": {
+      "cost_usd": 0.019312,
+      "input_tokens": 313,
+      "output_tokens": 903,
+      "replies": 1
+    },
+    "chg-d2c-0016": {
+      "cost_usd": 0.011508,
+      "input_tokens": 372,
+      "output_tokens": 501,
+      "replies": 1
+    },
+    "chg-d2c-0019": {
+      "cost_usd": 0.01088,
+      "input_tokens": 220,
+      "output_tokens": 500,
+      "replies": 1
+    },
+    "chg-d2c-0022": {
+      "cost_usd": 0.012416,
+      "input_tokens": 349,
+      "output_tokens": 551,
+      "replies": 1
+    },
+    "chg-d2c-0024": {
+      "cost_usd": 0.009832,
+      "input_tokens": 218,
+      "output_tokens": 448,
+      "replies": 1
+    },
+    "chg-d2c-0031": {
+      "cost_usd": 0.024592,
+      "input_tokens": 218,
+      "output_tokens": 1186,
+      "replies": 1
+    },
+    "chg-d2c-0032": {
+      "cost_usd": 0.005332,
+      "input_tokens": 218,
+      "output_tokens": 223,
+      "replies": 1
+    },
+    "chg-d2c-0034": {
+      "cost_usd": 0.01078,
+      "input_tokens": 340,
+      "output_tokens": 471,
+      "replies": 1
+    },
+    "chg-d2c-0037": {
+      "cost_usd": 0.011352,
+      "input_tokens": 288,
+      "output_tokens": 510,
+      "replies": 1
+    },
+    "chg-d2c-0040": {
+      "cost_usd": 0.01438,
+      "input_tokens": 295,
+      "output_tokens": 660,
+      "replies": 1
+    },
+    "chg-d2c-0041": {
+      "cost_usd": 0.010352,
+      "input_tokens": 348,
+      "output_tokens": 448,
+      "replies": 1
+    },
+    "chg-d2c-0046": {
+      "cost_usd": 0.023036,
+      "input_tokens": 219,
+      "output_tokens": 1108,
+      "replies": 1
+    },
+    "chg-d2c-0053": {
+      "cost_usd": 0.005988,
+      "input_tokens": 217,
+      "output_tokens": 256,
+      "replies": 1
+    },
+    "chg-d2c-0054": {
+      "cost_usd": 0.019244,
+      "input_tokens": 286,
+      "output_tokens": 905,
+      "replies": 1
+    },
+    "chg-d2c-0056": {
+      "cost_usd": 0.021804,
+      "input_tokens": 296,
+      "output_tokens": 1031,
+      "replies": 1
+    },
+    "chg-d2c-0058": {
+      "cost_usd": 0.01462,
+      "input_tokens": 355,
+      "output_tokens": 660,
+      "replies": 1
+    },
+    "chg-d2c-0061": {
+      "cost_usd": 0.00824,
+      "input_tokens": 220,
+      "output_tokens": 368,
+      "replies": 1
+    },
+    "chg-d2c-0063": {
+      "cost_usd": 0.006516,
+      "input_tokens": 354,
+      "output_tokens": 255,
+      "replies": 1
+    },
+    "chg-d2c-0067": {
+      "cost_usd": 0.02542,
+      "input_tokens": 305,
+      "output_tokens": 1210,
+      "replies": 1
+    },
+    "chg-d2c-0069": {
+      "cost_usd": 0.012444,
+      "input_tokens": 301,
+      "output_tokens": 562,
+      "replies": 1
+    },
+    "chg-d2c-0073": {
+      "cost_usd": 0.006684,
+      "input_tokens": 316,
+      "output_tokens": 271,
+      "replies": 1
+    },
+    "chg-d2c-0075": {
+      "cost_usd": 0.013412,
+      "input_tokens": 208,
+      "output_tokens": 629,
+      "replies": 1
+    },
+    "chg-d2c-0076": {
+      "cost_usd": 0.008444,
+      "input_tokens": 221,
+      "output_tokens": 378,
+      "replies": 1
+    },
+    "chg-d2c-0080": {
+      "cost_usd": 0.006516,
+      "input_tokens": 224,
+      "output_tokens": 281,
+      "replies": 1
+    },
+    "chg-d2c-0082": {
+      "cost_usd": 0.009608,
+      "input_tokens": 292,
+      "output_tokens": 422,
+      "replies": 1
+    },
+    "chg-d2c-0086": {
+      "cost_usd": 0.01154,
+      "input_tokens": 215,
+      "output_tokens": 534,
+      "replies": 1
+    },
+    "chg-d2c-0088": {
+      "cost_usd": 0.017508,
+      "input_tokens": 332,
+      "output_tokens": 809,
+      "replies": 1
+    },
+    "chg-d2c-0089": {
+      "cost_usd": 0.012324,
+      "input_tokens": 256,
+      "output_tokens": 565,
+      "replies": 1
+    },
+    "chg-d2c-0090": {
+      "cost_usd": 0.014604,
+      "input_tokens": 271,
+      "output_tokens": 676,
+      "replies": 1
+    },
+    "chg-d2c-0091": {
+      "cost_usd": 0.023928,
+      "input_tokens": 327,
+      "output_tokens": 1131,
+      "replies": 1
+    },
+    "chg-d2c-0093": {
+      "cost_usd": 0.00282,
+      "input_tokens": 335,
+      "output_tokens": 74,
+      "replies": 1
+    },
+    "chg-d2c-0098": {
+      "cost_usd": 0.011396,
+      "input_tokens": 219,
+      "output_tokens": 526,
+      "replies": 1
+    },
+    "chg-d2c-0102": {
+      "cost_usd": 0.016596,
+      "input_tokens": 264,
+      "output_tokens": 777,
+      "replies": 1
+    },
+    "chg-d2c-0111": {
+      "cost_usd": 0.012924,
+      "input_tokens": 246,
+      "output_tokens": 597,
+      "replies": 1
+    },
+    "chg-d2c-0112": {
+      "cost_usd": 0.01278,
+      "input_tokens": 285,
+      "output_tokens": 582,
+      "replies": 1
+    },
+    "chg-d2c-0117": {
+      "cost_usd": 0.00706,
+      "input_tokens": 225,
+      "output_tokens": 308,
+      "replies": 1
+    },
+    "chg-d2c-0118": {
+      "cost_usd": 0.017544,
+      "input_tokens": 206,
+      "output_tokens": 836,
+      "replies": 1
+    },
+    "chg-d2c-0119": {
+      "cost_usd": 0.00964,
+      "input_tokens": 325,
+      "output_tokens": 417,
+      "replies": 1
+    },
+    "chg-d2c-0120": {
+      "cost_usd": 0.012676,
+      "input_tokens": 329,
+      "output_tokens": 568,
+      "replies": 1
+    },
+    "chg-d2c-0124": {
+      "cost_usd": 0.005476,
+      "input_tokens": 219,
+      "output_tokens": 230,
+      "replies": 1
+    },
+    "chg-d2c-0129": {
+      "cost_usd": 0.00934,
+      "input_tokens": 355,
+      "output_tokens": 396,
+      "replies": 1
+    },
+    "chg-d2c-0130": {
+      "cost_usd": 0.004,
+      "input_tokens": 315,
+      "output_tokens": 137,
+      "replies": 1
+    },
+    "chg-d2c-0135": {
+      "cost_usd": 0.004768,
+      "input_tokens": 357,
+      "output_tokens": 167,
+      "replies": 1
+    },
+    "chg-d2c-0140": {
+      "cost_usd": 0.01092,
+      "input_tokens": 340,
+      "output_tokens": 478,
+      "replies": 1
+    },
+    "chg-d2c-0144": {
+      "cost_usd": 0.014844,
+      "input_tokens": 326,
+      "output_tokens": 677,
+      "replies": 1
+    },
+    "chg-d2c-0152": {
+      "cost_usd": 0.012016,
+      "input_tokens": 284,
+      "output_tokens": 544,
+      "replies": 1
+    },
+    "chg-d2c-0153": {
+      "cost_usd": 0.019728,
+      "input_tokens": 322,
+      "output_tokens": 922,
+      "replies": 1
+    },
+    "chg-d2c-0154": {
+      "cost_usd": 0.010624,
+      "input_tokens": 286,
+      "output_tokens": 474,
+      "replies": 1
+    },
+    "chg-d2c-0156": {
+      "cost_usd": 0.029548,
+      "input_tokens": 217,
+      "output_tokens": 1434,
+      "replies": 1
+    },
+    "chg-d2c-0163": {
+      "cost_usd": 0.010312,
+      "input_tokens": 223,
+      "output_tokens": 471,
+      "replies": 1
+    },
+    "chg-d2c-0167": {
+      "cost_usd": 0.01562,
+      "input_tokens": 305,
+      "output_tokens": 720,
+      "replies": 1
+    },
+    "chg-d2c-0169": {
+      "cost_usd": 0.019436,
+      "input_tokens": 344,
+      "output_tokens": 903,
+      "replies": 1
+    },
+    "chg-d2c-0171": {
+      "cost_usd": 0.008088,
+      "input_tokens": 222,
+      "output_tokens": 360,
+      "replies": 1
+    },
+    "chg-d2c-0173": {
+      "cost_usd": 0.007096,
+      "input_tokens": 279,
+      "output_tokens": 299,
+      "replies": 1
+    },
+    "chg-d2c-0176": {
+      "cost_usd": 0.007748,
+      "input_tokens": 277,
+      "output_tokens": 332,
+      "replies": 1
+    },
+    "chg-d2c-0177": {
+      "cost_usd": 0.010968,
+      "input_tokens": 337,
+      "output_tokens": 481,
+      "replies": 1
+    },
+    "chg-d2c-0181": {
+      "cost_usd": 0.00526,
+      "input_tokens": 335,
+      "output_tokens": 196,
+      "replies": 1
+    },
+    "chg-d2c-0188": {
+      "cost_usd": 0.005424,
+      "input_tokens": 221,
+      "output_tokens": 227,
+      "replies": 1
+    }
+  },
+  "per_item_cost_usd": {
+    "max": 0.029548,
+    "mean": 0.0122488,
+    "min": 0.00282,
+    "total": 0.734928
+  },
+  "replies": 60,
+  "run": "p615-a-d2c-checker-opus-5-5",
+  "settings": {
+    "api_version": "2023-06-01",
+    "effort": "medium",
+    "endpoint": "https://api.anthropic.com/v1/messages",
+    "key_env": "ANTHROPIC_API_KEY",
+    "max_tokens": 16000,
+    "retry_statuses": [
+      429,
+      500,
+      502,
+      503,
+      504,
+      529
+    ],
+    "retry_waits_seconds": [
+      5,
+      15,
+      45
+    ],
+    "stream": false,
+    "system_prompt": null,
+    "temperature": null,
+    "timeout_seconds": 300
+  },
+  "spend": {
+    "ledger": "runs/spend/p615.jsonl",
+    "max_usd": 3.0,
+    "price_in_usd_per_mtok": 4.0,
+    "price_out_usd_per_mtok": 20.0
+  },
+  "stop_reasons": {
+    "end_turn": 60
+  },
+  "thinking_tokens": {
+    "replies_with_field": 60,
+    "total": 28408
+  }
+}

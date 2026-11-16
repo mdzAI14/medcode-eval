@@ -1,0 +1,300 @@
+{
+  "by_change": {},
+  "by_chapter": {
+    "1": {
+      "accuracy": 1.0,
+      "chapter_mean_accuracy": 1.0,
+      "chapters": 1,
+      "correct": 7,
+      "invalid": 0,
+      "missing": 0,
+      "n": 7
+    },
+    "10": {
+      "accuracy": 1.0,
+      "chapter_mean_accuracy": 1.0,
+      "chapters": 1,
+      "correct": 8,
+      "invalid": 0,
+      "missing": 0,
+      "n": 8
+    },
+    "11": {
+      "accuracy": 1.0,
+      "chapter_mean_accuracy": 1.0,
+      "chapters": 1,
+      "correct": 5,
+      "invalid": 0,
+      "missing": 0,
+      "n": 5
+    },
+    "12": {
+      "accuracy": 1.0,
+      "chapter_mean_accuracy": 1.0,
+      "chapters": 1,
+      "correct": 8,
+      "invalid": 0,
+      "missing": 0,
+      "n": 8
+    },
+    "13": {
+      "accuracy": 1.0,
+      "chapter_mean_accuracy": 1.0,
+      "chapters": 1,
+      "correct": 6,
+      "invalid": 0,
+      "missing": 0,
+      "n": 6
+    },
+    "14": {
+      "accuracy": 1.0,
+      "chapter_mean_accuracy": 1.0,
+      "chapters": 1,
+      "correct": 7,
+      "invalid": 0,
+      "missing": 0,
+      "n": 7
+    },
+    "15": {
+      "accuracy": 0.8888888888888888,
+      "chapter_mean_accuracy": 0.8888888888888888,
+      "chapters": 1,
+      "correct": 8,
+      "invalid": 0,
+      "missing": 0,
+      "n": 9
+    },
+    "16": {
+      "accuracy": 1.0,
+      "chapter_mean_accuracy": 1.0,
+      "chapters": 1,
+      "correct": 5,
+      "invalid": 0,
+      "missing": 0,
+      "n": 5
+    },
+    "17": {
+      "accuracy": 1.0,
+      "chapter_mean_accuracy": 1.0,
+      "chapters": 1,
+      "correct": 8,
+      "invalid": 0,
+      "missing": 0,
+      "n": 8
+    },
+    "18": {
+      "accuracy": 1.0,
+      "chapter_mean_accuracy": 1.0,
+      "chapters": 1,
+      "correct": 6,
+      "invalid": 0,
+      "missing": 0,
+      "n": 6
+    },
+    "19": {
+      "accuracy": 0.8333333333333334,
+      "chapter_mean_accuracy": 0.8333333333333334,
+      "chapters": 1,
+      "correct": 5,
+      "invalid": 0,
+      "missing": 0,
+      "n": 6
+    },
+    "2": {
+      "accuracy": 1.0,
+      "chapter_mean_accuracy": 1.0,
+      "chapters": 1,
+      "correct": 6,
+      "invalid": 0,
+      "missing": 0,
+      "n": 6
+    },
+    "20": {
+      "accuracy": 0.875,
+      "chapter_mean_accuracy": 0.875,
+      "chapters": 1,
+      "correct": 7,
+      "invalid": 0,
+      "missing": 0,
+      "n": 8
+    },
+    "21": {
+      "accuracy": 1.0,
+      "chapter_mean_accuracy": 1.0,
+      "chapters": 1,
+      "correct": 7,
+      "invalid": 0,
+      "missing": 0,
+      "n": 7
+    },
+    "22": {
+      "accuracy": 1.0,
+      "chapter_mean_accuracy": 1.0,
+      "chapters": 1,
+      "correct": 7,
+      "invalid": 0,
+      "missing": 0,
+      "n": 7
+    },
+    "3": {
+      "accuracy": 1.0,
+      "chapter_mean_accuracy": 1.0,
+      "chapters": 1,
+      "correct": 6,
+      "invalid": 0,
+      "missing": 0,
+      "n": 6
+    },
+    "4": {
+      "accuracy": 1.0,
+      "chapter_mean_accuracy": 1.0,
+      "chapters": 1,
+      "correct": 8,
+      "invalid": 0,
+      "missing": 0,
+      "n": 8
+    },
+    "5": {
+      "accuracy": 1.0,
+      "chapter_mean_accuracy": 1.0,
+      "chapters": 1,
+      "correct": 6,
+      "invalid": 0,
+      "missing": 0,
+      "n": 6
+    },
+    "6": {
+      "accuracy": 1.0,
+      "chapter_mean_accuracy": 1.0,
+      "chapters": 1,
+      "correct": 7,
+      "invalid": 0,
+      "missing": 0,
+      "n": 7
+    },
+    "7": {
+      "accuracy": 0.8888888888888888,
+      "chapter_mean_accuracy": 0.8888888888888888,
+      "chapters": 1,
+      "correct": 8,
+      "invalid": 0,
+      "missing": 0,
+      "n": 9
+    },
+    "8": {
+      "accuracy": 1.0,
+      "chapter_mean_accuracy": 1.0,
+      "chapters": 1,
+      "correct": 7,
+      "invalid": 0,
+      "missing": 0,
+      "n": 7
+    },
+    "9": {
+      "accuracy": 1.0,
+      "chapter_mean_accuracy": 1.0,
+      "chapters": 1,
+      "correct": 5,
+      "invalid": 0,
+      "missing": 0,
+      "n": 5
+    }
+  },
+  "by_kind": {
+    "extended": {
+      "accuracy": 0.8333333333333334,
+      "chapter_mean_accuracy": 0.8333333333333334,
+      "chapters": 6,
+      "correct": 5,
+      "invalid": 0,
+      "missing": 0,
+      "n": 6
+    },
+    "placeholder_prefix": {
+      "accuracy": 0.6,
+      "chapter_mean_accuracy": 0.6,
+      "chapters": 5,
+      "correct": 3,
+      "invalid": 0,
+      "missing": 0,
+      "n": 5
+    },
+    "substituted": {
+      "accuracy": 1.0,
+      "chapter_mean_accuracy": 1.0,
+      "chapters": 6,
+      "correct": 6,
+      "invalid": 0,
+      "missing": 0,
+      "n": 6
+    }
+  },
+  "by_type": {
+    "code_to_description": {
+      "accuracy": 1.0,
+      "chapter_mean_accuracy": 1.0,
+      "chapters": 22,
+      "correct": 50,
+      "invalid": 0,
+      "missing": 0,
+      "n": 50
+    },
+    "description_to_code": {
+      "accuracy": 1.0,
+      "chapter_mean_accuracy": 1.0,
+      "chapters": 22,
+      "correct": 50,
+      "invalid": 0,
+      "missing": 0,
+      "n": 50
+    },
+    "status": {
+      "accuracy": 0.9215686274509803,
+      "chapter_mean_accuracy": 0.9378787878787879,
+      "chapters": 22,
+      "correct": 47,
+      "invalid": 0,
+      "missing": 0,
+      "n": 51
+    }
+  },
+  "code_set": [
+    "ICD-10-CM FY2027 (October 1, 2026 release)"
+  ],
+  "n_probes": 151,
+  "n_responses": 151,
+  "overall": {
+    "accuracy": 0.9735099337748344,
+    "chapter_mean_accuracy": 0.9766414141414141,
+    "chapters": 22,
+    "correct": 147,
+    "invalid": 0,
+    "missing": 0,
+    "n": 151
+  },
+  "reader": 2,
+  "status_table": {
+    "billable": {
+      "billable": 16,
+      "header": 0,
+      "invalid": 0,
+      "missing": 0,
+      "not_a_code": 1
+    },
+    "header": {
+      "billable": 0,
+      "header": 17,
+      "invalid": 0,
+      "missing": 0,
+      "not_a_code": 0
+    },
+    "not_a_code": {
+      "billable": 1,
+      "header": 2,
+      "invalid": 0,
+      "missing": 0,
+      "not_a_code": 14
+    }
+  },
+  "unknown_response_ids": 0
+}

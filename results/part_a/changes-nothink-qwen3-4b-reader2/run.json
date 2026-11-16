@@ -1,0 +1,29 @@
+{
+  "backend": "ollama",
+  "code_set": "ICD-10-CM FY2027 (October 1, 2026 release)",
+  "model": "qwen3:4b",
+  "model_digest": "a383baf4993bed20dd7a61a68583c1066d6f839187b66eda479aa0b238d45378",
+  "probes_file": "data/part_a/probes_changes.jsonl",
+  "probes_sha256": "57712e770656bb4e81621b47dfda5ea8c89be5aa91a3e2bf05714fe60645f4cc",
+  "prompt_suffix": "/no_think",
+  "prompts_sha256": {
+    "part_a_code_to_description.txt": "d36f044bc5646dfa1813932d03d3ef5f918ef2eff0a6e1d52f1eb79f33cabc41",
+    "part_a_description_to_code.txt": "b19229e8217743e04fe54523c91fa5b1ec080e7998a43018d6a98fa556d73ace",
+    "part_a_status.txt": "23fd727d3b71a2decc3498542c378e611fdf4f87fe5d1d400904a3233290e701"
+  },
+  "server_version": "0.6.8",
+  "settings": {
+    "endpoint": "/api/generate",
+    "options": {
+      "num_ctx": 8192,
+      "num_predict": 4096,
+      "seed": 20261001,
+      "temperature": 0
+    },
+    "reasoning_switch": null,
+    "stream": false,
+    "system_prompt": null,
+    "timeout_seconds": 900
+  },
+  "started": "2026-11-11T09:03:26-0600"
+}

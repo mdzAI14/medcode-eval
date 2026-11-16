@@ -1,0 +1,462 @@
+{"id": "chg-d2c-0001", "reader": 2, "response": "Please check the official FY2027 tabular list or addenda from CDC/NCHS or CMS, probably under the sinusitis categories (J01/J32)"}
+{"id": "chg-d2c-0002", "reader": 2, "response": "To find it, check the FY2027 Tabular List and Addendum on the CDC/NCHS ICD-10-CM page (cdc.gov/nchs/icd/icd-10-cm) or the CMS FY2027 ICD-10-CM files. Searching the Index under \"History, personal, gender transition\" should lead to the code"}
+{"id": "chg-d2c-0003", "reader": 2, "response": "In the code sets I know, cervical ectopic pregnancy without intrauterine pregnancy is coded as **O00.80** (Other ectopic pregnancy without intrauterine pregnancy). Please check this against the official FY2027 tabular list"}
+{"id": "chg-d2c-0004", "reader": 2, "response": "O00.319"}
+{"id": "chg-d2c-0005", "reader": 2, "response": "T52.8X4S**, though this match is uncertain. I can't verify the FY2027 (October 2026) release. In earlier code sets, no code has that exact long description. Cycloparaffins are indexed under \"other organic solvents,\" and T52.8X4S reads \"Toxic effect of other organic solvents, undetermined, sequela.\" If FY2027 added a dedicated cycloparaffins code, check the official FY2027 tabular list"}
+{"id": "chg-d2c-0006", "reader": 2, "response": "Z15.05"}
+{"id": "chg-d2c-0007", "reader": 2, "response": "M86.8X59"}
+{"id": "chg-d2c-0008", "reader": 2, "response": "Please check the official FY2027 tabular list or addenda from CMS/CDC NCHS. In earlier releases, related substances were classified under categories such as T52.8X- (other organic solvents) or T59.89- (other specified gases, e.g., ethylene), with 7th character **S** for sequela. Confirm against the FY2027 files before using either"}
+{"id": "chg-d2c-0009", "reader": 2, "response": "O31.41X0"}
+{"id": "chg-d2c-0010", "reader": 2, "response": "M72.22"}
+{"id": "chg-d2c-0011", "reader": 2, "response": "I can't reliably give this code. The FY2027 ICD-10-CM release (effective October 1, 2026) is beyond what I can verify, and I'm not aware of a confirmed code with the long description \"Odontogenic sinusitis, sphenoid sinus.\" In current releases, chronic sphenoidal sinusitis is J32.3, but that is not specific to odontogenic origin. Any new odontogenic subcode would need to be checked in the official FY2027 CMS/CDC tabular list or addenda"}
+{"id": "chg-d2c-0012", "reader": 2, "response": "I42.09"}
+{"id": "chg-d2c-0013", "reader": 2, "response": "I can't confirm a FY2027 code for this description. In the releases I know (through FY2025/FY2026), plantar fascial fibromatosis is the single billable code **M72.2**, with no right-foot code. If FY2027 added laterality, the new code would not be in my information, so check the October 1, 2026 tabular"}
+{"id": "chg-d2c-0014", "reader": 2, "response": "T52.8X3A"}
+{"id": "chg-d2c-0015", "reader": 2, "response": "T65.864D"}
+{"id": "chg-d2c-0016", "reader": 2, "response": "T52.8X1S"}
+{"id": "chg-d2c-0017", "reader": 2, "response": "I can't verify this one. The FY2027 (October 1, 2026) ICD-10-CM release is beyond what I can reliably confirm, and I don't know of an established code with that exact long description. In earlier releases, CPVT was coded to **I47.29** (Other ventricular tachycardia). If FY2027 added a specific code, it would likely sit under I47.2- (possibly I47.22), but that is a guess. Please check the official CMS/CDC FY2027 tabular list or addenda"}
+{"id": "chg-d2c-0018", "reader": 2, "response": "In current releases, the closest code is M86.8X1 (\"Other osteomyelitis, shoulder\"), which has no laterality. M86.819 follows the pattern of M86.119 (\"Other acute osteomyelitis, unspecified shoulder\"). Please check it against the official FY2027 tabular list"}
+{"id": "chg-d2c-0019", "reader": 2, "response": "T52.8X4A"}
+{"id": "chg-d2c-0020", "reader": 2, "response": "O31.42X0"}
+{"id": "chg-d2c-0021", "reader": 2, "response": "O31.43X5"}
+{"id": "chg-d2c-0022", "reader": 2, "response": "T52.8X1D"}
+{"id": "chg-d2c-0023", "reader": 2, "response": "M86.8X69"}
+{"id": "chg-d2c-0024", "reader": 2, "response": "O00.311"}
+{"id": "chg-d2c-0025", "reader": 2, "response": "C78.31"}
+{"id": "chg-d2c-0026", "reader": 2, "response": "O31.42X9"}
+{"id": "chg-d2c-0027", "reader": 2, "response": "O31.40X0"}
+{"id": "chg-d2c-0028", "reader": 2, "response": "I can't confirm a FY2027 code with that exact long description. FY2027 may postdate my knowledge. In the versions I know, Glanzmann disease is indexed to **D69.1** (Qualitative platelet defects), but that code's official long description isn't \"Glanzmann thrombasthenia.\" If FY2027 added a dedicated subcode, it's likely under D69.1, but you'd need to check the FY2027 tabular to confirm"}
+{"id": "chg-d2c-0029", "reader": 2, "response": "T52.814S"}
+{"id": "chg-d2c-0030", "reader": 2, "response": "I42.01"}
+{"id": "chg-d2c-0031", "reader": 2, "response": "O00.312"}
+{"id": "chg-d2c-0032", "reader": 2, "response": "I49.8"}
+{"id": "chg-d2c-0033", "reader": 2, "response": "M72.20"}
+{"id": "chg-d2c-0034", "reader": 2, "response": "T52.8X4D"}
+{"id": "chg-d2c-0035", "reader": 2, "response": "Q40.0"}
+{"id": "chg-d2c-0036", "reader": 2, "response": "M86.8X22"}
+{"id": "chg-d2c-0037", "reader": 2, "response": "Z77.124"}
+{"id": "chg-d2c-0038", "reader": 2, "response": "O00.31"}
+{"id": "chg-d2c-0039", "reader": 2, "response": "In releases I know, there is no code titled \"Secondary malignant neoplasm of pharynx.\" The Neoplasm Table maps secondary pharynx to **C79.89** (Secondary malignant neoplasm of other specified sites). If FY2027 added a specific code, check the official CMS/CDC FY2027 tabular list"}
+{"id": "chg-d2c-0040", "reader": 2, "response": "Z77.131"}
+{"id": "chg-d2c-0041", "reader": 2, "response": "Z77.091"}
+{"id": "chg-d2c-0042", "reader": 2, "response": "I can't confirm an FY2027 code with that exact description. In the releases I know, \"Other osteomyelitis\" of the hand has no laterality and is coded as **M86.8X4** (Other osteomyelitis, hand). Check the FY2027 tabular to see whether a left-hand-specific code was added"}
+{"id": "chg-d2c-0043", "reader": 2, "response": "O31.43X3"}
+{"id": "chg-d2c-0044", "reader": 2, "response": "I can't reliably confirm this code. The FY2027 ICD-10-CM release is beyond what I can verify, and I don't know the exact code assigned to medetomidine. A guess would likely be wrong, so please check the official FY2027 Tabular List (CDC/CMS), probably under category T65.8- (Toxic effect of other specified substances), with 7th character \"S\" for sequela"}
+{"id": "chg-d2c-0045", "reader": 2, "response": "O31.42X2"}
+{"id": "chg-d2c-0046", "reader": 2, "response": "O00.309"}
+{"id": "chg-d2c-0047", "reader": 2, "response": "O31.40X9"}
+{"id": "chg-d2c-0048", "reader": 2, "response": "O31.42X4"}
+{"id": "chg-d2c-0049", "reader": 2, "response": "T65.854D"}
+{"id": "chg-d2c-0050", "reader": 2, "response": "To find it, check the FY2027 Tabular List or the CMS/CDC FY2027 addenda, likely in category T65 (toxic effect of other and unspecified substances). The assault, subsequent encounter code would carry the 7th character **D"}
+{"id": "chg-d2c-0051", "reader": 2, "response": "M86.8X29"}
+{"id": "chg-d2c-0052", "reader": 2, "response": "O31.43X4"}
+{"id": "chg-d2c-0053", "reader": 2, "response": "T52.8X4S"}
+{"id": "chg-d2c-0054", "reader": 2, "response": "Z77.139"}
+{"id": "chg-d2c-0055", "reader": 2, "response": "O31.41X2"}
+{"id": "chg-d2c-0056", "reader": 2, "response": "Z77.138"}
+{"id": "chg-d2c-0057", "reader": 2, "response": "Z86.17"}
+{"id": "chg-d2c-0058", "reader": 2, "response": "O00.411"}
+{"id": "chg-d2c-0059", "reader": 2, "response": "O31.43X2"}
+{"id": "chg-d2c-0060", "reader": 2, "response": "The FY2027 code set (effective October 1, 2026) is newer than my reliable knowledge, so I can't tell whether such a code was added. Please check the official CDC/NCHS FY2027 tabular list or addenda"}
+{"id": "chg-d2c-0061", "reader": 2, "response": "T52.8X2S"}
+{"id": "chg-d2c-0062", "reader": 2, "response": "If it was added in FY2027, it would probably sit in category O31 (complications specific to multiple gestation). Following that category's pattern, it would likely look like **O31.x0X3**, where 0 means unspecified trimester and the 7th character 3 means fetus 3. I can't confirm the exact subcategory number, so check the FY2027 CMS/CDC tabular or addenda before using it"}
+{"id": "chg-d2c-0063", "reader": 2, "response": "M86.8X5"}
+{"id": "chg-d2c-0064", "reader": 2, "response": "Please check the official FY2027 Tabular List or addenda from CMS or CDC/NCHS before using it"}
+{"id": "chg-d2c-0065", "reader": 2, "response": "Please check the FY2027 Tabular List or the CMS/CDC addenda for the exact code"}
+{"id": "chg-d2c-0066", "reader": 2, "response": "T65.853A"}
+{"id": "chg-d2c-0067", "reader": 2, "response": "O00.302"}
+{"id": "chg-d2c-0068", "reader": 2, "response": "I can't reliably answer this. I don't know of an ICD-10-CM code with that exact long description, and I can't verify the FY2027 (October 1, 2026) release. If it's a new addition, check the official FY2027 tabular list or code descriptions file from CMS/CDC. The likely nearby categories are T52 (organic solvents), T59 (gases, fumes and vapors) or T65.8- (other specified substances)"}
+{"id": "chg-d2c-0069", "reader": 2, "response": "Z87.890"}
+{"id": "chg-d2c-0070", "reader": 2, "response": "T52.814A"}
+{"id": "chg-d2c-0071", "reader": 2, "response": "I can't reliably provide this code. The FY2027 ICD-10-CM release falls after my knowledge cutoff, and I can't confirm that a code with this exact long description exists or what it would be. In earlier releases, BRCA1 carriers are typically coded with Z15.0- (genetic susceptibility to malignant neoplasm, e.g., Z15.01 breast, Z15.02 ovary), but none of those matches your description. Please check the official FY2027 tabular list from CDC/NCHS or CMS"}
+{"id": "chg-d2c-0072", "reader": 2, "response": "Please check the official FY2027 tabular to confirm"}
+{"id": "chg-d2c-0073", "reader": 2, "response": "M72.2"}
+{"id": "chg-d2c-0074", "reader": 2, "response": "T52.812A"}
+{"id": "chg-d2c-0075", "reader": 2, "response": "M86.839"}
+{"id": "chg-d2c-0076", "reader": 2, "response": "T52.8X4D"}
+{"id": "chg-d2c-0077", "reader": 2, "response": "D69.19"}
+{"id": "chg-d2c-0078", "reader": 2, "response": "If FY2027 subdivided Z68.1 into finer underweight ranges, the code you want would be a new subcode under Z68.1. Please check the official CDC/CMS FY2027 tabular or addenda for the exact code"}
+{"id": "chg-d2c-0079", "reader": 2, "response": "If a new subcategory were created following the O31 pattern (for example, O31.10X5 is \"Continuing pregnancy after spontaneous abortion of one fetus or more, unspecified trimester, fetus 5\"), the code might look like **O31.40X5**. That is a guess, not a confirmed code. Please check the official FY2027 tabular list from CMS/NCHS before using it"}
+{"id": "chg-d2c-0080", "reader": 2, "response": "T52.8X2D"}
+{"id": "chg-d2c-0081", "reader": 2, "response": "If a medetomidine code was added, it would likely sit in the T65.8- range (\"Toxic effect of other specified substances\"), with 7th character **D** for subsequent encounter. I can't confirm the exact characters, though, so please check the official FY2027 Tabular List or addenda from CMS/CDC before using it"}
+{"id": "chg-d2c-0082", "reader": 2, "response": "I49.31"}
+{"id": "chg-d2c-0083", "reader": 2, "response": "I can't verify a FY2027 code with that exact description. Through the code sets I know, there is no right-shoulder-specific code. The closest is **M86.8X1**, \"Other osteomyelitis, shoulder,\" which does not specify side. If the FY2027 release added laterality to this subcategory, please check the official FY2027 tabular list for the new code"}
+{"id": "chg-d2c-0084", "reader": 2, "response": "The closest existing code I know of is **Z87.890** (Personal history of sex reassignment). The new code may sit near it in the Z87.89- subcategory, but I can't give the exact code with confidence. Please check the official FY2027 tabular list or addenda from CDC/NCHS"}
+{"id": "chg-d2c-0085", "reader": 2, "response": "In those versions, secondary malignancy of the mouth or oral cavity is reported with **C79.89** (Secondary malignant neoplasm of other specified sites). If FY2027 added a specific code, please check the official CMS/CDC FY2027 tabular list"}
+{"id": "chg-d2c-0086", "reader": 2, "response": "T52.8X3S"}
+{"id": "chg-d2c-0087", "reader": 2, "response": "T65.854A"}
+{"id": "chg-d2c-0088", "reader": 2, "response": "O00.301"}
+{"id": "chg-d2c-0089", "reader": 2, "response": "E16.11"}
+{"id": "chg-d2c-0090", "reader": 2, "response": "M86.8XA"}
+{"id": "chg-d2c-0091", "reader": 2, "response": "O00.302"}
+{"id": "chg-d2c-0092", "reader": 2, "response": "T65.852S"}
+{"id": "chg-d2c-0093", "reader": 2, "response": "M86.8X7"}
+{"id": "chg-d2c-0094", "reader": 2, "response": "You can confirm it in the CMS FY2027 ICD-10-CM tabular list or addenda (cms.gov \u2192 ICD-10 \u2192 2027 ICD-10-CM). Search for \"nipple ischemia,\" likely in Chapter 14 (N-codes, breast disorders or intraoperative/postprocedural complications)"}
+{"id": "chg-d2c-0095", "reader": 2, "response": "If it follows the existing O31 pattern (for example, O31.11X1 for spontaneous abortion of one fetus or more, first trimester, fetus 1), the code would likely be **O31.41X1**. This is an unverified guess, so please check it against the official FY2027 tabular list before using it"}
+{"id": "chg-d2c-0096", "reader": 2, "response": "T65.853S"}
+{"id": "chg-d2c-0097", "reader": 2, "response": "Please check the official FY2027 Tabular List or the CMS/CDC addenda for the new T-codes. Search the Index to Diseases and Injuries under \"Table of Drugs and Chemicals \u2192 Alkenes\". The subsequent-encounter code should end in the 7th character **D** with the assault intent column"}
+{"id": "chg-d2c-0098", "reader": 2, "response": "T52.8X4A"}
+{"id": "chg-d2c-0099", "reader": 2, "response": "T52.814D"}
+{"id": "chg-d2c-0100", "reader": 2, "response": "Please check the FY2027 tabular list or addenda for the exact match"}
+{"id": "chg-d2c-0101", "reader": 2, "response": "T52.813A"}
+{"id": "chg-d2c-0102", "reader": 2, "response": "O00.301"}
+{"id": "chg-d2c-0103", "reader": 2, "response": "M72.22"}
+{"id": "chg-d2c-0104", "reader": 2, "response": "If the FY2027 release added a new cycloparaffin-specific subcode, I can't verify it. Please check the official FY2027 tabular list"}
+{"id": "chg-d2c-0105", "reader": 2, "response": "In those earlier releases, this would be coded as **T65.894A** (Toxic effect of other specified substances, undetermined, initial encounter). Check the official FY2027 tabular to see whether a more specific code has been added"}
+{"id": "chg-d2c-0106", "reader": 2, "response": "Please check the FY2027 tabular list or addenda for a new specific code"}
+{"id": "chg-d2c-0107", "reader": 2, "response": "In current ICD-10-CM, BRCA2-related genetic susceptibility is usually reported with the **Z15.0-** codes (e.g., Z15.01, *Genetic susceptibility to malignant neoplasm of breast*; Z15.02, *\u2026of ovary*). If FY2027 added a specific code for familial cancer syndrome with a pathogenic BRCA2 mutation, check the official CDC/NCHS FY2027 ICD-10-CM tabular list or addenda for the exact code"}
+{"id": "chg-d2c-0108", "reader": 2, "response": "T65.891D"}
+{"id": "chg-d2c-0109", "reader": 2, "response": "In FY2026 and earlier code sets, gadolinium has no specific code. It is reported with **R78.79** (Finding of abnormal level of heavy metals in blood). If FY2027 adds a gadolinium-specific subcode, it would most likely fall under R78.7-. Please check the official FY2027 tabular list from CDC/NCHS to confirm the exact code"}
+{"id": "chg-d2c-0110", "reader": 2, "response": "If the FY2027 release added a new site-specific code, check the official FY2027 tabular list for the exact code"}
+{"id": "chg-d2c-0111", "reader": 2, "response": "D89.85"}
+{"id": "chg-d2c-0112", "reader": 2, "response": "B44.12"}
+{"id": "chg-d2c-0113", "reader": 2, "response": "I can't confirm this. My knowledge doesn't reliably include the FY2027 additions, and this is a best guess based on where similar new toxic-substance codes have been placed (T65.8-). Please check it against the official FY2027 tabular list before using it"}
+{"id": "chg-d2c-0114", "reader": 2, "response": "Check the FY2027 ICD-10-CM Tabular List or the addenda on the CDC/NCHS or CMS website, likely in category J32 (Chronic sinusitis) or near it. Until a specific code is in place, odontogenic sinusitis has typically been coded as J32.2 (Chronic ethmoidal sinusitis), with an additional code for the dental source"}
+{"id": "chg-d2c-0115", "reader": 2, "response": "Z77.013"}
+{"id": "chg-d2c-0116", "reader": 2, "response": "If a new code was created, it would most likely fall in the K76.8- subcategory (Other specified diseases of liver), such as K76.83, but that is a guess. Please check the official FY2027 tabular list or addenda from CDC/NCHS or CMS"}
+{"id": "chg-d2c-0117", "reader": 2, "response": "T52.8X1D"}
+{"id": "chg-d2c-0118", "reader": 2, "response": "M86.812"}
+{"id": "chg-d2c-0119", "reader": 2, "response": "M72.211"}
+{"id": "chg-d2c-0120", "reader": 2, "response": "O00.319"}
+{"id": "chg-d2c-0121", "reader": 2, "response": "I can't verify this code. FY2027 takes effect after my knowledge cutoff, and I'm not certain this code exists. Please check it against the official CMS/CDC FY2027 tabular list before using it"}
+{"id": "chg-d2c-0122", "reader": 2, "response": "If FY2027 added a dedicated code, check the CDC/NCHS FY2027 tabular list or the addenda for the exact code"}
+{"id": "chg-d2c-0123", "reader": 2, "response": "Please check the FY2027 Tabular List, since a new specific code may have been added"}
+{"id": "chg-d2c-0124", "reader": 2, "response": "T52.8X3D"}
+{"id": "chg-d2c-0125", "reader": 2, "response": "I42.00"}
+{"id": "chg-d2c-0126", "reader": 2, "response": "N32.89"}
+{"id": "chg-d2c-0127", "reader": 2, "response": "I can't verify a code for this. Through FY2026, ICD-10-CM has no code whose long description is \"Brugada syndrome.\" The Index directs Brugada syndrome to **I49.8** (Other specified cardiac arrhythmias). If the FY2027 release added a dedicated code, it falls outside what I know, so please check the official FY2027 tabular list"}
+{"id": "chg-d2c-0128", "reader": 2, "response": "If a new subcategory follows the existing O31 pattern, the code would likely be **O31.42X1**. That is an inference, not a confirmed code, so please check it against the official FY2027 tabular list before using it"}
+{"id": "chg-d2c-0129", "reader": 2, "response": "T52.8X1D"}
+{"id": "chg-d2c-0130", "reader": 2, "response": "M86.8X3"}
+{"id": "chg-d2c-0131", "reader": 2, "response": "If FY2027 added a new subcategory, please check the official CMS/CDC FY2027 tabular list or addenda for the exact code. I don't want to guess a code that might be wrong for billing"}
+{"id": "chg-d2c-0132", "reader": 2, "response": "Under the existing structure, the closest billable code is **T65.892A** (Toxic effect of other specified substances, intentional self-harm, initial encounter). Please check this against the official FY2027 tabular list"}
+{"id": "chg-d2c-0133", "reader": 2, "response": "T52.812A"}
+{"id": "chg-d2c-0134", "reader": 2, "response": "If FY2027 adds laterality to this subcategory, the right-side code would likely be a 7-character code under M86.8X6 (for example, M86.8X61). Please confirm against the official FY2027 tabular list"}
+{"id": "chg-d2c-0135", "reader": 2, "response": "M86.8X5"}
+{"id": "chg-d2c-0136", "reader": 2, "response": "M86.8X49"}
+{"id": "chg-d2c-0137", "reader": 2, "response": "Check the FY2027 tabular, since a dedicated code may have been added"}
+{"id": "chg-d2c-0138", "reader": 2, "response": "If the FY2027 release added laterality-specific codes, please check the official FY2027 tabular list for the exact code"}
+{"id": "chg-d2c-0139", "reader": 2, "response": "If FY2027 added laterality to this subcategory, the right-side code would likely follow the pattern of other M86 codes (for example, M86.8X71). Please check the official FY2027 tabular to confirm"}
+{"id": "chg-d2c-0140", "reader": 2, "response": "T52.8X2S"}
+{"id": "chg-d2c-0141", "reader": 2, "response": "If no specific code exists, the usual fallback is **T65.892D** (toxic effect of other specified substances, intentional self-harm, subsequent encounter)"}
+{"id": "chg-d2c-0142", "reader": 2, "response": "If the new code follows the existing O31 pattern (like O31.13X9, \"Continuing pregnancy after spontaneous abortion of one fetus or more, third trimester, other fetus\"), it would end in **3X9**, where 3 means third trimester and 9 means other fetus. I can't confirm the subcategory number, though. Please check the official FY2027 tabular list from CMS or the CDC's National Center for Health Statistics"}
+{"id": "chg-d2c-0143", "reader": 2, "response": "If FY2027 adds this as a new O31 subcategory following the existing pattern, the code would likely be **O31.40X4**. This is an unverified guess, so please check it against the official FY2027 tabular list before using it"}
+{"id": "chg-d2c-0144", "reader": 2, "response": "M86.862"}
+{"id": "chg-d2c-0145", "reader": 2, "response": "O31.41X4"}
+{"id": "chg-d2c-0146", "reader": 2, "response": "O00.31"}
+{"id": "chg-d2c-0147", "reader": 2, "response": "In earlier releases, arrhythmogenic (right ventricular) cardiomyopathy is coded to **I42.8** (Other cardiomyopathies). That code's long description is not \"Arrhythmogenic cardiomyopathy,\" though, and FY2027 may have added a more specific code. Please check the official CMS/CDC FY2027 tabular list or addenda"}
+{"id": "chg-d2c-0148", "reader": 2, "response": "Please check the official FY2027 tabular, likely in the T51\u2013T65 range (toxic effects of nonmedicinal substances). The code would end in the 7th character \"S\" for sequela, with the assault designation in the 6th-character position"}
+{"id": "chg-d2c-0149", "reader": 2, "response": "M86.8X79"}
+{"id": "chg-d2c-0150", "reader": 2, "response": "If it follows the structure of the other O31 subcategories (6th character for trimester, with 1 meaning first trimester; 7th character for the fetus, with 3 meaning fetus 3), it would be **O31.41X3**. The \"O31.4\" part is my assumption, so please check it against the official FY2027 tabular list"}
+{"id": "chg-d2c-0151", "reader": 2, "response": "To get the exact code, check the FY2027 ICD-10-CM Tabular List and Table of Drugs and Chemicals, or the FY2027 code addenda on the CDC/NCHS or CMS websites"}
+{"id": "chg-d2c-0152", "reader": 2, "response": "J34.A0"}
+{"id": "chg-d2c-0153", "reader": 2, "response": "Z68.14"}
+{"id": "chg-d2c-0154", "reader": 2, "response": "T52.8X3S"}
+{"id": "chg-d2c-0155", "reader": 2, "response": "M86.8X21"}
+{"id": "chg-d2c-0156", "reader": 2, "response": "O00.312"}
+{"id": "chg-d2c-0157", "reader": 2, "response": "If the FY2027 release added a dedicated subcategory for diisocyanates, the code will differ. Please check the official FY2027 tabular list"}
+{"id": "chg-d2c-0158", "reader": 2, "response": "Please check the official FY2027 tabular list for any new isocyanate-specific code"}
+{"id": "chg-d2c-0159", "reader": 2, "response": "The closest existing code is **Z87.890** (Personal history of sex reassignment), but its description doesn't match. If FY2027 added a new code, check the official CDC/NCHS FY2027 tabular list or addenda for it"}
+{"id": "chg-d2c-0160", "reader": 2, "response": "If it was added as a new subcategory following the existing O31.1\u2013O31.3 pattern, it would likely be **O31.43X1**. Please check this against the official FY2027 tabular list from CMS or CDC before using it"}
+{"id": "chg-d2c-0161", "reader": 2, "response": "O31.41X5"}
+{"id": "chg-d2c-0162", "reader": 2, "response": "T52.813D"}
+{"id": "chg-d2c-0163", "reader": 2, "response": "T52.8X1A"}
+{"id": "chg-d2c-0164", "reader": 2, "response": "If FY2027 adds it to category O31 using the existing pattern, it would likely be **O31.40X1**, but that is unconfirmed. Please check it against the official FY2027 tabular list"}
+{"id": "chg-d2c-0165", "reader": 2, "response": "In earlier releases, a toxic effect of an alkene with no specific code would usually fall under a residual category such as T52.8X2S (other organic solvents) or T65.892S (other specified substances), depending on the substance and index entry. Please confirm against the official FY2027 Tabular List and Table of Drugs and Chemicals"}
+{"id": "chg-d2c-0166", "reader": 2, "response": "If FY2027 added a subcategory following the existing O31 pattern (for example, O31.12X5 for spontaneous abortion of one fetus or more, second trimester, fetus 5), the code would look like **O31.x2X5**. I can't confirm the subcategory digit, so please check the official FY2027 Tabular List"}
+{"id": "chg-d2c-0167", "reader": 2, "response": "Z77.130"}
+{"id": "chg-d2c-0168", "reader": 2, "response": "By analogy with the O31 category, a new code would likely follow the pattern O31.xx2 (unspecified trimester, 7th character 2 = fetus 2). For comparison, the existing code for continuing pregnancy after spontaneous abortion of one fetus or more, unspecified trimester, fetus 2 is O31.10X2. I can't confirm the actual subcategory assigned, so please check the official FY2027 CDC/CMS tabular list"}
+{"id": "chg-d2c-0169", "reader": 2, "response": "O00.309"}
+{"id": "chg-d2c-0170", "reader": 2, "response": "O31.41X9"}
+{"id": "chg-d2c-0171", "reader": 2, "response": "T52.8X2A"}
+{"id": "chg-d2c-0172", "reader": 2, "response": "If FY2027 added specific diisocyanate codes, the correct code would be a new one I can't confirm. Check the official FY2027 Tabular List or the CMS/CDC addenda"}
+{"id": "chg-d2c-0173", "reader": 2, "response": "I42.8"}
+{"id": "chg-d2c-0174", "reader": 2, "response": "O31.43X0"}
+{"id": "chg-d2c-0175", "reader": 2, "response": "If FY2027 added specific isocyanate codes, the correct code would be different. Please check the official FY2027 tabular list"}
+{"id": "chg-d2c-0176", "reader": 2, "response": "N99.86"}
+{"id": "chg-d2c-0177", "reader": 2, "response": "T52.8X2D"}
+{"id": "chg-d2c-0178", "reader": 2, "response": "To find it, check the FY2027 ICD-10-CM Tabular List and Addendum on the CDC/NCHS or CMS website. Look near the existing Z87.89- subcategory, since Z87.890 is \"Personal history of sex reassignment"}
+{"id": "chg-d2c-0179", "reader": 2, "response": "My best guess is a new subcategory under E89.8- (postprocedural endocrine and metabolic complications), possibly **E89.838**. That code is unverified. Please check the official FY2027 tabular list from CDC/NCHS or CMS before using it"}
+{"id": "chg-d2c-0180", "reader": 2, "response": "O31.42X3"}
+{"id": "chg-d2c-0181", "reader": 2, "response": "M86.8X3"}
+{"id": "chg-d2c-0182", "reader": 2, "response": "In earlier releases, toxic effects of substances like this fall under **T65.89-** (toxic effect of other specified substances). For intentional self-harm, subsequent encounter, that would be **T65.893D**. If FY2027 added specific isocyanate subcategories, the correct code will differ. Please check the official FY2027 Tabular List from CDC/NCHS"}
+{"id": "chg-d2c-0183", "reader": 2, "response": "I can't confirm a code with that exact long description. In the ICD-10-CM releases I know, cycloparaffins index to **T52.8X1A** (Toxic effect of other organic solvents, accidental (unintentional), initial encounter). If the FY2027 release created a separate code for cycloparaffins, I don't have it, so check this against the official FY2027 tabular"}
+{"id": "chg-d2c-0184", "reader": 2, "response": "Q87.86"}
+{"id": "chg-d2c-0185", "reader": 2, "response": "Please check the official FY2027 ICD-10-CM Tabular List and addenda on the CDC/NCHS or CMS websites. Look under category J32 (Chronic sinusitis) or the FY2027 addenda for new sinusitis subcategories"}
+{"id": "chg-d2c-0186", "reader": 2, "response": "If FY2027 added a \"moderate fibrosis\" code, it would likely be under K74.0- (for example, K74.03), but I can't verify that. Please check the FY2027 tabular list or addenda from CDC/NCHS or CMS"}
+{"id": "chg-d2c-0187", "reader": 2, "response": "L02.237"}
+{"id": "chg-d2c-0188", "reader": 2, "response": "T52.8X1S"}
+{"id": "chg-st-0001", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0002", "reader": 2, "response": "billable"}
+{"id": "chg-st-0003", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0004", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0005", "reader": 2, "response": "billable"}
+{"id": "chg-st-0006", "reader": 2, "response": "billable"}
+{"id": "chg-st-0007", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0008", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0009", "reader": 2, "response": "header"}
+{"id": "chg-st-0010", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0011", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0012", "reader": 2, "response": "billable"}
+{"id": "chg-st-0013", "reader": 2, "response": "billable"}
+{"id": "chg-st-0014", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0015", "reader": 2, "response": "billable"}
+{"id": "chg-st-0016", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0017", "reader": 2, "response": "billable"}
+{"id": "chg-st-0018", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0019", "reader": 2, "response": "billable"}
+{"id": "chg-st-0020", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0021", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0022", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0023", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0024", "reader": 2, "response": "billable"}
+{"id": "chg-st-0025", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0026", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0027", "reader": 2, "response": "billable"}
+{"id": "chg-st-0028", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0029", "reader": 2, "response": "billable"}
+{"id": "chg-st-0030", "reader": 2, "response": "billable"}
+{"id": "chg-st-0031", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0032", "reader": 2, "response": "billable"}
+{"id": "chg-st-0033", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0034", "reader": 2, "response": "billable"}
+{"id": "chg-st-0035", "reader": 2, "response": "billable"}
+{"id": "chg-st-0036", "reader": 2, "response": "billable"}
+{"id": "chg-st-0037", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0038", "reader": 2, "response": "header"}
+{"id": "chg-st-0039", "reader": 2, "response": "billable"}
+{"id": "chg-st-0040", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0041", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0042", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0043", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0044", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0045", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0046", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0047", "reader": 2, "response": "billable"}
+{"id": "chg-st-0048", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0049", "reader": 2, "response": "billable"}
+{"id": "chg-st-0050", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0051", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0052", "reader": 2, "response": "billable"}
+{"id": "chg-st-0053", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0054", "reader": 2, "response": "billable"}
+{"id": "chg-st-0055", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0056", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0057", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0058", "reader": 2, "response": "billable"}
+{"id": "chg-st-0059", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0060", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0061", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0062", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0063", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0064", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0065", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0066", "reader": 2, "response": "header"}
+{"id": "chg-st-0067", "reader": 2, "response": "billable"}
+{"id": "chg-st-0068", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0069", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0070", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0071", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0072", "reader": 2, "response": "billable"}
+{"id": "chg-st-0073", "reader": 2, "response": "header"}
+{"id": "chg-st-0074", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0075", "reader": 2, "response": "billable"}
+{"id": "chg-st-0076", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0077", "reader": 2, "response": "billable"}
+{"id": "chg-st-0078", "reader": 2, "response": "billable"}
+{"id": "chg-st-0079", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0080", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0081", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0082", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0083", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0084", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0085", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0086", "reader": 2, "response": "billable"}
+{"id": "chg-st-0087", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0088", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0089", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0090", "reader": 2, "response": "billable"}
+{"id": "chg-st-0091", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0092", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0093", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0094", "reader": 2, "response": "billable"}
+{"id": "chg-st-0095", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0096", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0097", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0098", "reader": 2, "response": "billable"}
+{"id": "chg-st-0099", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0100", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0101", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0102", "reader": 2, "response": "billable"}
+{"id": "chg-st-0103", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0104", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0105", "reader": 2, "response": "billable"}
+{"id": "chg-st-0106", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0107", "reader": 2, "response": "billable"}
+{"id": "chg-st-0108", "reader": 2, "response": "billable"}
+{"id": "chg-st-0109", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0110", "reader": 2, "response": "billable"}
+{"id": "chg-st-0111", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0112", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0113", "reader": 2, "response": "billable"}
+{"id": "chg-st-0114", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0115", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0116", "reader": 2, "response": "billable"}
+{"id": "chg-st-0117", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0118", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0119", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0120", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0121", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0122", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0123", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0124", "reader": 2, "response": "billable"}
+{"id": "chg-st-0125", "reader": 2, "response": "header"}
+{"id": "chg-st-0126", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0127", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0128", "reader": 2, "response": "billable"}
+{"id": "chg-st-0129", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0130", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0131", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0132", "reader": 2, "response": "billable"}
+{"id": "chg-st-0133", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0134", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0135", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0136", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0137", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0138", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0139", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0140", "reader": 2, "response": "billable"}
+{"id": "chg-st-0141", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0142", "reader": 2, "response": "billable"}
+{"id": "chg-st-0143", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0144", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0145", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0146", "reader": 2, "response": "billable"}
+{"id": "chg-st-0147", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0148", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0149", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0150", "reader": 2, "response": "header"}
+{"id": "chg-st-0151", "reader": 2, "response": "billable"}
+{"id": "chg-st-0152", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0153", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0154", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0155", "reader": 2, "response": "header"}
+{"id": "chg-st-0156", "reader": 2, "response": "header"}
+{"id": "chg-st-0157", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0158", "reader": 2, "response": "header"}
+{"id": "chg-st-0159", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0160", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0161", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0162", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0163", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0164", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0165", "reader": 2, "response": "billable"}
+{"id": "chg-st-0166", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0167", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0168", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0169", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0170", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0171", "reader": 2, "response": "billable"}
+{"id": "chg-st-0172", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0173", "reader": 2, "response": "billable"}
+{"id": "chg-st-0174", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0175", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0176", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0177", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0178", "reader": 2, "response": "billable"}
+{"id": "chg-st-0179", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0180", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0181", "reader": 2, "response": "billable"}
+{"id": "chg-st-0182", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0183", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0184", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0185", "reader": 2, "response": "billable"}
+{"id": "chg-st-0186", "reader": 2, "response": "billable"}
+{"id": "chg-st-0187", "reader": 2, "response": "billable"}
+{"id": "chg-st-0188", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0189", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0190", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0191", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0192", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0193", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0194", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0195", "reader": 2, "response": "header"}
+{"id": "chg-st-0196", "reader": 2, "response": "billable"}
+{"id": "chg-st-0197", "reader": 2, "response": "billable"}
+{"id": "chg-st-0198", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0199", "reader": 2, "response": "billable"}
+{"id": "chg-st-0200", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0201", "reader": 2, "response": "billable"}
+{"id": "chg-st-0202", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0203", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0204", "reader": 2, "response": "billable"}
+{"id": "chg-st-0205", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0206", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0207", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0208", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0209", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0210", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0211", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0212", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0213", "reader": 2, "response": "billable"}
+{"id": "chg-st-0214", "reader": 2, "response": "billable"}
+{"id": "chg-st-0215", "reader": 2, "response": "billable"}
+{"id": "chg-st-0216", "reader": 2, "response": "billable"}
+{"id": "chg-st-0217", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0218", "reader": 2, "response": "billable"}
+{"id": "chg-st-0219", "reader": 2, "response": "header"}
+{"id": "chg-st-0220", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0221", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0222", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0223", "reader": 2, "response": "billable"}
+{"id": "chg-st-0224", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0225", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0226", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0227", "reader": 2, "response": "billable"}
+{"id": "chg-st-0228", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0229", "reader": 2, "response": "billable"}
+{"id": "chg-st-0230", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0231", "reader": 2, "response": "billable"}
+{"id": "chg-st-0232", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0233", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0234", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0235", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0236", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0237", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0238", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0239", "reader": 2, "response": "billable"}
+{"id": "chg-st-0240", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0241", "reader": 2, "response": "billable"}
+{"id": "chg-st-0242", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0243", "reader": 2, "response": "billable"}
+{"id": "chg-st-0244", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0245", "reader": 2, "response": "header"}
+{"id": "chg-st-0246", "reader": 2, "response": "billable"}
+{"id": "chg-st-0247", "reader": 2, "response": "billable"}
+{"id": "chg-st-0248", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0249", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0250", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0251", "reader": 2, "response": "header"}
+{"id": "chg-st-0252", "reader": 2, "response": "billable"}
+{"id": "chg-st-0253", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0254", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0255", "reader": 2, "response": "billable"}
+{"id": "chg-st-0256", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0257", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0258", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0259", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0260", "reader": 2, "response": "billable"}
+{"id": "chg-st-0261", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0262", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0263", "reader": 2, "response": "billable"}
+{"id": "chg-st-0264", "reader": 2, "response": "billable"}
+{"id": "chg-st-0265", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0266", "reader": 2, "response": "billable"}
+{"id": "chg-st-0267", "reader": 2, "response": "billable"}
+{"id": "chg-st-0268", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0269", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0270", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0271", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0272", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0273", "reader": 2, "response": "not_a_code"}
+{"id": "chg-st-0274", "reader": 2, "response": "not_a_code"}

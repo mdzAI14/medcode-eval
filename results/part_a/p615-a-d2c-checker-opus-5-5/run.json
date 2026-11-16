@@ -1,0 +1,60 @@
+{
+  "backend": "remote",
+  "checker": {
+    "order_file": "refdata/icd10cm_fy2027/icd10cm_order_2027.txt",
+    "tabular_file": "refdata/icd10cm_fy2027/icd10cm_tabular_2027.xml",
+    "tabular_version": "2027"
+  },
+  "code_set": "ICD-10-CM FY2027 (October 1, 2026 release)",
+  "condition": "with_checker_description_to_code",
+  "model": "claude-opus-5-5",
+  "model_digest": null,
+  "part": "a",
+  "probes_file": "data/part_a/probes_changes.jsonl",
+  "probes_sha256": "57712e770656bb4e81621b47dfda5ea8c89be5aa91a3e2bf05714fe60645f4cc",
+  "prompt_suffix": "",
+  "prompts_sha256": {
+    "part_a_checker.txt": "73715204a364557b24ba1385e7d5ad8e38ee85d64b245fa4791570b4cf457644",
+    "part_a_description_to_code.txt": "b19229e8217743e04fe54523c91fa5b1ec080e7998a43018d6a98fa556d73ace"
+  },
+  "reader": 2,
+  "rules": [
+    "not_in_code_set",
+    "header_not_billable"
+  ],
+  "server_version": null,
+  "settings": {
+    "api_version": "2023-06-01",
+    "effort": "medium",
+    "endpoint": "https://api.anthropic.com/v1/messages",
+    "key_env": "ANTHROPIC_API_KEY",
+    "max_tokens": 16000,
+    "retry_statuses": [
+      429,
+      500,
+      502,
+      503,
+      504,
+      529
+    ],
+    "retry_waits_seconds": [
+      5,
+      15,
+      45
+    ],
+    "stream": false,
+    "system_prompt": null,
+    "temperature": null,
+    "timeout_seconds": 300
+  },
+  "source_raw_sha256": "b8a78491f7dc3f864522e5624cd82ade2da7c10762a462cdbc01e3c2f7a47a9f",
+  "source_responses_sha256": "25a304570c79e0f1ea8d154f5cba0a33ddf7fb40dc953659fca51e17e6088f6b",
+  "source_run": "runs/part_a/p65-a-changes-opus-5-5",
+  "spend": {
+    "ledger": "runs/spend/p615.jsonl",
+    "max_usd": 3.0,
+    "price_in_usd_per_mtok": 4.0,
+    "price_out_usd_per_mtok": 20.0
+  },
+  "started": "2026-11-16T09:04:55-0600"
+}

@@ -1,0 +1,151 @@
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0011", "raw": "<think>\n\n</think>\n\nC", "seconds": 2.803}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0015", "raw": "<think>\n\n</think>\n\nB", "seconds": 2.361}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0023", "raw": "<think>\n\n</think>\n\nB", "seconds": 2.319}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0028", "raw": "<think>\n\n</think>\n\nA", "seconds": 3.087}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0076", "raw": "<think>\n\n</think>\n\nD", "seconds": 2.628}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0094", "raw": "<think>\n\n</think>\n\nC", "seconds": 3.481}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0105", "raw": "<think>\n\n</think>\n\nC", "seconds": 3.484}
+{"done_reason": "stop", "error": null, "eval_count": 10, "id": "d2c-0017", "raw": "<think>\n\n</think>\n\nK56.9", "seconds": 1.556}
+{"done_reason": "stop", "error": null, "eval_count": 10, "id": "d2c-0021", "raw": "<think>\n\n</think>\n\nR55.8", "seconds": 1.355}
+{"done_reason": "stop", "error": null, "eval_count": 10, "id": "d2c-0032", "raw": "<think>\n\n</think>\n\nE09.9", "seconds": 1.268}
+{"done_reason": "stop", "error": null, "eval_count": 10, "id": "d2c-0035", "raw": "<think>\n\n</think>\n\nK00.9", "seconds": 1.666}
+{"done_reason": "stop", "error": null, "eval_count": 10, "id": "d2c-0046", "raw": "<think>\n\n</think>\n\nC80.9", "seconds": 2.008}
+{"done_reason": "stop", "error": null, "eval_count": 11, "id": "d2c-0063", "raw": "<think>\n\n</think>\n\nN00.39", "seconds": 1.641}
+{"done_reason": "stop", "error": null, "eval_count": 10, "id": "d2c-0073", "raw": "<think>\n\n</think>\n\nD49.9", "seconds": 1.313}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0021", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.052}
+{"done_reason": "stop", "error": null, "eval_count": 7, "id": "st-0024", "raw": "<think>\n\n</think>\n\nbillable", "seconds": 3.22}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0025", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.091}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0058", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 2.815}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0067", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 2.715}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0074", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.14}
+{"done_reason": "stop", "error": null, "eval_count": 20, "id": "c2d-0114", "raw": "<think>\n\n</think>\n\nD. Encounter for respirator [ventilator] dependence during power failure", "seconds": 3.151}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0127", "raw": "<think>\n\n</think>\n\nA", "seconds": 3.376}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0131", "raw": "<think>\n\n</think>\n\nC", "seconds": 3.629}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0132", "raw": "<think>\n\n</think>\n\nD", "seconds": 3.707}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0139", "raw": "<think>\n\n</think>\n\nC", "seconds": 3.455}
+{"done_reason": "stop", "error": null, "eval_count": 19, "id": "c2d-0143", "raw": "<think>\n\n</think>\n\nD. Personal history of malignant neoplasm of other organs and systems", "seconds": 4.507}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0157", "raw": "<think>\n\n</think>\n\nD", "seconds": 2.183}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0160", "raw": "<think>\n\n</think>\n\nC", "seconds": 3.049}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0171", "raw": "<think>\n\n</think>\n\nA", "seconds": 3.316}
+{"done_reason": "stop", "error": null, "eval_count": 12, "id": "c2d-0182", "raw": "<think>\n\n</think>\n\nD. Furuncle of groin", "seconds": 3.103}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0184", "raw": "<think>\n\n</think>\n\nA", "seconds": 4.195}
+{"done_reason": "stop", "error": null, "eval_count": 15, "id": "c2d-0194", "raw": "<think>\n\n</think>\n\nD. Toxic nephropathy, not elsewhere classified", "seconds": 3.018}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0213", "raw": "<think>\n\n</think>\n\nB", "seconds": 2.383}
+{"done_reason": "stop", "error": null, "eval_count": 18, "id": "c2d-0238", "raw": "<think>\n\n</think>\n\nB. Contact with mining and earth-drilling machinery, subsequent encounter", "seconds": 3.56}
+{"done_reason": "stop", "error": null, "eval_count": 18, "id": "c2d-0244", "raw": "<think>\n\n</think>\n\nD. Paralysis of vocal cords and larynx, unspecified", "seconds": 3.51}
+{"done_reason": "stop", "error": null, "eval_count": 20, "id": "c2d-0245", "raw": "<think>\n\n</think>\n\nB. Malignant neoplasm of peripheral nerves of trunk, unspecified", "seconds": 4.625}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0246", "raw": "<think>\n\n</think>\n\nA", "seconds": 3.793}
+{"done_reason": "stop", "error": null, "eval_count": 13, "id": "c2d-0249", "raw": "<think>\n\n</think>\n\nD. Mixed receptive-expressive language disorder", "seconds": 3.325}
+{"done_reason": "stop", "error": null, "eval_count": 22, "id": "c2d-0254", "raw": "<think>\n\n</think>\n\nB. Chronic post-traumatic headache, intractable\n\nAnswer: **B**", "seconds": 4.008}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0256", "raw": "<think>\n\n</think>\n\nD", "seconds": 2.647}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0264", "raw": "<think>\n\n</think>\n\nD", "seconds": 2.571}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0278", "raw": "<think>\n\n</think>\n\nA", "seconds": 2.379}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0283", "raw": "<think>\n\n</think>\n\nB", "seconds": 3.337}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0288", "raw": "<think>\n\n</think>\n\nB", "seconds": 3.726}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0305", "raw": "<think>\n\n</think>\n\nA", "seconds": 3.155}
+{"done_reason": "stop", "error": null, "eval_count": 15, "id": "c2d-0323", "raw": "<think>\n\n</think>\n\nD. Other osteonecrosis of left radius", "seconds": 3.761}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0345", "raw": "<think>\n\n</think>\n\nA", "seconds": 2.601}
+{"done_reason": "stop", "error": null, "eval_count": 14, "id": "c2d-0357", "raw": "<think>\n\n</think>\n\nD. Chronic myringitis, unspecified ear", "seconds": 3.597}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0364", "raw": "<think>\n\n</think>\n\nA", "seconds": 2.966}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0366", "raw": "<think>\n\n</think>\n\nD", "seconds": 2.628}
+{"done_reason": "stop", "error": null, "eval_count": 27, "id": "c2d-0375", "raw": "<think>\n\n</think>\n\nB. Chronic tubotympanic suppurative otitis media, left ear\n\n**Answer: B**", "seconds": 5.279}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0378", "raw": "<think>\n\n</think>\n\nA", "seconds": 2.886}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0403", "raw": "<think>\n\n</think>\n\nC", "seconds": 4.538}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0410", "raw": "<think>\n\n</think>\n\nA", "seconds": 4.968}
+{"done_reason": "stop", "error": null, "eval_count": 12, "id": "c2d-0411", "raw": "<think>\n\n</think>\n\nB. Nonspecific urethritis", "seconds": 2.775}
+{"done_reason": "stop", "error": null, "eval_count": 31, "id": "c2d-0418", "raw": "<think>\n\n</think>\n\nD. Triplet pregnancy, unable to determine number of placenta and number of amniotic sacs, third trimester.", "seconds": 6.007}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0428", "raw": "<think>\n\n</think>\n\nC", "seconds": 3.015}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0441", "raw": "<think>\n\n</think>\n\nA", "seconds": 2.736}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0467", "raw": "<think>\n\n</think>\n\nB", "seconds": 2.591}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0474", "raw": "<think>\n\n</think>\n\nB", "seconds": 2.941}
+{"done_reason": "stop", "error": null, "eval_count": 12, "id": "c2d-0483", "raw": "<think>\n\n</think>\n\nB. Takotsubo syndrome", "seconds": 2.913}
+{"done_reason": "stop", "error": null, "eval_count": 29, "id": "c2d-0496", "raw": "<think>\n\n</think>\n\nB. Newborn affected by intrauterine (fetal) blood loss, unspecified.  \n\n**Answer: B**", "seconds": 6.04}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "c2d-0498", "raw": "<think>\n\n</think>\n\nC", "seconds": 3.139}
+{"done_reason": "stop", "error": null, "eval_count": 11, "id": "d2c-0092", "raw": "<think>\n\n</think>\n\nF10.49", "seconds": 2.333}
+{"done_reason": "stop", "error": null, "eval_count": 11, "id": "d2c-0114", "raw": "<think>\n\n</think>\n\nL95.82", "seconds": 2.037}
+{"done_reason": "stop", "error": null, "eval_count": 10, "id": "d2c-0125", "raw": "<think>\n\n</think>\n\nF13.9", "seconds": 1.941}
+{"done_reason": "stop", "error": null, "eval_count": 10, "id": "d2c-0134", "raw": "<think>\n\n</think>\n\nH66.9", "seconds": 1.849}
+{"done_reason": "stop", "error": null, "eval_count": 11, "id": "d2c-0137", "raw": "<think>\n\n</think>\n\nG70.31", "seconds": 1.976}
+{"done_reason": "stop", "error": null, "eval_count": 10, "id": "d2c-0149", "raw": "<think>\n\n</think>\n\nQ76.1", "seconds": 1.905}
+{"done_reason": "stop", "error": null, "eval_count": 11, "id": "d2c-0159", "raw": "<think>\n\n</think>\n\nI25.81", "seconds": 2.235}
+{"done_reason": "stop", "error": null, "eval_count": 11, "id": "d2c-0186", "raw": "<think>\n\n</think>\n\nH02.12", "seconds": 1.729}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "d2c-0187", "raw": "<think>\n\n</think>\n\nR05", "seconds": 1.51}
+{"done_reason": "stop", "error": null, "eval_count": 11, "id": "d2c-0198", "raw": "<think>\n\n</think>\n\nC90.81", "seconds": 2.274}
+{"done_reason": "stop", "error": null, "eval_count": 11, "id": "d2c-0201", "raw": "<think>\n\n</think>\n\nC90.81", "seconds": 1.971}
+{"done_reason": "stop", "error": null, "eval_count": 10, "id": "d2c-0215", "raw": "<think>\n\n</think>\n\nJ15.9", "seconds": 1.773}
+{"done_reason": "stop", "error": null, "eval_count": 10, "id": "d2c-0223", "raw": "<think>\n\n</think>\n\nB93.9", "seconds": 1.511}
+{"done_reason": "stop", "error": null, "eval_count": 12, "id": "d2c-0226", "raw": "<think>\n\n</think>\n\nH36.411", "seconds": 2.417}
+{"done_reason": "stop", "error": null, "eval_count": 10, "id": "d2c-0227", "raw": "<think>\n\n</think>\n\nH00.9", "seconds": 1.745}
+{"done_reason": "stop", "error": null, "eval_count": 10, "id": "d2c-0228", "raw": "<think>\n\n</think>\n\nG70.9", "seconds": 1.516}
+{"done_reason": "stop", "error": null, "eval_count": 11, "id": "d2c-0236", "raw": "<think>\n\n</think>\n\nW854X1", "seconds": 2.318}
+{"done_reason": "stop", "error": null, "eval_count": 43, "id": "d2c-0238", "raw": "<think>\n\n</think>\n\nM81.81 is the billable code for Fibrous dysplasia (monostotic), unspecified forearm under ICD-10-CM FY2027.", "seconds": 4.534}
+{"done_reason": "stop", "error": null, "eval_count": 11, "id": "d2c-0244", "raw": "<think>\n\n</think>\n\nN00.11", "seconds": 1.844}
+{"done_reason": "stop", "error": null, "eval_count": 10, "id": "d2c-0247", "raw": "<think>\n\n</think>\n\nN35.9", "seconds": 1.63}
+{"done_reason": "stop", "error": null, "eval_count": 10, "id": "d2c-0251", "raw": "<think>\n\n</think>\n\nJ9211", "seconds": 1.702}
+{"done_reason": "stop", "error": null, "eval_count": 10, "id": "d2c-0260", "raw": "<think>\n\n</think>\n\nB00.1", "seconds": 1.558}
+{"done_reason": "stop", "error": null, "eval_count": 10, "id": "d2c-0264", "raw": "<think>\n\n</think>\n\nQ70.1", "seconds": 1.743}
+{"done_reason": "stop", "error": null, "eval_count": 10, "id": "d2c-0275", "raw": "<think>\n\n</think>\n\nM16.8", "seconds": 1.679}
+{"done_reason": "stop", "error": null, "eval_count": 11, "id": "d2c-0278", "raw": "<think>\n\n</think>\n\nJ95.81", "seconds": 1.677}
+{"done_reason": "stop", "error": null, "eval_count": 13, "id": "d2c-0304", "raw": "<think>\n\n</think>\n\nW84.411XX", "seconds": 2.277}
+{"done_reason": "stop", "error": null, "eval_count": 10, "id": "d2c-0313", "raw": "<think>\n\n</think>\n\nO05.9", "seconds": 2.009}
+{"done_reason": "stop", "error": null, "eval_count": 10, "id": "d2c-0325", "raw": "<think>\n\n</think>\n\nJ44.9", "seconds": 1.69}
+{"done_reason": "stop", "error": null, "eval_count": 12, "id": "d2c-0333", "raw": "<think>\n\n</think>\n\nT88.599", "seconds": 1.822}
+{"done_reason": "stop", "error": null, "eval_count": 10, "id": "d2c-0377", "raw": "<think>\n\n</think>\n\nB01.0", "seconds": 1.807}
+{"done_reason": "stop", "error": null, "eval_count": 10, "id": "d2c-0379", "raw": "<think>\n\n</think>\n\nH61.8", "seconds": 1.83}
+{"done_reason": "stop", "error": null, "eval_count": 10, "id": "d2c-0384", "raw": "<think>\n\n</think>\n\nD50.9", "seconds": 1.554}
+{"done_reason": "stop", "error": null, "eval_count": 12, "id": "d2c-0389", "raw": "<think>\n\n</think>\n\nM22.511", "seconds": 2.602}
+{"done_reason": "stop", "error": null, "eval_count": 11, "id": "d2c-0406", "raw": "<think>\n\n</think>\n\nO06.21", "seconds": 1.819}
+{"done_reason": "stop", "error": null, "eval_count": 12, "id": "d2c-0413", "raw": "<think>\n\n</think>\n\nL99.822", "seconds": 1.972}
+{"done_reason": "stop", "error": null, "eval_count": 12, "id": "d2c-0415", "raw": "<think>\n\n</think>\n\nI25.821", "seconds": 2.53}
+{"done_reason": "stop", "error": null, "eval_count": 11, "id": "d2c-0436", "raw": "<think>\n\n</think>\n\nH40.41", "seconds": 1.925}
+{"done_reason": "stop", "error": null, "eval_count": 10, "id": "d2c-0450", "raw": "<think>\n\n</think>\n\nN49.1", "seconds": 1.68}
+{"done_reason": "stop", "error": null, "eval_count": 10, "id": "d2c-0457", "raw": "<think>\n\n</think>\n\nL91.1", "seconds": 2.14}
+{"done_reason": "stop", "error": null, "eval_count": 11, "id": "d2c-0464", "raw": "<think>\n\n</think>\n\nZ06.82", "seconds": 1.879}
+{"done_reason": "stop", "error": null, "eval_count": 10, "id": "d2c-0474", "raw": "<think>\n\n</think>\n\nB94.0", "seconds": 1.723}
+{"done_reason": "stop", "error": null, "eval_count": 11, "id": "d2c-0484", "raw": "<think>\n\n</think>\n\nK84.80", "seconds": 1.934}
+{"done_reason": "stop", "error": null, "eval_count": 11, "id": "d2c-0497", "raw": "<think>\n\n</think>\n\nF12.59", "seconds": 2.018}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0076", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.732}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0097", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.455}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0111", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.426}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0112", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.463}
+{"done_reason": "stop", "error": null, "eval_count": 7, "id": "st-0134", "raw": "<think>\n\n</think>\n\nbillable", "seconds": 3.66}
+{"done_reason": "stop", "error": null, "eval_count": 7, "id": "st-0139", "raw": "<think>\n\n</think>\n\nbillable", "seconds": 3.285}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0152", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.513}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0160", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.523}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0163", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.464}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0185", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.518}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0218", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.484}
+{"done_reason": "stop", "error": null, "eval_count": 7, "id": "st-0233", "raw": "<think>\n\n</think>\n\nbillable", "seconds": 3.569}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0235", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.442}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0240", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.512}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0243", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.495}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0251", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.528}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0257", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.499}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0261", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.496}
+{"done_reason": "stop", "error": null, "eval_count": 7, "id": "st-0264", "raw": "<think>\n\n</think>\n\nbillable", "seconds": 3.418}
+{"done_reason": "stop", "error": null, "eval_count": 6, "id": "st-0285", "raw": "<think>\n\n</think>\n\nheader", "seconds": 3.28}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0311", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.627}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0319", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.551}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0324", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.604}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0332", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.61}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0334", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.702}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0337", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.531}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0347", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.468}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0354", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.526}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0356", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.51}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0367", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.559}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0370", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.511}
+{"done_reason": "stop", "error": null, "eval_count": 7, "id": "st-0390", "raw": "<think>\n\n</think>\n\nbillable", "seconds": 3.444}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0394", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.645}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0403", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.584}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0404", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.516}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0412", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.465}
+{"done_reason": "stop", "error": null, "eval_count": 7, "id": "st-0417", "raw": "<think>\n\n</think>\n\nbillable", "seconds": 3.516}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0444", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.448}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0465", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.74}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0475", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.539}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0479", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.384}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0481", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.515}
+{"done_reason": "stop", "error": null, "eval_count": 7, "id": "st-0484", "raw": "<think>\n\n</think>\n\nbillable", "seconds": 3.405}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0494", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.644}
+{"done_reason": "stop", "error": null, "eval_count": 8, "id": "st-0501", "raw": "<think>\n\n</think>\n\nnot_a_code", "seconds": 3.518}

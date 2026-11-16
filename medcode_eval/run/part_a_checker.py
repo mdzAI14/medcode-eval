@@ -361,11 +361,14 @@ def _correct(probe, response, reader):
                    reader)["correct"] == 1
 
 
-def score_run(run_dir, checker_data=None, root=REPO_ROOT):
-    """Write score.json and score.md in run_dir; returns the score."""
+def score_run(run_dir, checker_data=None, root=REPO_ROOT, source_dir=None):
+    """Write score.json and score.md in run_dir; returns the score.
+    source_dir: read the source run from this folder instead of run.json's
+    source_run (a copy of it elsewhere); the sha256 checks still apply."""
     run_dir = Path(run_dir)
     meta = json.loads((run_dir / "run.json").read_text(encoding="utf-8"))
-    src = load_source(Path(root) / meta["source_run"], root)
+    src = load_source(Path(source_dir) if source_dir is not None
+                      else Path(root) / meta["source_run"], root)
     for name, key in (("raw.jsonl", "source_raw_sha256"),
                       ("responses.jsonl", "source_responses_sha256")):
         if _sha(src["dir"] / name) != meta[key]:

@@ -1,0 +1,215 @@
+{
+  "cost_usd": 0.289376,
+  "input_ratio_to_chars_div_4": 1.6013279445727482,
+  "input_tokens": {
+    "max": 559,
+    "mean": 443.76,
+    "min": 346,
+    "total": 11094
+  },
+  "items": 25,
+  "model": "claude-opus-5-5",
+  "output_tokens": {
+    "max": 1190,
+    "mean": 490.0,
+    "min": 93,
+    "total": 12250
+  },
+  "per_item": {
+    "b-ed-001": {
+      "cost_usd": 0.019128,
+      "input_tokens": 532,
+      "output_tokens": 850,
+      "replies": 1
+    },
+    "b-ed-002": {
+      "cost_usd": 0.01304,
+      "input_tokens": 410,
+      "output_tokens": 570,
+      "replies": 1
+    },
+    "b-ed-003": {
+      "cost_usd": 0.005688,
+      "input_tokens": 477,
+      "output_tokens": 189,
+      "replies": 1
+    },
+    "b-ed-004": {
+      "cost_usd": 0.01858,
+      "input_tokens": 480,
+      "output_tokens": 833,
+      "replies": 1
+    },
+    "b-ed-005": {
+      "cost_usd": 0.005016,
+      "input_tokens": 469,
+      "output_tokens": 157,
+      "replies": 1
+    },
+    "b-ent-001": {
+      "cost_usd": 0.015116,
+      "input_tokens": 559,
+      "output_tokens": 644,
+      "replies": 1
+    },
+    "b-ent-002": {
+      "cost_usd": 0.010672,
+      "input_tokens": 518,
+      "output_tokens": 430,
+      "replies": 1
+    },
+    "b-ent-003": {
+      "cost_usd": 0.007696,
+      "input_tokens": 444,
+      "output_tokens": 296,
+      "replies": 1
+    },
+    "b-ent-004": {
+      "cost_usd": 0.0252,
+      "input_tokens": 350,
+      "output_tokens": 1190,
+      "replies": 1
+    },
+    "b-ent-005": {
+      "cost_usd": 0.003328,
+      "input_tokens": 367,
+      "output_tokens": 93,
+      "replies": 1
+    },
+    "b-gi-001": {
+      "cost_usd": 0.005164,
+      "input_tokens": 466,
+      "output_tokens": 165,
+      "replies": 1
+    },
+    "b-gi-002": {
+      "cost_usd": 0.015772,
+      "input_tokens": 418,
+      "output_tokens": 705,
+      "replies": 1
+    },
+    "b-gi-003": {
+      "cost_usd": 0.007272,
+      "input_tokens": 388,
+      "output_tokens": 286,
+      "replies": 1
+    },
+    "b-gi-004": {
+      "cost_usd": 0.006284,
+      "input_tokens": 346,
+      "output_tokens": 245,
+      "replies": 1
+    },
+    "b-gi-005": {
+      "cost_usd": 0.006272,
+      "input_tokens": 438,
+      "output_tokens": 226,
+      "replies": 1
+    },
+    "b-ophtho-001": {
+      "cost_usd": 0.016124,
+      "input_tokens": 526,
+      "output_tokens": 701,
+      "replies": 1
+    },
+    "b-ophtho-002": {
+      "cost_usd": 0.017696,
+      "input_tokens": 459,
+      "output_tokens": 793,
+      "replies": 1
+    },
+    "b-ophtho-003": {
+      "cost_usd": 0.007216,
+      "input_tokens": 469,
+      "output_tokens": 267,
+      "replies": 1
+    },
+    "b-ophtho-004": {
+      "cost_usd": 0.013764,
+      "input_tokens": 386,
+      "output_tokens": 611,
+      "replies": 1
+    },
+    "b-ophtho-005": {
+      "cost_usd": 0.011576,
+      "input_tokens": 389,
+      "output_tokens": 501,
+      "replies": 1
+    },
+    "b-ortho-001": {
+      "cost_usd": 0.006744,
+      "input_tokens": 411,
+      "output_tokens": 255,
+      "replies": 1
+    },
+    "b-ortho-002": {
+      "cost_usd": 0.013544,
+      "input_tokens": 426,
+      "output_tokens": 592,
+      "replies": 1
+    },
+    "b-ortho-003": {
+      "cost_usd": 0.01782,
+      "input_tokens": 480,
+      "output_tokens": 795,
+      "replies": 1
+    },
+    "b-ortho-004": {
+      "cost_usd": 0.006844,
+      "input_tokens": 456,
+      "output_tokens": 251,
+      "replies": 1
+    },
+    "b-ortho-005": {
+      "cost_usd": 0.01382,
+      "input_tokens": 430,
+      "output_tokens": 605,
+      "replies": 1
+    }
+  },
+  "per_item_cost_usd": {
+    "max": 0.0252,
+    "mean": 0.011575040000000002,
+    "min": 0.003328,
+    "total": 0.289376
+  },
+  "replies": 25,
+  "run": "p612-b-plain-opus-5-5",
+  "settings": {
+    "api_version": "2023-06-01",
+    "effort": "medium",
+    "endpoint": "https://api.anthropic.com/v1/messages",
+    "key_env": "ANTHROPIC_API_KEY",
+    "max_tokens": 16000,
+    "retry_statuses": [
+      429,
+      500,
+      502,
+      503,
+      504,
+      529
+    ],
+    "retry_waits_seconds": [
+      5,
+      15,
+      45
+    ],
+    "stream": false,
+    "system_prompt": null,
+    "temperature": null,
+    "timeout_seconds": 300
+  },
+  "spend": {
+    "ledger": "runs/spend/p612.jsonl",
+    "max_usd": 2.0,
+    "price_in_usd_per_mtok": 4.0,
+    "price_out_usd_per_mtok": 20.0
+  },
+  "stop_reasons": {
+    "end_turn": 25
+  },
+  "thinking_tokens": {
+    "replies_with_field": 25,
+    "total": 7623
+  }
+}

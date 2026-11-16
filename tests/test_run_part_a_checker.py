@@ -459,6 +459,19 @@ class ScoreTests(Base):
         s = pac.score_run(self.out, checker_data=DATA, root=self.root)
         self.assertIsNone(s["first_matches_source"])
 
+    def test_score_with_source_folder(self):
+        # the source run read from another folder than run.json's source_run
+        import shutil
+        self.go()
+        before = pac.score_run(self.out, checker_data=DATA, root=self.root)
+        moved = self.root / "elsewhere" / "src"
+        shutil.move(str(self.src), str(moved))
+        with self.assertRaises(ValueError):
+            pac.score_run(self.out, checker_data=DATA, root=self.root)
+        after = pac.score_run(self.out, checker_data=DATA, root=self.root, source_dir=moved)
+        self.assertEqual(after, before)
+        self.assertEqual(after["source_run"], "runs/src")
+
     def test_score_refuses_incomplete_run(self):
         lpath = self.root / "spend" / "l.jsonl"
         b = MeteredFake(second_fn, out_tokens=10, max_tokens=20, messages=True)

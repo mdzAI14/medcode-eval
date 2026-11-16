@@ -1,0 +1,3726 @@
+{
+  "S0_runs": [
+    {
+      "backend": "remote",
+      "effort": "medium",
+      "items_answered": 151,
+      "model": "claude-opus-5-5",
+      "part": "part_a",
+      "prompt_suffix": "",
+      "reader": "Part A reader 2",
+      "run": "p62-a-lite-opus-5-5-reader2",
+      "seed": null,
+      "started": "2026-11-11",
+      "temperature": null,
+      "what": "Part A lite"
+    },
+    {
+      "backend": "ollama",
+      "effort": null,
+      "items_answered": 151,
+      "model": "qwen3:4b",
+      "part": "part_a",
+      "prompt_suffix": "/no_think",
+      "reader": "Part A reader 2",
+      "run": "lite-nothink-qwen3-4b-reader2",
+      "seed": 20261001,
+      "started": "2026-11-11",
+      "temperature": 0,
+      "what": "Part A lite"
+    },
+    {
+      "backend": "remote",
+      "effort": "medium",
+      "items_answered": 462,
+      "model": "claude-opus-5-5",
+      "part": "part_a",
+      "prompt_suffix": "",
+      "reader": "Part A reader 2",
+      "run": "p65-a-changes-opus-5-5",
+      "seed": null,
+      "started": "2026-11-11",
+      "temperature": null,
+      "what": "Part A changes"
+    },
+    {
+      "backend": "ollama",
+      "effort": null,
+      "items_answered": 462,
+      "model": "qwen3:4b",
+      "part": "part_a",
+      "prompt_suffix": "/no_think",
+      "reader": "Part A reader 2",
+      "run": "changes-nothink-qwen3-4b-reader2",
+      "seed": 20261001,
+      "started": "2026-11-11",
+      "temperature": 0,
+      "what": "Part A changes"
+    },
+    {
+      "backend": "remote",
+      "effort": "medium",
+      "items_answered": 188,
+      "model": "claude-opus-5-5",
+      "part": "part_a",
+      "prompt_suffix": "",
+      "reader": "Part A reader 2",
+      "run": "p615-a-d2c-checker-opus-5-5",
+      "seed": null,
+      "started": "2026-11-16",
+      "temperature": null,
+      "what": "Part A changes, description-to-code with checker"
+    },
+    {
+      "backend": "remote",
+      "effort": "medium",
+      "items_answered": 25,
+      "model": "claude-opus-5-5",
+      "part": "part_b",
+      "prompt_suffix": "",
+      "reader": "Part B JSON list",
+      "run": "p612-b-plain-opus-5-5",
+      "seed": null,
+      "started": "2026-11-16",
+      "temperature": null,
+      "what": "Part B plain"
+    },
+    {
+      "backend": "ollama",
+      "effort": null,
+      "items_answered": 25,
+      "model": "qwen3:4b",
+      "part": "part_b",
+      "prompt_suffix": "/no_think",
+      "reader": "Part B JSON list",
+      "run": "p613-b-plain-qwen3-4b",
+      "seed": 20261001,
+      "started": "2026-11-16",
+      "temperature": 0,
+      "what": "Part B plain"
+    },
+    {
+      "backend": "remote",
+      "effort": "medium",
+      "items_answered": 25,
+      "model": "claude-opus-5-5",
+      "part": "part_b",
+      "prompt_suffix": "",
+      "reader": "Part B JSON list",
+      "run": "p612-b-checker-opus-5-5",
+      "seed": null,
+      "started": "2026-11-16",
+      "temperature": null,
+      "what": "Part B with checker"
+    },
+    {
+      "backend": "ollama",
+      "effort": null,
+      "items_answered": 25,
+      "model": "qwen3:4b",
+      "part": "part_b",
+      "prompt_suffix": "/no_think",
+      "reader": "Part B JSON list",
+      "run": "p613-b-checker-qwen3-4b",
+      "seed": 20261001,
+      "started": "2026-11-16",
+      "temperature": 0,
+      "what": "Part B with checker"
+    }
+  ],
+  "S1_part_a_lite": [
+    {
+      "by_type": {
+        "code_to_description": {
+          "accuracy": 1.0,
+          "correct": 50,
+          "invalid": 0,
+          "missing": 0,
+          "n": 50
+        },
+        "description_to_code": {
+          "accuracy": 1.0,
+          "correct": 50,
+          "invalid": 0,
+          "missing": 0,
+          "n": 50
+        },
+        "status": {
+          "accuracy": 0.9215686274509803,
+          "correct": 47,
+          "invalid": 0,
+          "missing": 0,
+          "n": 51
+        }
+      },
+      "model": "claude-opus-5-5",
+      "overall": {
+        "accuracy": 0.9735099337748344,
+        "correct": 147,
+        "invalid": 0,
+        "missing": 0,
+        "n": 151
+      },
+      "reader": 2,
+      "run": "p62-a-lite-opus-5-5-reader2",
+      "status_table": {
+        "billable": {
+          "billable": 16,
+          "header": 0,
+          "invalid": 0,
+          "missing": 0,
+          "not_a_code": 1
+        },
+        "header": {
+          "billable": 0,
+          "header": 17,
+          "invalid": 0,
+          "missing": 0,
+          "not_a_code": 0
+        },
+        "not_a_code": {
+          "billable": 1,
+          "header": 2,
+          "invalid": 0,
+          "missing": 0,
+          "not_a_code": 14
+        }
+      }
+    },
+    {
+      "by_type": {
+        "code_to_description": {
+          "accuracy": 0.42,
+          "correct": 21,
+          "invalid": 0,
+          "missing": 0,
+          "n": 50
+        },
+        "description_to_code": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "invalid": 2,
+          "missing": 0,
+          "n": 50
+        },
+        "status": {
+          "accuracy": 0.39215686274509803,
+          "correct": 20,
+          "invalid": 0,
+          "missing": 0,
+          "n": 51
+        }
+      },
+      "model": "qwen3:4b",
+      "overall": {
+        "accuracy": 0.271523178807947,
+        "correct": 41,
+        "invalid": 2,
+        "missing": 0,
+        "n": 151
+      },
+      "reader": 2,
+      "run": "lite-nothink-qwen3-4b-reader2",
+      "status_table": {
+        "billable": {
+          "billable": 3,
+          "header": 1,
+          "invalid": 0,
+          "missing": 0,
+          "not_a_code": 13
+        },
+        "header": {
+          "billable": 5,
+          "header": 0,
+          "invalid": 0,
+          "missing": 0,
+          "not_a_code": 12
+        },
+        "not_a_code": {
+          "billable": 0,
+          "header": 0,
+          "invalid": 0,
+          "missing": 0,
+          "not_a_code": 17
+        }
+      }
+    }
+  ],
+  "S2_part_a_changes": [
+    {
+      "by_change": {
+        "added_billable": {
+          "accuracy": 0.24338624338624337,
+          "correct": 92,
+          "invalid": 74,
+          "missing": 0,
+          "n": 378
+        },
+        "added_header": {
+          "accuracy": 0.125,
+          "correct": 6,
+          "invalid": 0,
+          "missing": 0,
+          "n": 48
+        },
+        "billable_to_header": {
+          "accuracy": 0.06666666666666667,
+          "correct": 1,
+          "invalid": 0,
+          "missing": 0,
+          "n": 15
+        },
+        "removed": {
+          "accuracy": 0.047619047619047616,
+          "correct": 1,
+          "invalid": 0,
+          "missing": 0,
+          "n": 21
+        }
+      },
+      "by_type": {
+        "description_to_code": {
+          "accuracy": 0.22872340425531915,
+          "correct": 43,
+          "invalid": 74,
+          "missing": 0,
+          "n": 188
+        },
+        "status": {
+          "accuracy": 0.20802919708029197,
+          "correct": 57,
+          "invalid": 0,
+          "missing": 0,
+          "n": 274
+        }
+      },
+      "description_to_code": {
+        "correct": 43,
+        "missing": 0,
+        "n": 188,
+        "no_single_code": 74,
+        "pattern_refusal_opening": 71,
+        "wrong_code": 71
+      },
+      "model": "claude-opus-5-5",
+      "overall": {
+        "accuracy": 0.21645021645021645,
+        "correct": 100,
+        "invalid": 74,
+        "missing": 0,
+        "n": 462
+      },
+      "reader": 2,
+      "run": "p65-a-changes-opus-5-5",
+      "status_by_change": {
+        "added_billable": {
+          "correct": 49,
+          "n": 190
+        },
+        "added_header": {
+          "correct": 6,
+          "n": 48
+        },
+        "billable_to_header": {
+          "correct": 1,
+          "n": 15
+        },
+        "removed": {
+          "correct": 1,
+          "n": 21
+        }
+      },
+      "status_table": {
+        "billable": {
+          "billable": 49,
+          "header": 1,
+          "invalid": 0,
+          "missing": 0,
+          "not_a_code": 140
+        },
+        "header": {
+          "billable": 15,
+          "header": 7,
+          "invalid": 0,
+          "missing": 0,
+          "not_a_code": 41
+        },
+        "not_a_code": {
+          "billable": 15,
+          "header": 5,
+          "invalid": 0,
+          "missing": 0,
+          "not_a_code": 1
+        }
+      }
+    },
+    {
+      "by_change": {
+        "added_billable": {
+          "accuracy": 0.013227513227513227,
+          "correct": 5,
+          "invalid": 10,
+          "missing": 0,
+          "n": 378
+        },
+        "added_header": {
+          "accuracy": 0.041666666666666664,
+          "correct": 2,
+          "invalid": 0,
+          "missing": 0,
+          "n": 48
+        },
+        "billable_to_header": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "invalid": 0,
+          "missing": 0,
+          "n": 15
+        },
+        "removed": {
+          "accuracy": 1.0,
+          "correct": 21,
+          "invalid": 0,
+          "missing": 0,
+          "n": 21
+        }
+      },
+      "by_type": {
+        "description_to_code": {
+          "accuracy": 0.0,
+          "correct": 0,
+          "invalid": 10,
+          "missing": 0,
+          "n": 188
+        },
+        "status": {
+          "accuracy": 0.10218978102189781,
+          "correct": 28,
+          "invalid": 0,
+          "missing": 0,
+          "n": 274
+        }
+      },
+      "description_to_code": {
+        "correct": 0,
+        "missing": 0,
+        "n": 188,
+        "no_single_code": 10,
+        "pattern_refusal_opening": 0,
+        "wrong_code": 178
+      },
+      "model": "qwen3:4b",
+      "overall": {
+        "accuracy": 0.06060606060606061,
+        "correct": 28,
+        "invalid": 10,
+        "missing": 0,
+        "n": 462
+      },
+      "reader": 2,
+      "run": "changes-nothink-qwen3-4b-reader2",
+      "status_by_change": {
+        "added_billable": {
+          "correct": 5,
+          "n": 190
+        },
+        "added_header": {
+          "correct": 2,
+          "n": 48
+        },
+        "billable_to_header": {
+          "correct": 0,
+          "n": 15
+        },
+        "removed": {
+          "correct": 21,
+          "n": 21
+        }
+      },
+      "status_table": {
+        "billable": {
+          "billable": 5,
+          "header": 1,
+          "invalid": 0,
+          "missing": 0,
+          "not_a_code": 184
+        },
+        "header": {
+          "billable": 3,
+          "header": 2,
+          "invalid": 0,
+          "missing": 0,
+          "not_a_code": 58
+        },
+        "not_a_code": {
+          "billable": 0,
+          "header": 0,
+          "invalid": 0,
+          "missing": 0,
+          "not_a_code": 21
+        }
+      }
+    }
+  ],
+  "S3_checker_on_part_a_answers": [
+    {
+      "answered": 50,
+      "correct": 50,
+      "correct_with_error_finding": [
+        {
+          "code": "H62.8X1",
+          "id": "d2c-0379",
+          "rules": [
+            "manifestation_first"
+          ]
+        }
+      ],
+      "invalid": 0,
+      "model": "claude-opus-5-5",
+      "run": "p62-a-lite-opus-5-5-reader2",
+      "wrong": 0,
+      "wrong_by_class": {
+        "header_not_billable": 0,
+        "no_error": 0,
+        "not_in_code_set": 0,
+        "other_error": 0
+      }
+    },
+    {
+      "answered": 50,
+      "correct": 0,
+      "correct_with_error_finding": [],
+      "invalid": 2,
+      "model": "qwen3:4b",
+      "run": "lite-nothink-qwen3-4b-reader2",
+      "wrong": 48,
+      "wrong_by_class": {
+        "header_not_billable": 10,
+        "no_error": 12,
+        "not_in_code_set": 26,
+        "other_error": 0
+      }
+    },
+    {
+      "answered": 188,
+      "correct": 43,
+      "correct_with_error_finding": [],
+      "invalid": 74,
+      "model": "claude-opus-5-5",
+      "run": "p65-a-changes-opus-5-5",
+      "wrong": 71,
+      "wrong_by_class": {
+        "header_not_billable": 10,
+        "no_error": 11,
+        "not_in_code_set": 50,
+        "other_error": 0
+      }
+    },
+    {
+      "answered": 188,
+      "correct": 0,
+      "correct_with_error_finding": [],
+      "invalid": 10,
+      "model": "qwen3:4b",
+      "run": "changes-nothink-qwen3-4b-reader2",
+      "wrong": 178,
+      "wrong_by_class": {
+        "header_not_billable": 33,
+        "no_error": 40,
+        "not_in_code_set": 105,
+        "other_error": 0
+      }
+    }
+  ],
+  "S4_part_a_checker_condition": [
+    {
+      "final": {
+        "correct": 65,
+        "invalid": 90,
+        "missing": 0,
+        "n": 188,
+        "wrong": 33
+      },
+      "final_is_listed_header_code": {
+        "correct": 8,
+        "n": 9
+      },
+      "final_is_longest_stored_prefix": {
+        "correct": 0,
+        "n": 8
+      },
+      "first": {
+        "correct": 43,
+        "invalid": 74,
+        "missing": 0,
+        "n": 188,
+        "wrong": 71
+      },
+      "first_matches_source": true,
+      "model": "claude-opus-5-5",
+      "run": "p615-a-d2c-checker-opus-5-5",
+      "second_turn": {
+        "by_rule": {
+          "header_not_billable": {
+            "final_correct": 8,
+            "final_invalid": 1,
+            "final_same_as_first": 0,
+            "final_wrong_no_rule": 1,
+            "final_wrong_still_rule": 0,
+            "n": 10
+          },
+          "not_in_code_set": {
+            "final_correct": 14,
+            "final_invalid": 15,
+            "final_same_as_first": 0,
+            "final_wrong_no_rule": 16,
+            "final_wrong_still_rule": 5,
+            "n": 50
+          }
+        },
+        "total": {
+          "final_correct": 22,
+          "final_invalid": 16,
+          "final_same_as_first": 0,
+          "final_wrong_no_rule": 17,
+          "final_wrong_still_rule": 5,
+          "n": 60
+        }
+      },
+      "sensitivity_lenient_reading": {
+        "final": {
+          "correct_if_counted": 66,
+          "invalid": 90,
+          "token_equals_expected": 1,
+          "with_token": 41
+        },
+        "first": {
+          "correct_if_counted": 44,
+          "invalid": 74,
+          "token_equals_expected": 1,
+          "with_token": 25
+        }
+      },
+      "source_run": "p65-a-changes-opus-5-5",
+      "wrong_with_neither_rule": {
+        "final": 28,
+        "first": 11
+      }
+    }
+  ],
+  "S5_part_b": [
+    {
+      "condition": "plain",
+      "final": {
+        "by_specialty": {
+          "ed": {
+            "cases_with_error_finding": 0,
+            "correct": 10,
+            "exact": 5,
+            "extra": 0,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 0,
+              "review": 0
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 0,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 1,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "ent": {
+            "cases_with_error_finding": 1,
+            "correct": 6,
+            "exact": 4,
+            "extra": 1,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 1,
+              "review": 0
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 1,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.8571428571428571,
+            "recall": 0.8571428571428571
+          },
+          "gi": {
+            "cases_with_error_finding": 0,
+            "correct": 8,
+            "exact": 4,
+            "extra": 2,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 0,
+              "review": 2
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 0,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.8,
+            "recall": 1.0
+          },
+          "ophtho": {
+            "cases_with_error_finding": 1,
+            "correct": 9,
+            "exact": 4,
+            "extra": 1,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 1,
+              "review": 0
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 1,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 2,
+            "precision": 0.9,
+            "recall": 0.9
+          },
+          "ortho": {
+            "cases_with_error_finding": 1,
+            "correct": 7,
+            "exact": 4,
+            "extra": 1,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 1,
+              "review": 0
+            },
+            "first_listed": 4,
+            "invalid": 0,
+            "missing": 1,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.875,
+            "recall": 0.875
+          }
+        },
+        "by_target_trap": {
+          "combination": {
+            "cases_with_error_finding": 0,
+            "correct": 8,
+            "exact": 5,
+            "extra": 0,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 0,
+              "review": 0
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 0,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "excludes1": {
+            "cases_with_error_finding": 0,
+            "correct": 6,
+            "exact": 4,
+            "extra": 2,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 0,
+              "review": 2
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 0,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.75,
+            "recall": 1.0
+          },
+          "laterality": {
+            "cases_with_error_finding": 0,
+            "correct": 7,
+            "exact": 5,
+            "extra": 0,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 0,
+              "review": 0
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 0,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 1,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "sequencing": {
+            "cases_with_error_finding": 1,
+            "correct": 10,
+            "exact": 4,
+            "extra": 1,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 1,
+              "review": 0
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 1,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.9090909090909091,
+            "recall": 0.9090909090909091
+          },
+          "seventh_character": {
+            "cases_with_error_finding": 2,
+            "correct": 9,
+            "exact": 3,
+            "extra": 2,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 2,
+              "review": 0
+            },
+            "first_listed": 4,
+            "invalid": 0,
+            "missing": 2,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 2,
+            "precision": 0.8181818181818182,
+            "recall": 0.8181818181818182
+          }
+        },
+        "overall": {
+          "cases_with_error_finding": 3,
+          "correct": 40,
+          "exact": 21,
+          "extra": 5,
+          "fewer_than_10": false,
+          "findings": {
+            "error": 3,
+            "review": 2
+          },
+          "first_listed": 24,
+          "invalid": 0,
+          "missing": 3,
+          "n": 25,
+          "no_answer": 0,
+          "optional_given": 3,
+          "precision": 0.8888888888888888,
+          "recall": 0.9302325581395349
+        }
+      },
+      "first": {
+        "by_specialty": {
+          "ed": {
+            "cases_with_error_finding": 0,
+            "correct": 10,
+            "exact": 5,
+            "extra": 0,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 0,
+              "review": 0
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 0,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 1,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "ent": {
+            "cases_with_error_finding": 1,
+            "correct": 6,
+            "exact": 4,
+            "extra": 1,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 1,
+              "review": 0
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 1,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.8571428571428571,
+            "recall": 0.8571428571428571
+          },
+          "gi": {
+            "cases_with_error_finding": 0,
+            "correct": 8,
+            "exact": 4,
+            "extra": 2,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 0,
+              "review": 2
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 0,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.8,
+            "recall": 1.0
+          },
+          "ophtho": {
+            "cases_with_error_finding": 1,
+            "correct": 9,
+            "exact": 4,
+            "extra": 1,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 1,
+              "review": 0
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 1,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 2,
+            "precision": 0.9,
+            "recall": 0.9
+          },
+          "ortho": {
+            "cases_with_error_finding": 1,
+            "correct": 7,
+            "exact": 4,
+            "extra": 1,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 1,
+              "review": 0
+            },
+            "first_listed": 4,
+            "invalid": 0,
+            "missing": 1,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.875,
+            "recall": 0.875
+          }
+        },
+        "by_target_trap": {
+          "combination": {
+            "cases_with_error_finding": 0,
+            "correct": 8,
+            "exact": 5,
+            "extra": 0,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 0,
+              "review": 0
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 0,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "excludes1": {
+            "cases_with_error_finding": 0,
+            "correct": 6,
+            "exact": 4,
+            "extra": 2,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 0,
+              "review": 2
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 0,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.75,
+            "recall": 1.0
+          },
+          "laterality": {
+            "cases_with_error_finding": 0,
+            "correct": 7,
+            "exact": 5,
+            "extra": 0,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 0,
+              "review": 0
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 0,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 1,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "sequencing": {
+            "cases_with_error_finding": 1,
+            "correct": 10,
+            "exact": 4,
+            "extra": 1,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 1,
+              "review": 0
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 1,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.9090909090909091,
+            "recall": 0.9090909090909091
+          },
+          "seventh_character": {
+            "cases_with_error_finding": 2,
+            "correct": 9,
+            "exact": 3,
+            "extra": 2,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 2,
+              "review": 0
+            },
+            "first_listed": 4,
+            "invalid": 0,
+            "missing": 2,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 2,
+            "precision": 0.8181818181818182,
+            "recall": 0.8181818181818182
+          }
+        },
+        "overall": {
+          "cases_with_error_finding": 3,
+          "correct": 40,
+          "exact": 21,
+          "extra": 5,
+          "fewer_than_10": false,
+          "findings": {
+            "error": 3,
+            "review": 2
+          },
+          "first_listed": 24,
+          "invalid": 0,
+          "missing": 3,
+          "n": 25,
+          "no_answer": 0,
+          "optional_given": 3,
+          "precision": 0.8888888888888888,
+          "recall": 0.9302325581395349
+        }
+      },
+      "gold_sha256": "3ba94808da8b7970192a1c4f391aa106855125fb7e2abcede50716039abed633",
+      "gold_sha256_equals_gold_files": true,
+      "model": "claude-opus-5-5",
+      "n_cases": 25,
+      "run": "p612-b-plain-opus-5-5",
+      "second_turns": 0
+    },
+    {
+      "condition": "plain",
+      "final": {
+        "by_specialty": {
+          "ed": {
+            "cases_with_error_finding": 5,
+            "correct": 1,
+            "exact": 0,
+            "extra": 10,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 7,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 9,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.09090909090909091,
+            "recall": 0.1
+          },
+          "ent": {
+            "cases_with_error_finding": 4,
+            "correct": 0,
+            "exact": 0,
+            "extra": 89,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 87,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 7,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "gi": {
+            "cases_with_error_finding": 4,
+            "correct": 0,
+            "exact": 0,
+            "extra": 9,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 5,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 8,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "ophtho": {
+            "cases_with_error_finding": 5,
+            "correct": 0,
+            "exact": 0,
+            "extra": 11,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 10,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 10,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "ortho": {
+            "cases_with_error_finding": 4,
+            "correct": 0,
+            "exact": 0,
+            "extra": 8,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 7,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 1,
+            "missing": 8,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        },
+        "by_target_trap": {
+          "combination": {
+            "cases_with_error_finding": 5,
+            "correct": 0,
+            "exact": 0,
+            "extra": 11,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 10,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 8,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "excludes1": {
+            "cases_with_error_finding": 4,
+            "correct": 0,
+            "exact": 0,
+            "extra": 10,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 7,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 6,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "laterality": {
+            "cases_with_error_finding": 4,
+            "correct": 1,
+            "exact": 0,
+            "extra": 6,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 6,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 1,
+            "missing": 6,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.14285714285714285,
+            "recall": 0.14285714285714285
+          },
+          "sequencing": {
+            "cases_with_error_finding": 5,
+            "correct": 0,
+            "exact": 0,
+            "extra": 90,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 87,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 11,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "seventh_character": {
+            "cases_with_error_finding": 4,
+            "correct": 0,
+            "exact": 0,
+            "extra": 10,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 6,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 11,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        },
+        "overall": {
+          "cases_with_error_finding": 22,
+          "correct": 1,
+          "exact": 0,
+          "extra": 127,
+          "fewer_than_10": false,
+          "findings": {
+            "error": 116,
+            "review": 0
+          },
+          "first_listed": 0,
+          "invalid": 1,
+          "missing": 42,
+          "n": 25,
+          "no_answer": 0,
+          "optional_given": 0,
+          "precision": 0.0078125,
+          "recall": 0.023255813953488372
+        }
+      },
+      "first": {
+        "by_specialty": {
+          "ed": {
+            "cases_with_error_finding": 5,
+            "correct": 1,
+            "exact": 0,
+            "extra": 10,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 7,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 9,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.09090909090909091,
+            "recall": 0.1
+          },
+          "ent": {
+            "cases_with_error_finding": 4,
+            "correct": 0,
+            "exact": 0,
+            "extra": 89,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 87,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 7,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "gi": {
+            "cases_with_error_finding": 4,
+            "correct": 0,
+            "exact": 0,
+            "extra": 9,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 5,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 8,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "ophtho": {
+            "cases_with_error_finding": 5,
+            "correct": 0,
+            "exact": 0,
+            "extra": 11,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 10,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 10,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "ortho": {
+            "cases_with_error_finding": 4,
+            "correct": 0,
+            "exact": 0,
+            "extra": 8,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 7,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 1,
+            "missing": 8,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        },
+        "by_target_trap": {
+          "combination": {
+            "cases_with_error_finding": 5,
+            "correct": 0,
+            "exact": 0,
+            "extra": 11,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 10,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 8,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "excludes1": {
+            "cases_with_error_finding": 4,
+            "correct": 0,
+            "exact": 0,
+            "extra": 10,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 7,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 6,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "laterality": {
+            "cases_with_error_finding": 4,
+            "correct": 1,
+            "exact": 0,
+            "extra": 6,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 6,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 1,
+            "missing": 6,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.14285714285714285,
+            "recall": 0.14285714285714285
+          },
+          "sequencing": {
+            "cases_with_error_finding": 5,
+            "correct": 0,
+            "exact": 0,
+            "extra": 90,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 87,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 11,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "seventh_character": {
+            "cases_with_error_finding": 4,
+            "correct": 0,
+            "exact": 0,
+            "extra": 10,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 6,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 11,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        },
+        "overall": {
+          "cases_with_error_finding": 22,
+          "correct": 1,
+          "exact": 0,
+          "extra": 127,
+          "fewer_than_10": false,
+          "findings": {
+            "error": 116,
+            "review": 0
+          },
+          "first_listed": 0,
+          "invalid": 1,
+          "missing": 42,
+          "n": 25,
+          "no_answer": 0,
+          "optional_given": 0,
+          "precision": 0.0078125,
+          "recall": 0.023255813953488372
+        }
+      },
+      "gold_sha256": "3ba94808da8b7970192a1c4f391aa106855125fb7e2abcede50716039abed633",
+      "gold_sha256_equals_gold_files": true,
+      "model": "qwen3:4b",
+      "n_cases": 25,
+      "run": "p613-b-plain-qwen3-4b",
+      "second_turns": 0
+    },
+    {
+      "condition": "with_checker",
+      "final": {
+        "by_specialty": {
+          "ed": {
+            "cases_with_error_finding": 0,
+            "correct": 10,
+            "exact": 5,
+            "extra": 0,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 0,
+              "review": 0
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 0,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 1,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "ent": {
+            "cases_with_error_finding": 0,
+            "correct": 7,
+            "exact": 5,
+            "extra": 0,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 0,
+              "review": 0
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 0,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "gi": {
+            "cases_with_error_finding": 0,
+            "correct": 8,
+            "exact": 4,
+            "extra": 2,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 0,
+              "review": 2
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 0,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.8,
+            "recall": 1.0
+          },
+          "ophtho": {
+            "cases_with_error_finding": 0,
+            "correct": 9,
+            "exact": 4,
+            "extra": 1,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 0,
+              "review": 0
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 1,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 2,
+            "precision": 0.9,
+            "recall": 0.9
+          },
+          "ortho": {
+            "cases_with_error_finding": 0,
+            "correct": 8,
+            "exact": 5,
+            "extra": 0,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 0,
+              "review": 0
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 0,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 1.0,
+            "recall": 1.0
+          }
+        },
+        "by_target_trap": {
+          "combination": {
+            "cases_with_error_finding": 0,
+            "correct": 8,
+            "exact": 5,
+            "extra": 0,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 0,
+              "review": 0
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 0,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "excludes1": {
+            "cases_with_error_finding": 0,
+            "correct": 6,
+            "exact": 4,
+            "extra": 2,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 0,
+              "review": 2
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 0,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.75,
+            "recall": 1.0
+          },
+          "laterality": {
+            "cases_with_error_finding": 0,
+            "correct": 7,
+            "exact": 5,
+            "extra": 0,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 0,
+              "review": 0
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 0,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 1,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "sequencing": {
+            "cases_with_error_finding": 0,
+            "correct": 10,
+            "exact": 4,
+            "extra": 1,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 0,
+              "review": 0
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 1,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.9090909090909091,
+            "recall": 0.9090909090909091
+          },
+          "seventh_character": {
+            "cases_with_error_finding": 0,
+            "correct": 11,
+            "exact": 5,
+            "extra": 0,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 0,
+              "review": 0
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 0,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 2,
+            "precision": 1.0,
+            "recall": 1.0
+          }
+        },
+        "overall": {
+          "cases_with_error_finding": 0,
+          "correct": 42,
+          "exact": 23,
+          "extra": 3,
+          "fewer_than_10": false,
+          "findings": {
+            "error": 0,
+            "review": 2
+          },
+          "first_listed": 25,
+          "invalid": 0,
+          "missing": 1,
+          "n": 25,
+          "no_answer": 0,
+          "optional_given": 3,
+          "precision": 0.9333333333333333,
+          "recall": 0.9767441860465116
+        }
+      },
+      "first": {
+        "by_specialty": {
+          "ed": {
+            "cases_with_error_finding": 0,
+            "correct": 10,
+            "exact": 5,
+            "extra": 0,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 0,
+              "review": 0
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 0,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 1,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "ent": {
+            "cases_with_error_finding": 0,
+            "correct": 7,
+            "exact": 5,
+            "extra": 0,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 0,
+              "review": 0
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 0,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "gi": {
+            "cases_with_error_finding": 0,
+            "correct": 8,
+            "exact": 4,
+            "extra": 2,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 0,
+              "review": 2
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 0,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.8,
+            "recall": 1.0
+          },
+          "ophtho": {
+            "cases_with_error_finding": 1,
+            "correct": 9,
+            "exact": 4,
+            "extra": 1,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 1,
+              "review": 0
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 1,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 2,
+            "precision": 0.9,
+            "recall": 0.9
+          },
+          "ortho": {
+            "cases_with_error_finding": 0,
+            "correct": 8,
+            "exact": 5,
+            "extra": 0,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 0,
+              "review": 0
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 0,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 1.0,
+            "recall": 1.0
+          }
+        },
+        "by_target_trap": {
+          "combination": {
+            "cases_with_error_finding": 0,
+            "correct": 8,
+            "exact": 5,
+            "extra": 0,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 0,
+              "review": 0
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 0,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "excludes1": {
+            "cases_with_error_finding": 0,
+            "correct": 6,
+            "exact": 4,
+            "extra": 2,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 0,
+              "review": 2
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 0,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.75,
+            "recall": 1.0
+          },
+          "laterality": {
+            "cases_with_error_finding": 0,
+            "correct": 7,
+            "exact": 5,
+            "extra": 0,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 0,
+              "review": 0
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 0,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 1,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "sequencing": {
+            "cases_with_error_finding": 1,
+            "correct": 10,
+            "exact": 4,
+            "extra": 1,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 1,
+              "review": 0
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 1,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.9090909090909091,
+            "recall": 0.9090909090909091
+          },
+          "seventh_character": {
+            "cases_with_error_finding": 0,
+            "correct": 11,
+            "exact": 5,
+            "extra": 0,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 0,
+              "review": 0
+            },
+            "first_listed": 5,
+            "invalid": 0,
+            "missing": 0,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 2,
+            "precision": 1.0,
+            "recall": 1.0
+          }
+        },
+        "overall": {
+          "cases_with_error_finding": 1,
+          "correct": 42,
+          "exact": 23,
+          "extra": 3,
+          "fewer_than_10": false,
+          "findings": {
+            "error": 1,
+            "review": 2
+          },
+          "first_listed": 25,
+          "invalid": 0,
+          "missing": 1,
+          "n": 25,
+          "no_answer": 0,
+          "optional_given": 3,
+          "precision": 0.9333333333333333,
+          "recall": 0.9767441860465116
+        }
+      },
+      "gold_sha256": "3ba94808da8b7970192a1c4f391aa106855125fb7e2abcede50716039abed633",
+      "gold_sha256_equals_gold_files": true,
+      "model": "claude-opus-5-5",
+      "n_cases": 25,
+      "run": "p612-b-checker-opus-5-5",
+      "second_turns": 2
+    },
+    {
+      "condition": "with_checker",
+      "final": {
+        "by_specialty": {
+          "ed": {
+            "cases_with_error_finding": 4,
+            "correct": 1,
+            "exact": 0,
+            "extra": 10,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 6,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 9,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.09090909090909091,
+            "recall": 0.1
+          },
+          "ent": {
+            "cases_with_error_finding": 3,
+            "correct": 0,
+            "exact": 0,
+            "extra": 8,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 4,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 1,
+            "missing": 7,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "gi": {
+            "cases_with_error_finding": 4,
+            "correct": 0,
+            "exact": 0,
+            "extra": 9,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 5,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 8,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "ophtho": {
+            "cases_with_error_finding": 3,
+            "correct": 0,
+            "exact": 0,
+            "extra": 11,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 6,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 10,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "ortho": {
+            "cases_with_error_finding": 3,
+            "correct": 0,
+            "exact": 0,
+            "extra": 8,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 5,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 1,
+            "missing": 8,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        },
+        "by_target_trap": {
+          "combination": {
+            "cases_with_error_finding": 5,
+            "correct": 0,
+            "exact": 0,
+            "extra": 11,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 9,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 8,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "excludes1": {
+            "cases_with_error_finding": 4,
+            "correct": 0,
+            "exact": 0,
+            "extra": 10,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 6,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 6,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "laterality": {
+            "cases_with_error_finding": 4,
+            "correct": 1,
+            "exact": 0,
+            "extra": 6,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 5,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 1,
+            "missing": 6,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.14285714285714285,
+            "recall": 0.14285714285714285
+          },
+          "sequencing": {
+            "cases_with_error_finding": 2,
+            "correct": 0,
+            "exact": 0,
+            "extra": 9,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 3,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 1,
+            "missing": 11,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "seventh_character": {
+            "cases_with_error_finding": 2,
+            "correct": 0,
+            "exact": 0,
+            "extra": 10,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 3,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 11,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        },
+        "overall": {
+          "cases_with_error_finding": 17,
+          "correct": 1,
+          "exact": 0,
+          "extra": 46,
+          "fewer_than_10": false,
+          "findings": {
+            "error": 26,
+            "review": 0
+          },
+          "first_listed": 0,
+          "invalid": 2,
+          "missing": 42,
+          "n": 25,
+          "no_answer": 0,
+          "optional_given": 0,
+          "precision": 0.02127659574468085,
+          "recall": 0.023255813953488372
+        }
+      },
+      "first": {
+        "by_specialty": {
+          "ed": {
+            "cases_with_error_finding": 5,
+            "correct": 1,
+            "exact": 0,
+            "extra": 10,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 7,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 9,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.09090909090909091,
+            "recall": 0.1
+          },
+          "ent": {
+            "cases_with_error_finding": 4,
+            "correct": 0,
+            "exact": 0,
+            "extra": 89,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 87,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 7,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "gi": {
+            "cases_with_error_finding": 4,
+            "correct": 0,
+            "exact": 0,
+            "extra": 9,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 5,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 8,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "ophtho": {
+            "cases_with_error_finding": 5,
+            "correct": 0,
+            "exact": 0,
+            "extra": 11,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 10,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 10,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "ortho": {
+            "cases_with_error_finding": 4,
+            "correct": 0,
+            "exact": 0,
+            "extra": 8,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 7,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 1,
+            "missing": 8,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        },
+        "by_target_trap": {
+          "combination": {
+            "cases_with_error_finding": 5,
+            "correct": 0,
+            "exact": 0,
+            "extra": 11,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 10,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 8,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "excludes1": {
+            "cases_with_error_finding": 4,
+            "correct": 0,
+            "exact": 0,
+            "extra": 10,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 7,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 6,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "laterality": {
+            "cases_with_error_finding": 4,
+            "correct": 1,
+            "exact": 0,
+            "extra": 6,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 6,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 1,
+            "missing": 6,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.14285714285714285,
+            "recall": 0.14285714285714285
+          },
+          "sequencing": {
+            "cases_with_error_finding": 5,
+            "correct": 0,
+            "exact": 0,
+            "extra": 90,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 87,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 11,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          },
+          "seventh_character": {
+            "cases_with_error_finding": 4,
+            "correct": 0,
+            "exact": 0,
+            "extra": 10,
+            "fewer_than_10": true,
+            "findings": {
+              "error": 6,
+              "review": 0
+            },
+            "first_listed": 0,
+            "invalid": 0,
+            "missing": 11,
+            "n": 5,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.0,
+            "recall": 0.0
+          }
+        },
+        "overall": {
+          "cases_with_error_finding": 22,
+          "correct": 1,
+          "exact": 0,
+          "extra": 127,
+          "fewer_than_10": false,
+          "findings": {
+            "error": 116,
+            "review": 0
+          },
+          "first_listed": 0,
+          "invalid": 1,
+          "missing": 42,
+          "n": 25,
+          "no_answer": 0,
+          "optional_given": 0,
+          "precision": 0.0078125,
+          "recall": 0.023255813953488372
+        }
+      },
+      "gold_sha256": "3ba94808da8b7970192a1c4f391aa106855125fb7e2abcede50716039abed633",
+      "gold_sha256_equals_gold_files": true,
+      "model": "qwen3:4b",
+      "n_cases": 25,
+      "run": "p613-b-checker-qwen3-4b",
+      "second_turns": 22
+    }
+  ],
+  "S6_part_b_cases": [
+    {
+      "cases": [
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "S52.501A W11.XXXA Y92.014 Y93.H9 Y99.8",
+          "first": "S52.501A W11.XXXA Y92.014 Y93.H9 Y99.8",
+          "gold": "S52.501A W11.XXXA Y92.014 Y93.H9",
+          "id": "b-ed-001",
+          "optional": "Y99.8",
+          "optional_given_final": 1,
+          "optional_given_first": 1,
+          "trap": "seventh_character"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "A41.9 N39.0",
+          "first": "A41.9 N39.0",
+          "gold": "A41.9 N39.0",
+          "id": "b-ed-002",
+          "optional": "R41.0",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "sequencing"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "L03.115 I10",
+          "first": "L03.115 I10",
+          "gold": "L03.115 I10",
+          "id": "b-ed-003",
+          "optional": "Z79.899",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "laterality"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "N13.2",
+          "first": "N13.2",
+          "gold": "N13.2",
+          "id": "b-ed-004",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "excludes1"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "K80.00",
+          "first": "K80.00",
+          "gold": "K80.00",
+          "id": "b-ed-005",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "combination"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "A40.0 J36",
+          "first": "A40.0 J36",
+          "gold": "A40.0 J36",
+          "id": "b-ent-001",
+          "optional": "B95.0",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "sequencing"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "H66.011",
+          "first": "H66.011",
+          "gold": "H66.011",
+          "id": "b-ent-002",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "excludes1"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "J35.3",
+          "first": "J35.3",
+          "gold": "J35.3",
+          "id": "b-ent-003",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "combination"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "S01.411D V18.49XD",
+          "first": "S01.411D V18.49XD",
+          "gold": "S01.411D V18.4XXD",
+          "id": "b-ent-004",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "seventh_character"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "H90.42",
+          "first": "H90.42",
+          "gold": "H90.42",
+          "id": "b-ent-005",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "laterality"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "K25.4 K29.01 B96.81",
+          "first": "K25.4 K29.01 B96.81",
+          "gold": "K25.4",
+          "id": "b-gi-001",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "excludes1"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "K21.00",
+          "first": "K21.00",
+          "gold": "K21.00",
+          "id": "b-gi-002",
+          "optional": "R13.10",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "combination"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "E11.43 K31.84 Z79.4",
+          "first": "E11.43 K31.84 Z79.4",
+          "gold": "E11.43 K31.84 Z79.4",
+          "id": "b-gi-003",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "sequencing"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "K40.90",
+          "first": "K40.90",
+          "gold": "K40.90",
+          "id": "b-gi-004",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "laterality"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "K25.3 T39.315A",
+          "first": "K25.3 T39.315A",
+          "gold": "K25.3 T39.315A",
+          "id": "b-gi-005",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "seventh_character"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "E11.3511 E11.3292 Z79.4 Z79.84",
+          "first": "E11.3511 E11.3292 Z79.4 Z79.84",
+          "gold": "E11.3511 E11.3292 Z79.4 Z79.84",
+          "id": "b-ophtho-001",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "combination"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "H25.11 Z98.42 Z96.1",
+          "first": "H25.11 Z98.42 Z96.1",
+          "gold": "H25.11 Z96.1",
+          "id": "b-ophtho-002",
+          "optional": "Z98.42",
+          "optional_given_final": 1,
+          "optional_given_first": 1,
+          "trap": "laterality"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "H40.1112 Z83.511",
+          "first": "H40.1112 Z83.511",
+          "gold": "H40.1112",
+          "id": "b-ophtho-003",
+          "optional": "Z83.511",
+          "optional_given_final": 1,
+          "optional_given_first": 1,
+          "trap": "seventh_character"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "L71.9 H13",
+          "first": "L71.9 H13",
+          "gold": "L71.9 H10.823",
+          "id": "b-ophtho-004",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "sequencing"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "H10.811",
+          "first": "H10.811",
+          "gold": "H10.811",
+          "id": "b-ophtho-005",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "excludes1"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "M17.11",
+          "first": "M17.11",
+          "gold": "M17.11",
+          "id": "b-ortho-001",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "laterality"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "S82.611D W18.30XD",
+          "first": "S82.611D W18.30XD",
+          "gold": "S82.61XD W18.30XD",
+          "id": "b-ortho-002",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "seventh_character"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "M80.051A I10",
+          "first": "M80.051A I10",
+          "gold": "M80.051A I10",
+          "id": "b-ortho-003",
+          "optional": "Z79.899 W18.30XA Y92.009 Y93.01 Y99.8",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "excludes1"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "M51.16",
+          "first": "M51.16",
+          "gold": "M51.16",
+          "id": "b-ortho-004",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "combination"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "D66 M36.2",
+          "first": "D66 M36.2",
+          "gold": "D66 M36.2",
+          "id": "b-ortho-005",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "sequencing"
+        }
+      ],
+      "run": "p612-b-plain-opus-5-5"
+    },
+    {
+      "cases": [
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "S82.812A Y92.11",
+          "first": "S82.812A Y92.11",
+          "gold": "S52.501A W11.XXXA Y92.014 Y93.H9",
+          "id": "b-ed-001",
+          "optional": "Y99.8",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "seventh_character"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "B96.89 N39.2 R65.8",
+          "first": "B96.89 N39.2 R65.8",
+          "gold": "A41.9 N39.0",
+          "id": "b-ed-002",
+          "optional": "R41.0",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "sequencing"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "B95.81 I10",
+          "first": "B95.81 I10",
+          "gold": "L03.115 I10",
+          "id": "b-ed-003",
+          "optional": "Z79.899",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "laterality"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "N31.1 N25.2",
+          "first": "N31.1 N25.2",
+          "gold": "N13.2",
+          "id": "b-ed-004",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "excludes1"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "K86.10 K81.91",
+          "first": "K86.10 K81.91",
+          "gold": "K80.00",
+          "id": "b-ed-005",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "combination"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "R21.11 R21.12 R21.13 R21.14 R21.15 ... (81 codes)",
+          "first": "R21.11 R21.12 R21.13 R21.14 R21.15 ... (81 codes)",
+          "gold": "A40.0 J36",
+          "id": "b-ent-001",
+          "optional": "B95.0",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "sequencing"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H66.91 H66.11",
+          "first": "H66.91 H66.11",
+          "gold": "H66.011",
+          "id": "b-ent-002",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "excludes1"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "R05 J36.9",
+          "first": "R05 J36.9",
+          "gold": "J35.3",
+          "id": "b-ent-003",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "combination"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "Z85.811 W14.811XA",
+          "first": "Z85.811 W14.811XA",
+          "gold": "S01.411D V18.4XXD",
+          "id": "b-ent-004",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "seventh_character"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H91.41 Z85.7",
+          "first": "H91.41 Z85.7",
+          "gold": "H90.42",
+          "id": "b-ent-005",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "laterality"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "K25.11 K25.21",
+          "first": "K25.11 K25.21",
+          "gold": "K25.4",
+          "id": "b-gi-001",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "excludes1"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "K21.9 K52.11",
+          "first": "K21.9 K52.11",
+          "gold": "K21.00",
+          "id": "b-gi-002",
+          "optional": "R13.10",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "combination"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "K56.40 E11.9",
+          "first": "K56.40 E11.9",
+          "gold": "E11.43 K31.84 Z79.4",
+          "id": "b-gi-003",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "sequencing"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "K40.9, Y42.119",
+          "first": "K40.9, Y42.119",
+          "gold": "K40.90",
+          "id": "b-gi-004",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "laterality"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "K29.81 T36.3X1A",
+          "first": "K29.81 T36.3X1A",
+          "gold": "K25.3 T39.315A",
+          "id": "b-gi-005",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "seventh_character"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H40.11 H40.12 H40.119",
+          "first": "H40.11 H40.12 H40.119",
+          "gold": "E11.3511 E11.3292 Z79.4 Z79.84",
+          "id": "b-ophtho-001",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "combination"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H36.422 H36.421",
+          "first": "H36.422 H36.421",
+          "gold": "H25.11 Z96.1",
+          "id": "b-ophtho-002",
+          "optional": "Z98.42",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "laterality"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H40.121 Z82.0",
+          "first": "H40.121 Z82.0",
+          "gold": "H40.1112",
+          "id": "b-ophtho-003",
+          "optional": "Z83.511",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "seventh_character"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H02.11 H02.12",
+          "first": "H02.11 H02.12",
+          "gold": "L71.9 H10.823",
+          "id": "b-ophtho-004",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "sequencing"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H11.11 H11.1",
+          "first": "H11.11 H11.1",
+          "gold": "H10.811",
+          "id": "b-ophtho-005",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "excludes1"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "invalid",
+          "first": "invalid",
+          "gold": "M17.11",
+          "id": "b-ortho-001",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "laterality"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "M22.51 Y92.31",
+          "first": "M22.51 Y92.31",
+          "gold": "S82.61XD W18.30XD",
+          "id": "b-ortho-002",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "seventh_character"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "S72.219A M81.81",
+          "first": "S72.219A M81.81",
+          "gold": "M80.051A I10",
+          "id": "b-ortho-003",
+          "optional": "Z79.899 W18.30XA Y92.009 Y93.01 Y99.8",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "excludes1"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "M51.82 G70.13",
+          "first": "M51.82 G70.13",
+          "gold": "M51.16",
+          "id": "b-ortho-004",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "combination"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H61.11 D60.1",
+          "first": "H61.11 D60.1",
+          "gold": "D66 M36.2",
+          "id": "b-ortho-005",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "sequencing"
+        }
+      ],
+      "run": "p613-b-plain-qwen3-4b"
+    },
+    {
+      "cases": [
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "S52.501A W11.XXXA Y92.014 Y93.H9 Y99.8",
+          "first": "S52.501A W11.XXXA Y92.014 Y93.H9 Y99.8",
+          "gold": "S52.501A W11.XXXA Y92.014 Y93.H9",
+          "id": "b-ed-001",
+          "optional": "Y99.8",
+          "optional_given_final": 1,
+          "optional_given_first": 1,
+          "trap": "seventh_character"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "A41.9 N39.0",
+          "first": "A41.9 N39.0",
+          "gold": "A41.9 N39.0",
+          "id": "b-ed-002",
+          "optional": "R41.0",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "sequencing"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "L03.115 I10",
+          "first": "L03.115 I10",
+          "gold": "L03.115 I10",
+          "id": "b-ed-003",
+          "optional": "Z79.899",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "laterality"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "N13.2",
+          "first": "N13.2",
+          "gold": "N13.2",
+          "id": "b-ed-004",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "excludes1"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "K80.00",
+          "first": "K80.00",
+          "gold": "K80.00",
+          "id": "b-ed-005",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "combination"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "A40.0 J36",
+          "first": "A40.0 J36",
+          "gold": "A40.0 J36",
+          "id": "b-ent-001",
+          "optional": "B95.0",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "sequencing"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "H66.011",
+          "first": "H66.011",
+          "gold": "H66.011",
+          "id": "b-ent-002",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "excludes1"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "J35.3",
+          "first": "J35.3",
+          "gold": "J35.3",
+          "id": "b-ent-003",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "combination"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "S01.411D V18.4XXD",
+          "first": "S01.411D V18.4XXD",
+          "gold": "S01.411D V18.4XXD",
+          "id": "b-ent-004",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "seventh_character"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "H90.42",
+          "first": "H90.42",
+          "gold": "H90.42",
+          "id": "b-ent-005",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "laterality"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "K25.4 K29.01 B96.81",
+          "first": "K25.4 K29.01 B96.81",
+          "gold": "K25.4",
+          "id": "b-gi-001",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "excludes1"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "K21.00",
+          "first": "K21.00",
+          "gold": "K21.00",
+          "id": "b-gi-002",
+          "optional": "R13.10",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "combination"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "E11.43 K31.84 Z79.4",
+          "first": "E11.43 K31.84 Z79.4",
+          "gold": "E11.43 K31.84 Z79.4",
+          "id": "b-gi-003",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "sequencing"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "K40.90",
+          "first": "K40.90",
+          "gold": "K40.90",
+          "id": "b-gi-004",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "laterality"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "K25.3 T39.315A",
+          "first": "K25.3 T39.315A",
+          "gold": "K25.3 T39.315A",
+          "id": "b-gi-005",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "seventh_character"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "E11.3511 E11.3292 Z79.4 Z79.84",
+          "first": "E11.3511 E11.3292 Z79.4 Z79.84",
+          "gold": "E11.3511 E11.3292 Z79.4 Z79.84",
+          "id": "b-ophtho-001",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "combination"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "H25.11 Z96.1 Z98.42",
+          "first": "H25.11 Z96.1 Z98.42",
+          "gold": "H25.11 Z96.1",
+          "id": "b-ophtho-002",
+          "optional": "Z98.42",
+          "optional_given_final": 1,
+          "optional_given_first": 1,
+          "trap": "laterality"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "H40.1112 Z83.511",
+          "first": "H40.1112 Z83.511",
+          "gold": "H40.1112",
+          "id": "b-ophtho-003",
+          "optional": "Z83.511",
+          "optional_given_final": 1,
+          "optional_given_first": 1,
+          "trap": "seventh_character"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "L71.9 H10.403",
+          "first": "L71.9 H13",
+          "gold": "L71.9 H10.823",
+          "id": "b-ophtho-004",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "sequencing"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "H10.811",
+          "first": "H10.811",
+          "gold": "H10.811",
+          "id": "b-ophtho-005",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "excludes1"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "M17.11",
+          "first": "M17.11",
+          "gold": "M17.11",
+          "id": "b-ortho-001",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "laterality"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "S82.61XD W18.30XD",
+          "first": "S82.61XD W18.30XD",
+          "gold": "S82.61XD W18.30XD",
+          "id": "b-ortho-002",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "seventh_character"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "M80.051A I10",
+          "first": "M80.051A I10",
+          "gold": "M80.051A I10",
+          "id": "b-ortho-003",
+          "optional": "Z79.899 W18.30XA Y92.009 Y93.01 Y99.8",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "excludes1"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "M51.16",
+          "first": "M51.16",
+          "gold": "M51.16",
+          "id": "b-ortho-004",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "combination"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "D66 M36.2",
+          "first": "D66 M36.2",
+          "gold": "D66 M36.2",
+          "id": "b-ortho-005",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "sequencing"
+        }
+      ],
+      "run": "p612-b-checker-opus-5-5"
+    },
+    {
+      "cases": [
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "S82.812A Y92.111",
+          "first": "S82.812A Y92.11",
+          "gold": "S52.501A W11.XXXA Y92.014 Y93.H9",
+          "id": "b-ed-001",
+          "optional": "Y99.8",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "seventh_character"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "B96.89 N39.2 R65.8",
+          "first": "B96.89 N39.2 R65.8",
+          "gold": "A41.9 N39.0",
+          "id": "b-ed-002",
+          "optional": "R41.0",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "sequencing"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "B95.81 I10",
+          "first": "B95.81 I10",
+          "gold": "L03.115 I10",
+          "id": "b-ed-003",
+          "optional": "Z79.899",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "laterality"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "N31.1 N25.2",
+          "first": "N31.1 N25.2",
+          "gold": "N13.2",
+          "id": "b-ed-004",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "excludes1"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "K86.10 K81.91",
+          "first": "K86.10 K81.91",
+          "gold": "K80.00",
+          "id": "b-ed-005",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "combination"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "invalid",
+          "first": "R21.11 R21.12 R21.13 R21.14 R21.15 ... (81 codes)",
+          "gold": "A40.0 J36",
+          "id": "b-ent-001",
+          "optional": "B95.0",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "sequencing"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H66.91 H66.11",
+          "first": "H66.91 H66.11",
+          "gold": "H66.011",
+          "id": "b-ent-002",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "excludes1"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "R05.1 J36.9",
+          "first": "R05 J36.9",
+          "gold": "J35.3",
+          "id": "b-ent-003",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "combination"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "Z85.811 W14.811XA",
+          "first": "Z85.811 W14.811XA",
+          "gold": "S01.411D V18.4XXD",
+          "id": "b-ent-004",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "seventh_character"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H91.41 Z85.71",
+          "first": "H91.41 Z85.7",
+          "gold": "H90.42",
+          "id": "b-ent-005",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "laterality"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "K25.11 K25.21",
+          "first": "K25.11 K25.21",
+          "gold": "K25.4",
+          "id": "b-gi-001",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "excludes1"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "K21.9 K52.11",
+          "first": "K21.9 K52.11",
+          "gold": "K21.00",
+          "id": "b-gi-002",
+          "optional": "R13.10",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "combination"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "K56.40 E11.9",
+          "first": "K56.40 E11.9",
+          "gold": "E11.43 K31.84 Z79.4",
+          "id": "b-gi-003",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "sequencing"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "K40.9, Y42.119",
+          "first": "K40.9, Y42.119",
+          "gold": "K40.90",
+          "id": "b-gi-004",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "laterality"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "K29.81 T36.3X1A",
+          "first": "K29.81 T36.3X1A",
+          "gold": "K25.3 T39.315A",
+          "id": "b-gi-005",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "seventh_character"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H40.111 H40.121 H40.119",
+          "first": "H40.11 H40.12 H40.119",
+          "gold": "E11.3511 E11.3292 Z79.4 Z79.84",
+          "id": "b-ophtho-001",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "combination"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H36.422 H36.421",
+          "first": "H36.422 H36.421",
+          "gold": "H25.11 Z96.1",
+          "id": "b-ophtho-002",
+          "optional": "Z98.42",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "laterality"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H40.1212 Z82.0",
+          "first": "H40.121 Z82.0",
+          "gold": "H40.1112",
+          "id": "b-ophtho-003",
+          "optional": "Z83.511",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "seventh_character"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H02.111 H02.121",
+          "first": "H02.11 H02.12",
+          "gold": "L71.9 H10.823",
+          "id": "b-ophtho-004",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "sequencing"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H11.111 H11.11",
+          "first": "H11.11 H11.1",
+          "gold": "H10.811",
+          "id": "b-ophtho-005",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "excludes1"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "invalid",
+          "first": "invalid",
+          "gold": "M17.11",
+          "id": "b-ortho-001",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "laterality"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "M22.51 Y92.310",
+          "first": "M22.51 Y92.31",
+          "gold": "S82.61XD W18.30XD",
+          "id": "b-ortho-002",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "seventh_character"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "S72.219A M81.81",
+          "first": "S72.219A M81.81",
+          "gold": "M80.051A I10",
+          "id": "b-ortho-003",
+          "optional": "Z79.899 W18.30XA Y92.009 Y93.01 Y99.8",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "excludes1"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "M51.82 G70.13",
+          "first": "M51.82 G70.13",
+          "gold": "M51.16",
+          "id": "b-ortho-004",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "combination"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H61.111 D60.1",
+          "first": "H61.11 D60.1",
+          "gold": "D66 M36.2",
+          "id": "b-ortho-005",
+          "optional": "-",
+          "optional_given_final": 0,
+          "optional_given_first": 0,
+          "trap": "sequencing"
+        }
+      ],
+      "run": "p613-b-checker-qwen3-4b"
+    }
+  ],
+  "S7_part_b_derived": [
+    {
+      "final_differs_from_first": {
+        "b_checker": [
+          "b-ophtho-004"
+        ],
+        "b_plain": []
+      },
+      "first_answer_differs_plain_vs_checker": [
+        {
+          "id": "b-ent-004",
+          "order_only": false
+        },
+        {
+          "id": "b-ophtho-002",
+          "order_only": true
+        },
+        {
+          "id": "b-ortho-002",
+          "order_only": false
+        }
+      ],
+      "model": "claude-opus-5-5",
+      "runner_error": {
+        "b_checker": [],
+        "b_plain": []
+      },
+      "runs": {
+        "b_checker": "p612-b-checker-opus-5-5",
+        "b_plain": "p612-b-plain-opus-5-5"
+      },
+      "with_checker": {
+        "all_cases": {
+          "cases": 25,
+          "changed_answers": 1,
+          "error_findings_final": 0,
+          "error_findings_first": 1
+        },
+        "runner_error_cases": [],
+        "without_runner_error": {
+          "cases": 25,
+          "changed_answers": 1,
+          "error_findings_final": 0,
+          "error_findings_first": 1
+        }
+      }
+    },
+    {
+      "final_differs_from_first": {
+        "b_checker": [
+          "b-ed-001",
+          "b-ent-001",
+          "b-ent-003",
+          "b-ent-005",
+          "b-ophtho-001",
+          "b-ophtho-003",
+          "b-ophtho-004",
+          "b-ophtho-005",
+          "b-ortho-002",
+          "b-ortho-005"
+        ],
+        "b_plain": []
+      },
+      "first_answer_differs_plain_vs_checker": [],
+      "model": "qwen3:4b",
+      "runner_error": {
+        "b_checker": [
+          {
+            "error": "TimeoutError",
+            "id": "b-ent-001"
+          }
+        ],
+        "b_plain": []
+      },
+      "runs": {
+        "b_checker": "p613-b-checker-qwen3-4b",
+        "b_plain": "p613-b-plain-qwen3-4b"
+      },
+      "with_checker": {
+        "all_cases": {
+          "cases": 25,
+          "changed_answers": 10,
+          "error_findings_final": 26,
+          "error_findings_first": 116
+        },
+        "runner_error_cases": [
+          "b-ent-001"
+        ],
+        "without_runner_error": {
+          "cases": 24,
+          "changed_answers": 9,
+          "error_findings_final": 26,
+          "error_findings_first": 35
+        }
+      }
+    }
+  ],
+  "S8_usage": [
+    {
+      "cost_usd": 4.860176,
+      "equals_stored_usage_json": true,
+      "model": "claude-opus-5-5",
+      "price_in_usd_per_mtok": 4.0,
+      "price_out_usd_per_mtok": 20.0,
+      "replies": 462,
+      "run": "p65-a-changes-opus-5-5"
+    },
+    {
+      "cost_usd": 0.734928,
+      "equals_stored_usage_json": true,
+      "model": "claude-opus-5-5",
+      "price_in_usd_per_mtok": 4.0,
+      "price_out_usd_per_mtok": 20.0,
+      "replies": 60,
+      "run": "p615-a-d2c-checker-opus-5-5"
+    },
+    {
+      "cost_usd": 0.289376,
+      "equals_stored_usage_json": true,
+      "model": "claude-opus-5-5",
+      "price_in_usd_per_mtok": 4.0,
+      "price_out_usd_per_mtok": 20.0,
+      "replies": 25,
+      "run": "p612-b-plain-opus-5-5"
+    },
+    {
+      "cost_usd": 0.314772,
+      "equals_stored_usage_json": true,
+      "model": "claude-opus-5-5",
+      "price_in_usd_per_mtok": 4.0,
+      "price_out_usd_per_mtok": 20.0,
+      "replies": 27,
+      "run": "p612-b-checker-opus-5-5"
+    }
+  ],
+  "code_set": "ICD-10-CM FY2027 (October 1, 2026 release)"
+}

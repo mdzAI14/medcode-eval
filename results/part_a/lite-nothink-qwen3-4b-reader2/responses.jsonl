@@ -1,0 +1,151 @@
+{"id": "c2d-0011", "reader": 2, "response": "C"}
+{"id": "c2d-0015", "reader": 2, "response": "B"}
+{"id": "c2d-0023", "reader": 2, "response": "B"}
+{"id": "c2d-0028", "reader": 2, "response": "A"}
+{"id": "c2d-0076", "reader": 2, "response": "D"}
+{"id": "c2d-0094", "reader": 2, "response": "C"}
+{"id": "c2d-0105", "reader": 2, "response": "C"}
+{"id": "d2c-0017", "reader": 2, "response": "K56.9"}
+{"id": "d2c-0021", "reader": 2, "response": "R55.8"}
+{"id": "d2c-0032", "reader": 2, "response": "E09.9"}
+{"id": "d2c-0035", "reader": 2, "response": "K00.9"}
+{"id": "d2c-0046", "reader": 2, "response": "C80.9"}
+{"id": "d2c-0063", "reader": 2, "response": "N00.39"}
+{"id": "d2c-0073", "reader": 2, "response": "D49.9"}
+{"id": "st-0021", "reader": 2, "response": "not_a_code"}
+{"id": "st-0024", "reader": 2, "response": "billable"}
+{"id": "st-0025", "reader": 2, "response": "not_a_code"}
+{"id": "st-0058", "reader": 2, "response": "not_a_code"}
+{"id": "st-0067", "reader": 2, "response": "not_a_code"}
+{"id": "st-0074", "reader": 2, "response": "not_a_code"}
+{"id": "c2d-0114", "reader": 2, "response": "D. Encounter for respirator [ventilator] dependence during power failure"}
+{"id": "c2d-0127", "reader": 2, "response": "A"}
+{"id": "c2d-0131", "reader": 2, "response": "C"}
+{"id": "c2d-0132", "reader": 2, "response": "D"}
+{"id": "c2d-0139", "reader": 2, "response": "C"}
+{"id": "c2d-0143", "reader": 2, "response": "D. Personal history of malignant neoplasm of other organs and systems"}
+{"id": "c2d-0157", "reader": 2, "response": "D"}
+{"id": "c2d-0160", "reader": 2, "response": "C"}
+{"id": "c2d-0171", "reader": 2, "response": "A"}
+{"id": "c2d-0182", "reader": 2, "response": "D. Furuncle of groin"}
+{"id": "c2d-0184", "reader": 2, "response": "A"}
+{"id": "c2d-0194", "reader": 2, "response": "D. Toxic nephropathy, not elsewhere classified"}
+{"id": "c2d-0213", "reader": 2, "response": "B"}
+{"id": "c2d-0238", "reader": 2, "response": "B. Contact with mining and earth-drilling machinery, subsequent encounter"}
+{"id": "c2d-0244", "reader": 2, "response": "D. Paralysis of vocal cords and larynx, unspecified"}
+{"id": "c2d-0245", "reader": 2, "response": "B. Malignant neoplasm of peripheral nerves of trunk, unspecified"}
+{"id": "c2d-0246", "reader": 2, "response": "A"}
+{"id": "c2d-0249", "reader": 2, "response": "D. Mixed receptive-expressive language disorder"}
+{"id": "c2d-0254", "reader": 2, "response": "B"}
+{"id": "c2d-0256", "reader": 2, "response": "D"}
+{"id": "c2d-0264", "reader": 2, "response": "D"}
+{"id": "c2d-0278", "reader": 2, "response": "A"}
+{"id": "c2d-0283", "reader": 2, "response": "B"}
+{"id": "c2d-0288", "reader": 2, "response": "B"}
+{"id": "c2d-0305", "reader": 2, "response": "A"}
+{"id": "c2d-0323", "reader": 2, "response": "D. Other osteonecrosis of left radius"}
+{"id": "c2d-0345", "reader": 2, "response": "A"}
+{"id": "c2d-0357", "reader": 2, "response": "D. Chronic myringitis, unspecified ear"}
+{"id": "c2d-0364", "reader": 2, "response": "A"}
+{"id": "c2d-0366", "reader": 2, "response": "D"}
+{"id": "c2d-0375", "reader": 2, "response": "B"}
+{"id": "c2d-0378", "reader": 2, "response": "A"}
+{"id": "c2d-0403", "reader": 2, "response": "C"}
+{"id": "c2d-0410", "reader": 2, "response": "A"}
+{"id": "c2d-0411", "reader": 2, "response": "B. Nonspecific urethritis"}
+{"id": "c2d-0418", "reader": 2, "response": "D. Triplet pregnancy, unable to determine number of placenta and number of amniotic sacs, third trimester"}
+{"id": "c2d-0428", "reader": 2, "response": "C"}
+{"id": "c2d-0441", "reader": 2, "response": "A"}
+{"id": "c2d-0467", "reader": 2, "response": "B"}
+{"id": "c2d-0474", "reader": 2, "response": "B"}
+{"id": "c2d-0483", "reader": 2, "response": "B. Takotsubo syndrome"}
+{"id": "c2d-0496", "reader": 2, "response": "B"}
+{"id": "c2d-0498", "reader": 2, "response": "C"}
+{"id": "d2c-0092", "reader": 2, "response": "F10.49"}
+{"id": "d2c-0114", "reader": 2, "response": "L95.82"}
+{"id": "d2c-0125", "reader": 2, "response": "F13.9"}
+{"id": "d2c-0134", "reader": 2, "response": "H66.9"}
+{"id": "d2c-0137", "reader": 2, "response": "G70.31"}
+{"id": "d2c-0149", "reader": 2, "response": "Q76.1"}
+{"id": "d2c-0159", "reader": 2, "response": "I25.81"}
+{"id": "d2c-0186", "reader": 2, "response": "H02.12"}
+{"id": "d2c-0187", "reader": 2, "response": "R05"}
+{"id": "d2c-0198", "reader": 2, "response": "C90.81"}
+{"id": "d2c-0201", "reader": 2, "response": "C90.81"}
+{"id": "d2c-0215", "reader": 2, "response": "J15.9"}
+{"id": "d2c-0223", "reader": 2, "response": "B93.9"}
+{"id": "d2c-0226", "reader": 2, "response": "H36.411"}
+{"id": "d2c-0227", "reader": 2, "response": "H00.9"}
+{"id": "d2c-0228", "reader": 2, "response": "G70.9"}
+{"id": "d2c-0236", "reader": 2, "response": "W854X1"}
+{"id": "d2c-0238", "reader": 2, "response": "M81.81 is the billable code for Fibrous dysplasia (monostotic), unspecified forearm under ICD-10-CM FY2027"}
+{"id": "d2c-0244", "reader": 2, "response": "N00.11"}
+{"id": "d2c-0247", "reader": 2, "response": "N35.9"}
+{"id": "d2c-0251", "reader": 2, "response": "J9211"}
+{"id": "d2c-0260", "reader": 2, "response": "B00.1"}
+{"id": "d2c-0264", "reader": 2, "response": "Q70.1"}
+{"id": "d2c-0275", "reader": 2, "response": "M16.8"}
+{"id": "d2c-0278", "reader": 2, "response": "J95.81"}
+{"id": "d2c-0304", "reader": 2, "response": "W84.411XX"}
+{"id": "d2c-0313", "reader": 2, "response": "O05.9"}
+{"id": "d2c-0325", "reader": 2, "response": "J44.9"}
+{"id": "d2c-0333", "reader": 2, "response": "T88.599"}
+{"id": "d2c-0377", "reader": 2, "response": "B01.0"}
+{"id": "d2c-0379", "reader": 2, "response": "H61.8"}
+{"id": "d2c-0384", "reader": 2, "response": "D50.9"}
+{"id": "d2c-0389", "reader": 2, "response": "M22.511"}
+{"id": "d2c-0406", "reader": 2, "response": "O06.21"}
+{"id": "d2c-0413", "reader": 2, "response": "L99.822"}
+{"id": "d2c-0415", "reader": 2, "response": "I25.821"}
+{"id": "d2c-0436", "reader": 2, "response": "H40.41"}
+{"id": "d2c-0450", "reader": 2, "response": "N49.1"}
+{"id": "d2c-0457", "reader": 2, "response": "L91.1"}
+{"id": "d2c-0464", "reader": 2, "response": "Z06.82"}
+{"id": "d2c-0474", "reader": 2, "response": "B94.0"}
+{"id": "d2c-0484", "reader": 2, "response": "K84.80"}
+{"id": "d2c-0497", "reader": 2, "response": "F12.59"}
+{"id": "st-0076", "reader": 2, "response": "not_a_code"}
+{"id": "st-0097", "reader": 2, "response": "not_a_code"}
+{"id": "st-0111", "reader": 2, "response": "not_a_code"}
+{"id": "st-0112", "reader": 2, "response": "not_a_code"}
+{"id": "st-0134", "reader": 2, "response": "billable"}
+{"id": "st-0139", "reader": 2, "response": "billable"}
+{"id": "st-0152", "reader": 2, "response": "not_a_code"}
+{"id": "st-0160", "reader": 2, "response": "not_a_code"}
+{"id": "st-0163", "reader": 2, "response": "not_a_code"}
+{"id": "st-0185", "reader": 2, "response": "not_a_code"}
+{"id": "st-0218", "reader": 2, "response": "not_a_code"}
+{"id": "st-0233", "reader": 2, "response": "billable"}
+{"id": "st-0235", "reader": 2, "response": "not_a_code"}
+{"id": "st-0240", "reader": 2, "response": "not_a_code"}
+{"id": "st-0243", "reader": 2, "response": "not_a_code"}
+{"id": "st-0251", "reader": 2, "response": "not_a_code"}
+{"id": "st-0257", "reader": 2, "response": "not_a_code"}
+{"id": "st-0261", "reader": 2, "response": "not_a_code"}
+{"id": "st-0264", "reader": 2, "response": "billable"}
+{"id": "st-0285", "reader": 2, "response": "header"}
+{"id": "st-0311", "reader": 2, "response": "not_a_code"}
+{"id": "st-0319", "reader": 2, "response": "not_a_code"}
+{"id": "st-0324", "reader": 2, "response": "not_a_code"}
+{"id": "st-0332", "reader": 2, "response": "not_a_code"}
+{"id": "st-0334", "reader": 2, "response": "not_a_code"}
+{"id": "st-0337", "reader": 2, "response": "not_a_code"}
+{"id": "st-0347", "reader": 2, "response": "not_a_code"}
+{"id": "st-0354", "reader": 2, "response": "not_a_code"}
+{"id": "st-0356", "reader": 2, "response": "not_a_code"}
+{"id": "st-0367", "reader": 2, "response": "not_a_code"}
+{"id": "st-0370", "reader": 2, "response": "not_a_code"}
+{"id": "st-0390", "reader": 2, "response": "billable"}
+{"id": "st-0394", "reader": 2, "response": "not_a_code"}
+{"id": "st-0403", "reader": 2, "response": "not_a_code"}
+{"id": "st-0404", "reader": 2, "response": "not_a_code"}
+{"id": "st-0412", "reader": 2, "response": "not_a_code"}
+{"id": "st-0417", "reader": 2, "response": "billable"}
+{"id": "st-0444", "reader": 2, "response": "not_a_code"}
+{"id": "st-0465", "reader": 2, "response": "not_a_code"}
+{"id": "st-0475", "reader": 2, "response": "not_a_code"}
+{"id": "st-0479", "reader": 2, "response": "not_a_code"}
+{"id": "st-0481", "reader": 2, "response": "not_a_code"}
+{"id": "st-0484", "reader": 2, "response": "billable"}
+{"id": "st-0494", "reader": 2, "response": "not_a_code"}
+{"id": "st-0501", "reader": 2, "response": "not_a_code"}

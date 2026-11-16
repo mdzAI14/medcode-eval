@@ -1,0 +1,78 @@
+{
+  "backend": "remote",
+  "cases_sha256": {
+    "b-ed-001": "f50e30d1a769d215bc9142f45a8d596efab7da48c131b9a2b9aa197958ca1d3e",
+    "b-ed-002": "491b590c24c2daab059003c41473535ca2f63595e76275b5a2c7f13e7a0b9a30",
+    "b-ed-003": "e939603ba19cdc04e4c32d3ed095ebc305c4e0f0e969c94cfa6109bdd5b60b94",
+    "b-ed-004": "ed791726aeaa36f87b610efcafe2b4f4bc0b1d7c1581768be2be73450b4ec0d2",
+    "b-ed-005": "e0c849d852caa7ea825bf09d5d0c986bba87b0e66a90f9f0ab166b67668889cd",
+    "b-ent-001": "b06a2538049cd4a03415f276c643d962df3ccc42c5c7070e9790b97293ac28f2",
+    "b-ent-002": "1cf2f0aa7a2026725e74df41388d601899dda744fdaeb51f80233c0b26fa0f5d",
+    "b-ent-003": "a12599cd03df18483255aa368cc56d45f5a0ed4ee9f4aa3815330af968e45adf",
+    "b-ent-004": "1f9ccf61282da4c5d80766f899525aa93d2b3001c5a770941ebb8b3245752658",
+    "b-ent-005": "ded84e490a34031ca4ff095ff01b21e42c29d1950a69e7ae328a72ff329d0471",
+    "b-gi-001": "8463b6e3fc3f4840f49dbae4e2f26620fcad0a9b39eb526bf115f6e91151d74a",
+    "b-gi-002": "94a5d1cf7c2d5e65fe753599b4235a68753aa004b68ce0071ffef7d81def6a56",
+    "b-gi-003": "910b98f948e9758613547e1993a9f7b8ae2537956c817406aaffd93ee0933551",
+    "b-gi-004": "331633e2ff3b0a9f8e2b947d3196629f0e05d661791929c55fb4c7d6c62cb536",
+    "b-gi-005": "37fea61e67a342475d2f59f8fd3b60b7c0160b9ad3229592a279bf643c17d43a",
+    "b-ophtho-001": "a75920770c07efbac0aeba84f609270cfdf8a9850733b9eeaa3e07f563abde27",
+    "b-ophtho-002": "3182dfd5a17c397aeb13a13f50ff71fd6aa719cedc7c30ae4d09ec0628b66da7",
+    "b-ophtho-003": "51adaf78463f9d07d06e922588cb544b8aaadd776486f18df0a9f9a2888d1307",
+    "b-ophtho-004": "e3f635f7b40cf2ba650151edd9146f57ff21d2145554c8800a261f38137e7a04",
+    "b-ophtho-005": "63e25ba4fdcaa207383e0d7e90c308bdb3eb4fb6395d46bf10ae14a68a37cfc4",
+    "b-ortho-001": "87499830f624f5cc6ca37cecab696187ff3e03462605cce3071d913a22cf86e2",
+    "b-ortho-002": "15f2deedc568734094f09464468b5f013e712c3770ef1f71f4ca8c4546c0ebd9",
+    "b-ortho-003": "11aeb8cc4bcb948de4e9e70857343580c8f6a1c9bdee7a64563a8b0406713455",
+    "b-ortho-004": "26b062622ae34684f0c8c8bd157850d2335211eed05884ed0c092fe2763b55eb",
+    "b-ortho-005": "1bf470b5d3274ebffe635485b6147ccb5ab3b59263c3ea4a661bcf7723470e3f"
+  },
+  "checker": {
+    "order_file": "refdata/icd10cm_fy2027/icd10cm_order_2027.txt",
+    "tabular_file": "refdata/icd10cm_fy2027/icd10cm_tabular_2027.xml",
+    "tabular_version": "2027"
+  },
+  "code_set": "ICD-10-CM FY2027 (October 1, 2026 release)",
+  "condition": "with_checker",
+  "data_dir": "data",
+  "model": "claude-opus-5-5",
+  "model_digest": null,
+  "part": "b",
+  "prompt_suffix": "",
+  "prompts_sha256": {
+    "part_b_checker.txt": "2e5e62de02930bda7f4035360a62087de33fe47fea2855ddce51875c1b95b225",
+    "part_b_plain.txt": "3e8130ea20653ac86f97487a39ee4fa72303faf52bcd98eb0b7f6bb08c81d751"
+  },
+  "server_version": null,
+  "settings": {
+    "api_version": "2023-06-01",
+    "effort": "medium",
+    "endpoint": "https://api.anthropic.com/v1/messages",
+    "key_env": "ANTHROPIC_API_KEY",
+    "max_tokens": 16000,
+    "retry_statuses": [
+      429,
+      500,
+      502,
+      503,
+      504,
+      529
+    ],
+    "retry_waits_seconds": [
+      5,
+      15,
+      45
+    ],
+    "stream": false,
+    "system_prompt": null,
+    "temperature": null,
+    "timeout_seconds": 300
+  },
+  "spend": {
+    "ledger": "runs/spend/p611.jsonl",
+    "max_usd": 1.0,
+    "price_in_usd_per_mtok": 4.0,
+    "price_out_usd_per_mtok": 20.0
+  },
+  "started": "2026-11-15T10:50:17-0600"
+}
