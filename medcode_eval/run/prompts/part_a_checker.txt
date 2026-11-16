@@ -1,0 +1,7 @@
+A rules checker compared your code with the ICD-10-CM FY2027
+files and reported the finding below.
+An error finding means the code cannot be reported as written.
+
+{findings}
+
+Give your final answer with the code only.
