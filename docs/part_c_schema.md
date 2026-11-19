@@ -15,7 +15,7 @@ produced.
 
 | File | Holds | Written by |
 |---|---|---|
-| `data/part_c/specs/<id>.md` | the clinical facts the note is written from | mdzAI14 |
+| `data/part_c/specs/<id>.md` | the clinical facts the note is written from | mdzAI14, or the design chat with his approval |
 | `data/part_c/cases/<id>.md` | the note text given to the tested condition | the drafter named in it |
 | `data/part_c/gold/<id>.json` | the gold codes, the unsupported codes, citations, gap type and method | placed by mdzAI14 only; see `method` |
 
@@ -63,6 +63,22 @@ There is no `target_trap`.
 The first five are gap cases: the note leaves out one thing a more
 specific code would need. A `counter_case` is a case where the specific
 code is right although the note does not spell everything out.
+
+- `unspecified_detail`: a detail the specific code needs, such as the
+  side, the site or the type, is not documented, so the unspecified code
+  is reported.
+- `uncertain_diagnosis`: an outpatient note gives the condition only as
+  probable, suspected, "consistent with" or the like, so the sign or
+  symptom is reported and the condition is not.
+- `provider_statement`: test results, vital signs or another person's
+  entry point to a condition that the provider does not state, so the
+  condition is not reported.
+- `unstated_link`: two conditions are documented, and the code that joins
+  them needs a relationship that the provider does not state.
+- `not_current`: a condition appears only as history or as resolved, so
+  it is not reported as a current condition.
+- `counter_case`: as described above; its `unsupported_codes` list is
+  empty.
 
 ## The matching rule
 
