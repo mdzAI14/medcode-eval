@@ -45,6 +45,31 @@ OPTIONAL_KEYS = {"code", "reason"}
 _LIST_ITEM = re.compile(r"^\s*[-*]\s+\S")
 
 
+@dataclass(frozen=True)
+class Schema:
+    """What differs between the parts that share this validator.
+
+    name          the part's name in the report and the help text
+    module        the module run with -m (for the usage line)
+    default_dir   the data folder, relative to the repo root
+    gold_fields   the gold file's fields, all required
+    enums         (field, allowed values) for gold string fields
+    extra         None, or extra(gold, codes, optional, rel, data, result): further
+                  gold checks, run last; codes and optional are the normalised
+                  lists (None when malformed or absent)
+    """
+    name: str
+    module: str
+    default_dir: str
+    gold_fields: tuple
+    enums: tuple
+    extra: object = None
+
+
+PART_B = Schema("Part B", "medcode_eval.part_b.validate", "data", GOLD_FIELDS,
+                (("target_trap", TRAPS),))
+
+
 class SetupError(RuntimeError):
     pass
 
@@ -201,7 +226,7 @@ def _scan_text(text, rel, data, result):
 # ---------------------------------------------------------------------------
 # gold
 
-def _check_gold(path, case_id, rel, data, result):
+def _check_gold(path, case_id, rel, data, result, schema=PART_B):
     try:
         g = json.loads(path.read_text(encoding="utf-8"))
     except (ValueError, UnicodeDecodeError) as exc:
@@ -210,16 +235,17 @@ def _check_gold(path, case_id, rel, data, result):
     if not isinstance(g, dict):
         result.problems.append(Item("bad_json", rel, "the top level is not a JSON object"))
         return
-    _check_fields(g, GOLD_FIELDS, rel, result)
+    _check_fields(g, schema.gold_fields, rel, result)
     _check_id(g.get("id"), case_id, rel, result)
-    for k in ("id", "target_trap", "coder_notes", "method", "method_detail", "code_set",
-              "date_coded"):
+    for k in ("id", *(k for k, _ in schema.enums), "coder_notes", "method", "method_detail",
+              "code_set", "date_coded"):
         if k in g and not isinstance(g[k], str):
             result.problems.append(Item("bad_type", rel, f"{k} is not a string"))
-    trap = g.get("target_trap")
-    if isinstance(trap, str) and trap.strip() and trap not in TRAPS:
-        result.problems.append(Item("bad_enum", rel, f"target_trap {trap!r} is not one of "
-                                                     f"{', '.join(TRAPS)}"))
+    for k, allowed in schema.enums:
+        v = g.get(k)
+        if isinstance(v, str) and v.strip() and v not in allowed:
+            result.problems.append(Item("bad_enum", rel, f"{k} {v!r} is not one of "
+                                                         f"{', '.join(allowed)}"))
     method = g.get("method")
     if isinstance(method, str) and method.strip() and method not in METHODS:
         result.problems.append(Item("bad_enum", rel, f"method {method!r} is not one of "
@@ -250,6 +276,8 @@ def _check_gold(path, case_id, rel, data, result):
         for f in checker.check(norm + optional, data=data):
             if opt & set(f["codes"]):
                 _add_finding(f, rel, result)
+    if schema.extra is not None:
+        schema.extra(g, norm, optional, rel, data, result)
 
 
 def _add_finding(f, rel, result):
@@ -347,7 +375,7 @@ def _check_citations(cit, codes, norm, rel, result, optional=()):
 
 # ---------------------------------------------------------------------------
 
-def validate(root, data=None):
+def validate(root, data=None, schema=PART_B):
     """Result for a data folder holding specs/, cases/ and gold/."""
     root = Path(root)
     for folder, _ in FOLDERS.values():
@@ -388,7 +416,7 @@ def validate(root, data=None):
                                                 f"{k} {b!r} differs from the spec's {a!r}"))
         p = found["gold"].get(case_id)
         if p is not None:
-            _check_gold(p, case_id, f"gold/{p.name}", data, result)
+            _check_gold(p, case_id, f"gold/{p.name}", data, result, schema)
     return result
 
 
@@ -400,9 +428,9 @@ def _section(title, items, show_rule=False):
     return lines
 
 
-def report(result, data_dir):
+def report(result, data_dir, schema=PART_B):
     c = result.counts
-    lines = [f"Part B validation: {CODE_SET}",
+    lines = [f"{schema.name} validation: {CODE_SET}",
              f"data folder: {data_dir}",
              f"files: specs {c.get('spec', 0)}, cases {c.get('case', 0)}, "
              f"gold {c.get('gold', 0)}",
@@ -415,20 +443,21 @@ def report(result, data_dir):
     return "\n".join(lines)
 
 
-def main(argv=None, data=None, ref_root=None):
-    ap = argparse.ArgumentParser(prog="python -m medcode_eval.part_b.validate",
-                                 description="Validate Part B specs, cases and gold.")
+def main(argv=None, data=None, ref_root=None, schema=PART_B):
+    ap = argparse.ArgumentParser(prog=f"python -m {schema.module}",
+                                 description=f"Validate {schema.name} specs, cases and gold.")
     ap.add_argument("--data-dir", default=None,
-                    help="folder holding specs/, cases/ and gold/ (default: data/)")
+                    help=f"folder holding specs/, cases/ and gold/ "
+                         f"(default: {schema.default_dir}/)")
     try:
         args = ap.parse_args(argv)
     except SystemExit as exc:
         return 2 if exc.code else 0
-    data_dir = Path(args.data_dir) if args.data_dir else REPO_ROOT / "data"
+    data_dir = Path(args.data_dir) if args.data_dir else REPO_ROOT / schema.default_dir
     try:
         if data is None:
             data = checker.load(root=ref_root) if ref_root else checker.default_data()
-        result = validate(data_dir, data=data)
+        result = validate(data_dir, data=data, schema=schema)
     except (SetupError, checker.SetupError, OSError, UnicodeDecodeError) as exc:
         print(f"error: {exc}", file=sys.stderr)
         return 2
@@ -436,7 +465,7 @@ def main(argv=None, data=None, ref_root=None):
         shown = data_dir.resolve().relative_to(REPO_ROOT).as_posix()
     except ValueError:
         shown = str(data_dir)
-    print(report(result, shown))
+    print(report(result, shown, schema))
     return 1 if result.problems else 0
 
 

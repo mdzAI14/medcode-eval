@@ -128,9 +128,12 @@ def _group(rows):
     }
 
 
-def score(gold, case_meta, answers, checker_data=None, gold_hash=None):
+def score(gold, case_meta, answers, checker_data=None, gold_hash=None,
+          group_key="target_trap"):
     """gold: {id: gold dict}; case_meta: {id: {"specialty"}}; answers: rows;
-    gold_hash: gold_sha256 of the gold folder, recorded as given."""
+    gold_hash: gold_sha256 of the gold folder, recorded as given; group_key:
+    the gold field kept in each case row and grouped by as by_<group_key>
+    (Part C passes gap_type)."""
     data = checker_data or checker.default_data()
     given = {}
     for r in answers:
@@ -141,7 +144,7 @@ def score(gold, case_meta, answers, checker_data=None, gold_hash=None):
     for cid in sorted(gold):
         g = gold[cid]
         r = given.get(cid)
-        row = {"id": cid, "target_trap": g.get("target_trap"),
+        row = {"id": cid, group_key: g.get(group_key),
                "specialty": case_meta.get(cid, {}).get("specialty"),
                "gold": [checker.normalise(c) for c in g["codes"]],
                "optional": optional_codes(g),
@@ -172,7 +175,7 @@ def score(gold, case_meta, answers, checker_data=None, gold_hash=None):
     }
     for which in ANSWERS:
         out[which] = {"overall": _group([c[which] for c in cases]),
-                      "by_target_trap": groups(which, "target_trap"),
+                      f"by_{group_key}": groups(which, group_key),
                       "by_specialty": groups(which, "specialty")}
     return out
 

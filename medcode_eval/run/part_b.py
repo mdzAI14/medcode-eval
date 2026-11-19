@@ -183,17 +183,19 @@ def _first_findings(row1, data):
     return checker.check(codes, data=data)
 
 
-def _meta(data_dir, condition, backend, prompt_suffix, data, ledger=None):
+def _meta(data_dir, condition, backend, prompt_suffix, data, ledger=None, part="b",
+          prompt_files=None):
     cases = load_cases(data_dir)
+    prompt_files = PROMPT_FILES if prompt_files is None else prompt_files
     meta = {
         "code_set": CODE_SET,
-        "part": "b",
+        "part": part,
         "condition": condition,
         "data_dir": _relative(data_dir),
         "cases_sha256": {c["id"]: _sha(c["path"]) for c in cases},
-        "prompts_sha256": {f: _sha(PROMPT_DIR / f) for f in PROMPT_FILES.values()},
+        "prompts_sha256": {f: _sha(PROMPT_DIR / f) for f in prompt_files.values()},
         "prompt_suffix": prompt_suffix,
-        "checker": None if condition == "plain" else {
+        "checker": None if condition != "with_checker" else {
             "order_file": data.order_file, "tabular_file": data.tabular_file,
             "tabular_version": data.tree.version},
         **backend.describe(),
@@ -204,15 +206,24 @@ def _meta(data_dir, condition, backend, prompt_suffix, data, ledger=None):
 
 
 def run(data_dir, run_dir, backend, condition, ids=None, limit=None, log=None,
-        prompt_suffix="", checker_data=None, ledger=None):
+        prompt_suffix="", checker_data=None, ledger=None, part="b", conditions=None,
+        prompt_files=None, prompts=None):
     """Run the cases (all, or those in ids) not yet complete in raw.jsonl.
 
     limit caps the number of cases that get a model call in this call.
     Returns that number. ledger: the spending stop (see the module text);
     a remote backend needs one.
+
+    The last four are for another part that runs its cases this way
+    (medcode_eval.run.part_c); left at None they are Part B's: part "b",
+    CONDITIONS, PROMPT_FILES (hashed into run.json) and load_prompts().
+    prompts holds the first-turn template as "plain" and the second-turn
+    template as "checker". Every condition other than with_checker is one
+    turn.
     """
-    if condition not in CONDITIONS:
-        raise ValueError(f"condition must be one of {CONDITIONS}, not {condition!r}")
+    conditions = CONDITIONS if conditions is None else conditions
+    if condition not in conditions:
+        raise ValueError(f"condition must be one of {conditions}, not {condition!r}")
     _with_suffix("", prompt_suffix)
     if ledger is None and getattr(backend, "name", None) == "remote":
         raise ValueError("a remote run needs a ledger (the spending stop)")
@@ -220,14 +231,15 @@ def run(data_dir, run_dir, backend, condition, ids=None, limit=None, log=None,
     if condition == "with_checker":
         data = checker_data or checker.default_data()
     run_dir = Path(run_dir)
-    cases, meta = _meta(data_dir, condition, backend, prompt_suffix, data, ledger)
+    cases, meta = _meta(data_dir, condition, backend, prompt_suffix, data, ledger, part,
+                        prompt_files)
     if ids is not None:
         known = {c["id"] for c in cases}
         unknown = [i for i in ids if i not in known]
         if unknown:
             raise ValueError(f"ids not in the cases folder: {unknown}")
         cases = [c for c in cases if c["id"] in set(ids)]
-    prompts = load_prompts()
+    prompts = load_prompts() if prompts is None else prompts
     run_dir.mkdir(parents=True, exist_ok=True)
     meta_path = run_dir / "run.json"
     if meta_path.exists():
@@ -282,7 +294,7 @@ def _loop(cases, rows, condition, data, prompts, prompt_suffix, limit, call):
         row1 = rows.get((cid, 1))
         findings = None
         if row1 is not None:
-            if condition == "plain" or (cid, 2) in rows:
+            if condition != "with_checker" or (cid, 2) in rows:
                 continue
             findings = _first_findings(row1, data)
             if not findings:
@@ -294,7 +306,7 @@ def _loop(cases, rows, condition, data, prompts, prompt_suffix, limit, call):
             if fresh:
                 row1 = call(cid, 1, [user_message(first)])
                 tried += 1
-                if condition == "plain":
+                if condition != "with_checker":
                     continue
                 findings = _first_findings(row1, data)
                 if not findings:

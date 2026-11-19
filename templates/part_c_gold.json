@@ -1,0 +1,22 @@
+{
+  "id": "specialty-short-name",
+  "codes": [
+    "PLACEHOLDER-FIRST-LISTED-CODE"
+  ],
+  "optional_codes": [],
+  "unsupported_codes": [
+    {
+      "code": "PLACEHOLDER-CODE-THAT-ASSUMES-THE-MISSING-DETAIL",
+      "reason": "PLACEHOLDER the detail this code needs that the note does not state"
+    }
+  ],
+  "citations": {
+    "case": "PLACEHOLDER guideline citation for the case"
+  },
+  "gap_type": "unspecified_detail",
+  "coder_notes": "PLACEHOLDER coder notes",
+  "method": "ai_assisted_coder_verified",
+  "method_detail": "PLACEHOLDER how the gold was produced and verified",
+  "code_set": "ICD-10-CM FY2027 (October 1, 2026 release)",
+  "date_coded": "YYYY-MM-DD"
+}

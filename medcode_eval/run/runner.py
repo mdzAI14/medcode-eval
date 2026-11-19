@@ -76,9 +76,15 @@ Usage (from the repo root):
     venv/bin/python -m medcode_eval.run.runner --part b --condition with_checker \
         --run-id b-qwen3-4b [--model qwen3:4b] [--limit N] [--ids a,b] [--prompt-suffix S]
     venv/bin/python -m medcode_eval.run.runner --part b --run-id b-qwen3-4b --rederive
+    venv/bin/python -m medcode_eval.run.runner --part c --condition reminded \
+        --run-id c-qwen3-4b [--model qwen3:4b] [--limit N] [--ids a,b] [--prompt-suffix S]
     venv/bin/python -m medcode_eval.run.runner --dry-run --run-id p61 [--prompt-suffix S]
 
---rederive rewrites responses.jsonl (Part A) or answers.jsonl (Part B) from
+Part C (medcode_eval.run.part_c) takes --condition plain, reminded or
+with_checker; its default data folder is data/part_c/ and its run folders
+are under runs/part_c/. Otherwise it runs as Part B.
+
+--rederive rewrites responses.jsonl (Part A) or answers.jsonl (Part B, C) from
 the run's raw.jsonl with the current answer reader; no backend is built and
 no model is called; raw.jsonl and run.json are not touched.
 
@@ -661,12 +667,14 @@ def _relative(path):
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(description="Run Part A probes or Part B cases "
+    ap = argparse.ArgumentParser(description="Run Part A probes or Part B or C cases "
                                              "through a model.")
-    ap.add_argument("--part", choices=("a", "b"), default="a")
+    ap.add_argument("--part", choices=("a", "b", "c"), default="a")
     ap.add_argument("--probes")
-    ap.add_argument("--condition", help="Part B: plain or with_checker")
-    ap.add_argument("--data-dir", help="Part B: folder with cases/ (default data/)")
+    ap.add_argument("--condition", help="Part B: plain or with_checker; Part C: plain, "
+                                        "reminded or with_checker")
+    ap.add_argument("--data-dir", help="Part B: folder with cases/ (default data/); "
+                                       "Part C: default data/part_c/")
     ap.add_argument("--run-id", required=True)
     ap.add_argument("--rederive", action="store_true",
                     help="only rewrite responses.jsonl or answers.jsonl from raw.jsonl; "
@@ -699,6 +707,9 @@ def main(argv=None):
         return
     if args.part == "b":
         return _main_part_b(ap, args)
+    if args.part == "c":
+        from medcode_eval.run import part_c
+        return _main_part_b(ap, args, part_c, part_c.DATA_DIR)
     run_dir = REPO_ROOT / RUNS_DIR / args.run_id
     if args.rederive:
         if not (run_dir / "raw.jsonl").is_file():
@@ -766,8 +777,11 @@ def _end(ledger):
             raise SystemExit(3)
 
 
-def _main_part_b(ap, args):
-    from medcode_eval.run import part_b
+def _main_part_b(ap, args, part_b=None, default_data="data"):
+    """Part B, or Part C with part_b=medcode_eval.run.part_c and its data
+    folder: a module with RUNS_DIR, CONDITIONS, run and write_answers."""
+    if part_b is None:
+        from medcode_eval.run import part_b
     rel = part_b.RUNS_DIR / args.run_id
     run_dir = REPO_ROOT / rel
     if args.rederive:
@@ -778,7 +792,7 @@ def _main_part_b(ap, args):
         return
     if args.condition not in part_b.CONDITIONS:
         ap.error(f"--condition must be one of {', '.join(part_b.CONDITIONS)}")
-    data_dir = Path(args.data_dir) if args.data_dir else REPO_ROOT / "data"
+    data_dir = Path(args.data_dir) if args.data_dir else REPO_ROOT / default_data
     ledger = _ledger(ap, args)
     backend = (_remote(args) if args.backend == "remote"
                else OllamaBackend(args.model, host=args.host, endpoint="/api/chat"))
