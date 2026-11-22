@@ -1,0 +1,17 @@
+{
+  "id": "c-ortho-006",
+  "codes": [
+    "M65.341"
+  ],
+  "optional_codes": [],
+  "unsupported_codes": [],
+  "citations": {
+    "M65.341": "ICD-10-CM Official Guidelines for Coding and Reporting FY2027, Section I.B.13: when laterality is not documented by the patient's provider, code assignment for the affected side may be based on medical record documentation from other clinicians; if the documentation regarding the affected side conflicts, the provider is queried; codes for the unspecified side should rarely be used, such as when the documentation in the record is insufficient to determine the affected side. Section I.B.14: laterality is among the exceptions for which code assignment may be based on the documentation of clinicians who are not the patient's provider, and the associated diagnosis must be documented by the provider. Here the surgeon's diagnosis is trigger finger of the ring finger and names no hand; the nurse's procedure entry records the injection into the right ring finger and a bandage on the right palm, and nothing in the note conflicts with it, so the code for the right ring finger is assigned."
+  },
+  "gap_type": "counter_case",
+  "coder_notes": "Counter-case: the more specific code is the supported one. The code for the unspecified ring finger (M65.349) would leave out a side that the record documents. Only the side is taken from the nurse's entry; the diagnosis and the finger are the surgeon's. The tender nodule in the palm is part of the trigger finger and is not coded beside it (Section I.B.5). The injection is a procedure. Diabetes and rheumatoid arthritis are denied. No injury is documented.",
+  "method": "ai_assisted_coder_verified",
+  "method_detail": "Spec and note drafted in the design chat by a Claude model and approved by mdzAI14. Codes drafted with commercial coding software that has AI assistance; explanations and formatting drafted with a Claude model. Reviewed in the design chat by a Claude model, which drafted the wording of the citations and notes from mdzAI14's rulings. A counter-case has no unsupported codes. All codes and citations verified by mdzAI14.",
+  "code_set": "ICD-10-CM FY2027 (October 1, 2026 release)",
+  "date_coded": "2026-11-22"
+}
