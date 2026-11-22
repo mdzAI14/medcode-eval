@@ -1,0 +1,22 @@
+{
+  "id": "c-ophtho-004",
+  "codes": [
+    "H35.3134"
+  ],
+  "optional_codes": [],
+  "unsupported_codes": [
+    {
+      "code": "H54",
+      "reason": "Blindness and low vision: reporting a code from this category, legal blindness included, makes a diagnosis from the acuity that the technician recorded. The provider documents neither blindness nor low vision."
+    }
+  ],
+  "citations": {
+    "H35.3134": "ICD-10-CM Official Guidelines for Coding and Reporting FY2027, Section I.A.19: the assignment of a diagnosis code is based on the provider's diagnostic statement that the condition exists. Section I.B.14: code assignment is based on the documentation by the patient's provider; the listed exceptions, for which another clinician's documentation may be used, do not include visual acuity. Section I.C.7.b: when 'blindness' or 'low vision' of both eyes is documented without the visual impairment category, H54.3 is assigned. Here the ophthalmologist's diagnosis is nonexudative age-related macular degeneration of both eyes, advanced atrophic with subfoveal involvement, which the bilateral code with that stage reports in full; the best corrected acuity of 20/200 in each eye is in the technician's entry, and the ophthalmologist documents neither blindness nor low vision, so no code from category H54 is reported."
+  },
+  "gap_type": "provider_statement",
+  "coder_notes": "The table at category H54 places a best corrected acuity of 20/200 in visual impairment category 1, which is why a code from H54 is tempting. The table grades an impairment that the provider has documented; it does not replace that documentation. The geographic atrophy and the tomography findings are part of the diagnosis. One code covers both eyes. In practice this documentation would lead to a provider query; the gold is what can be reported from the note as written.",
+  "method": "ai_assisted_coder_verified",
+  "method_detail": "Spec and note drafted in the design chat by a Claude model and approved by mdzAI14. Codes drafted with commercial coding software that has AI assistance; explanations and formatting drafted with a Claude model. Reviewed in the design chat by a Claude model, which proposed the unsupported codes from the FY2027 files and drafted the wording of the citations and notes from mdzAI14's rulings. All codes, unsupported codes and citations verified by mdzAI14.",
+  "code_set": "ICD-10-CM FY2027 (October 1, 2026 release)",
+  "date_coded": "2026-11-22"
+}
