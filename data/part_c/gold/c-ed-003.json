@@ -1,0 +1,27 @@
+{
+  "id": "c-ed-003",
+  "codes": [
+    "J20.9"
+  ],
+  "optional_codes": [
+    {
+      "code": "Z87.09",
+      "reason": "Personal history of other diseases of the respiratory system, for the asthma he had as a child: a history code may be added, nothing requires it, and the provider draws no connection between the old asthma and this illness. Defensible either way."
+    }
+  ],
+  "unsupported_codes": [
+    {
+      "code": "J45",
+      "reason": "Asthma: reporting a code from this category treats asthma as a current condition. The note records it only as a condition he had as a child, with no symptoms and no inhalers since age 12, and the provider's diagnosis is acute bronchitis."
+    }
+  ],
+  "citations": {
+    "J20.9": "ICD-10-CM Official Guidelines for Coding and Reporting FY2027, Section IV.J: code all documented conditions that coexist at the time of the visit and that require or affect patient care, treatment or management; do not code conditions that were previously treated and no longer exist; history codes may be used as secondary codes if the historical condition has an impact on current care or influences treatment. Section I.A.19: the assignment of a diagnosis code is based on the provider's diagnostic statement that the condition exists. Category J20 includes acute bronchitis with bronchospasm. Here the emergency physician's diagnosis is acute bronchitis; asthma appears only in the history, as a condition of childhood with no symptoms and no inhalers since age 12, and the physician does not diagnose asthma, so acute bronchitis is reported and asthma is not reported as a current condition."
+  },
+  "gap_type": "not_current",
+  "coder_notes": "Wheezes that clear with albuterol suggest reactive airways, but naming asthma from that is a conclusion the provider has not written. Wheezing and cough are part of the acute bronchitis. No organism is identified. He has never smoked. The inhaler is a one-week, as-needed prescription.",
+  "method": "ai_assisted_coder_verified",
+  "method_detail": "Spec and note drafted in the design chat by a Claude model and approved by mdzAI14. Codes drafted with commercial coding software that has AI assistance; explanations and formatting drafted with a Claude model. Reviewed in the design chat by a Claude model, which proposed the unsupported codes from the FY2027 files and drafted the wording of the citations and notes from mdzAI14's rulings. All codes, unsupported codes and citations verified by mdzAI14.",
+  "code_set": "ICD-10-CM FY2027 (October 1, 2026 release)",
+  "date_coded": "2026-11-22"
+}
