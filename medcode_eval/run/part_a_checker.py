@@ -1,5 +1,5 @@
 """The checker condition for Part A description-to-code probes
-(ICD-10-CM FY2027, October 1, 2026 release).
+for ICD-10-CM FY2027 (October 1, 2026 release).
 
 Input is a stored Part A run (the source run: run.json, raw.jsonl and
 responses.jsonl, as medcode_eval.run.runner writes them). Its first answers

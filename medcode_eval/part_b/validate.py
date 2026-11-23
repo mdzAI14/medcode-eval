@@ -1,4 +1,4 @@
-"""Validate the Part B folders (ICD-10-CM FY2027, October 1, 2026 release).
+"""Validate the Part B folders for ICD-10-CM FY2027 (October 1, 2026 release).
 
 Usage (from the repo root):
     venv/bin/python -m medcode_eval.part_b.validate [--data-dir DIR]

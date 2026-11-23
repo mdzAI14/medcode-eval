@@ -1,5 +1,5 @@
 """Rebuild and check every reported figure from the stored run results
-(ICD-10-CM FY2027, October 1, 2026 release).
+for ICD-10-CM FY2027 (October 1, 2026 release).
 
 Reads only results/part_a/, results/part_b/ and results/part_c/ (the
 reported runs, byte-for-byte copies of what each run wrote), data/ and

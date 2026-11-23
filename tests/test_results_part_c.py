@@ -1,5 +1,5 @@
-"""Tests for the Part C side of medcode_eval.results (ICD-10-CM FY2027,
-October 1, 2026 release).
+"""Tests for the Part C side of medcode_eval.results.
+Code set: ICD-10-CM FY2027 (October 1, 2026 release).
 
 Built like the tamper tests in tests/test_results.py: each test works on a
 temporary copy of the tracked results/ folder and alters it. No network and

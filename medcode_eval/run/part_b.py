@@ -1,5 +1,5 @@
-"""Put Part B cases in front of a model, with or without the checker
-(ICD-10-CM FY2027, October 1, 2026 release).
+"""Put Part B cases in front of a model, with or without the checker,
+for ICD-10-CM FY2027 (October 1, 2026 release).
 
 Only the case file's text after its front matter (surrounding blank lines
 removed) reaches the model, filled into prompts/part_b_plain.txt as {note}.

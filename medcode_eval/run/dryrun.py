@@ -1,5 +1,5 @@
 """Dry-run: render every first-turn prompt and estimate input size and cost
-(ICD-10-CM FY2027, October 1, 2026 release). No backend is built and no
+for ICD-10-CM FY2027 (October 1, 2026 release). No backend is built and no
 model is called.
 
 Sets: Part A lite, full and changes (data/part_a/probes_*.jsonl); Part B

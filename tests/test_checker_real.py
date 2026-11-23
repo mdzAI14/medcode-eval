@@ -1,5 +1,5 @@
-"""medcode_eval.checker against the real ICD-10-CM FY2027 refdata files
-(October 1, 2026 release).
+"""medcode_eval.checker against the real refdata files of
+ICD-10-CM FY2027 (October 1, 2026 release).
 
 Expected values are computed here from the order file, or frozen as
 observed in task P4.2 (marked FROZEN). No network.

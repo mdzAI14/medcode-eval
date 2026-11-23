@@ -1,8 +1,8 @@
 """The tabular survey against the real ICD-10-CM FY2027 refdata files.
 
-Counts frozen from task P4.1 step 7 (ICD-10-CM FY2027, October 1, 2026
-release), plus cross-checks computed here independently of the survey
-where that is cheap. No network.
+Counts frozen from task P4.1 step 7, for
+ICD-10-CM FY2027 (October 1, 2026 release), plus cross-checks computed
+here independently of the survey where that is cheap. No network.
 """
 
 import unittest

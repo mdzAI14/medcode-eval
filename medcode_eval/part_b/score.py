@@ -1,5 +1,5 @@
-"""Score a Part B run against the gold (ICD-10-CM FY2027, October 1, 2026
-release).
+"""Score a Part B run against the gold for
+ICD-10-CM FY2027 (October 1, 2026 release).
 
 Gold comes from <data-dir>/gold/<id>.json (codes, optional_codes,
 target_trap); the specialty from the case file's front matter. Answers come from a run's

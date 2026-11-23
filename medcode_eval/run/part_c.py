@@ -1,5 +1,5 @@
-"""Put Part C cases in front of a model (ICD-10-CM FY2027, October 1, 2026
-release).
+"""Put Part C cases in front of a model, for
+ICD-10-CM FY2027 (October 1, 2026 release).
 
 Cases are read and sent as in Part B (medcode_eval.run.part_b, whose run
 and write_answers do the work): only the case file's text after its front

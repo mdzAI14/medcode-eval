@@ -1,5 +1,5 @@
 """The Part B runner and scorer on the committed cases (data/) and the real
-ICD-10-CM FY2027 refdata (October 1, 2026 release), with the fake
+refdata of ICD-10-CM FY2027 (October 1, 2026 release), with the fake
 responders. Run directories are temporary. No network and no model.
 """
 

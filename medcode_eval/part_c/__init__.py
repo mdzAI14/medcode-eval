@@ -1,4 +1,4 @@
-"""Part C: when not to code (ICD-10-CM FY2027, October 1, 2026 release).
+"""Part C: when not to code, for ICD-10-CM FY2027 (October 1, 2026 release).
 
 Each Part C case leaves out one thing that a more specific code would
 need; the gold codes are what can be reported from the note as written.

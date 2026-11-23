@@ -1,5 +1,5 @@
-"""Score a Part C run against the gold (ICD-10-CM FY2027, October 1, 2026
-release).
+"""Score a Part C run against the gold for
+ICD-10-CM FY2027 (October 1, 2026 release).
 
 Everything the Part B scorer reports (medcode_eval.part_b.score, run with
 group_key gap_type), for the first and the final answer, with rows overall,

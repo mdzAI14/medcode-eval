@@ -1,4 +1,4 @@
-"""ICD-10-CM claim checker, v0 (ICD-10-CM FY2027, October 1, 2026 release).
+"""ICD-10-CM claim checker, v0, for ICD-10-CM FY2027 (October 1, 2026 release).
 
 Usage (from the repo root):
     venv/bin/python -m medcode_eval.checker CODE [CODE ...]
