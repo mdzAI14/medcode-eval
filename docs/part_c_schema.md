@@ -8,8 +8,8 @@ and the gold codes are what can be reported from the note as written. A
 counter-case is the reverse check: the specific code is right although
 the note does not spell everything out.
 
-Part C is in development and is not part of release v0.1.0. Gold codes
-and citations are drafted with AI assistance and verified by the author;
+Part C is part of release v0.2.0. Gold codes and citations are drafted
+with AI assistance and verified by the author;
 each gold file's `method` and `method_detail` fields record how it was
 produced.
 

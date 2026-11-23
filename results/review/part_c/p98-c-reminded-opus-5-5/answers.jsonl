@@ -1,0 +1,5 @@
+{"error": null, "final_answer": ["I110", "I5033"], "final_valid": true, "first_answer": ["I110", "I5033"], "first_valid": true, "id": "c-ed-006", "second_turn": false, "stop_reasons": {"1": "end_turn"}}
+{"error": null, "final_answer": ["H8101", "Z79899"], "final_valid": true, "first_answer": ["H8101", "Z79899"], "first_valid": true, "id": "c-ent-006", "second_turn": false, "stop_reasons": {"1": "end_turn"}}
+{"error": null, "final_answer": ["K641"], "final_valid": true, "first_answer": ["K641"], "first_valid": true, "id": "c-gi-006", "second_turn": false, "stop_reasons": {"1": "end_turn"}}
+{"error": null, "final_answer": ["H40013"], "final_valid": true, "first_answer": ["H40013"], "first_valid": true, "id": "c-ophtho-006", "second_turn": false, "stop_reasons": {"1": "end_turn"}}
+{"error": null, "final_answer": ["M65341"], "final_valid": true, "first_answer": ["M65341"], "first_valid": true, "id": "c-ortho-006", "second_turn": false, "stop_reasons": {"1": "end_turn"}}

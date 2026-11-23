@@ -4,7 +4,7 @@ A small, coder-verified test set that measures how large language models
 handle ICD-10-CM diagnosis coding, together with a rules checker that reads
 the current code-set files and is itself one of the tested conditions.
 
-- Version: 0.1.0
+- Version: 0.2.0
 - Code set: ICD-10-CM FY2027 (October 1, 2026 release). Everything here
   is pinned to that release. A later release, including an April 1, 2027
   update, is a different code set.
@@ -12,7 +12,7 @@ the current code-set files and is itself one of the tested conditions.
 
 Medical coding turns a clinical note into the diagnosis codes a claim
 reports. The code set changes every year, and the rules for choosing and
-ordering codes are detailed. This project asks three plain questions about
+ordering codes are detailed. This project asks four plain questions about
 a model, and answers each one with files anyone can re-check.
 
 ## What it measures
@@ -29,12 +29,19 @@ a model, and answers each one with files anyone can re-check.
 3. **Does a rules checker that reads the current files improve the
    answers?** The checker looks at the model's codes, and the model sees
    its findings once and may revise once.
+4. **Does the model report only what the note documents?** Part C gives
+   the model a note that leaves out, on purpose, one thing a more
+   specific code would need. The right answer is the code the note
+   supports as written, and a more specific code is counted as
+   unsupported. Five counter-cases are the reverse check: there the
+   note does support the specific code, so holding back is the error.
 
 ## What it does not measure
 
 It does not measure production coding. The notes are short and synthetic,
 only diagnosis codes are scored, five specialties are covered, Part B has
-25 cases, and one coder verified the gold codes. Read the results as a
+25 cases and Part C has 30, and one coder verified the gold codes. Read
+the results as a
 probe of specific skills, not as an accuracy rate for real charts. The
 Limitations section lists the rest.
 
@@ -58,7 +65,29 @@ specialty meeting every trap once. Each case is three files with one id:
 a fact list (`data/specs/`), the note the model reads (`data/cases/`), and
 the gold codes with their guideline citations (`data/gold/`). The model
 sees the note text and nothing else. `docs/part_b_schema.md` describes the
-files, and the Datasheet section below says how they were made.
+files, and the Datasheet for Part B below says how they were made.
+
+**Part C, documentation-gap cases.** 30 cases, six in each of the same
+five specialties: five gap cases, with every specialty meeting every gap
+type once, and one counter-case. The files are laid out as in Part B,
+under `data/part_c/specs/`, `data/part_c/cases/` and
+`data/part_c/gold/`. A gold file also lists the case's unsupported
+codes: the more specific codes that would report something the note does
+not state. `docs/part_c_schema.md` describes the files, and the
+Datasheet for Part C below says how they were made. The gap types:
+
+- `unspecified_detail`: a detail the specific code needs (a site, a
+  type, a stage) is not in the note.
+- `uncertain_diagnosis`: the outpatient note calls the diagnosis
+  probable, suspected or the like, so the sign or symptom is coded.
+- `provider_statement`: a lab value, a measurement or another staff
+  member's entry points to a diagnosis the provider does not state.
+- `unstated_link`: two conditions are documented, and the code that
+  joins them needs a relationship the provider does not state.
+- `not_current`: a condition appears only as history or as resolved.
+- `counter_case`: the reverse check. The note supports the specific
+  code, although it may not spell everything out, so holding back is
+  the error.
 
 **The checker.** `python -m medcode_eval.checker CODE ...` checks a list
 of codes against the FY2027 order file and tabular file. It reports
@@ -82,8 +111,8 @@ section letters in brackets point there.
 | qwen3:4b | local, Ollama, CPU only | reasoning off (`/no_think`); temperature 0; fixed seed |
 
 Opus is the frontier model. qwen3:4b is a floor: the largest model the
-author's machine could run. Every run was made once, on 2026-11-11 or
-2026-11-16 [S0].
+author's machine could run. Every reported run was made once: Parts A
+and B on 2026-11-11 or 2026-11-16 [S0], Part C on 2026-11-23 [S9].
 
 ### Part A: does the model know the code set?
 
@@ -203,8 +232,64 @@ second turn with the checker's finding [S4].
   the results were seen, the two counts become 44 and 66, so the gain of
   22 stands [S4].
 
-The four Opus runs that have a usage summary cost 6.20 USD together at 4
-and 20 USD per million input and output tokens [S8].
+The four Opus runs of Parts A and B that have a usage summary cost 6.20
+USD together at 4 and 20 USD per million input and output tokens [S8].
+
+### Part C: does the model report only what the note documents?
+
+30 cases, 39 required codes: 25 gap cases and 5 counter-cases. There are
+three conditions. Plain is the Part B prompt, unchanged. Reminded is the
+same prompt with two added lines that tell the model to report only what
+the note documents. With checker works as in Part B [S10].
+
+| | Opus, plain | Opus, reminded | Opus, with checker: first and final answer | qwen3:4b, plain | qwen3:4b, reminded | qwen3:4b, with checker: final answer |
+|---|---|---|---|---|---|---|
+| Gap cases with an unsupported code, of 25 | 1 | 1 | 1 | 4 | 5 | 4 |
+| Exact match, all 30 cases | 29 | 29 | 29 | 0 | 0 | 0 |
+| Exact match, the 25 gap cases | 24 | 24 | 24 | 0 | 0 | 0 |
+| Exact match, the 5 counter-cases | 5 | 5 | 5 | 0 | 0 | 0 |
+| Required codes found, of 39 | 38 | 38 | 38 | 1 | 1 | 2 |
+| Extra codes | 1 | 1 | 1 | 59 | 60 | 55 |
+| Answers that could not be read | 0 | 0 | 0 | 2 | 1 | 2 |
+
+Every gap type has 5 cases, too few to read on its own;
+`results/RESULTS.md` flags those rows.
+
+- **Opus held back on 24 of the 25 gaps in every condition, and still
+  gave the specific code on all 5 counter-cases.** It is not simply
+  choosing the least specific code.
+- **Its one miss is the same case in all three reported runs:
+  c-ophtho-002** [S11, S12]. The note documents primary open-angle
+  glaucoma of both eyes, with visual field findings and no stage. The
+  gold code is H40.1130, stage unspecified. Opus reported H40.1133,
+  severe stage, taking the stage from the findings. In two of the three
+  runs its reply says that the note names no stage and that the
+  unspecified-stage code is the fallback, and then reports the stage
+  anyway (the replies are in `raw.jsonl` in the run folders).
+- **The reminder shows no measurable effect.** The plain and the
+  reminded run gave the same codes on all 30 cases. One repeat of the
+  reminded run, made only to show run-to-run variation and fixed in
+  advance as not a reported score, got c-ophtho-002 right: 30 of 30
+  exact, and 0 of 25 gap cases with an unsupported code. So two runs of
+  the same prompt differ by one case, which is as large as any
+  difference between conditions [S12].
+- **The checker had nothing to say.** On Opus no first answer drew a
+  finding, so no second turn was sent. H40.1133 is a valid, billable
+  code; a checker that reads codes and not the note cannot see that the
+  note does not support it. The first answers of that run use the plain
+  prompt, and they matched the plain run on all 30 cases [S12].
+- **qwen3:4b cannot code these notes.** It matched no case in any
+  condition and found at most 2 of the 39 required codes. Its counts of
+  unsupported codes mean nothing beside that. The checker sent it 43
+  findings in 27 second turns, and error findings fell from 43 to 24,
+  but no answer became exact [S10, S12].
+
+"1 of 25" is not an estimate of how often a model does this on real
+charts. The cases were written to probe, and later cases were written
+knowing what Opus had fallen for; see the Datasheet for Part C.
+
+The four Part C runs on Opus, the repeat included, cost 1.40 USD
+together [S13].
 
 ## Reproduce
 
@@ -214,6 +299,7 @@ repository root:
     python3 -m venv venv
     venv/bin/python -m unittest discover -s tests -t .
     venv/bin/python -m medcode_eval.part_b.validate
+    venv/bin/python -m medcode_eval.part_c.validate
     venv/bin/python -m medcode_eval.results --check
 
 The last command re-reads every stored model reply with the package's own
@@ -232,6 +318,12 @@ A local model served by Ollama, Part B, both conditions:
     venv/bin/python -m medcode_eval.run.runner --part b --condition plain --run-id MY-RUN-plain --backend ollama --model MODEL
     venv/bin/python -m medcode_eval.run.runner --part b --condition with_checker --run-id MY-RUN-checker --backend ollama --model MODEL
     venv/bin/python -m medcode_eval.part_b.score --run-id MY-RUN-plain
+
+Part C, the plain and the reminded condition:
+
+    venv/bin/python -m medcode_eval.run.runner --part c --condition plain --run-id MY-RUN-c-plain --backend ollama --model MODEL
+    venv/bin/python -m medcode_eval.run.runner --part c --condition reminded --run-id MY-RUN-c-reminded --backend ollama --model MODEL
+    venv/bin/python -m medcode_eval.part_c.score --run-id MY-RUN-c-plain
 
 Part A, lite set:
 
@@ -306,7 +398,7 @@ files changed after a run of the evaluated model:
   be an exact match in either reported run.
 
 All gold was settled before the reported Part B runs were made, and no
-gold file has changed since.
+Part B gold file has changed since.
 
 **The cases.** Each id is `b-<specialty>-<number>`.
 
@@ -318,23 +410,149 @@ gold file has changed since.
 | 004 | combination | sequencing | laterality | seventh_character | excludes1 |
 | 005 | sequencing | excludes1 | seventh_character | laterality | combination |
 
+## Datasheet for Part C
+
+**Source.** Every case is invented. No case comes from, or is recalled
+from, a real patient record.
+
+**What a case is.** A gap case leaves out one thing on purpose, and its
+gold is the code a coder can report from the note as written. The rule
+behind this is in the FY2027 Official Guidelines: a specific code has to
+be supported by the documentation in the record (Section I.B.18). Each
+gap type rests on its own guideline text, read in the copy tracked under
+`refdata/`: unspecified codes (I.A.9.b and I.B.18), uncertain diagnoses
+in outpatient notes (IV.H), the provider's diagnostic statement and
+entries by other clinicians (I.A.19 and I.B.14), relationships the
+classification does not presume (I.A.15), and conditions that no longer
+exist (IV.J). In real work several of these gaps would lead to a query
+to the provider. The test scores what can be reported without one.
+
+**Counter-cases.** Each counter-case mirrors one gap type, and its note
+does support the specific code: through a nurse's entry that names the
+side, a term the classification itself names, the provider's words
+matching a tabular inclusion term, a chronic condition under continuing
+treatment, or a link the classification presumes. The less specific code
+is the wrong answer there. Without these cases, a model that always
+picked the least specific code would score well. They are scored by
+exact match only and have no unsupported codes.
+
+**Unsupported codes.** Each gap case's gold file lists the codes that
+would report something the note leaves unstated. An entry may be a
+billable code, a header or a whole category, and an answer code counts
+when it equals an entry or starts with one. The lists do not hold codes
+the note contradicts, or codes that are wrong for another reason; those
+count as extra codes. The count is only as complete as the lists: an
+unsupported code that is on no list breaks the exact match as an extra
+code, but is not counted as unsupported.
+
+**Specs.** An AI assistant (Claude Fable 5.2, in a design chat) drafted
+all 30 specs from outlines the author accepted, and the author approved
+every spec. A spec is a flat list of clinical facts with no codes and no
+gap label.
+
+**Notes.** The note the model reads was drafted from the spec by Claude
+Fable 5.2. Three notes were rewritten before any gold existed for them:
+c-ed-001 (its first version held a second diagnosis that left the code
+order open to argument), c-ophtho-005 (its first version called the
+visit a routine eye examination, which brings a different first-listed
+code) and c-ophtho-006 (its first version left a second detail
+unstated, which gave the case a gap of its own).
+
+**Gold codes.** Made as in Part B. The codes were drafted with
+commercial coding software that has AI assistance. The explanations,
+the formatting and the wording of the citations were drafted with a
+Claude model and checked against the guidelines text. The design chat
+proposed the unsupported codes from the FY2027 files. The author
+verified every code, unsupported code and citation. A code he could not
+settle from a guideline or a code-book note became optional; where that
+code was the one the case is built around, the case was rewritten
+instead. Each gold file records this in its `method` and
+`method_detail` fields.
+
+**Optional codes.** As in Part B. Fourteen cases carry 15 optional codes
+in all.
+
+**Evaluated model and drafting models.** As in Part B, and more so: here
+a Claude model drafted every spec and proposed the unsupported codes,
+and the frontier model evaluated is a Claude model. No model was
+evaluated on gold it drafted.
+
+**Written in batches, with the evaluated model in view.** The cases were
+written five at a time: two pilots, three more batches, then the
+counter-cases. Each batch was run through both models once, in the plain
+and the reminded condition, as a second look at its gold. Opus gave no
+unsupported code on the first pilot, so the second pilot was written to
+pull harder, and later cases were written knowing which cases Opus had
+fallen for. The set is therefore not a neutral sample of documentation
+gaps.
+
+**Review runs.** Those batch runs are not reported results; their
+replies are stored under `results/review/part_c/`. No gold file changed
+after a review run. Two things they showed matter when reading the
+results:
+
+- **c-ophtho-002.** Opus gave H40.1133 in both review runs of this case.
+  The author then confirmed the gold, H40.1130: a coder does not derive
+  a stage from the findings, and the guidelines assign the seventh
+  character 0 when the stage is not documented (Section I.C.7.a.5). The
+  gold file was not changed.
+- **c-ophtho-004.** In the reminded review run Opus added a blindness
+  code, H54.2X11, from a visual acuity that only a technician had
+  recorded. It did not do so in any final run.
+
+**Gold freeze.** The author froze the 30 gold files on 2026-11-23,
+before the final runs, and no gold file has changed since. Which runs
+are reported, and that the repeat of the reminded run is not, was fixed
+before the runs were made.
+
+**The cases.** Each id is `c-<specialty>-<number>`.
+
+| Number | ortho | ophtho | gi | ent | ed |
+|---|---|---|---|---|---|
+| 001 | uncertain_diagnosis | not_current | unstated_link | unspecified_detail | provider_statement |
+| 002 | provider_statement | unspecified_detail | not_current | uncertain_diagnosis | unstated_link |
+| 003 | unstated_link | uncertain_diagnosis | unspecified_detail | provider_statement | not_current |
+| 004 | not_current | provider_statement | uncertain_diagnosis | unstated_link | unspecified_detail |
+| 005 | unspecified_detail | unstated_link | provider_statement | not_current | uncertain_diagnosis |
+| 006 | counter_case | counter_case | counter_case | counter_case | counter_case |
+
+The five counter-cases mirror, in the same column order:
+provider_statement, uncertain_diagnosis, unspecified_detail, not_current
+and unstated_link.
+
 ## Limitations
 
 - **One verifier.** A single coder verified the gold, with no second
-  coder. A blind re-check of a sample of cases by the same coder is
-  planned and not yet done.
+  coder. A blind re-check of a sample of Part B cases by the same coder
+  is planned and not yet done.
 - **AI-drafted gold.** The codes, explanations and citations began as AI
   drafts. Verification catches errors; it does not make the gold
   independent of those drafts.
-- **Synthetic, short notes.** The notes state every fact a code depends
-  on. Real charts are longer, messier and often incomplete.
-- **Small.** 25 cases, 5 per trap and 5 per specialty. One case is 4
-  points of exact match.
+- **Part C gold is more open to judgment.** Whether a note supports a
+  code is a closer call than whether a trap rule applies, and in
+  practice several of these gaps would be settled by a query. One coder
+  made every call.
+- **Part C is not a neutral sample.** Its cases were written to probe,
+  in batches, with the evaluated model's earlier answers in view. "1 of
+  25" describes this set and this model, not a rate on real charts.
+- **Unsupported counts depend on the lists.** A code counts as
+  unsupported only if it is on the case's list.
+- **One miss is not a pattern.** Opus missed one Part C case. That shows
+  the failure happens; it cannot show where it tends to happen.
+- **Synthetic, short notes.** The Part B notes state every fact a code
+  depends on, and the Part C notes leave out exactly one thing on
+  purpose. Real charts are longer, messier and incomplete in less tidy
+  ways.
+- **Small.** Part B has 25 cases, 5 per trap and 5 per specialty; one
+  case is 4 points of exact match. Part C has 25 gap cases, 5 per gap
+  type, and 5 counter-cases.
 - **Diagnosis codes only**, in five specialties. No procedure codes, no
   payer rules, no code sets other than ICD-10-CM.
 - **Each run was made once.** Opus gives different answers to the same
   prompt on some cases, so a difference of one or two cases between runs
-  is within its run-to-run variation.
+  is within its run-to-run variation. Part C's one repeat run shows the
+  same: it differed from the reported run of the same prompt by one
+  case.
 - **Two models.** One frontier model and one small local model. The
   results say nothing about other models.
 - **Part A tests recall of code and description pairs**, not coding. The
@@ -349,8 +567,8 @@ gold file has changed since.
 ## Repository layout
 
 - `medcode_eval/`: the package: reference-file loaders, the checker, the
-  Part A generator and scorer, the Part B validator and scorer, the
-  runner, and the results module.
+  Part A generator and scorer, the Part B and Part C validators and
+  scorers, the runner, and the results module.
 - `data/`: the test items. `results/`: stored run outputs and
   `RESULTS.md`. `refdata/`: the unmodified public FY2027 reference
   files, listed with their sources in `refdata/MANIFEST.md`.

@@ -1,0 +1,63 @@
+{
+  "backend": "ollama",
+  "cases_sha256": {
+    "c-ed-001": "790c00cc81b717fbf22377fdf821523535f4f5788f9be8bfb8f144760b32a9b7",
+    "c-ed-002": "8e23d2632d90e7e6df15d615dd4b792c6e34c807427e078d943e6465e92f50ed",
+    "c-ed-003": "a87e2636d4c8efb80fed96c303c522889ef64b73be5822af33a08be49476f496",
+    "c-ed-004": "c4102ebb6af367227f9b38d2ff9af314cc2ccd4db199fb3efaa2b0522e83c923",
+    "c-ed-005": "53601667f61f81258414bbab516272c015aae8f45ba2e8783a8fd0f5f5b6fd35",
+    "c-ed-006": "bcc1fce83f46066912d52879a3f1b1a49bde2f31e0d172c1ef599899288954ef",
+    "c-ent-001": "4d2bb1455c0e2c652431c7de5d319262535c886cfb75d69ee4fe2c7fbfaaf288",
+    "c-ent-002": "e712cea5ea06b3a89f407f9f52192c4d8fc1900ecb064fe1b15570cc616e2a87",
+    "c-ent-003": "70de45ef48a0b5a62bf36740b7d025b82a1211bd80a1ac1cbb1645646e6e8edc",
+    "c-ent-004": "6340c1bee8c6ca759f4ec302be7f7743a816f8c11a08abd783ebba14460f164f",
+    "c-ent-005": "f18c43d7bf3aa3104786d673dddb3322f2f3d50dd05144bf8002085efc43052c",
+    "c-ent-006": "ea6c5a1875307f029b48047a269c628451a5bca43d6f42e36cfad3c6bce97dd7",
+    "c-gi-001": "222f67d5e7ae7eb8c93d215fb111f02f230c7a9600b6ac4691c0f56a6d1cf396",
+    "c-gi-002": "fce8655142510a1feae1ee54b9e4c4d14d6dbc7e01ecd230a8526fe800d55f8a",
+    "c-gi-003": "7013ddb2426149a4843751151382294b9831975dc83bff5db9b84b027de9d1dc",
+    "c-gi-004": "56f6f8ab1116b160c8edfcfa20624bbfa3eb57e3ec1d0458989e88e534af6293",
+    "c-gi-005": "62072f90a276ddaabbdf254a356364024657620f670a7fb48216514ff8a3fb75",
+    "c-gi-006": "5c558538ca65ee80ad6c07c364aeabcc55dd6ad18f42cb1dfc4f2dcb9e3f5b5c",
+    "c-ophtho-001": "2a3cd119a40c50393697997c46dc3751daccb422ae3daec6cb3dde86474c9618",
+    "c-ophtho-002": "155473e7d0e347fab168c88b7488704caf954d3a9a0d4ede42c7508c80f0be66",
+    "c-ophtho-003": "74c345a01e913d095e44911142e37cc38a6bb29021b7bc8127cd2cdf4b0dccc8",
+    "c-ophtho-004": "a69a893ce322f5d2f4eec0685ef1c5b3e07e243d97843f84bdf0ee1ec27e5b17",
+    "c-ophtho-005": "18cd98e345084ea9b83677d6dff898b98d726a11ffd40dfa2302d4fa896cc5a1",
+    "c-ophtho-006": "01cf4342d54c55ec2e577d2b7440c0aaeb8efbe493001846fce7588c8aa7e78a",
+    "c-ortho-001": "0d062900eef6e509b09c73e3810c756f0401a19ddfca6fb571301a10eaa49892",
+    "c-ortho-002": "de7af80f97908a91524ac96cd526a67abb03e3b7fd84a9eceb5de77a5da656e6",
+    "c-ortho-003": "9faf7b4a6245394685cb47cdee4bd708a14523214752281d81920a86573a47d1",
+    "c-ortho-004": "16922b5d3d4da0810b5813e052fa4c37aa086a92b72bd5fe120732cab76a8245",
+    "c-ortho-005": "440949cb624920ee03c8a1721b585e0191d72208e14fcd67b116a9da68efce63",
+    "c-ortho-006": "e98a7ee86ef4095e0a61c7bff34b2204b3815be11df28dce9eaab84c26e83e3f"
+  },
+  "checker": null,
+  "code_set": "ICD-10-CM FY2027 (October 1, 2026 release)",
+  "condition": "reminded",
+  "data_dir": "data/part_c",
+  "model": "qwen3:4b",
+  "model_digest": "a383baf4993bed20dd7a61a68583c1066d6f839187b66eda479aa0b238d45378",
+  "part": "c",
+  "prompt_suffix": "/no_think",
+  "prompts_sha256": {
+    "part_b_checker.txt": "2e5e62de02930bda7f4035360a62087de33fe47fea2855ddce51875c1b95b225",
+    "part_b_plain.txt": "3e8130ea20653ac86f97487a39ee4fa72303faf52bcd98eb0b7f6bb08c81d751",
+    "part_c_reminded.txt": "1e842fcacef54cac789fb003754a2890d838f35916e47cbbed812c5ddd4f7b8b"
+  },
+  "server_version": "0.6.8",
+  "settings": {
+    "endpoint": "/api/chat",
+    "options": {
+      "num_ctx": 8192,
+      "num_predict": 4096,
+      "seed": 20261001,
+      "temperature": 0
+    },
+    "reasoning_switch": null,
+    "stream": false,
+    "system_prompt": null,
+    "timeout_seconds": 900
+  },
+  "started": "2026-11-22T13:52:19-0600"
+}

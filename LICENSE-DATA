@@ -7,7 +7,8 @@ mdzAI14. The full license text is at:
 https://creativecommons.org/licenses/by/4.0/
 
 data/ holds the test items: the Part A probes, which are generated from the
-public reference files, and the Part B specs, notes and gold labels.
+public reference files, and the Part B and Part C specs, notes and gold
+labels.
 results/ holds the stored outputs of model runs and the scores computed from
 them. The model replies are offered under these terms to the extent the
 author holds rights in them.

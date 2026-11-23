@@ -25,6 +25,15 @@ run wrote. Each run was made once.
   score files. They are kept so that a reader can see the answers
   those changes followed. The datasheet in the top-level README
   names each change.
+- review/part_c/: runs that are not reported results. They were
+  made while the Part C cases were being written, five cases at a
+  time, as a second look at the gold codes. Each was scored at the
+  time against the cases that existed that day, so they carry no
+  score files. No gold file changed after any of them. They are
+  kept so that a reader can see what the author had seen of the
+  evaluated model before the later cases were written and before
+  the reported runs were made. The Part C datasheet in the
+  top-level README says more.
 - RESULTS.md and results.json: every figure quoted in the
   top-level README, rebuilt from the files above by
 
