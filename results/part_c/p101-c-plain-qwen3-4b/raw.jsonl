@@ -1,0 +1,30 @@
+{"done_reason": "stop", "error": null, "eval_count": 19, "id": "c-ed-001", "raw": "<think>\n\n</think>\n\n[\"B24.9\", \"Y14.3\"]", "seconds": 59.265, "turn": 1}
+{"done_reason": "stop", "error": null, "eval_count": 20, "id": "c-ed-002", "raw": "<think>\n\n</think>\n\n[\"N39.0\", \"Z85.71\"]", "seconds": 47.86, "turn": 1}
+{"done_reason": "stop", "error": null, "eval_count": 15, "id": "c-ed-003", "raw": "<think>\n\n</think>\n\n[\"J20\", \"R05\"]", "seconds": 31.166, "turn": 1}
+{"done_reason": "stop", "error": null, "eval_count": 31, "id": "c-ed-004", "raw": "<think>\n\n</think>\n\n[\"I11.9\", \"I13.9\", \"R05\", \"I12.9\"]", "seconds": 80.872, "turn": 1}
+{"done_reason": "stop", "error": null, "eval_count": 21, "id": "c-ed-005", "raw": "<think>\n\n</think>\n\n[\"N39.0\", \"Z86.891\"]", "seconds": 42.319, "turn": 1}
+{"done_reason": "stop", "error": null, "eval_count": 24, "id": "c-ed-006", "raw": "<think>\n\n</think>\n\n[\"I10.9\", \"I31.9\", \"R05\"]", "seconds": 56.681, "turn": 1}
+{"done_reason": "stop", "error": null, "eval_count": 20, "id": "c-ent-001", "raw": "<think>\n\n</think>\n\n[\"R01.1\", \"R02.11\"]", "seconds": 47.883, "turn": 1}
+{"done_reason": "stop", "error": null, "eval_count": 21, "id": "c-ent-002", "raw": "<think>\n\n</think>\n\n[\"H91.82\", \"R45.82\"]", "seconds": 34.497, "turn": 1}
+{"done_reason": "stop", "error": null, "eval_count": 19, "id": "c-ent-003", "raw": "<think>\n\n</think>\n\n[\"B95.89, Y17.3]", "seconds": 31.984, "turn": 1}
+{"done_reason": "stop", "error": null, "eval_count": 21, "id": "c-ent-004", "raw": "<think>\n\n</think>\n\n[\"H91.90\", \"R91.83\"]", "seconds": 23.951, "turn": 1}
+{"done_reason": "stop", "error": null, "eval_count": 21, "id": "c-ent-005", "raw": "<think>\n\n</think>\n\n[\"H91.89\", \"R55.89\"]", "seconds": 12.659, "turn": 1}
+{"done_reason": "stop", "error": null, "eval_count": 20, "id": "c-ent-006", "raw": "<think>\n\n</think>\n\n[\"H91.82\", \"Z87.0\"]", "seconds": 34.988, "turn": 1}
+{"done_reason": "stop", "error": null, "eval_count": 19, "id": "c-gi-001", "raw": "<think>\n\n</think>\n\n[\"K74.9, F10.21]", "seconds": 52.807, "turn": 1}
+{"done_reason": "stop", "error": null, "eval_count": 21, "id": "c-gi-002", "raw": "<think>\n\n</think>\n\n[\"C78.11\", \"Z85.31\"]", "seconds": 51.157, "turn": 1}
+{"done_reason": "stop", "error": null, "eval_count": 20, "id": "c-gi-003", "raw": "<think>\n\n</think>\n\n[\"B16.1\", \"Z85.31\"]", "seconds": 52.399, "turn": 1}
+{"done_reason": "stop", "error": null, "eval_count": 19, "id": "c-gi-004", "raw": "<think>\n\n</think>\n\n[\"K25.9\", \"Y54.3\"]", "seconds": 55.363, "turn": 1}
+{"done_reason": "stop", "error": null, "eval_count": 19, "id": "c-gi-005", "raw": "<think>\n\n</think>\n\n[\"E70.1\", \"Z85.7\"]", "seconds": 46.064, "turn": 1}
+{"done_reason": "stop", "error": null, "eval_count": 20, "id": "c-gi-006", "raw": "<think>\n\n</think>\n\n[\"I87.11\", \"R19.1\"]", "seconds": 46.124, "turn": 1}
+{"done_reason": "stop", "error": null, "eval_count": 21, "id": "c-ophtho-001", "raw": "<think>\n\n</think>\n\n[\"H61.81\", \"Z85.71\"]", "seconds": 54.401, "turn": 1}
+{"done_reason": "stop", "error": null, "eval_count": 21, "id": "c-ophtho-002", "raw": "<think>\n\n</think>\n\n[\"H40.11\", \"H40.12\"]", "seconds": 50.072, "turn": 1}
+{"done_reason": "stop", "error": null, "eval_count": 20, "id": "c-ophtho-003", "raw": "<think>\n\n</think>\n\n[\"H40.11\", \"I69.9\"]", "seconds": 34.483, "turn": 1}
+{"done_reason": "stop", "error": null, "eval_count": 23, "id": "c-ophtho-004", "raw": "<think>\n\n</think>\n\n[\"H40.112\", \"H40.113\"]", "seconds": 43.571, "turn": 1}
+{"done_reason": "stop", "error": null, "eval_count": 25, "id": "c-ophtho-005", "raw": "<think>\n\n</think>\n\n[\"H45.11\", \"I10\", \"Z87.0\"]", "seconds": 38.35, "turn": 1}
+{"done_reason": "stop", "error": null, "eval_count": 21, "id": "c-ophtho-006", "raw": "<think>\n\n</think>\n\n[\"H40.129\", \"Z82.3\"]", "seconds": 34.288, "turn": 1}
+{"done_reason": "stop", "error": null, "eval_count": 21, "id": "c-ortho-001", "raw": "<think>\n\n</think>\n\n[\"M23.21\", \"Y93.31\"]", "seconds": 33.225, "turn": 1}
+{"done_reason": "stop", "error": null, "eval_count": 21, "id": "c-ortho-002", "raw": "<think>\n\n</think>\n\n[\"M16.81\", \"Z86.71\"]", "seconds": 34.487, "turn": 1}
+{"done_reason": "stop", "error": null, "eval_count": 22, "id": "c-ortho-003", "raw": "<think>\n\n</think>\n\n[\"M715.21\", \"Y54.11\"]", "seconds": 38.658, "turn": 1}
+{"done_reason": "stop", "error": null, "eval_count": 23, "id": "c-ortho-004", "raw": "<think>\n\n</think>\n\n[\"M81.811\", \"M81.819\"]", "seconds": 48.406, "turn": 1}
+{"done_reason": "stop", "error": null, "eval_count": 23, "id": "c-ortho-005", "raw": "<think>\n\n</think>\n\n[\"M22.51\", \"T82.111A\"]", "seconds": 44.32, "turn": 1}
+{"done_reason": "stop", "error": null, "eval_count": 23, "id": "c-ortho-006", "raw": "<think>\n\n</think>\n\n[\"M66.82\", \"T82.899XA\"]", "seconds": 40.244, "turn": 1}

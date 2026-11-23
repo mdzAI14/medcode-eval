@@ -1,0 +1,30 @@
+{"error": null, "final_answer": ["B249", "Y143"], "final_valid": true, "first_answer": ["B249", "Y143"], "first_valid": true, "id": "c-ed-001", "second_turn": false, "stop_reasons": {}}
+{"error": null, "final_answer": ["N390", "Z8571"], "final_valid": true, "first_answer": ["N390", "Z8571"], "first_valid": true, "id": "c-ed-002", "second_turn": false, "stop_reasons": {}}
+{"error": null, "final_answer": ["J20", "R05"], "final_valid": true, "first_answer": ["J20", "R05"], "first_valid": true, "id": "c-ed-003", "second_turn": false, "stop_reasons": {}}
+{"error": null, "final_answer": ["I119", "I139", "R05", "I129"], "final_valid": true, "first_answer": ["I119", "I139", "R05", "I129"], "first_valid": true, "id": "c-ed-004", "second_turn": false, "stop_reasons": {}}
+{"error": null, "final_answer": ["N390", "Z86891"], "final_valid": true, "first_answer": ["N390", "Z86891"], "first_valid": true, "id": "c-ed-005", "second_turn": false, "stop_reasons": {}}
+{"error": null, "final_answer": ["I109", "I319", "R05"], "final_valid": true, "first_answer": ["I109", "I319", "R05"], "first_valid": true, "id": "c-ed-006", "second_turn": false, "stop_reasons": {}}
+{"error": null, "final_answer": ["R011", "R0211"], "final_valid": true, "first_answer": ["R011", "R0211"], "first_valid": true, "id": "c-ent-001", "second_turn": false, "stop_reasons": {}}
+{"error": null, "final_answer": ["H9182", "R4582"], "final_valid": true, "first_answer": ["H9182", "R4582"], "first_valid": true, "id": "c-ent-002", "second_turn": false, "stop_reasons": {}}
+{"error": null, "final_answer": null, "final_valid": false, "first_answer": null, "first_valid": false, "id": "c-ent-003", "second_turn": false, "stop_reasons": {}}
+{"error": null, "final_answer": ["H9190", "R9183"], "final_valid": true, "first_answer": ["H9190", "R9183"], "first_valid": true, "id": "c-ent-004", "second_turn": false, "stop_reasons": {}}
+{"error": null, "final_answer": ["H9189", "R5589"], "final_valid": true, "first_answer": ["H9189", "R5589"], "first_valid": true, "id": "c-ent-005", "second_turn": false, "stop_reasons": {}}
+{"error": null, "final_answer": ["H9182", "Z870"], "final_valid": true, "first_answer": ["H9182", "Z870"], "first_valid": true, "id": "c-ent-006", "second_turn": false, "stop_reasons": {}}
+{"error": null, "final_answer": null, "final_valid": false, "first_answer": null, "first_valid": false, "id": "c-gi-001", "second_turn": false, "stop_reasons": {}}
+{"error": null, "final_answer": ["C7811", "Z8531"], "final_valid": true, "first_answer": ["C7811", "Z8531"], "first_valid": true, "id": "c-gi-002", "second_turn": false, "stop_reasons": {}}
+{"error": null, "final_answer": ["B161", "Z8531"], "final_valid": true, "first_answer": ["B161", "Z8531"], "first_valid": true, "id": "c-gi-003", "second_turn": false, "stop_reasons": {}}
+{"error": null, "final_answer": ["K259", "Y543"], "final_valid": true, "first_answer": ["K259", "Y543"], "first_valid": true, "id": "c-gi-004", "second_turn": false, "stop_reasons": {}}
+{"error": null, "final_answer": ["E701", "Z857"], "final_valid": true, "first_answer": ["E701", "Z857"], "first_valid": true, "id": "c-gi-005", "second_turn": false, "stop_reasons": {}}
+{"error": null, "final_answer": ["I8711", "R191"], "final_valid": true, "first_answer": ["I8711", "R191"], "first_valid": true, "id": "c-gi-006", "second_turn": false, "stop_reasons": {}}
+{"error": null, "final_answer": ["H6181", "Z8571"], "final_valid": true, "first_answer": ["H6181", "Z8571"], "first_valid": true, "id": "c-ophtho-001", "second_turn": false, "stop_reasons": {}}
+{"error": null, "final_answer": ["H4011", "H4012"], "final_valid": true, "first_answer": ["H4011", "H4012"], "first_valid": true, "id": "c-ophtho-002", "second_turn": false, "stop_reasons": {}}
+{"error": null, "final_answer": ["H4011", "I699"], "final_valid": true, "first_answer": ["H4011", "I699"], "first_valid": true, "id": "c-ophtho-003", "second_turn": false, "stop_reasons": {}}
+{"error": null, "final_answer": ["H40112", "H40113"], "final_valid": true, "first_answer": ["H40112", "H40113"], "first_valid": true, "id": "c-ophtho-004", "second_turn": false, "stop_reasons": {}}
+{"error": null, "final_answer": ["H4511", "I10", "Z870"], "final_valid": true, "first_answer": ["H4511", "I10", "Z870"], "first_valid": true, "id": "c-ophtho-005", "second_turn": false, "stop_reasons": {}}
+{"error": null, "final_answer": ["H40129", "Z823"], "final_valid": true, "first_answer": ["H40129", "Z823"], "first_valid": true, "id": "c-ophtho-006", "second_turn": false, "stop_reasons": {}}
+{"error": null, "final_answer": ["M2321", "Y9331"], "final_valid": true, "first_answer": ["M2321", "Y9331"], "first_valid": true, "id": "c-ortho-001", "second_turn": false, "stop_reasons": {}}
+{"error": null, "final_answer": ["M1681", "Z8671"], "final_valid": true, "first_answer": ["M1681", "Z8671"], "first_valid": true, "id": "c-ortho-002", "second_turn": false, "stop_reasons": {}}
+{"error": null, "final_answer": ["M715.21", "Y5411"], "final_valid": true, "first_answer": ["M715.21", "Y5411"], "first_valid": true, "id": "c-ortho-003", "second_turn": false, "stop_reasons": {}}
+{"error": null, "final_answer": ["M81811", "M81819"], "final_valid": true, "first_answer": ["M81811", "M81819"], "first_valid": true, "id": "c-ortho-004", "second_turn": false, "stop_reasons": {}}
+{"error": null, "final_answer": ["M2251", "T82111A"], "final_valid": true, "first_answer": ["M2251", "T82111A"], "first_valid": true, "id": "c-ortho-005", "second_turn": false, "stop_reasons": {}}
+{"error": null, "final_answer": ["M6682", "T82.899XA"], "final_valid": true, "first_answer": ["M6682", "T82.899XA"], "first_valid": true, "id": "c-ortho-006", "second_turn": false, "stop_reasons": {}}

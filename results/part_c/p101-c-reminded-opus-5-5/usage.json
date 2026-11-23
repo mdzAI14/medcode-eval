@@ -1,0 +1,245 @@
+{
+  "cost_usd": 0.368724,
+  "input_ratio_to_chars_div_4": 1.4692908713282564,
+  "input_tokens": {
+    "max": 627,
+    "mean": 495.2,
+    "min": 410,
+    "total": 14856
+  },
+  "items": 30,
+  "model": "claude-opus-5-5",
+  "output_tokens": {
+    "max": 1111,
+    "mean": 515.5,
+    "min": 118,
+    "total": 15465
+  },
+  "per_item": {
+    "c-ed-001": {
+      "cost_usd": 0.01112,
+      "input_tokens": 510,
+      "output_tokens": 454,
+      "replies": 1
+    },
+    "c-ed-002": {
+      "cost_usd": 0.012624,
+      "input_tokens": 516,
+      "output_tokens": 528,
+      "replies": 1
+    },
+    "c-ed-003": {
+      "cost_usd": 0.01048,
+      "input_tokens": 475,
+      "output_tokens": 429,
+      "replies": 1
+    },
+    "c-ed-004": {
+      "cost_usd": 0.015828,
+      "input_tokens": 627,
+      "output_tokens": 666,
+      "replies": 1
+    },
+    "c-ed-005": {
+      "cost_usd": 0.008924,
+      "input_tokens": 436,
+      "output_tokens": 359,
+      "replies": 1
+    },
+    "c-ed-006": {
+      "cost_usd": 0.01296,
+      "input_tokens": 570,
+      "output_tokens": 534,
+      "replies": 1
+    },
+    "c-ent-001": {
+      "cost_usd": 0.009328,
+      "input_tokens": 427,
+      "output_tokens": 381,
+      "replies": 1
+    },
+    "c-ent-002": {
+      "cost_usd": 0.007896,
+      "input_tokens": 499,
+      "output_tokens": 295,
+      "replies": 1
+    },
+    "c-ent-003": {
+      "cost_usd": 0.0133,
+      "input_tokens": 485,
+      "output_tokens": 568,
+      "replies": 1
+    },
+    "c-ent-004": {
+      "cost_usd": 0.01506,
+      "input_tokens": 500,
+      "output_tokens": 653,
+      "replies": 1
+    },
+    "c-ent-005": {
+      "cost_usd": 0.009368,
+      "input_tokens": 432,
+      "output_tokens": 382,
+      "replies": 1
+    },
+    "c-ent-006": {
+      "cost_usd": 0.011972,
+      "input_tokens": 458,
+      "output_tokens": 507,
+      "replies": 1
+    },
+    "c-gi-001": {
+      "cost_usd": 0.017708,
+      "input_tokens": 507,
+      "output_tokens": 784,
+      "replies": 1
+    },
+    "c-gi-002": {
+      "cost_usd": 0.006584,
+      "input_tokens": 516,
+      "output_tokens": 226,
+      "replies": 1
+    },
+    "c-gi-003": {
+      "cost_usd": 0.015928,
+      "input_tokens": 532,
+      "output_tokens": 690,
+      "replies": 1
+    },
+    "c-gi-004": {
+      "cost_usd": 0.01062,
+      "input_tokens": 410,
+      "output_tokens": 449,
+      "replies": 1
+    },
+    "c-gi-005": {
+      "cost_usd": 0.015264,
+      "input_tokens": 491,
+      "output_tokens": 665,
+      "replies": 1
+    },
+    "c-gi-006": {
+      "cost_usd": 0.004236,
+      "input_tokens": 469,
+      "output_tokens": 118,
+      "replies": 1
+    },
+    "c-ophtho-001": {
+      "cost_usd": 0.013252,
+      "input_tokens": 458,
+      "output_tokens": 571,
+      "replies": 1
+    },
+    "c-ophtho-002": {
+      "cost_usd": 0.019628,
+      "input_tokens": 482,
+      "output_tokens": 885,
+      "replies": 1
+    },
+    "c-ophtho-003": {
+      "cost_usd": 0.009444,
+      "input_tokens": 416,
+      "output_tokens": 389,
+      "replies": 1
+    },
+    "c-ophtho-004": {
+      "cost_usd": 0.024316,
+      "input_tokens": 524,
+      "output_tokens": 1111,
+      "replies": 1
+    },
+    "c-ophtho-005": {
+      "cost_usd": 0.013432,
+      "input_tokens": 503,
+      "output_tokens": 571,
+      "replies": 1
+    },
+    "c-ophtho-006": {
+      "cost_usd": 0.008056,
+      "input_tokens": 539,
+      "output_tokens": 295,
+      "replies": 1
+    },
+    "c-ortho-001": {
+      "cost_usd": 0.00762,
+      "input_tokens": 465,
+      "output_tokens": 288,
+      "replies": 1
+    },
+    "c-ortho-002": {
+      "cost_usd": 0.009132,
+      "input_tokens": 513,
+      "output_tokens": 354,
+      "replies": 1
+    },
+    "c-ortho-003": {
+      "cost_usd": 0.009888,
+      "input_tokens": 472,
+      "output_tokens": 400,
+      "replies": 1
+    },
+    "c-ortho-004": {
+      "cost_usd": 0.014748,
+      "input_tokens": 547,
+      "output_tokens": 628,
+      "replies": 1
+    },
+    "c-ortho-005": {
+      "cost_usd": 0.019472,
+      "input_tokens": 588,
+      "output_tokens": 856,
+      "replies": 1
+    },
+    "c-ortho-006": {
+      "cost_usd": 0.010536,
+      "input_tokens": 489,
+      "output_tokens": 429,
+      "replies": 1
+    }
+  },
+  "per_item_cost_usd": {
+    "max": 0.024316,
+    "mean": 0.0122908,
+    "min": 0.004236,
+    "total": 0.368724
+  },
+  "replies": 30,
+  "run": "p101-c-reminded-opus-5-5",
+  "settings": {
+    "api_version": "2023-06-01",
+    "effort": "medium",
+    "endpoint": "https://api.anthropic.com/v1/messages",
+    "key_env": "ANTHROPIC_API_KEY",
+    "max_tokens": 16000,
+    "retry_statuses": [
+      429,
+      500,
+      502,
+      503,
+      504,
+      529
+    ],
+    "retry_waits_seconds": [
+      5,
+      15,
+      45
+    ],
+    "stream": false,
+    "system_prompt": null,
+    "temperature": null,
+    "timeout_seconds": 300
+  },
+  "spend": {
+    "ledger": "runs/spend/p101.jsonl",
+    "max_usd": 3.0,
+    "price_in_usd_per_mtok": 4.0,
+    "price_out_usd_per_mtok": 20.0
+  },
+  "stop_reasons": {
+    "end_turn": 30
+  },
+  "thinking_tokens": {
+    "replies_with_field": 30,
+    "total": 8951
+  }
+}

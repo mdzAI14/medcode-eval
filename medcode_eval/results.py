@@ -1,10 +1,19 @@
 """Rebuild and check every reported figure from the stored run results
 (ICD-10-CM FY2027, October 1, 2026 release).
 
-Reads only results/part_a/, results/part_b/ (the reported runs, byte-for-
-byte copies of what each run wrote), data/ and refdata/. Never runs/, never
-results/review/, no network and no model call. Standard library only; the
-package's own readers, scorers and checker do the work.
+Reads only results/part_a/, results/part_b/ and results/part_c/ (the
+reported runs, byte-for-byte copies of what each run wrote), data/ and
+refdata/. Never runs/, never results/review/, no network and no model call.
+Standard library only; the package's own readers, scorers and checker do
+the work.
+
+Part C runs: every folder in results/part_c/ except repeat/ is a reported
+run; every folder in results/part_c/repeat/ is a repeat run (a reported
+condition run a second time, kept only to show run-to-run variation; never
+a reported score). The kind comes from run.json: part "c" and condition
+plain, reminded or with_checker; anything else raises ValueError. Sections
+S0 to S8 are computed from the Part A and Part B runs alone; S9 to S13 from
+the Part C runs. A results folder without part_c/ has no Part C runs.
 
     venv/bin/python -m medcode_eval.results --write
         writes results/RESULTS.md and results/results.json
@@ -13,13 +22,16 @@ package's own readers, scorers and checker do the work.
         folder that is removed) and exits 0 only if:
         1  every stored reading is reproduced from raw.jsonl: Part A
            responses with runner.write_responses and the reader the rows
-           record; Part B answers with part_b.write_answers; the Part A
-           checker run's answers with part_a_checker.write_answers, its
-           source run read from results/part_a/
+           record; Part B and Part C answers (repeat runs included) with
+           part_b.write_answers; the Part A checker run's answers with
+           part_a_checker.write_answers, its source run read from
+           results/part_a/
         2  every stored score.json and score.md is reproduced: Part A with
            part_a.score, Part B with part_b.score against the gold files as
            they are (whose sha256 must equal the one each score records),
-           the checker run with part_a_checker.score_run
+           Part C (repeat runs included) with part_c.score against
+           data/part_c in the same way, the checker run with
+           part_a_checker.score_run
         3  RESULTS.md and results.json equal what --write would produce
 
 Figures that come from a pattern (the refusal openings) or from a reading
@@ -40,7 +52,10 @@ from medcode_eval.part_a import score as part_a_score
 from medcode_eval.part_a.generate import CODE_SET, REPO_ROOT
 from medcode_eval.part_a.score import _norm_answer, load_jsonl, parse_response
 from medcode_eval.part_b import score as part_b_score
+from medcode_eval.part_c import COUNTER_CASE
+from medcode_eval.part_c import score as part_c_score
 from medcode_eval.run import part_a_checker as pac
+from medcode_eval.run import part_c as run_part_c
 from medcode_eval.run import part_b, runner, usage
 from medcode_eval.run.runner import drop_think
 
@@ -57,6 +72,13 @@ KIND_LABEL = {"a_lite": "Part A lite", "a_changes": "Part A changes",
               "b_plain": "Part B plain", "b_checker": "Part B with checker"}
 SHOW_CODES = 8
 SHOW_FIRST = 5
+PART_C = "part_c"
+REPEAT_DIR = "repeat"
+C_DATA_DIR = DATA_DIR / "part_c"
+C_CONDITIONS = run_part_c.CONDITIONS
+C_LABEL = {"plain": "Part C plain", "reminded": "Part C reminded",
+           "with_checker": "Part C with checker"}
+REPEAT_NOTE = "run-to-run variation only; not a reported score"
 
 LENIENT = re.compile(
     r"(?<![A-Za-z0-9.])[A-Z][0-9][0-9A-Z](?:\.?[0-9A-Z]{1,4})?(?![A-Za-z0-9])")
@@ -173,6 +195,35 @@ def load_runs(results_dir=RESULTS_DIR):
     return runs
 
 
+def _c_run(d, repeat):
+    meta = _json(d / "run.json")
+    if meta.get("part") != "c" or meta.get("condition") not in C_CONDITIONS:
+        raise ValueError(f"{d.name}: run.json has part {meta.get('part')!r} and condition "
+                         f"{meta.get('condition')!r}; a Part C run needs part 'c' and one of "
+                         f"{', '.join(C_CONDITIONS)}")
+    return {"id": d.name, "part": PART_C, "dir": d, "meta": meta,
+            "kind": "c_" + meta["condition"], "condition": meta["condition"],
+            "model": meta["model"], "repeat": repeat}
+
+
+def load_part_c_runs(results_dir=RESULTS_DIR):
+    """(reported, repeats): the runs in results/part_c/ (every folder but
+    repeat/) and in results/part_c/repeat/, each in presentation order
+    (condition, then model, then run id). No part_c/ folder: no runs."""
+    base = Path(results_dir) / PART_C
+    if not base.is_dir():
+        return [], []
+    reported = [_c_run(d, False) for d in sorted(base.iterdir())
+                if d.is_dir() and d.name != REPEAT_DIR]
+    rep = base / REPEAT_DIR
+    repeats = [_c_run(d, True) for d in sorted(rep.iterdir()) if d.is_dir()] \
+        if rep.is_dir() else []
+
+    def key(r):
+        return C_CONDITIONS.index(r["condition"]), r["model"], r["id"]
+    return sorted(reported, key=key), sorted(repeats, key=key)
+
+
 def _probes(run):
     """The run's probe file (data/), refused when its sha256 differs."""
     return runner.run_probes(run["dir"])
@@ -240,6 +291,14 @@ def _check_score(run, results_dir, tmp, data):
         t.rmdir()
         t = _copy(run, tmp)
         pac.score_run(t, checker_data=data, source_dir=_source_dir(run, results_dir))
+    elif run["part"] == PART_C:
+        stored = _json(run["dir"] / "score.json")["gold_sha256"]
+        if stored != part_b_score.gold_sha256(C_DATA_DIR):
+            return "the gold files differ from the score's gold_sha256"
+        part_c_score.main(["--answers", str(run["dir"] / "answers.jsonl"),
+                           "--data-dir", str(C_DATA_DIR),
+                           "--out-json", str(t / "score.json"),
+                           "--out-md", str(t / "score.md")], checker_data=data)
     else:
         stored = _json(run["dir"] / "score.json")["gold_sha256"]
         if stored != part_b_score.gold_sha256(DATA_DIR):
@@ -257,6 +316,7 @@ def check(results_dir=RESULTS_DIR, log=print):
     results_dir = Path(results_dir)
     failures = 0
     runs = load_runs(results_dir)
+    c_runs, c_repeats = load_part_c_runs(results_dir)
     data = checker.default_data()
 
     def report(num, what, problem):
@@ -269,8 +329,8 @@ def check(results_dir=RESULTS_DIR, log=print):
 
     with tempfile.TemporaryDirectory() as tmp:
         for num, fn in ((1, _check_reading), (2, _check_score)):
-            for run in runs:
-                what = f"{run['part']}/{run['id']}"
+            for run in runs + c_runs + c_repeats:
+                what = run["dir"].relative_to(results_dir).as_posix()
                 sub = Path(tmp) / f"{num}"
                 sub.mkdir(exist_ok=True)
                 try:
@@ -279,7 +339,7 @@ def check(results_dir=RESULTS_DIR, log=print):
                     problem = f"{type(exc).__name__}: {exc}"
                 report(num, what, problem)
     try:
-        md, js = build(results_dir, runs, data)
+        md, js = build(results_dir, runs, data, (c_runs, c_repeats))
         for name, text in ((MD_NAME, md), (JSON_NAME, js)):
             p = results_dir / name
             report(3, name, None if p.is_file() and p.read_bytes() == text.encode("ascii")
@@ -552,9 +612,190 @@ def _s8(runs):
     return out
 
 
-def figures(results_dir=RESULTS_DIR, runs=None, data=None):
+# ---------------------------------------------------------------------------
+# Part C figures
+
+def _s9(c_runs):
+    out = []
+    for r in c_runs:
+        m = r["meta"]
+        what = C_LABEL[r["condition"]] + (f", repeat ({REPEAT_NOTE})" if r["repeat"] else "")
+        out.append({"run": r["id"], "part": PART_C, "repeat": r["repeat"], "what": what,
+                    "model": m["model"], "backend": m["backend"], **_settings(m),
+                    "started": m["started"][:10],
+                    "cases_answered": len(load_jsonl(r["dir"] / "answers.jsonl"))})
+    return out
+
+
+def _cg(g):
+    return {**_bg(g), "gap_cases": g["gap_cases"],
+            "gap_cases_with_unsupported": g["gap_cases_with_unsupported"]}
+
+
+def _c_answers(run):
+    """The answers a Part C run's tables show: the first, and for a
+    with_checker run also the final."""
+    return ("first", "final") if run["condition"] == "with_checker" else ("first",)
+
+
+def _s10(run):
+    s = _json(run["dir"] / "score.json")
+    out = {"run": run["id"], "model": run["model"], "condition": run["condition"],
+           "gold_sha256": s["gold_sha256"],
+           "gold_sha256_equals_gold_files": s["gold_sha256"] == part_b_score.gold_sha256(
+               C_DATA_DIR),
+           "n_cases": s["n_cases"], "gap_cases": s["gap_cases"],
+           "second_turns": s["second_turns"],
+           "gap_cases_with_unsupported": {w: s[w]["overall"]["gap_cases_with_unsupported"]
+                                          for w in ("first", "final")},
+           "summary": [], "tables": {}}
+    for w in _c_answers(run):
+        o, k = s[w]["overall"], s[w]["by_case_kind"]
+        out["summary"].append({
+            "answer": w, "n": o["n"], "exact": o["exact"],
+            "gap_cases": k["gap_case"]["n"], "exact_gap_cases": k["gap_case"]["exact"],
+            "counter_cases": k["counter_case"]["n"],
+            "exact_counter_cases": k["counter_case"]["exact"],
+            "gap_cases_with_unsupported": o["gap_cases_with_unsupported"],
+            "required_found": o["correct"], "required_total": o["correct"] + o["missing"],
+            "extra": o["extra"], "optional_given": o["optional_given"],
+            "invalid": o["invalid"], "second_turns": s["second_turns"]})
+        out["tables"][w] = {
+            "overall": _cg(o),
+            "by_case_kind": {kk: _cg(g) for kk, g in k.items()},
+            "by_gap_type": {kk: _cg(g) for kk, g in s[w]["by_gap_type"].items()
+                            if kk != COUNTER_CASE},
+            "by_specialty": {kk: _cg(g) for kk, g in s[w]["by_specialty"].items()}}
+    return out
+
+
+def _codes_or_dash(codes):
+    return " ".join(_disp(c) for c in codes) or "-"
+
+
+def _s11(run):
+    s = _json(run["dir"] / "score.json")
+    return {"run": run["id"], "model": run["model"], "condition": run["condition"], "cases": [
+        {"id": c["id"], "gap_type": c["gap_type"],
+         "gold": " ".join(checker.dotted(v) for v in c["gold"]),
+         "optional": " ".join(checker.dotted(v) for v in c["optional"]) or "-",
+         "first": _show(c["first"]), "final": _show(c["final"]),
+         "exact_first": c["first"]["exact"], "exact_final": c["final"]["exact"],
+         "unsupported_first": _codes_or_dash(c["first"]["unsupported_given"]),
+         "unsupported_final": _codes_or_dash(c["final"]["unsupported_given"])}
+        for c in s["cases"]]}
+
+
+def _first_answers(run):
+    return {a["id"]: a for a in load_jsonl(run["dir"] / "answers.jsonl")}
+
+
+def _c_diff(run_a, run_b, optional):
+    """Cases whose first answer differs between two runs; order_only when
+    both hold the same codes, optional_only when they are equal once the
+    case's optional codes are removed."""
+    a, b = _first_answers(run_a), _first_answers(run_b)
+    out = []
+    for cid in sorted(set(a) | set(b)):
+        x = (a.get(cid) or {}).get("first_answer")
+        y = (b.get(cid) or {}).get("first_answer")
+        if x == y:
+            continue
+        both = x is not None and y is not None
+        order = both and sorted(x) == sorted(y)
+        opt = set(optional.get(cid, ()))
+        out.append({"id": cid, "order_only": order,
+                    "optional_only": both and not order
+                    and sorted(c for c in x if c not in opt)
+                    == sorted(c for c in y if c not in opt)})
+    return out
+
+
+def _s12(reported, repeats):
+    out = []
+    for model in sorted({r["model"] for r in reported + repeats}):
+        mine = {}
+        for r in reported:
+            if r["model"] == model:
+                if r["condition"] in mine:
+                    raise ValueError(f"two reported Part C {r['condition']} runs for {model}")
+                mine[r["condition"]] = r
+        reps = [r for r in repeats if r["model"] == model]
+        if len(reps) > 1:
+            raise ValueError(f"more than one Part C repeat run for {model}")
+        scores = {r["id"]: _json(r["dir"] / "score.json") for r in list(mine.values()) + reps}
+        cases = next(iter(scores.values()))["cases"]
+        optional = {c["id"]: c["optional"] for c in cases}
+        entry = {"model": model, "runs": {k: r["id"] for k, r in mine.items()}}
+        if "plain" in mine and "reminded" in mine:
+            entry["first_answer_differs_plain_vs_reminded"] = _c_diff(
+                mine["plain"], mine["reminded"], optional)
+        if "plain" in mine and "with_checker" in mine:
+            entry["first_answer_differs_plain_vs_checker"] = _c_diff(
+                mine["plain"], mine["with_checker"], optional)
+        if reps:
+            rep = reps[0]
+            entry["runs"]["repeat"] = rep["id"]
+            same = mine.get(rep["condition"])
+            if same is not None:
+                entry["first_answer_differs_repeat"] = {
+                    "reported_run": same["id"], "repeat_run": rep["id"],
+                    "condition": rep["condition"],
+                    "cases": _c_diff(same, rep, optional)}
+            o = scores[rep["id"]]["first"]["overall"]
+            entry["repeat_figures"] = {"run": rep["id"], "condition": rep["condition"],
+                                       "label": REPEAT_NOTE, "exact": o["exact"], "n": o["n"],
+                                       "gap_cases_with_unsupported":
+                                           o["gap_cases_with_unsupported"],
+                                       "gap_cases": o["gap_cases"]}
+        everyone = list(mine.values()) + reps
+        ans = {r["id"]: _first_answers(r) for r in everyone}
+        entry["final_differs_from_first"] = {
+            r["id"]: [cid for cid, a in sorted(ans[r["id"]].items())
+                      if a["final_answer"] != a["first_answer"]] for r in everyone}
+        entry["runner_error"] = {
+            r["id"]: [{"id": cid, "error": a["error"].split(":")[0]}
+                      for cid, a in sorted(ans[r["id"]].items()) if a["error"] is not None]
+            for r in everyone}
+        if "with_checker" in mine:
+            r = mine["with_checker"]
+            s = scores[r["id"]]
+            sent = Counter(f.get("rule") for row in load_jsonl(r["dir"] / "raw.jsonl")
+                           if row.get("turn") == 2 for f in row.get("findings") or [])
+            entry["with_checker"] = {
+                "run": r["id"], "cases": len(s["cases"]), "second_turns": s["second_turns"],
+                "findings_sent_by_rule": dict(sorted(sent.items())),
+                "findings_sent": sum(sent.values()),
+                "error_findings_first": sum(c["first"]["findings"]["error"] for c in s["cases"]),
+                "error_findings_final": sum(c["final"]["findings"]["error"] for c in s["cases"]),
+                "changed_answers": sum(c["first"]["codes"] != c["final"]["codes"]
+                                       for c in s["cases"])}
+        cols = [(mine[k], w, label) for k, w, label in (
+            ("plain", "first", "plain"), ("reminded", "first", "reminded"),
+            ("with_checker", "first", "with checker, first"),
+            ("with_checker", "final", "with checker, final")) if k in mine]
+        cols += [(r, "first", f"{r['condition']}, repeat ({REPEAT_NOTE})") for r in reps]
+        given = [{c["id"]: c[w]["unsupported_given"] for c in scores[r["id"]]["cases"]}
+                 for r, w, _ in cols]
+        entry["unsupported_by_case"] = {
+            "columns": [{"run": r["id"], "answer": w, "label": label, "repeat": r["repeat"]}
+                        for r, w, label in cols],
+            "cases": [{"id": c["id"], "gap_type": c["gap_type"],
+                       "given": [_codes_or_dash(g.get(c["id"], [])) for g in given]}
+                      for c in cases if any(g.get(c["id"]) for g in given)]}
+        out.append(entry)
+    return out
+
+
+def _s13(reported, repeats):
+    flags = {r["id"]: r["repeat"] for r in reported + repeats}
+    return [{**u, "repeat": flags[u["run"]]} for u in _s8(reported + repeats)]
+
+
+def figures(results_dir=RESULTS_DIR, runs=None, data=None, part_c=None):
     results_dir = Path(results_dir)
     runs = runs if runs is not None else load_runs(results_dir)
+    c_runs, c_repeats = part_c if part_c is not None else load_part_c_runs(results_dir)
     data = data or checker.default_data()
     by = {k: [r for r in runs if r["kind"] == k] for k in KIND_ORDER}
     return {
@@ -568,6 +809,11 @@ def figures(results_dir=RESULTS_DIR, runs=None, data=None):
         "S6_part_b_cases": [_s6(r) for r in by["b_plain"] + by["b_checker"]],
         "S7_part_b_derived": _s7(runs),
         "S8_usage": _s8(runs),
+        "S9_part_c_runs": _s9(c_runs + c_repeats),
+        "S10_part_c": [_s10(r) for r in c_runs],
+        "S11_part_c_cases": [_s11(r) for r in c_runs],
+        "S12_part_c_derived": _s12(c_runs, c_repeats),
+        "S13_part_c_usage": _s13(c_runs, c_repeats),
     }
 
 
@@ -607,20 +853,44 @@ def _status_table(t):
                   [[a, *(row[c] for c in cols)] for a, row in t.items()])
 
 
+_B_HEAD = ["Group", "Value", "n", "Exact", "First-listed", "Correct", "Missing", "Extra",
+           "Optional given", "Precision", "Recall", "Invalid", "No answer", "Error findings",
+           "Review findings", "Cases with an error finding"]
+
+
+def _b_line(group, value, g):
+    """A row of the Part B table, without its Note column."""
+    return [group, value, g["n"], g["exact"], g["first_listed"], g["correct"],
+            g["missing"], g["extra"], g["optional_given"], _f4(g["precision"]),
+            _f4(g["recall"]), g["invalid"], g["no_answer"], g["findings"]["error"],
+            g["findings"]["review"], g["cases_with_error_finding"]]
+
+
+def _note(g):
+    return "fewer than 10 cases" if g["fewer_than_10"] else ""
+
+
 def _b_rows(d):
     def line(group, value, g):
-        return [group, value, g["n"], g["exact"], g["first_listed"], g["correct"],
-                g["missing"], g["extra"], g["optional_given"], _f4(g["precision"]),
-                _f4(g["recall"]), g["invalid"], g["no_answer"], g["findings"]["error"],
-                g["findings"]["review"], g["cases_with_error_finding"],
-                "fewer than 10 cases" if g["fewer_than_10"] else ""]
+        return _b_line(group, value, g) + [_note(g)]
     rows = [line("overall", "", d["overall"])]
     rows += [line("target trap", k, g) for k, g in d["by_target_trap"].items()]
     rows += [line("specialty", k, g) for k, g in d["by_specialty"].items()]
-    return _table(["Group", "Value", "n", "Exact", "First-listed", "Correct", "Missing",
-                   "Extra", "Optional given", "Precision", "Recall", "Invalid", "No answer",
-                   "Error findings", "Review findings", "Cases with an error finding",
-                   "Note"], rows)
+    return _table(_B_HEAD + ["Note"], rows)
+
+
+def _c_rows(d):
+    """The Part C scorer's table: overall, the two case kinds, the gap
+    types (no counter_case row) and the specialties, with its columns."""
+    def line(group, value, g):
+        return _b_line(group, value, g) + [g["gap_cases"], g["gap_cases_with_unsupported"],
+                                           _note(g)]
+    rows = [line("overall", "", d["overall"])]
+    rows += [line("case kind", part_c_score.KIND_LABELS[k], d["by_case_kind"][k])
+             for k in part_c_score.KINDS]
+    rows += [line("gap type", k, g) for k, g in d["by_gap_type"].items()]
+    rows += [line("specialty", k, g) for k, g in d["by_specialty"].items()]
+    return _table(_B_HEAD + ["Gap cases", "Gap cases with an unsupported code", "Note"], rows)
 
 
 def _opt(x):
@@ -630,7 +900,7 @@ def _opt(x):
 def to_markdown(fig):
     o = [f"# Results\n\nCode set: {fig['code_set']}.\n\n"
          "Every figure below is computed by medcode_eval.results from the stored files in "
-         "results/part_a/ and results/part_b/ and from data/ and refdata/. Rebuild with "
+         "results/part_a/, results/part_b/ and results/part_c/ and from data/ and refdata/. Rebuild with "
          "`venv/bin/python -m medcode_eval.results --write`; check with "
          "`venv/bin/python -m medcode_eval.results --check`. Codes are shown with the dot "
          "after the third character.\n"]
@@ -783,12 +1053,185 @@ def to_markdown(fig):
                       _yn(u["equals_stored_usage_json"])] for u in fig["S8_usage"]]
                     + [["total", "", sum(u["replies"] for u in fig["S8_usage"]),
                         f"{sum(u['cost_usd'] for u in fig['S8_usage']):.4f}", "", ""]]))
+    o.append(_part_c_markdown(fig))
     return "".join(o)
 
 
-def build(results_dir=RESULTS_DIR, runs=None, data=None):
+def _of(rows, key, label):
+    """A column heading "label (of N)" when every row has the same N."""
+    ns = {r[key] for r in rows}
+    return f"{label} (of {ns.pop()})" if len(ns) == 1 else label
+
+
+def _x_of(r, key, n_key, uniform):
+    return str(r[key]) if uniform else f"{r[key]} of {r[n_key]}"
+
+
+def _diff_text(diff):
+    return ", ".join(x["id"] + (" (order only)" if x["order_only"] else "")
+                     + (" (optional codes only)" if x["optional_only"] else "")
+                     for x in diff) or "none"
+
+
+def _label(run, repeats):
+    return f"{run} (repeat; {REPEAT_NOTE})" if run in repeats else run
+
+
+def _part_c_markdown(fig):
+    o = []
+    none = "\nNo runs.\n"
+
+    o.append("\n## S9. Part C reported runs\n")
+    if not fig["S9_part_c_runs"]:
+        o.append(none)
+    else:
+        o.append("\nThe reported Part C runs, then the repeat run, which is not a reported "
+                 "score.\n\n")
+        o.append(_table(["Run", "What", "Model", "Backend", "Effort", "Temperature", "Seed",
+                         "Prompt suffix", "Started", "Cases answered"],
+                        [[r["run"], r["what"], r["model"], r["backend"], _opt(r["effort"]),
+                          _opt(r["temperature"]), _opt(r["seed"]),
+                          f"`{r['prompt_suffix']}`" if r["prompt_suffix"] else "-",
+                          r["started"], r["cases_answered"]]
+                         for r in fig["S9_part_c_runs"]]))
+
+    o.append("\n## S10. Part C\n")
+    runs = fig["S10_part_c"]
+    if not runs:
+        o.append(none)
+    else:
+        o.append("\nA gap case leaves out what a more specific code would need, and an answer "
+                 "code counts as unsupported when it equals an entry of the case's "
+                 "unsupported_codes or starts with one (the case's optional codes are not "
+                 "counted). Counter-cases are scored by exact match only. Reported runs only; "
+                 "the repeat run is not in this section.\n\n")
+        rows = [dict(x, run=d["run"], model=d["model"], condition=d["condition"])
+                for d in runs for x in d["summary"]]
+        heads = [("n", "Exact"), ("gap_cases", "Exact gap cases"),
+                 ("counter_cases", "Exact counter-cases"),
+                 ("gap_cases", "Gap cases with an unsupported code")]
+        uni = [len({r[k] for r in rows}) == 1 for k, _ in heads]
+        o.append(_table(
+            ["Run", "Model", "Condition", "Answer"]
+            + [_of(rows, k, label) for k, label in heads]
+            + ["Required codes found", "Extra codes", "Optional given", "Invalid",
+               "Second turns"],
+            [[r["run"], r["model"], r["condition"], r["answer"],
+              _x_of(r, "exact", "n", uni[0]), _x_of(r, "exact_gap_cases", "gap_cases", uni[1]),
+              _x_of(r, "exact_counter_cases", "counter_cases", uni[2]),
+              _x_of(r, "gap_cases_with_unsupported", "gap_cases", uni[3]),
+              f"{r['required_found']} of {r['required_total']}", r["extra"],
+              r["optional_given"], r["invalid"], r["second_turns"]] for r in rows]))
+        sizes = {(g["n"], g["gap_cases"]) for d in runs for t in d["tables"].values()
+                 for g in t["by_specialty"].values()}
+        if len(sizes) == 1:
+            n, gap = sizes.pop()
+            o.append(f"\nEach specialty row holds {n} cases: {gap} gap cases and {n - gap} "
+                     f"counter-case{'' if n - gap == 1 else 's'}.\n")
+        else:
+            o.append("\nSpecialty rows differ in size; see the n column.\n")
+        for d in runs:
+            u = d["gap_cases_with_unsupported"]
+            o.append(f"\n### {d['run']} ({d['model']}, {d['condition']})\n\n"
+                     f"Gold sha256: {d['gold_sha256']} (equals the gold files as they are: "
+                     f"{_yn(d['gold_sha256_equals_gold_files'])}). Cases: {d['n_cases']}. "
+                     f"Gap cases: {d['gap_cases']}. Second turns: {d['second_turns']}.\n\n"
+                     f"Gave an unsupported code in {u['first']} of {d['gap_cases']} gap cases "
+                     f"(first answer), {u['final']} of {d['gap_cases']} (final answer).\n")
+            for w, title in (("first", "First answer"), ("final", "Final answer")):
+                if w in d["tables"]:
+                    o.append(f"\n{title}:\n\n" + _c_rows(d["tables"][w]))
+
+    o.append("\n## S11. Part C per case\n")
+    if not fig["S11_part_c_cases"]:
+        o.append(none)
+    else:
+        o.append(f"\nReported runs only. Answers are shown as in S6: a code that already holds "
+                 f"a dot is shown as given, and an answer with more than {SHOW_CODES} codes is "
+                 f"shown as its first {SHOW_FIRST} codes and the count.\n")
+        for d in fig["S11_part_c_cases"]:
+            o.append(f"\n### {d['run']} ({d['model']}, {d['condition']})\n\n")
+            o.append(_table(["Case", "Gap type", "Gold", "Optional", "First", "Final",
+                             "Exact first / final", "Unsupported given first / final"],
+                            [[c["id"], c["gap_type"], c["gold"], c["optional"], c["first"],
+                              c["final"], f"{_yn(c['exact_first'])} / {_yn(c['exact_final'])}",
+                              f"{c['unsupported_first']} / {c['unsupported_final']}"]
+                             for c in d["cases"]]))
+
+    o.append("\n## S12. Part C derived\n")
+    if not fig["S12_part_c_derived"]:
+        o.append(none)
+    else:
+        o.append("\nA case is marked \"(order only)\" when the two answers hold the same codes, "
+                 "and \"(optional codes only)\" when they are equal once the case's optional "
+                 "codes are removed.\n")
+    repeats = {r["run"] for r in fig["S9_part_c_runs"] if r["repeat"]}
+    for d in fig["S12_part_c_derived"]:
+        o.append(f"\n### {d['model']}\n\n")
+        if "first_answer_differs_plain_vs_reminded" in d:
+            o.append("Cases whose first answer differs between the plain and the reminded run: "
+                     + _diff_text(d["first_answer_differs_plain_vs_reminded"]) + ".\n\n")
+        if "first_answer_differs_plain_vs_checker" in d:
+            o.append("Cases whose first answer differs between the plain run and the first "
+                     "answers of the with-checker run (the same prompt): "
+                     + _diff_text(d["first_answer_differs_plain_vs_checker"]) + ".\n\n")
+        r = d.get("first_answer_differs_repeat")
+        if r:
+            o.append(f"Cases whose first answer differs between the {r['condition']} run "
+                     f"{r['reported_run']} and its repeat {r['repeat_run']} (the same prompt; "
+                     f"repeat, {REPEAT_NOTE}): " + _diff_text(r["cases"]) + ".\n\n")
+        f = d.get("repeat_figures")
+        if f:
+            o.append(f"The repeat run {f['run']} ({f['label']}): exact {f['exact']} of {f['n']}; "
+                     f"gap cases with an unsupported code {f['gap_cases_with_unsupported']} of "
+                     f"{f['gap_cases']}.\n\n")
+        for k, ids in d["final_differs_from_first"].items():
+            o.append(f"{_label(k, repeats)}: cases whose final answer differs from the first: "
+                     f"{', '.join(ids) or 'none'}.\n\n")
+        for k, errs in d["runner_error"].items():
+            o.append(f"{_label(k, repeats)}: cases with a runner error: "
+                     + (", ".join(f"{e['id']} ({e['error']})" for e in errs) or "none")
+                     + ".\n\n")
+        w = d.get("with_checker")
+        if w:
+            o.append(f"{w['run']}:\n\n")
+            o.append(_table(["Cases", "Second turns", "Findings sent by rule",
+                             "Error findings first", "Error findings final", "Changed answers"],
+                            [[w["cases"], w["second_turns"],
+                              ", ".join(f"{k} {v}" for k, v in w["findings_sent_by_rule"].items())
+                              + f" (total {w['findings_sent']})" if w["findings_sent"]
+                              else "none",
+                              w["error_findings_first"], w["error_findings_final"],
+                              w["changed_answers"]]]))
+        u = d["unsupported_by_case"]
+        o.append("\nCases with an unsupported code in at least one run of the model "
+                 "(unsupported codes given, or -):\n\n")
+        o.append(_table(["Case", "Gap type", *(c["label"] for c in u["columns"])],
+                        [[c["id"], c["gap_type"], *c["given"]] for c in u["cases"]])
+                 if u["cases"] else "None.\n")
+
+    o.append("\n## S13. Part C usage and cost\n")
+    us = fig["S13_part_c_usage"]
+    if not us:
+        o.append(none)
+    else:
+        o.append("\nPart C runs with a usage.json; cost at the prices recorded in run.json, "
+                 "recomputed from raw.jsonl by medcode_eval.run.usage. The total includes the "
+                 "repeat run.\n\n")
+        o.append(_table(["Run", "Model", "Replies", "Cost (USD)", "Price in / out (USD per "
+                         "million tokens)", "Equals the stored usage.json"],
+                        [[_label(u["run"], repeats), u["model"], u["replies"],
+                          f"{u['cost_usd']:.4f}",
+                          f"{u['price_in_usd_per_mtok']} / {u['price_out_usd_per_mtok']}",
+                          _yn(u["equals_stored_usage_json"])] for u in us]
+                        + [["total", "", sum(u["replies"] for u in us),
+                            f"{sum(u['cost_usd'] for u in us):.4f}", "", ""]]))
+    return "".join(o)
+
+
+def build(results_dir=RESULTS_DIR, runs=None, data=None, part_c=None):
     """(RESULTS.md text, results.json text)."""
-    fig = figures(results_dir, runs, data)
+    fig = figures(results_dir, runs, data, part_c)
     return to_markdown(fig), json.dumps(fig, sort_keys=True, indent=2) + "\n"
 
 

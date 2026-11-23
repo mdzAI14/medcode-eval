@@ -6,11 +6,18 @@ numbers. Code set: ICD-10-CM FY2027 (October 1, 2026 release).
 Every file in the run folders is a byte-for-byte copy of what the
 run wrote. Each run was made once.
 
-- part_a/ and part_b/: the reported runs. Each folder holds the run
-  settings (run.json), the model's replies as received (raw.jsonl),
-  the answers as read from them (responses.jsonl or answers.jsonl),
-  and the scores (score.json, score.md). Most runs through a paid
-  API also hold a usage summary (usage.json).
+- part_a/, part_b/ and part_c/: the reported runs. Each folder
+  holds the run settings (run.json), the model's replies as
+  received (raw.jsonl), the answers as read from them
+  (responses.jsonl or answers.jsonl), and the scores (score.json,
+  score.md). Most runs through a paid API also hold a usage
+  summary (usage.json).
+- part_c/repeat/: one run that is not a reported result. It is
+  the Part C "reminded" condition run a second time on the same
+  model, kept only to show how much two runs of one prompt
+  differ. Which run is reported and which is the repeat was fixed
+  before either was made. It is scored on the same gold and
+  checked like the reported runs.
 - review/part_b/: runs that are not reported results. They were
   made while the Part B cases were being written, as a second look
   at the gold codes, on the gold as it stood on the day of each
@@ -30,3 +37,9 @@ run wrote. Each run was made once.
 Folder names are the run ids. A name ending in -reader2 is a run
 whose replies were read again with answer reader 2, the reader all
 reported Part A numbers use.
+
+In a score.md, a code that the model wrote in a malformed way (a
+misplaced dot, or too many characters) is shown with an extra dot,
+for example "T82..119XA" for the eight-character answer
+"T82.119XA". RESULTS.md shows such a code as the model gave it.
+Either way it counts as an extra code.

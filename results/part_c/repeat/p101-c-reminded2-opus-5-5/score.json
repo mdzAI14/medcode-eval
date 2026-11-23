@@ -1,0 +1,2224 @@
+{
+  "cases": [
+    {
+      "case_kind": "gap_case",
+      "final": {
+        "codes": [
+          "A084"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "A084"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "gap_type": "provider_statement",
+      "gold": [
+        "A084"
+      ],
+      "id": "c-ed-001",
+      "optional": [],
+      "second_turn": false,
+      "specialty": "ed",
+      "unsupported": [
+        "N17",
+        "N19",
+        "N289",
+        "R944",
+        "R7989"
+      ]
+    },
+    {
+      "case_kind": "gap_case",
+      "final": {
+        "codes": [
+          "R339",
+          "Z9049"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 1,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "R339",
+          "Z9049"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 1,
+        "unsupported_given": []
+      },
+      "gap_type": "unstated_link",
+      "gold": [
+        "R339"
+      ],
+      "id": "c-ed-002",
+      "optional": [
+        "Z9049",
+        "Z960"
+      ],
+      "second_turn": false,
+      "specialty": "ed",
+      "unsupported": [
+        "N99",
+        "T81",
+        "T885",
+        "R330"
+      ]
+    },
+    {
+      "case_kind": "gap_case",
+      "final": {
+        "codes": [
+          "J209"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "J209"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "gap_type": "not_current",
+      "gold": [
+        "J209"
+      ],
+      "id": "c-ed-003",
+      "optional": [
+        "Z8709"
+      ],
+      "second_turn": false,
+      "specialty": "ed",
+      "unsupported": [
+        "J45"
+      ]
+    },
+    {
+      "case_kind": "gap_case",
+      "final": {
+        "codes": [
+          "I509"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "I509"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "gap_type": "unspecified_detail",
+      "gold": [
+        "I509"
+      ],
+      "id": "c-ed-004",
+      "optional": [
+        "Z79899"
+      ],
+      "second_turn": false,
+      "specialty": "ed",
+      "unsupported": [
+        "I502",
+        "I503",
+        "I504",
+        "I501",
+        "I508"
+      ]
+    },
+    {
+      "case_kind": "gap_case",
+      "final": {
+        "codes": [
+          "R300"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "R300"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "gap_type": "uncertain_diagnosis",
+      "gold": [
+        "R300"
+      ],
+      "id": "c-ed-005",
+      "optional": [],
+      "second_turn": false,
+      "specialty": "ed",
+      "unsupported": [
+        "N390",
+        "N30"
+      ]
+    },
+    {
+      "case_kind": "counter_case",
+      "final": {
+        "codes": [
+          "I110",
+          "I5033"
+        ],
+        "correct": 2,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "I110",
+          "I5033"
+        ],
+        "correct": 2,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "gap_type": "counter_case",
+      "gold": [
+        "I110",
+        "I5033"
+      ],
+      "id": "c-ed-006",
+      "optional": [
+        "Z79899"
+      ],
+      "second_turn": false,
+      "specialty": "ed",
+      "unsupported": []
+    },
+    {
+      "case_kind": "gap_case",
+      "final": {
+        "codes": [
+          "J0190"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "J0190"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "gap_type": "unspecified_detail",
+      "gold": [
+        "J0190"
+      ],
+      "id": "c-ent-001",
+      "optional": [],
+      "second_turn": false,
+      "specialty": "ent",
+      "unsupported": [
+        "J010",
+        "J011",
+        "J012",
+        "J013",
+        "J014",
+        "J018"
+      ]
+    },
+    {
+      "case_kind": "gap_case",
+      "final": {
+        "codes": [
+          "R42"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "R42"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "gap_type": "uncertain_diagnosis",
+      "gold": [
+        "R42"
+      ],
+      "id": "c-ent-002",
+      "optional": [],
+      "second_turn": false,
+      "specialty": "ent",
+      "unsupported": [
+        "H81"
+      ]
+    },
+    {
+      "case_kind": "gap_case",
+      "final": {
+        "codes": [
+          "J0390"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "J0390"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "gap_type": "provider_statement",
+      "gold": [
+        "J0390"
+      ],
+      "id": "c-ent-003",
+      "optional": [],
+      "second_turn": false,
+      "specialty": "ent",
+      "unsupported": [
+        "J030",
+        "J038",
+        "J020",
+        "B95"
+      ]
+    },
+    {
+      "case_kind": "gap_case",
+      "final": {
+        "codes": [
+          "H903"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "H903"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "gap_type": "unstated_link",
+      "gold": [
+        "H903"
+      ],
+      "id": "c-ent-004",
+      "optional": [
+        "Z570"
+      ],
+      "second_turn": false,
+      "specialty": "ent",
+      "unsupported": [
+        "H833"
+      ]
+    },
+    {
+      "case_kind": "gap_case",
+      "final": {
+        "codes": [
+          "Z09",
+          "Z8669"
+        ],
+        "correct": 2,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "Z09",
+          "Z8669"
+        ],
+        "correct": 2,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "gap_type": "not_current",
+      "gold": [
+        "Z09",
+        "Z8669"
+      ],
+      "id": "c-ent-005",
+      "optional": [
+        "Z92241"
+      ],
+      "second_turn": false,
+      "specialty": "ent",
+      "unsupported": [
+        "H91",
+        "H90"
+      ]
+    },
+    {
+      "case_kind": "counter_case",
+      "final": {
+        "codes": [
+          "H8101",
+          "Z79899"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 1,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "H8101",
+          "Z79899"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 1,
+        "unsupported_given": []
+      },
+      "gap_type": "counter_case",
+      "gold": [
+        "H8101"
+      ],
+      "id": "c-ent-006",
+      "optional": [
+        "Z79899"
+      ],
+      "second_turn": false,
+      "specialty": "ent",
+      "unsupported": []
+    },
+    {
+      "case_kind": "gap_case",
+      "final": {
+        "codes": [
+          "K7460",
+          "F1020"
+        ],
+        "correct": 2,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "K7460",
+          "F1020"
+        ],
+        "correct": 2,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "gap_type": "unstated_link",
+      "gold": [
+        "K7460",
+        "F1020"
+      ],
+      "id": "c-gi-001",
+      "optional": [],
+      "second_turn": false,
+      "specialty": "gi",
+      "unsupported": [
+        "K70"
+      ]
+    },
+    {
+      "case_kind": "gap_case",
+      "final": {
+        "codes": [
+          "Z08",
+          "Z85038",
+          "Z9049",
+          "Z9221"
+        ],
+        "correct": 3,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 1,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "Z08",
+          "Z85038",
+          "Z9049",
+          "Z9221"
+        ],
+        "correct": 3,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 1,
+        "unsupported_given": []
+      },
+      "gap_type": "not_current",
+      "gold": [
+        "Z08",
+        "Z85038",
+        "Z9049"
+      ],
+      "id": "c-gi-002",
+      "optional": [
+        "Z9221"
+      ],
+      "second_turn": false,
+      "specialty": "gi",
+      "unsupported": [
+        "C18"
+      ]
+    },
+    {
+      "case_kind": "gap_case",
+      "final": {
+        "codes": [
+          "B1920"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "B1920"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "gap_type": "unspecified_detail",
+      "gold": [
+        "B1920"
+      ],
+      "id": "c-gi-003",
+      "optional": [],
+      "second_turn": false,
+      "specialty": "gi",
+      "unsupported": [
+        "B182",
+        "B171"
+      ]
+    },
+    {
+      "case_kind": "gap_case",
+      "final": {
+        "codes": [
+          "R1013"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "R1013"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "gap_type": "uncertain_diagnosis",
+      "gold": [
+        "R1013"
+      ],
+      "id": "c-gi-004",
+      "optional": [],
+      "second_turn": false,
+      "specialty": "gi",
+      "unsupported": [
+        "K27",
+        "K25",
+        "K26"
+      ]
+    },
+    {
+      "case_kind": "gap_case",
+      "final": {
+        "codes": [
+          "K900"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "K900"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "gap_type": "provider_statement",
+      "gold": [
+        "K900"
+      ],
+      "id": "c-gi-005",
+      "optional": [
+        "Z713"
+      ],
+      "second_turn": false,
+      "specialty": "gi",
+      "unsupported": [
+        "E44",
+        "E43",
+        "E46"
+      ]
+    },
+    {
+      "case_kind": "counter_case",
+      "final": {
+        "codes": [
+          "K641"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "K641"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "gap_type": "counter_case",
+      "gold": [
+        "K641"
+      ],
+      "id": "c-gi-006",
+      "optional": [],
+      "second_turn": false,
+      "specialty": "gi",
+      "unsupported": []
+    },
+    {
+      "case_kind": "gap_case",
+      "final": {
+        "codes": [
+          "Z09",
+          "Z8669"
+        ],
+        "correct": 2,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "Z09",
+          "Z8669"
+        ],
+        "correct": 2,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "gap_type": "not_current",
+      "gold": [
+        "Z09",
+        "Z8669"
+      ],
+      "id": "c-ophtho-001",
+      "optional": [],
+      "second_turn": false,
+      "specialty": "ophtho",
+      "unsupported": [
+        "H16"
+      ]
+    },
+    {
+      "case_kind": "gap_case",
+      "final": {
+        "codes": [
+          "H401130"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "H401130"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "gap_type": "unspecified_detail",
+      "gold": [
+        "H401130"
+      ],
+      "id": "c-ophtho-002",
+      "optional": [
+        "Z79899"
+      ],
+      "second_turn": false,
+      "specialty": "ophtho",
+      "unsupported": [
+        "H401131",
+        "H401132",
+        "H401133",
+        "H401134",
+        "H401111",
+        "H401112",
+        "H401113",
+        "H401114",
+        "H401121",
+        "H401122",
+        "H401123",
+        "H401124"
+      ]
+    },
+    {
+      "case_kind": "gap_case",
+      "final": {
+        "codes": [
+          "H53131"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "H53131"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "gap_type": "uncertain_diagnosis",
+      "gold": [
+        "H53131"
+      ],
+      "id": "c-ophtho-003",
+      "optional": [
+        "H5461"
+      ],
+      "second_turn": false,
+      "specialty": "ophtho",
+      "unsupported": [
+        "H34"
+      ]
+    },
+    {
+      "case_kind": "gap_case",
+      "final": {
+        "codes": [
+          "H353134"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "H353134"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "gap_type": "provider_statement",
+      "gold": [
+        "H353134"
+      ],
+      "id": "c-ophtho-004",
+      "optional": [],
+      "second_turn": false,
+      "specialty": "ophtho",
+      "unsupported": [
+        "H54"
+      ]
+    },
+    {
+      "case_kind": "gap_case",
+      "final": {
+        "codes": [
+          "H3500",
+          "I10",
+          "Z79899"
+        ],
+        "correct": 2,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 1,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "H3500",
+          "I10",
+          "Z79899"
+        ],
+        "correct": 2,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 1,
+        "unsupported_given": []
+      },
+      "gap_type": "unstated_link",
+      "gold": [
+        "H3500",
+        "I10"
+      ],
+      "id": "c-ophtho-005",
+      "optional": [
+        "Z79899"
+      ],
+      "second_turn": false,
+      "specialty": "ophtho",
+      "unsupported": [
+        "H3503"
+      ]
+    },
+    {
+      "case_kind": "counter_case",
+      "final": {
+        "codes": [
+          "H40013"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "H40013"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "gap_type": "counter_case",
+      "gold": [
+        "H40013"
+      ],
+      "id": "c-ophtho-006",
+      "optional": [],
+      "second_turn": false,
+      "specialty": "ophtho",
+      "unsupported": []
+    },
+    {
+      "case_kind": "gap_case",
+      "final": {
+        "codes": [
+          "M25561"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "M25561"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "gap_type": "uncertain_diagnosis",
+      "gold": [
+        "M25561"
+      ],
+      "id": "c-ortho-001",
+      "optional": [],
+      "second_turn": false,
+      "specialty": "ortho",
+      "unsupported": [
+        "M23",
+        "S832"
+      ]
+    },
+    {
+      "case_kind": "gap_case",
+      "final": {
+        "codes": [
+          "M1612"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "M1612"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "gap_type": "provider_statement",
+      "gold": [
+        "M1612"
+      ],
+      "id": "c-ortho-002",
+      "optional": [],
+      "second_turn": false,
+      "specialty": "ortho",
+      "unsupported": [
+        "E66",
+        "Z68"
+      ]
+    },
+    {
+      "case_kind": "gap_case",
+      "final": {
+        "codes": [
+          "M7662"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "M7662"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "gap_type": "unstated_link",
+      "gold": [
+        "M7662"
+      ],
+      "id": "c-ortho-003",
+      "optional": [],
+      "second_turn": false,
+      "specialty": "ortho",
+      "unsupported": [
+        "T36",
+        "T37"
+      ]
+    },
+    {
+      "case_kind": "gap_case",
+      "final": {
+        "codes": [
+          "M810",
+          "Z87310",
+          "Z7983"
+        ],
+        "correct": 2,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 1,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "M810",
+          "Z87310",
+          "Z7983"
+        ],
+        "correct": 2,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 1,
+        "unsupported_given": []
+      },
+      "gap_type": "not_current",
+      "gold": [
+        "M810",
+        "Z87310"
+      ],
+      "id": "c-ortho-004",
+      "optional": [
+        "Z7983"
+      ],
+      "second_turn": false,
+      "specialty": "ortho",
+      "unsupported": [
+        "M80",
+        "M485",
+        "S220",
+        "M844"
+      ]
+    },
+    {
+      "case_kind": "gap_case",
+      "final": {
+        "codes": [
+          "S82251E",
+          "W11XXXD"
+        ],
+        "correct": 2,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "S82251E",
+          "W11XXXD"
+        ],
+        "correct": 2,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "gap_type": "unspecified_detail",
+      "gold": [
+        "S82251E",
+        "W11XXXD"
+      ],
+      "id": "c-ortho-005",
+      "optional": [
+        "Z967"
+      ],
+      "second_turn": false,
+      "specialty": "ortho",
+      "unsupported": [
+        "S82251F",
+        "S82251C",
+        "S82251J",
+        "S82251N",
+        "S82251R"
+      ]
+    },
+    {
+      "case_kind": "counter_case",
+      "final": {
+        "codes": [
+          "M65341"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "first": {
+        "codes": [
+          "M65341"
+        ],
+        "correct": 1,
+        "exact": true,
+        "extra": 0,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": true,
+        "invalid": false,
+        "missing": 0,
+        "no_answer": false,
+        "optional_given": 0,
+        "unsupported_given": []
+      },
+      "gap_type": "counter_case",
+      "gold": [
+        "M65341"
+      ],
+      "id": "c-ortho-006",
+      "optional": [],
+      "second_turn": false,
+      "specialty": "ortho",
+      "unsupported": []
+    }
+  ],
+  "code_set": "ICD-10-CM FY2027 (October 1, 2026 release)",
+  "final": {
+    "by_case_kind": {
+      "counter_case": {
+        "cases_with_error_finding": 0,
+        "correct": 6,
+        "exact": 5,
+        "extra": 0,
+        "fewer_than_10": true,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": 5,
+        "gap_cases": 0,
+        "gap_cases_with_unsupported": 0,
+        "invalid": 0,
+        "missing": 0,
+        "n": 5,
+        "no_answer": 0,
+        "optional_given": 1,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "gap_case": {
+        "cases_with_error_finding": 0,
+        "correct": 33,
+        "exact": 25,
+        "extra": 0,
+        "fewer_than_10": false,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": 25,
+        "gap_cases": 25,
+        "gap_cases_with_unsupported": 0,
+        "invalid": 0,
+        "missing": 0,
+        "n": 25,
+        "no_answer": 0,
+        "optional_given": 4,
+        "precision": 1.0,
+        "recall": 1.0
+      }
+    },
+    "by_gap_type": {
+      "counter_case": {
+        "cases_with_error_finding": 0,
+        "correct": 6,
+        "exact": 5,
+        "extra": 0,
+        "fewer_than_10": true,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": 5,
+        "gap_cases": 0,
+        "gap_cases_with_unsupported": 0,
+        "invalid": 0,
+        "missing": 0,
+        "n": 5,
+        "no_answer": 0,
+        "optional_given": 1,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "not_current": {
+        "cases_with_error_finding": 0,
+        "correct": 10,
+        "exact": 5,
+        "extra": 0,
+        "fewer_than_10": true,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": 5,
+        "gap_cases": 5,
+        "gap_cases_with_unsupported": 0,
+        "invalid": 0,
+        "missing": 0,
+        "n": 5,
+        "no_answer": 0,
+        "optional_given": 2,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "provider_statement": {
+        "cases_with_error_finding": 0,
+        "correct": 5,
+        "exact": 5,
+        "extra": 0,
+        "fewer_than_10": true,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": 5,
+        "gap_cases": 5,
+        "gap_cases_with_unsupported": 0,
+        "invalid": 0,
+        "missing": 0,
+        "n": 5,
+        "no_answer": 0,
+        "optional_given": 0,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "uncertain_diagnosis": {
+        "cases_with_error_finding": 0,
+        "correct": 5,
+        "exact": 5,
+        "extra": 0,
+        "fewer_than_10": true,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": 5,
+        "gap_cases": 5,
+        "gap_cases_with_unsupported": 0,
+        "invalid": 0,
+        "missing": 0,
+        "n": 5,
+        "no_answer": 0,
+        "optional_given": 0,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "unspecified_detail": {
+        "cases_with_error_finding": 0,
+        "correct": 6,
+        "exact": 5,
+        "extra": 0,
+        "fewer_than_10": true,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": 5,
+        "gap_cases": 5,
+        "gap_cases_with_unsupported": 0,
+        "invalid": 0,
+        "missing": 0,
+        "n": 5,
+        "no_answer": 0,
+        "optional_given": 0,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "unstated_link": {
+        "cases_with_error_finding": 0,
+        "correct": 7,
+        "exact": 5,
+        "extra": 0,
+        "fewer_than_10": true,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": 5,
+        "gap_cases": 5,
+        "gap_cases_with_unsupported": 0,
+        "invalid": 0,
+        "missing": 0,
+        "n": 5,
+        "no_answer": 0,
+        "optional_given": 2,
+        "precision": 1.0,
+        "recall": 1.0
+      }
+    },
+    "by_specialty": {
+      "ed": {
+        "cases_with_error_finding": 0,
+        "correct": 7,
+        "exact": 6,
+        "extra": 0,
+        "fewer_than_10": true,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": 6,
+        "gap_cases": 5,
+        "gap_cases_with_unsupported": 0,
+        "invalid": 0,
+        "missing": 0,
+        "n": 6,
+        "no_answer": 0,
+        "optional_given": 1,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "ent": {
+        "cases_with_error_finding": 0,
+        "correct": 7,
+        "exact": 6,
+        "extra": 0,
+        "fewer_than_10": true,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": 6,
+        "gap_cases": 5,
+        "gap_cases_with_unsupported": 0,
+        "invalid": 0,
+        "missing": 0,
+        "n": 6,
+        "no_answer": 0,
+        "optional_given": 1,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "gi": {
+        "cases_with_error_finding": 0,
+        "correct": 9,
+        "exact": 6,
+        "extra": 0,
+        "fewer_than_10": true,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": 6,
+        "gap_cases": 5,
+        "gap_cases_with_unsupported": 0,
+        "invalid": 0,
+        "missing": 0,
+        "n": 6,
+        "no_answer": 0,
+        "optional_given": 1,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "ophtho": {
+        "cases_with_error_finding": 0,
+        "correct": 8,
+        "exact": 6,
+        "extra": 0,
+        "fewer_than_10": true,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": 6,
+        "gap_cases": 5,
+        "gap_cases_with_unsupported": 0,
+        "invalid": 0,
+        "missing": 0,
+        "n": 6,
+        "no_answer": 0,
+        "optional_given": 1,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "ortho": {
+        "cases_with_error_finding": 0,
+        "correct": 8,
+        "exact": 6,
+        "extra": 0,
+        "fewer_than_10": true,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": 6,
+        "gap_cases": 5,
+        "gap_cases_with_unsupported": 0,
+        "invalid": 0,
+        "missing": 0,
+        "n": 6,
+        "no_answer": 0,
+        "optional_given": 1,
+        "precision": 1.0,
+        "recall": 1.0
+      }
+    },
+    "overall": {
+      "cases_with_error_finding": 0,
+      "correct": 39,
+      "exact": 30,
+      "extra": 0,
+      "fewer_than_10": false,
+      "findings": {
+        "error": 0,
+        "review": 0
+      },
+      "first_listed": 30,
+      "gap_cases": 25,
+      "gap_cases_with_unsupported": 0,
+      "invalid": 0,
+      "missing": 0,
+      "n": 30,
+      "no_answer": 0,
+      "optional_given": 5,
+      "precision": 1.0,
+      "recall": 1.0
+    }
+  },
+  "first": {
+    "by_case_kind": {
+      "counter_case": {
+        "cases_with_error_finding": 0,
+        "correct": 6,
+        "exact": 5,
+        "extra": 0,
+        "fewer_than_10": true,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": 5,
+        "gap_cases": 0,
+        "gap_cases_with_unsupported": 0,
+        "invalid": 0,
+        "missing": 0,
+        "n": 5,
+        "no_answer": 0,
+        "optional_given": 1,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "gap_case": {
+        "cases_with_error_finding": 0,
+        "correct": 33,
+        "exact": 25,
+        "extra": 0,
+        "fewer_than_10": false,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": 25,
+        "gap_cases": 25,
+        "gap_cases_with_unsupported": 0,
+        "invalid": 0,
+        "missing": 0,
+        "n": 25,
+        "no_answer": 0,
+        "optional_given": 4,
+        "precision": 1.0,
+        "recall": 1.0
+      }
+    },
+    "by_gap_type": {
+      "counter_case": {
+        "cases_with_error_finding": 0,
+        "correct": 6,
+        "exact": 5,
+        "extra": 0,
+        "fewer_than_10": true,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": 5,
+        "gap_cases": 0,
+        "gap_cases_with_unsupported": 0,
+        "invalid": 0,
+        "missing": 0,
+        "n": 5,
+        "no_answer": 0,
+        "optional_given": 1,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "not_current": {
+        "cases_with_error_finding": 0,
+        "correct": 10,
+        "exact": 5,
+        "extra": 0,
+        "fewer_than_10": true,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": 5,
+        "gap_cases": 5,
+        "gap_cases_with_unsupported": 0,
+        "invalid": 0,
+        "missing": 0,
+        "n": 5,
+        "no_answer": 0,
+        "optional_given": 2,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "provider_statement": {
+        "cases_with_error_finding": 0,
+        "correct": 5,
+        "exact": 5,
+        "extra": 0,
+        "fewer_than_10": true,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": 5,
+        "gap_cases": 5,
+        "gap_cases_with_unsupported": 0,
+        "invalid": 0,
+        "missing": 0,
+        "n": 5,
+        "no_answer": 0,
+        "optional_given": 0,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "uncertain_diagnosis": {
+        "cases_with_error_finding": 0,
+        "correct": 5,
+        "exact": 5,
+        "extra": 0,
+        "fewer_than_10": true,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": 5,
+        "gap_cases": 5,
+        "gap_cases_with_unsupported": 0,
+        "invalid": 0,
+        "missing": 0,
+        "n": 5,
+        "no_answer": 0,
+        "optional_given": 0,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "unspecified_detail": {
+        "cases_with_error_finding": 0,
+        "correct": 6,
+        "exact": 5,
+        "extra": 0,
+        "fewer_than_10": true,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": 5,
+        "gap_cases": 5,
+        "gap_cases_with_unsupported": 0,
+        "invalid": 0,
+        "missing": 0,
+        "n": 5,
+        "no_answer": 0,
+        "optional_given": 0,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "unstated_link": {
+        "cases_with_error_finding": 0,
+        "correct": 7,
+        "exact": 5,
+        "extra": 0,
+        "fewer_than_10": true,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": 5,
+        "gap_cases": 5,
+        "gap_cases_with_unsupported": 0,
+        "invalid": 0,
+        "missing": 0,
+        "n": 5,
+        "no_answer": 0,
+        "optional_given": 2,
+        "precision": 1.0,
+        "recall": 1.0
+      }
+    },
+    "by_specialty": {
+      "ed": {
+        "cases_with_error_finding": 0,
+        "correct": 7,
+        "exact": 6,
+        "extra": 0,
+        "fewer_than_10": true,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": 6,
+        "gap_cases": 5,
+        "gap_cases_with_unsupported": 0,
+        "invalid": 0,
+        "missing": 0,
+        "n": 6,
+        "no_answer": 0,
+        "optional_given": 1,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "ent": {
+        "cases_with_error_finding": 0,
+        "correct": 7,
+        "exact": 6,
+        "extra": 0,
+        "fewer_than_10": true,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": 6,
+        "gap_cases": 5,
+        "gap_cases_with_unsupported": 0,
+        "invalid": 0,
+        "missing": 0,
+        "n": 6,
+        "no_answer": 0,
+        "optional_given": 1,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "gi": {
+        "cases_with_error_finding": 0,
+        "correct": 9,
+        "exact": 6,
+        "extra": 0,
+        "fewer_than_10": true,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": 6,
+        "gap_cases": 5,
+        "gap_cases_with_unsupported": 0,
+        "invalid": 0,
+        "missing": 0,
+        "n": 6,
+        "no_answer": 0,
+        "optional_given": 1,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "ophtho": {
+        "cases_with_error_finding": 0,
+        "correct": 8,
+        "exact": 6,
+        "extra": 0,
+        "fewer_than_10": true,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": 6,
+        "gap_cases": 5,
+        "gap_cases_with_unsupported": 0,
+        "invalid": 0,
+        "missing": 0,
+        "n": 6,
+        "no_answer": 0,
+        "optional_given": 1,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "ortho": {
+        "cases_with_error_finding": 0,
+        "correct": 8,
+        "exact": 6,
+        "extra": 0,
+        "fewer_than_10": true,
+        "findings": {
+          "error": 0,
+          "review": 0
+        },
+        "first_listed": 6,
+        "gap_cases": 5,
+        "gap_cases_with_unsupported": 0,
+        "invalid": 0,
+        "missing": 0,
+        "n": 6,
+        "no_answer": 0,
+        "optional_given": 1,
+        "precision": 1.0,
+        "recall": 1.0
+      }
+    },
+    "overall": {
+      "cases_with_error_finding": 0,
+      "correct": 39,
+      "exact": 30,
+      "extra": 0,
+      "fewer_than_10": false,
+      "findings": {
+        "error": 0,
+        "review": 0
+      },
+      "first_listed": 30,
+      "gap_cases": 25,
+      "gap_cases_with_unsupported": 0,
+      "invalid": 0,
+      "missing": 0,
+      "n": 30,
+      "no_answer": 0,
+      "optional_given": 5,
+      "precision": 1.0,
+      "recall": 1.0
+    }
+  },
+  "gap_cases": 25,
+  "gold_sha256": "76efde06e58d269baae2dcbdff5446c85aca0c64da57fca94ef74ffd72686258",
+  "n_answers": 30,
+  "n_cases": 30,
+  "not_end_turn": 0,
+  "part": "c",
+  "second_turns": 0,
+  "small_group_threshold": 10,
+  "stop_reasons": {
+    "end_turn": 30
+  },
+  "unknown_answer_ids": 0
+}

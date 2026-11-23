@@ -2,7 +2,7 @@
 
 Code set: ICD-10-CM FY2027 (October 1, 2026 release).
 
-Every figure below is computed by medcode_eval.results from the stored files in results/part_a/ and results/part_b/ and from data/ and refdata/. Rebuild with `venv/bin/python -m medcode_eval.results --write`; check with `venv/bin/python -m medcode_eval.results --check`. Codes are shown with the dot after the third character.
+Every figure below is computed by medcode_eval.results from the stored files in results/part_a/, results/part_b/ and results/part_c/ and from data/ and refdata/. Rebuild with `venv/bin/python -m medcode_eval.results --write`; check with `venv/bin/python -m medcode_eval.results --check`. Codes are shown with the dot after the third character.
 
 ## S0. Reported runs
 
@@ -506,3 +506,517 @@ Runs with a usage.json; cost at the prices recorded in run.json, recomputed from
 | p612-b-plain-opus-5-5 | claude-opus-5-5 | 25 | 0.2894 | 4.0 / 20.0 | yes |
 | p612-b-checker-opus-5-5 | claude-opus-5-5 | 27 | 0.3148 | 4.0 / 20.0 | yes |
 | total |  | 574 | 6.1993 |  |  |
+
+## S9. Part C reported runs
+
+The reported Part C runs, then the repeat run, which is not a reported score.
+
+| Run | What | Model | Backend | Effort | Temperature | Seed | Prompt suffix | Started | Cases answered |
+|---|---|---|---|---|---|---|---|---|---|
+| p101-c-plain-opus-5-5 | Part C plain | claude-opus-5-5 | remote | medium | - | - | - | 2026-11-23 | 30 |
+| p101-c-plain-qwen3-4b | Part C plain | qwen3:4b | ollama | - | 0 | 20261001 | `/no_think` | 2026-11-23 | 30 |
+| p101-c-reminded-opus-5-5 | Part C reminded | claude-opus-5-5 | remote | medium | - | - | - | 2026-11-23 | 30 |
+| p101-c-reminded-qwen3-4b | Part C reminded | qwen3:4b | ollama | - | 0 | 20261001 | `/no_think` | 2026-11-23 | 30 |
+| p101-c-checker-opus-5-5 | Part C with checker | claude-opus-5-5 | remote | medium | - | - | - | 2026-11-23 | 30 |
+| p101-c-checker-qwen3-4b | Part C with checker | qwen3:4b | ollama | - | 0 | 20261001 | `/no_think` | 2026-11-23 | 30 |
+| p101-c-reminded2-opus-5-5 | Part C reminded, repeat (run-to-run variation only; not a reported score) | claude-opus-5-5 | remote | medium | - | - | - | 2026-11-23 | 30 |
+
+## S10. Part C
+
+A gap case leaves out what a more specific code would need, and an answer code counts as unsupported when it equals an entry of the case's unsupported_codes or starts with one (the case's optional codes are not counted). Counter-cases are scored by exact match only. Reported runs only; the repeat run is not in this section.
+
+| Run | Model | Condition | Answer | Exact (of 30) | Exact gap cases (of 25) | Exact counter-cases (of 5) | Gap cases with an unsupported code (of 25) | Required codes found | Extra codes | Optional given | Invalid | Second turns |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| p101-c-plain-opus-5-5 | claude-opus-5-5 | plain | first | 29 | 24 | 5 | 1 | 38 of 39 | 1 | 4 | 0 | 0 |
+| p101-c-plain-qwen3-4b | qwen3:4b | plain | first | 0 | 0 | 0 | 4 | 1 of 39 | 59 | 0 | 2 | 0 |
+| p101-c-reminded-opus-5-5 | claude-opus-5-5 | reminded | first | 29 | 24 | 5 | 1 | 38 of 39 | 1 | 4 | 0 | 0 |
+| p101-c-reminded-qwen3-4b | qwen3:4b | reminded | first | 0 | 0 | 0 | 5 | 1 of 39 | 60 | 0 | 1 | 0 |
+| p101-c-checker-opus-5-5 | claude-opus-5-5 | with_checker | first | 29 | 24 | 5 | 1 | 38 of 39 | 1 | 4 | 0 | 0 |
+| p101-c-checker-opus-5-5 | claude-opus-5-5 | with_checker | final | 29 | 24 | 5 | 1 | 38 of 39 | 1 | 4 | 0 | 0 |
+| p101-c-checker-qwen3-4b | qwen3:4b | with_checker | first | 0 | 0 | 0 | 4 | 1 of 39 | 59 | 0 | 2 | 27 |
+| p101-c-checker-qwen3-4b | qwen3:4b | with_checker | final | 0 | 0 | 0 | 4 | 2 of 39 | 55 | 0 | 2 | 27 |
+
+Each specialty row holds 6 cases: 5 gap cases and 1 counter-case.
+
+### p101-c-plain-opus-5-5 (claude-opus-5-5, plain)
+
+Gold sha256: 76efde06e58d269baae2dcbdff5446c85aca0c64da57fca94ef74ffd72686258 (equals the gold files as they are: yes). Cases: 30. Gap cases: 25. Second turns: 0.
+
+Gave an unsupported code in 1 of 25 gap cases (first answer), 1 of 25 (final answer).
+
+First answer:
+
+| Group | Value | n | Exact | First-listed | Correct | Missing | Extra | Optional given | Precision | Recall | Invalid | No answer | Error findings | Review findings | Cases with an error finding | Gap cases | Gap cases with an unsupported code | Note |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| overall |  | 30 | 29 | 29 | 38 | 1 | 1 | 4 | 0.9744 | 0.9744 | 0 | 0 | 0 | 0 | 0 | 25 | 1 |  |
+| case kind | gap cases | 25 | 24 | 24 | 32 | 1 | 1 | 3 | 0.9697 | 0.9697 | 0 | 0 | 0 | 0 | 0 | 25 | 1 |  |
+| case kind | counter-cases | 5 | 5 | 5 | 6 | 0 | 0 | 1 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | fewer than 10 cases |
+| gap type | not_current | 5 | 5 | 5 | 10 | 0 | 0 | 2 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+| gap type | provider_statement | 5 | 5 | 5 | 5 | 0 | 0 | 0 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+| gap type | uncertain_diagnosis | 5 | 5 | 5 | 5 | 0 | 0 | 0 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+| gap type | unspecified_detail | 5 | 4 | 4 | 5 | 1 | 1 | 0 | 0.8333 | 0.8333 | 0 | 0 | 0 | 0 | 0 | 5 | 1 | fewer than 10 cases |
+| gap type | unstated_link | 5 | 5 | 5 | 7 | 0 | 0 | 1 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+| specialty | ed | 6 | 6 | 6 | 7 | 0 | 0 | 1 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+| specialty | ent | 6 | 6 | 6 | 7 | 0 | 0 | 1 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+| specialty | gi | 6 | 6 | 6 | 9 | 0 | 0 | 1 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+| specialty | ophtho | 6 | 5 | 5 | 7 | 1 | 1 | 0 | 0.8750 | 0.8750 | 0 | 0 | 0 | 0 | 0 | 5 | 1 | fewer than 10 cases |
+| specialty | ortho | 6 | 6 | 6 | 8 | 0 | 0 | 1 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+
+### p101-c-plain-qwen3-4b (qwen3:4b, plain)
+
+Gold sha256: 76efde06e58d269baae2dcbdff5446c85aca0c64da57fca94ef74ffd72686258 (equals the gold files as they are: yes). Cases: 30. Gap cases: 25. Second turns: 0.
+
+Gave an unsupported code in 4 of 25 gap cases (first answer), 4 of 25 (final answer).
+
+First answer:
+
+| Group | Value | n | Exact | First-listed | Correct | Missing | Extra | Optional given | Precision | Recall | Invalid | No answer | Error findings | Review findings | Cases with an error finding | Gap cases | Gap cases with an unsupported code | Note |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| overall |  | 30 | 0 | 0 | 1 | 38 | 59 | 0 | 0.0167 | 0.0256 | 2 | 0 | 43 | 0 | 27 | 25 | 4 |  |
+| case kind | gap cases | 25 | 0 | 0 | 1 | 32 | 48 | 0 | 0.0204 | 0.0303 | 2 | 0 | 34 | 0 | 22 | 25 | 4 |  |
+| case kind | counter-cases | 5 | 0 | 0 | 0 | 6 | 11 | 0 | 0.0000 | 0.0000 | 0 | 0 | 9 | 0 | 5 | 0 | 0 | fewer than 10 cases |
+| gap type | not_current | 5 | 0 | 0 | 0 | 10 | 10 | 0 | 0.0000 | 0.0000 | 0 | 0 | 9 | 0 | 5 | 5 | 1 | fewer than 10 cases |
+| gap type | provider_statement | 5 | 0 | 0 | 0 | 5 | 8 | 0 | 0.0000 | 0.0000 | 1 | 0 | 7 | 0 | 4 | 5 | 0 | fewer than 10 cases |
+| gap type | uncertain_diagnosis | 5 | 0 | 0 | 0 | 5 | 10 | 0 | 0.0000 | 0.0000 | 0 | 0 | 6 | 0 | 5 | 5 | 3 | fewer than 10 cases |
+| gap type | unspecified_detail | 5 | 0 | 0 | 0 | 6 | 12 | 0 | 0.0000 | 0.0000 | 0 | 0 | 7 | 0 | 5 | 5 | 0 | fewer than 10 cases |
+| gap type | unstated_link | 5 | 0 | 0 | 1 | 6 | 8 | 0 | 0.1111 | 0.1429 | 1 | 0 | 5 | 0 | 3 | 5 | 0 | fewer than 10 cases |
+| specialty | ed | 6 | 0 | 0 | 0 | 7 | 15 | 0 | 0.0000 | 0.0000 | 0 | 0 | 9 | 0 | 5 | 5 | 1 | fewer than 10 cases |
+| specialty | ent | 6 | 0 | 0 | 0 | 7 | 10 | 0 | 0.0000 | 0.0000 | 1 | 0 | 7 | 0 | 5 | 5 | 1 | fewer than 10 cases |
+| specialty | gi | 6 | 0 | 0 | 0 | 9 | 10 | 0 | 0.0000 | 0.0000 | 1 | 0 | 7 | 0 | 5 | 5 | 1 | fewer than 10 cases |
+| specialty | ophtho | 6 | 0 | 0 | 1 | 7 | 12 | 0 | 0.0769 | 0.1250 | 0 | 0 | 10 | 0 | 6 | 5 | 0 | fewer than 10 cases |
+| specialty | ortho | 6 | 0 | 0 | 0 | 8 | 12 | 0 | 0.0000 | 0.0000 | 0 | 0 | 10 | 0 | 6 | 5 | 1 | fewer than 10 cases |
+
+### p101-c-reminded-opus-5-5 (claude-opus-5-5, reminded)
+
+Gold sha256: 76efde06e58d269baae2dcbdff5446c85aca0c64da57fca94ef74ffd72686258 (equals the gold files as they are: yes). Cases: 30. Gap cases: 25. Second turns: 0.
+
+Gave an unsupported code in 1 of 25 gap cases (first answer), 1 of 25 (final answer).
+
+First answer:
+
+| Group | Value | n | Exact | First-listed | Correct | Missing | Extra | Optional given | Precision | Recall | Invalid | No answer | Error findings | Review findings | Cases with an error finding | Gap cases | Gap cases with an unsupported code | Note |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| overall |  | 30 | 29 | 29 | 38 | 1 | 1 | 4 | 0.9744 | 0.9744 | 0 | 0 | 0 | 0 | 0 | 25 | 1 |  |
+| case kind | gap cases | 25 | 24 | 24 | 32 | 1 | 1 | 3 | 0.9697 | 0.9697 | 0 | 0 | 0 | 0 | 0 | 25 | 1 |  |
+| case kind | counter-cases | 5 | 5 | 5 | 6 | 0 | 0 | 1 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | fewer than 10 cases |
+| gap type | not_current | 5 | 5 | 5 | 10 | 0 | 0 | 2 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+| gap type | provider_statement | 5 | 5 | 5 | 5 | 0 | 0 | 0 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+| gap type | uncertain_diagnosis | 5 | 5 | 5 | 5 | 0 | 0 | 0 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+| gap type | unspecified_detail | 5 | 4 | 4 | 5 | 1 | 1 | 0 | 0.8333 | 0.8333 | 0 | 0 | 0 | 0 | 0 | 5 | 1 | fewer than 10 cases |
+| gap type | unstated_link | 5 | 5 | 5 | 7 | 0 | 0 | 1 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+| specialty | ed | 6 | 6 | 6 | 7 | 0 | 0 | 1 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+| specialty | ent | 6 | 6 | 6 | 7 | 0 | 0 | 1 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+| specialty | gi | 6 | 6 | 6 | 9 | 0 | 0 | 1 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+| specialty | ophtho | 6 | 5 | 5 | 7 | 1 | 1 | 0 | 0.8750 | 0.8750 | 0 | 0 | 0 | 0 | 0 | 5 | 1 | fewer than 10 cases |
+| specialty | ortho | 6 | 6 | 6 | 8 | 0 | 0 | 1 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+
+### p101-c-reminded-qwen3-4b (qwen3:4b, reminded)
+
+Gold sha256: 76efde06e58d269baae2dcbdff5446c85aca0c64da57fca94ef74ffd72686258 (equals the gold files as they are: yes). Cases: 30. Gap cases: 25. Second turns: 0.
+
+Gave an unsupported code in 5 of 25 gap cases (first answer), 5 of 25 (final answer).
+
+First answer:
+
+| Group | Value | n | Exact | First-listed | Correct | Missing | Extra | Optional given | Precision | Recall | Invalid | No answer | Error findings | Review findings | Cases with an error finding | Gap cases | Gap cases with an unsupported code | Note |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| overall |  | 30 | 0 | 0 | 1 | 38 | 60 | 0 | 0.0164 | 0.0256 | 1 | 0 | 46 | 0 | 29 | 25 | 5 |  |
+| case kind | gap cases | 25 | 0 | 0 | 1 | 32 | 50 | 0 | 0.0196 | 0.0303 | 1 | 0 | 38 | 0 | 24 | 25 | 5 |  |
+| case kind | counter-cases | 5 | 0 | 0 | 0 | 6 | 10 | 0 | 0.0000 | 0.0000 | 0 | 0 | 8 | 0 | 5 | 0 | 0 | fewer than 10 cases |
+| gap type | not_current | 5 | 0 | 0 | 0 | 10 | 10 | 0 | 0.0000 | 0.0000 | 0 | 0 | 8 | 0 | 5 | 5 | 1 | fewer than 10 cases |
+| gap type | provider_statement | 5 | 0 | 0 | 0 | 5 | 10 | 0 | 0.0000 | 0.0000 | 0 | 0 | 9 | 0 | 5 | 5 | 1 | fewer than 10 cases |
+| gap type | uncertain_diagnosis | 5 | 0 | 0 | 0 | 5 | 10 | 0 | 0.0000 | 0.0000 | 0 | 0 | 6 | 0 | 5 | 5 | 3 | fewer than 10 cases |
+| gap type | unspecified_detail | 5 | 0 | 0 | 0 | 6 | 12 | 0 | 0.0000 | 0.0000 | 0 | 0 | 9 | 0 | 5 | 5 | 0 | fewer than 10 cases |
+| gap type | unstated_link | 5 | 0 | 0 | 1 | 6 | 8 | 0 | 0.1111 | 0.1429 | 1 | 0 | 6 | 0 | 4 | 5 | 0 | fewer than 10 cases |
+| specialty | ed | 6 | 0 | 0 | 0 | 7 | 14 | 0 | 0.0000 | 0.0000 | 0 | 0 | 10 | 0 | 6 | 5 | 1 | fewer than 10 cases |
+| specialty | ent | 6 | 0 | 0 | 0 | 7 | 12 | 0 | 0.0000 | 0.0000 | 0 | 0 | 10 | 0 | 6 | 5 | 3 | fewer than 10 cases |
+| specialty | gi | 6 | 0 | 0 | 0 | 9 | 10 | 0 | 0.0000 | 0.0000 | 1 | 0 | 6 | 0 | 5 | 5 | 1 | fewer than 10 cases |
+| specialty | ophtho | 6 | 0 | 0 | 1 | 7 | 12 | 0 | 0.0769 | 0.1250 | 0 | 0 | 9 | 0 | 6 | 5 | 0 | fewer than 10 cases |
+| specialty | ortho | 6 | 0 | 0 | 0 | 8 | 12 | 0 | 0.0000 | 0.0000 | 0 | 0 | 11 | 0 | 6 | 5 | 0 | fewer than 10 cases |
+
+### p101-c-checker-opus-5-5 (claude-opus-5-5, with_checker)
+
+Gold sha256: 76efde06e58d269baae2dcbdff5446c85aca0c64da57fca94ef74ffd72686258 (equals the gold files as they are: yes). Cases: 30. Gap cases: 25. Second turns: 0.
+
+Gave an unsupported code in 1 of 25 gap cases (first answer), 1 of 25 (final answer).
+
+First answer:
+
+| Group | Value | n | Exact | First-listed | Correct | Missing | Extra | Optional given | Precision | Recall | Invalid | No answer | Error findings | Review findings | Cases with an error finding | Gap cases | Gap cases with an unsupported code | Note |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| overall |  | 30 | 29 | 29 | 38 | 1 | 1 | 4 | 0.9744 | 0.9744 | 0 | 0 | 0 | 0 | 0 | 25 | 1 |  |
+| case kind | gap cases | 25 | 24 | 24 | 32 | 1 | 1 | 3 | 0.9697 | 0.9697 | 0 | 0 | 0 | 0 | 0 | 25 | 1 |  |
+| case kind | counter-cases | 5 | 5 | 5 | 6 | 0 | 0 | 1 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | fewer than 10 cases |
+| gap type | not_current | 5 | 5 | 5 | 10 | 0 | 0 | 2 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+| gap type | provider_statement | 5 | 5 | 5 | 5 | 0 | 0 | 0 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+| gap type | uncertain_diagnosis | 5 | 5 | 5 | 5 | 0 | 0 | 0 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+| gap type | unspecified_detail | 5 | 4 | 4 | 5 | 1 | 1 | 0 | 0.8333 | 0.8333 | 0 | 0 | 0 | 0 | 0 | 5 | 1 | fewer than 10 cases |
+| gap type | unstated_link | 5 | 5 | 5 | 7 | 0 | 0 | 1 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+| specialty | ed | 6 | 6 | 6 | 7 | 0 | 0 | 1 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+| specialty | ent | 6 | 6 | 6 | 7 | 0 | 0 | 1 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+| specialty | gi | 6 | 6 | 6 | 9 | 0 | 0 | 1 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+| specialty | ophtho | 6 | 5 | 5 | 7 | 1 | 1 | 0 | 0.8750 | 0.8750 | 0 | 0 | 0 | 0 | 0 | 5 | 1 | fewer than 10 cases |
+| specialty | ortho | 6 | 6 | 6 | 8 | 0 | 0 | 1 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+
+Final answer:
+
+| Group | Value | n | Exact | First-listed | Correct | Missing | Extra | Optional given | Precision | Recall | Invalid | No answer | Error findings | Review findings | Cases with an error finding | Gap cases | Gap cases with an unsupported code | Note |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| overall |  | 30 | 29 | 29 | 38 | 1 | 1 | 4 | 0.9744 | 0.9744 | 0 | 0 | 0 | 0 | 0 | 25 | 1 |  |
+| case kind | gap cases | 25 | 24 | 24 | 32 | 1 | 1 | 3 | 0.9697 | 0.9697 | 0 | 0 | 0 | 0 | 0 | 25 | 1 |  |
+| case kind | counter-cases | 5 | 5 | 5 | 6 | 0 | 0 | 1 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | fewer than 10 cases |
+| gap type | not_current | 5 | 5 | 5 | 10 | 0 | 0 | 2 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+| gap type | provider_statement | 5 | 5 | 5 | 5 | 0 | 0 | 0 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+| gap type | uncertain_diagnosis | 5 | 5 | 5 | 5 | 0 | 0 | 0 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+| gap type | unspecified_detail | 5 | 4 | 4 | 5 | 1 | 1 | 0 | 0.8333 | 0.8333 | 0 | 0 | 0 | 0 | 0 | 5 | 1 | fewer than 10 cases |
+| gap type | unstated_link | 5 | 5 | 5 | 7 | 0 | 0 | 1 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+| specialty | ed | 6 | 6 | 6 | 7 | 0 | 0 | 1 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+| specialty | ent | 6 | 6 | 6 | 7 | 0 | 0 | 1 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+| specialty | gi | 6 | 6 | 6 | 9 | 0 | 0 | 1 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+| specialty | ophtho | 6 | 5 | 5 | 7 | 1 | 1 | 0 | 0.8750 | 0.8750 | 0 | 0 | 0 | 0 | 0 | 5 | 1 | fewer than 10 cases |
+| specialty | ortho | 6 | 6 | 6 | 8 | 0 | 0 | 1 | 1.0000 | 1.0000 | 0 | 0 | 0 | 0 | 0 | 5 | 0 | fewer than 10 cases |
+
+### p101-c-checker-qwen3-4b (qwen3:4b, with_checker)
+
+Gold sha256: 76efde06e58d269baae2dcbdff5446c85aca0c64da57fca94ef74ffd72686258 (equals the gold files as they are: yes). Cases: 30. Gap cases: 25. Second turns: 27.
+
+Gave an unsupported code in 4 of 25 gap cases (first answer), 4 of 25 (final answer).
+
+First answer:
+
+| Group | Value | n | Exact | First-listed | Correct | Missing | Extra | Optional given | Precision | Recall | Invalid | No answer | Error findings | Review findings | Cases with an error finding | Gap cases | Gap cases with an unsupported code | Note |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| overall |  | 30 | 0 | 0 | 1 | 38 | 59 | 0 | 0.0167 | 0.0256 | 2 | 0 | 43 | 0 | 27 | 25 | 4 |  |
+| case kind | gap cases | 25 | 0 | 0 | 1 | 32 | 48 | 0 | 0.0204 | 0.0303 | 2 | 0 | 34 | 0 | 22 | 25 | 4 |  |
+| case kind | counter-cases | 5 | 0 | 0 | 0 | 6 | 11 | 0 | 0.0000 | 0.0000 | 0 | 0 | 9 | 0 | 5 | 0 | 0 | fewer than 10 cases |
+| gap type | not_current | 5 | 0 | 0 | 0 | 10 | 10 | 0 | 0.0000 | 0.0000 | 0 | 0 | 9 | 0 | 5 | 5 | 1 | fewer than 10 cases |
+| gap type | provider_statement | 5 | 0 | 0 | 0 | 5 | 8 | 0 | 0.0000 | 0.0000 | 1 | 0 | 7 | 0 | 4 | 5 | 0 | fewer than 10 cases |
+| gap type | uncertain_diagnosis | 5 | 0 | 0 | 0 | 5 | 10 | 0 | 0.0000 | 0.0000 | 0 | 0 | 6 | 0 | 5 | 5 | 3 | fewer than 10 cases |
+| gap type | unspecified_detail | 5 | 0 | 0 | 0 | 6 | 12 | 0 | 0.0000 | 0.0000 | 0 | 0 | 7 | 0 | 5 | 5 | 0 | fewer than 10 cases |
+| gap type | unstated_link | 5 | 0 | 0 | 1 | 6 | 8 | 0 | 0.1111 | 0.1429 | 1 | 0 | 5 | 0 | 3 | 5 | 0 | fewer than 10 cases |
+| specialty | ed | 6 | 0 | 0 | 0 | 7 | 15 | 0 | 0.0000 | 0.0000 | 0 | 0 | 9 | 0 | 5 | 5 | 1 | fewer than 10 cases |
+| specialty | ent | 6 | 0 | 0 | 0 | 7 | 10 | 0 | 0.0000 | 0.0000 | 1 | 0 | 7 | 0 | 5 | 5 | 1 | fewer than 10 cases |
+| specialty | gi | 6 | 0 | 0 | 0 | 9 | 10 | 0 | 0.0000 | 0.0000 | 1 | 0 | 7 | 0 | 5 | 5 | 1 | fewer than 10 cases |
+| specialty | ophtho | 6 | 0 | 0 | 1 | 7 | 12 | 0 | 0.0769 | 0.1250 | 0 | 0 | 10 | 0 | 6 | 5 | 0 | fewer than 10 cases |
+| specialty | ortho | 6 | 0 | 0 | 0 | 8 | 12 | 0 | 0.0000 | 0.0000 | 0 | 0 | 10 | 0 | 6 | 5 | 1 | fewer than 10 cases |
+
+Final answer:
+
+| Group | Value | n | Exact | First-listed | Correct | Missing | Extra | Optional given | Precision | Recall | Invalid | No answer | Error findings | Review findings | Cases with an error finding | Gap cases | Gap cases with an unsupported code | Note |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| overall |  | 30 | 0 | 1 | 2 | 37 | 55 | 0 | 0.0351 | 0.0513 | 2 | 0 | 24 | 0 | 19 | 25 | 4 |  |
+| case kind | gap cases | 25 | 0 | 1 | 2 | 31 | 45 | 0 | 0.0426 | 0.0606 | 2 | 0 | 20 | 0 | 15 | 25 | 4 |  |
+| case kind | counter-cases | 5 | 0 | 0 | 0 | 6 | 10 | 0 | 0.0000 | 0.0000 | 0 | 0 | 4 | 0 | 4 | 0 | 0 | fewer than 10 cases |
+| gap type | not_current | 5 | 0 | 1 | 1 | 9 | 9 | 0 | 0.1000 | 0.1000 | 0 | 0 | 6 | 0 | 3 | 5 | 1 | fewer than 10 cases |
+| gap type | provider_statement | 5 | 0 | 0 | 0 | 5 | 8 | 0 | 0.0000 | 0.0000 | 1 | 0 | 3 | 0 | 2 | 5 | 0 | fewer than 10 cases |
+| gap type | uncertain_diagnosis | 5 | 0 | 0 | 0 | 5 | 9 | 0 | 0.0000 | 0.0000 | 0 | 0 | 3 | 0 | 3 | 5 | 3 | fewer than 10 cases |
+| gap type | unspecified_detail | 5 | 0 | 0 | 0 | 6 | 11 | 0 | 0.0000 | 0.0000 | 0 | 0 | 5 | 0 | 4 | 5 | 0 | fewer than 10 cases |
+| gap type | unstated_link | 5 | 0 | 0 | 1 | 6 | 8 | 0 | 0.1111 | 0.1429 | 1 | 0 | 3 | 0 | 3 | 5 | 0 | fewer than 10 cases |
+| specialty | ed | 6 | 0 | 1 | 1 | 6 | 12 | 0 | 0.0769 | 0.1429 | 0 | 0 | 4 | 0 | 3 | 5 | 1 | fewer than 10 cases |
+| specialty | ent | 6 | 0 | 0 | 0 | 7 | 10 | 0 | 0.0000 | 0.0000 | 1 | 0 | 6 | 0 | 5 | 5 | 1 | fewer than 10 cases |
+| specialty | gi | 6 | 0 | 0 | 0 | 9 | 9 | 0 | 0.0000 | 0.0000 | 1 | 0 | 4 | 0 | 3 | 5 | 1 | fewer than 10 cases |
+| specialty | ophtho | 6 | 0 | 0 | 1 | 7 | 12 | 0 | 0.0769 | 0.1250 | 0 | 0 | 4 | 0 | 3 | 5 | 0 | fewer than 10 cases |
+| specialty | ortho | 6 | 0 | 0 | 0 | 8 | 12 | 0 | 0.0000 | 0.0000 | 0 | 0 | 6 | 0 | 5 | 5 | 1 | fewer than 10 cases |
+
+## S11. Part C per case
+
+Reported runs only. Answers are shown as in S6: a code that already holds a dot is shown as given, and an answer with more than 8 codes is shown as its first 5 codes and the count.
+
+### p101-c-plain-opus-5-5 (claude-opus-5-5, plain)
+
+| Case | Gap type | Gold | Optional | First | Final | Exact first / final | Unsupported given first / final |
+|---|---|---|---|---|---|---|---|
+| c-ed-001 | provider_statement | A08.4 | - | A08.4 | A08.4 | yes / yes | - / - |
+| c-ed-002 | unstated_link | R33.9 | Z90.49 Z96.0 | R33.9 Z90.49 | R33.9 Z90.49 | yes / yes | - / - |
+| c-ed-003 | not_current | J20.9 | Z87.09 | J20.9 | J20.9 | yes / yes | - / - |
+| c-ed-004 | unspecified_detail | I50.9 | Z79.899 | I50.9 | I50.9 | yes / yes | - / - |
+| c-ed-005 | uncertain_diagnosis | R30.0 | - | R30.0 | R30.0 | yes / yes | - / - |
+| c-ed-006 | counter_case | I11.0 I50.33 | Z79.899 | I11.0 I50.33 | I11.0 I50.33 | yes / yes | - / - |
+| c-ent-001 | unspecified_detail | J01.90 | - | J01.90 | J01.90 | yes / yes | - / - |
+| c-ent-002 | uncertain_diagnosis | R42 | - | R42 | R42 | yes / yes | - / - |
+| c-ent-003 | provider_statement | J03.90 | - | J03.90 | J03.90 | yes / yes | - / - |
+| c-ent-004 | unstated_link | H90.3 | Z57.0 | H90.3 | H90.3 | yes / yes | - / - |
+| c-ent-005 | not_current | Z09 Z86.69 | Z92.241 | Z09 Z86.69 | Z09 Z86.69 | yes / yes | - / - |
+| c-ent-006 | counter_case | H81.01 | Z79.899 | H81.01 Z79.899 | H81.01 Z79.899 | yes / yes | - / - |
+| c-gi-001 | unstated_link | K74.60 F10.20 | - | K74.60 F10.20 | K74.60 F10.20 | yes / yes | - / - |
+| c-gi-002 | not_current | Z08 Z85.038 Z90.49 | Z92.21 | Z08 Z85.038 Z90.49 Z92.21 | Z08 Z85.038 Z90.49 Z92.21 | yes / yes | - / - |
+| c-gi-003 | unspecified_detail | B19.20 | - | B19.20 | B19.20 | yes / yes | - / - |
+| c-gi-004 | uncertain_diagnosis | R10.13 | - | R10.13 | R10.13 | yes / yes | - / - |
+| c-gi-005 | provider_statement | K90.0 | Z71.3 | K90.0 | K90.0 | yes / yes | - / - |
+| c-gi-006 | counter_case | K64.1 | - | K64.1 | K64.1 | yes / yes | - / - |
+| c-ophtho-001 | not_current | Z09 Z86.69 | - | Z09 Z86.69 | Z09 Z86.69 | yes / yes | - / - |
+| c-ophtho-002 | unspecified_detail | H40.1130 | Z79.899 | H40.1133 | H40.1133 | no / no | H40.1133 / H40.1133 |
+| c-ophtho-003 | uncertain_diagnosis | H53.131 | H54.61 | H53.131 | H53.131 | yes / yes | - / - |
+| c-ophtho-004 | provider_statement | H35.3134 | - | H35.3134 | H35.3134 | yes / yes | - / - |
+| c-ophtho-005 | unstated_link | H35.00 I10 | Z79.899 | H35.00 I10 | H35.00 I10 | yes / yes | - / - |
+| c-ophtho-006 | counter_case | H40.013 | - | H40.013 | H40.013 | yes / yes | - / - |
+| c-ortho-001 | uncertain_diagnosis | M25.561 | - | M25.561 | M25.561 | yes / yes | - / - |
+| c-ortho-002 | provider_statement | M16.12 | - | M16.12 | M16.12 | yes / yes | - / - |
+| c-ortho-003 | unstated_link | M76.62 | - | M76.62 | M76.62 | yes / yes | - / - |
+| c-ortho-004 | not_current | M81.0 Z87.310 | Z79.83 | M81.0 Z87.310 Z79.83 | M81.0 Z87.310 Z79.83 | yes / yes | - / - |
+| c-ortho-005 | unspecified_detail | S82.251E W11.XXXD | Z96.7 | S82.251E W11.XXXD | S82.251E W11.XXXD | yes / yes | - / - |
+| c-ortho-006 | counter_case | M65.341 | - | M65.341 | M65.341 | yes / yes | - / - |
+
+### p101-c-plain-qwen3-4b (qwen3:4b, plain)
+
+| Case | Gap type | Gold | Optional | First | Final | Exact first / final | Unsupported given first / final |
+|---|---|---|---|---|---|---|---|
+| c-ed-001 | provider_statement | A08.4 | - | B24.9 Y14.3 | B24.9 Y14.3 | no / no | - / - |
+| c-ed-002 | unstated_link | R33.9 | Z90.49 Z96.0 | N39.0 Z85.71 | N39.0 Z85.71 | no / no | - / - |
+| c-ed-003 | not_current | J20.9 | Z87.09 | J20 R05 | J20 R05 | no / no | - / - |
+| c-ed-004 | unspecified_detail | I50.9 | Z79.899 | I11.9 I13.9 R05 I12.9 | I11.9 I13.9 R05 I12.9 | no / no | - / - |
+| c-ed-005 | uncertain_diagnosis | R30.0 | - | N39.0 Z86.891 | N39.0 Z86.891 | no / no | N39.0 / N39.0 |
+| c-ed-006 | counter_case | I11.0 I50.33 | Z79.899 | I10.9 I31.9 R05 | I10.9 I31.9 R05 | no / no | - / - |
+| c-ent-001 | unspecified_detail | J01.90 | - | R01.1 R02.11 | R01.1 R02.11 | no / no | - / - |
+| c-ent-002 | uncertain_diagnosis | R42 | - | H91.82 R45.82 | H91.82 R45.82 | no / no | - / - |
+| c-ent-003 | provider_statement | J03.90 | - | invalid | invalid | no / no | - / - |
+| c-ent-004 | unstated_link | H90.3 | Z57.0 | H91.90 R91.83 | H91.90 R91.83 | no / no | - / - |
+| c-ent-005 | not_current | Z09 Z86.69 | Z92.241 | H91.89 R55.89 | H91.89 R55.89 | no / no | H91.89 / H91.89 |
+| c-ent-006 | counter_case | H81.01 | Z79.899 | H91.82 Z87.0 | H91.82 Z87.0 | no / no | - / - |
+| c-gi-001 | unstated_link | K74.60 F10.20 | - | invalid | invalid | no / no | - / - |
+| c-gi-002 | not_current | Z08 Z85.038 Z90.49 | Z92.21 | C78.11 Z85.31 | C78.11 Z85.31 | no / no | - / - |
+| c-gi-003 | unspecified_detail | B19.20 | - | B16.1 Z85.31 | B16.1 Z85.31 | no / no | - / - |
+| c-gi-004 | uncertain_diagnosis | R10.13 | - | K25.9 Y54.3 | K25.9 Y54.3 | no / no | K25.9 / K25.9 |
+| c-gi-005 | provider_statement | K90.0 | Z71.3 | E70.1 Z85.7 | E70.1 Z85.7 | no / no | - / - |
+| c-gi-006 | counter_case | K64.1 | - | I87.11 R19.1 | I87.11 R19.1 | no / no | - / - |
+| c-ophtho-001 | not_current | Z09 Z86.69 | - | H61.81 Z85.71 | H61.81 Z85.71 | no / no | - / - |
+| c-ophtho-002 | unspecified_detail | H40.1130 | Z79.899 | H40.11 H40.12 | H40.11 H40.12 | no / no | - / - |
+| c-ophtho-003 | uncertain_diagnosis | H53.131 | H54.61 | H40.11 I69.9 | H40.11 I69.9 | no / no | - / - |
+| c-ophtho-004 | provider_statement | H35.3134 | - | H40.112 H40.113 | H40.112 H40.113 | no / no | - / - |
+| c-ophtho-005 | unstated_link | H35.00 I10 | Z79.899 | H45.11 I10 Z87.0 | H45.11 I10 Z87.0 | no / no | - / - |
+| c-ophtho-006 | counter_case | H40.013 | - | H40.129 Z82.3 | H40.129 Z82.3 | no / no | - / - |
+| c-ortho-001 | uncertain_diagnosis | M25.561 | - | M23.21 Y93.31 | M23.21 Y93.31 | no / no | M23.21 / M23.21 |
+| c-ortho-002 | provider_statement | M16.12 | - | M16.81 Z86.71 | M16.81 Z86.71 | no / no | - / - |
+| c-ortho-003 | unstated_link | M76.62 | - | M715.21 Y54.11 | M715.21 Y54.11 | no / no | - / - |
+| c-ortho-004 | not_current | M81.0 Z87.310 | Z79.83 | M81.811 M81.819 | M81.811 M81.819 | no / no | - / - |
+| c-ortho-005 | unspecified_detail | S82.251E W11.XXXD | Z96.7 | M22.51 T82.111A | M22.51 T82.111A | no / no | - / - |
+| c-ortho-006 | counter_case | M65.341 | - | M66.82 T82.899XA | M66.82 T82.899XA | no / no | - / - |
+
+### p101-c-reminded-opus-5-5 (claude-opus-5-5, reminded)
+
+| Case | Gap type | Gold | Optional | First | Final | Exact first / final | Unsupported given first / final |
+|---|---|---|---|---|---|---|---|
+| c-ed-001 | provider_statement | A08.4 | - | A08.4 | A08.4 | yes / yes | - / - |
+| c-ed-002 | unstated_link | R33.9 | Z90.49 Z96.0 | R33.9 Z90.49 | R33.9 Z90.49 | yes / yes | - / - |
+| c-ed-003 | not_current | J20.9 | Z87.09 | J20.9 | J20.9 | yes / yes | - / - |
+| c-ed-004 | unspecified_detail | I50.9 | Z79.899 | I50.9 | I50.9 | yes / yes | - / - |
+| c-ed-005 | uncertain_diagnosis | R30.0 | - | R30.0 | R30.0 | yes / yes | - / - |
+| c-ed-006 | counter_case | I11.0 I50.33 | Z79.899 | I11.0 I50.33 | I11.0 I50.33 | yes / yes | - / - |
+| c-ent-001 | unspecified_detail | J01.90 | - | J01.90 | J01.90 | yes / yes | - / - |
+| c-ent-002 | uncertain_diagnosis | R42 | - | R42 | R42 | yes / yes | - / - |
+| c-ent-003 | provider_statement | J03.90 | - | J03.90 | J03.90 | yes / yes | - / - |
+| c-ent-004 | unstated_link | H90.3 | Z57.0 | H90.3 | H90.3 | yes / yes | - / - |
+| c-ent-005 | not_current | Z09 Z86.69 | Z92.241 | Z09 Z86.69 | Z09 Z86.69 | yes / yes | - / - |
+| c-ent-006 | counter_case | H81.01 | Z79.899 | H81.01 Z79.899 | H81.01 Z79.899 | yes / yes | - / - |
+| c-gi-001 | unstated_link | K74.60 F10.20 | - | K74.60 F10.20 | K74.60 F10.20 | yes / yes | - / - |
+| c-gi-002 | not_current | Z08 Z85.038 Z90.49 | Z92.21 | Z08 Z85.038 Z90.49 Z92.21 | Z08 Z85.038 Z90.49 Z92.21 | yes / yes | - / - |
+| c-gi-003 | unspecified_detail | B19.20 | - | B19.20 | B19.20 | yes / yes | - / - |
+| c-gi-004 | uncertain_diagnosis | R10.13 | - | R10.13 | R10.13 | yes / yes | - / - |
+| c-gi-005 | provider_statement | K90.0 | Z71.3 | K90.0 | K90.0 | yes / yes | - / - |
+| c-gi-006 | counter_case | K64.1 | - | K64.1 | K64.1 | yes / yes | - / - |
+| c-ophtho-001 | not_current | Z09 Z86.69 | - | Z09 Z86.69 | Z09 Z86.69 | yes / yes | - / - |
+| c-ophtho-002 | unspecified_detail | H40.1130 | Z79.899 | H40.1133 | H40.1133 | no / no | H40.1133 / H40.1133 |
+| c-ophtho-003 | uncertain_diagnosis | H53.131 | H54.61 | H53.131 | H53.131 | yes / yes | - / - |
+| c-ophtho-004 | provider_statement | H35.3134 | - | H35.3134 | H35.3134 | yes / yes | - / - |
+| c-ophtho-005 | unstated_link | H35.00 I10 | Z79.899 | H35.00 I10 | H35.00 I10 | yes / yes | - / - |
+| c-ophtho-006 | counter_case | H40.013 | - | H40.013 | H40.013 | yes / yes | - / - |
+| c-ortho-001 | uncertain_diagnosis | M25.561 | - | M25.561 | M25.561 | yes / yes | - / - |
+| c-ortho-002 | provider_statement | M16.12 | - | M16.12 | M16.12 | yes / yes | - / - |
+| c-ortho-003 | unstated_link | M76.62 | - | M76.62 | M76.62 | yes / yes | - / - |
+| c-ortho-004 | not_current | M81.0 Z87.310 | Z79.83 | M81.0 Z87.310 Z79.83 | M81.0 Z87.310 Z79.83 | yes / yes | - / - |
+| c-ortho-005 | unspecified_detail | S82.251E W11.XXXD | Z96.7 | S82.251E W11.XXXD | S82.251E W11.XXXD | yes / yes | - / - |
+| c-ortho-006 | counter_case | M65.341 | - | M65.341 | M65.341 | yes / yes | - / - |
+
+### p101-c-reminded-qwen3-4b (qwen3:4b, reminded)
+
+| Case | Gap type | Gold | Optional | First | Final | Exact first / final | Unsupported given first / final |
+|---|---|---|---|---|---|---|---|
+| c-ed-001 | provider_statement | A08.4 | - | B27.1 Y37.1 | B27.1 Y37.1 | no / no | - / - |
+| c-ed-002 | unstated_link | R33.9 | Z90.49 Z96.0 | N39.0 Z85.7 | N39.0 Z85.7 | no / no | - / - |
+| c-ed-003 | not_current | J20.9 | Z87.09 | J20 R05 | J20 R05 | no / no | - / - |
+| c-ed-004 | unspecified_detail | I50.9 | Z79.899 | I11.9 I13.9 R05 I12.9 | I11.9 I13.9 R05 I12.9 | no / no | - / - |
+| c-ed-005 | uncertain_diagnosis | R30.0 | - | N30.1 R60.11 | N30.1 R60.11 | no / no | N30.1 / N30.1 |
+| c-ed-006 | counter_case | I11.0 I50.33 | Z79.899 | I10 I31 | I10 I31 | no / no | - / - |
+| c-ent-001 | unspecified_detail | J01.90 | - | R02 J36.9 | R02 J36.9 | no / no | - / - |
+| c-ent-002 | uncertain_diagnosis | R42 | - | H81.42 R45.82 | H81.42 R45.82 | no / no | H81.42 / H81.42 |
+| c-ent-003 | provider_statement | J03.90 | - | B95.89 R05 | B95.89 R05 | no / no | B95.89 / B95.89 |
+| c-ent-004 | unstated_link | H90.3 | Z57.0 | H91.90 R91.83 | H91.90 R91.83 | no / no | - / - |
+| c-ent-005 | not_current | Z09 Z86.69 | Z92.241 | H91.89 Z85.7 | H91.89 Z85.7 | no / no | H91.89 / H91.89 |
+| c-ent-006 | counter_case | H81.01 | Z79.899 | H91.81 Z87.0 | H91.81 Z87.0 | no / no | - / - |
+| c-gi-001 | unstated_link | K74.60 F10.20 | - | invalid | invalid | no / no | - / - |
+| c-gi-002 | not_current | Z08 Z85.038 Z90.49 | Z92.21 | C78.1 Z85.31 | C78.1 Z85.31 | no / no | - / - |
+| c-gi-003 | unspecified_detail | B19.20 | - | B16.9 Z85.11 | B16.9 Z85.11 | no / no | - / - |
+| c-gi-004 | uncertain_diagnosis | R10.13 | - | K25.9 Z86.91 | K25.9 Z86.91 | no / no | K25.9 / K25.9 |
+| c-gi-005 | provider_statement | K90.0 | Z71.3 | N49.1 Z86.7 | N49.1 Z86.7 | no / no | - / - |
+| c-gi-006 | counter_case | K64.1 | - | I87.11 R19.9 | I87.11 R19.9 | no / no | - / - |
+| c-ophtho-001 | not_current | Z09 Z86.69 | - | H61.81 Z85.71 | H61.81 Z85.71 | no / no | - / - |
+| c-ophtho-002 | unspecified_detail | H40.1130 | Z79.899 | H40.111 H40.112 | H40.111 H40.112 | no / no | - / - |
+| c-ophtho-003 | uncertain_diagnosis | H53.131 | H54.61 | H40.11 I63.9 | H40.11 I63.9 | no / no | - / - |
+| c-ophtho-004 | provider_statement | H35.3134 | - | H40.112 H40.113 | H40.112 H40.113 | no / no | - / - |
+| c-ophtho-005 | unstated_link | H35.00 I10 | Z79.899 | H44.11 I10 I10.2 | H44.11 I10 I10.2 | no / no | - / - |
+| c-ophtho-006 | counter_case | H40.013 | - | H40.129 Z82.3 | H40.129 Z82.3 | no / no | - / - |
+| c-ortho-001 | uncertain_diagnosis | M25.561 | - | M24.2 Y93.81 | M24.2 Y93.81 | no / no | - / - |
+| c-ortho-002 | provider_statement | M16.12 | - | M16.81 Z86.71 | M16.81 Z86.71 | no / no | - / - |
+| c-ortho-003 | unstated_link | M76.62 | - | M71.510 Y54.11 | M71.510 Y54.11 | no / no | - / - |
+| c-ortho-004 | not_current | M81.0 Z87.310 | Z79.83 | M81.811 M81.812 | M81.811 M81.812 | no / no | - / - |
+| c-ortho-005 | unspecified_detail | S82.251E W11.XXXD | Z96.7 | M22.51 T82.119XA | M22.51 T82.119XA | no / no | - / - |
+| c-ortho-006 | counter_case | M65.341 | - | M71.51 T82.891A | M71.51 T82.891A | no / no | - / - |
+
+### p101-c-checker-opus-5-5 (claude-opus-5-5, with_checker)
+
+| Case | Gap type | Gold | Optional | First | Final | Exact first / final | Unsupported given first / final |
+|---|---|---|---|---|---|---|---|
+| c-ed-001 | provider_statement | A08.4 | - | A08.4 | A08.4 | yes / yes | - / - |
+| c-ed-002 | unstated_link | R33.9 | Z90.49 Z96.0 | R33.9 Z90.49 | R33.9 Z90.49 | yes / yes | - / - |
+| c-ed-003 | not_current | J20.9 | Z87.09 | J20.9 | J20.9 | yes / yes | - / - |
+| c-ed-004 | unspecified_detail | I50.9 | Z79.899 | I50.9 | I50.9 | yes / yes | - / - |
+| c-ed-005 | uncertain_diagnosis | R30.0 | - | R30.0 | R30.0 | yes / yes | - / - |
+| c-ed-006 | counter_case | I11.0 I50.33 | Z79.899 | I11.0 I50.33 | I11.0 I50.33 | yes / yes | - / - |
+| c-ent-001 | unspecified_detail | J01.90 | - | J01.90 | J01.90 | yes / yes | - / - |
+| c-ent-002 | uncertain_diagnosis | R42 | - | R42 | R42 | yes / yes | - / - |
+| c-ent-003 | provider_statement | J03.90 | - | J03.90 | J03.90 | yes / yes | - / - |
+| c-ent-004 | unstated_link | H90.3 | Z57.0 | H90.3 | H90.3 | yes / yes | - / - |
+| c-ent-005 | not_current | Z09 Z86.69 | Z92.241 | Z09 Z86.69 | Z09 Z86.69 | yes / yes | - / - |
+| c-ent-006 | counter_case | H81.01 | Z79.899 | H81.01 Z79.899 | H81.01 Z79.899 | yes / yes | - / - |
+| c-gi-001 | unstated_link | K74.60 F10.20 | - | K74.60 F10.20 | K74.60 F10.20 | yes / yes | - / - |
+| c-gi-002 | not_current | Z08 Z85.038 Z90.49 | Z92.21 | Z08 Z85.038 Z90.49 Z92.21 | Z08 Z85.038 Z90.49 Z92.21 | yes / yes | - / - |
+| c-gi-003 | unspecified_detail | B19.20 | - | B19.20 | B19.20 | yes / yes | - / - |
+| c-gi-004 | uncertain_diagnosis | R10.13 | - | R10.13 | R10.13 | yes / yes | - / - |
+| c-gi-005 | provider_statement | K90.0 | Z71.3 | K90.0 | K90.0 | yes / yes | - / - |
+| c-gi-006 | counter_case | K64.1 | - | K64.1 | K64.1 | yes / yes | - / - |
+| c-ophtho-001 | not_current | Z09 Z86.69 | - | Z09 Z86.69 | Z09 Z86.69 | yes / yes | - / - |
+| c-ophtho-002 | unspecified_detail | H40.1130 | Z79.899 | H40.1133 | H40.1133 | no / no | H40.1133 / H40.1133 |
+| c-ophtho-003 | uncertain_diagnosis | H53.131 | H54.61 | H53.131 | H53.131 | yes / yes | - / - |
+| c-ophtho-004 | provider_statement | H35.3134 | - | H35.3134 | H35.3134 | yes / yes | - / - |
+| c-ophtho-005 | unstated_link | H35.00 I10 | Z79.899 | H35.00 I10 | H35.00 I10 | yes / yes | - / - |
+| c-ophtho-006 | counter_case | H40.013 | - | H40.013 | H40.013 | yes / yes | - / - |
+| c-ortho-001 | uncertain_diagnosis | M25.561 | - | M25.561 | M25.561 | yes / yes | - / - |
+| c-ortho-002 | provider_statement | M16.12 | - | M16.12 | M16.12 | yes / yes | - / - |
+| c-ortho-003 | unstated_link | M76.62 | - | M76.62 | M76.62 | yes / yes | - / - |
+| c-ortho-004 | not_current | M81.0 Z87.310 | Z79.83 | M81.0 Z87.310 Z79.83 | M81.0 Z87.310 Z79.83 | yes / yes | - / - |
+| c-ortho-005 | unspecified_detail | S82.251E W11.XXXD | Z96.7 | S82.251E W11.XXXD | S82.251E W11.XXXD | yes / yes | - / - |
+| c-ortho-006 | counter_case | M65.341 | - | M65.341 | M65.341 | yes / yes | - / - |
+
+### p101-c-checker-qwen3-4b (qwen3:4b, with_checker)
+
+| Case | Gap type | Gold | Optional | First | Final | Exact first / final | Unsupported given first / final |
+|---|---|---|---|---|---|---|---|
+| c-ed-001 | provider_statement | A08.4 | - | B24.9 Y14.3 | B24.9 Y14.3 | no / no | - / - |
+| c-ed-002 | unstated_link | R33.9 | Z90.49 Z96.0 | N39.0 Z85.71 | N39.0 Z85.71 | no / no | - / - |
+| c-ed-003 | not_current | J20.9 | Z87.09 | J20 R05 | J20.9 R05.9 | no / no | - / - |
+| c-ed-004 | unspecified_detail | I50.9 | Z79.899 | I11.9 I13.9 R05 I12.9 | I11.9 I12.9 R05.1 | no / no | - / - |
+| c-ed-005 | uncertain_diagnosis | R30.0 | - | N39.0 Z86.891 | N39.0 Z86.891 | no / no | N39.0 / N39.0 |
+| c-ed-006 | counter_case | I11.0 I50.33 | Z79.899 | I10.9 I31.9 R05 | I10.9 I31.9 | no / no | - / - |
+| c-ent-001 | unspecified_detail | J01.90 | - | R01.1 R02.11 | R01.1 R02.1 | no / no | - / - |
+| c-ent-002 | uncertain_diagnosis | R42 | - | H91.82 R45.82 | H91.82 R45.82 | no / no | - / - |
+| c-ent-003 | provider_statement | J03.90 | - | invalid | invalid | no / no | - / - |
+| c-ent-004 | unstated_link | H90.3 | Z57.0 | H91.90 R91.83 | H91.90 R91.83 | no / no | - / - |
+| c-ent-005 | not_current | Z09 Z86.69 | Z92.241 | H91.89 R55.89 | H91.89 R55.89 | no / no | H91.89 / H91.89 |
+| c-ent-006 | counter_case | H81.01 | Z79.899 | H91.82 Z87.0 | H91.82 Z87.01 | no / no | - / - |
+| c-gi-001 | unstated_link | K74.60 F10.20 | - | invalid | invalid | no / no | - / - |
+| c-gi-002 | not_current | Z08 Z85.038 Z90.49 | Z92.21 | C78.11 Z85.31 | C78.11 Z85.31 | no / no | - / - |
+| c-gi-003 | unspecified_detail | B19.20 | - | B16.1 Z85.31 | B16.1 Z85.31 | no / no | - / - |
+| c-gi-004 | uncertain_diagnosis | R10.13 | - | K25.9 Y54.3 | K25.9 | no / no | K25.9 / K25.9 |
+| c-gi-005 | provider_statement | K90.0 | Z71.3 | E70.1 Z85.7 | E70.1 Z85.71 | no / no | - / - |
+| c-gi-006 | counter_case | K64.1 | - | I87.11 R19.1 | I87.11 R19.11 | no / no | - / - |
+| c-ophtho-001 | not_current | Z09 Z86.69 | - | H61.81 Z85.71 | H61.811 Z85.71 | no / no | - / - |
+| c-ophtho-002 | unspecified_detail | H40.1130 | Z79.899 | H40.11 H40.12 | H40.111 H40.121 | no / no | - / - |
+| c-ophtho-003 | uncertain_diagnosis | H53.131 | H54.61 | H40.11 I69.9 | H40.111 I69.90 | no / no | - / - |
+| c-ophtho-004 | provider_statement | H35.3134 | - | H40.112 H40.113 | H40.1120 H40.1130 | no / no | - / - |
+| c-ophtho-005 | unstated_link | H35.00 I10 | Z79.899 | H45.11 I10 Z87.0 | H45.19 I10 Z87.01 | no / no | - / - |
+| c-ophtho-006 | counter_case | H40.013 | - | H40.129 Z82.3 | H40.1291 Z82.3 | no / no | - / - |
+| c-ortho-001 | uncertain_diagnosis | M25.561 | - | M23.21 Y93.31 | M23.211 Y93.31 | no / no | M23.21 / M23.211 |
+| c-ortho-002 | provider_statement | M16.12 | - | M16.81 Z86.71 | M16.81 Z86.711 | no / no | - / - |
+| c-ortho-003 | unstated_link | M76.62 | - | M715.21 Y54.11 | M71.521 Y54.11 | no / no | - / - |
+| c-ortho-004 | not_current | M81.0 Z87.310 | Z79.83 | M81.811 M81.819 | M81.811 M81.819 | no / no | - / - |
+| c-ortho-005 | unspecified_detail | S82.251E W11.XXXD | Z96.7 | M22.51 T82.111A | M22.51 T82.111A | no / no | - / - |
+| c-ortho-006 | counter_case | M65.341 | - | M66.82 T82.899XA | M66.821 T82.899XA | no / no | - / - |
+
+## S12. Part C derived
+
+A case is marked "(order only)" when the two answers hold the same codes, and "(optional codes only)" when they are equal once the case's optional codes are removed.
+
+### claude-opus-5-5
+
+Cases whose first answer differs between the plain and the reminded run: none.
+
+Cases whose first answer differs between the plain run and the first answers of the with-checker run (the same prompt): none.
+
+Cases whose first answer differs between the reminded run p101-c-reminded-opus-5-5 and its repeat p101-c-reminded2-opus-5-5 (the same prompt; repeat, run-to-run variation only; not a reported score): c-ophtho-002, c-ophtho-005 (optional codes only).
+
+The repeat run p101-c-reminded2-opus-5-5 (run-to-run variation only; not a reported score): exact 30 of 30; gap cases with an unsupported code 0 of 25.
+
+p101-c-plain-opus-5-5: cases whose final answer differs from the first: none.
+
+p101-c-reminded-opus-5-5: cases whose final answer differs from the first: none.
+
+p101-c-checker-opus-5-5: cases whose final answer differs from the first: none.
+
+p101-c-reminded2-opus-5-5 (repeat; run-to-run variation only; not a reported score): cases whose final answer differs from the first: none.
+
+p101-c-plain-opus-5-5: cases with a runner error: none.
+
+p101-c-reminded-opus-5-5: cases with a runner error: none.
+
+p101-c-checker-opus-5-5: cases with a runner error: none.
+
+p101-c-reminded2-opus-5-5 (repeat; run-to-run variation only; not a reported score): cases with a runner error: none.
+
+p101-c-checker-opus-5-5:
+
+| Cases | Second turns | Findings sent by rule | Error findings first | Error findings final | Changed answers |
+|---|---|---|---|---|---|
+| 30 | 0 | none | 0 | 0 | 0 |
+
+Cases with an unsupported code in at least one run of the model (unsupported codes given, or -):
+
+| Case | Gap type | plain | reminded | with checker, first | with checker, final | reminded, repeat (run-to-run variation only; not a reported score) |
+|---|---|---|---|---|---|---|
+| c-ophtho-002 | unspecified_detail | H40.1133 | H40.1133 | H40.1133 | H40.1133 | - |
+
+### qwen3:4b
+
+Cases whose first answer differs between the plain and the reminded run: c-ed-001, c-ed-002, c-ed-005, c-ed-006, c-ent-001, c-ent-002, c-ent-003, c-ent-005, c-ent-006, c-gi-002, c-gi-003, c-gi-004, c-gi-005, c-gi-006, c-ophtho-002, c-ophtho-003, c-ophtho-005, c-ortho-001, c-ortho-003, c-ortho-004, c-ortho-005, c-ortho-006.
+
+Cases whose first answer differs between the plain run and the first answers of the with-checker run (the same prompt): none.
+
+p101-c-plain-qwen3-4b: cases whose final answer differs from the first: none.
+
+p101-c-reminded-qwen3-4b: cases whose final answer differs from the first: none.
+
+p101-c-checker-qwen3-4b: cases whose final answer differs from the first: c-ed-003, c-ed-004, c-ed-006, c-ent-001, c-ent-006, c-gi-004, c-gi-005, c-gi-006, c-ophtho-001, c-ophtho-002, c-ophtho-003, c-ophtho-004, c-ophtho-005, c-ophtho-006, c-ortho-001, c-ortho-002, c-ortho-003, c-ortho-006.
+
+p101-c-plain-qwen3-4b: cases with a runner error: none.
+
+p101-c-reminded-qwen3-4b: cases with a runner error: none.
+
+p101-c-checker-qwen3-4b: cases with a runner error: none.
+
+p101-c-checker-qwen3-4b:
+
+| Cases | Second turns | Findings sent by rule | Error findings first | Error findings final | Changed answers |
+|---|---|---|---|---|---|
+| 30 | 27 | header_not_billable 19, not_in_code_set 24 (total 43) | 43 | 24 | 18 |
+
+Cases with an unsupported code in at least one run of the model (unsupported codes given, or -):
+
+| Case | Gap type | plain | reminded | with checker, first | with checker, final |
+|---|---|---|---|---|---|
+| c-ed-005 | uncertain_diagnosis | N39.0 | N30.1 | N39.0 | N39.0 |
+| c-ent-002 | uncertain_diagnosis | - | H81.42 | - | - |
+| c-ent-003 | provider_statement | - | B95.89 | - | - |
+| c-ent-005 | not_current | H91.89 | H91.89 | H91.89 | H91.89 |
+| c-gi-004 | uncertain_diagnosis | K25.9 | K25.9 | K25.9 | K25.9 |
+| c-ortho-001 | uncertain_diagnosis | M23.21 | - | M23.21 | M23.211 |
+
+## S13. Part C usage and cost
+
+Part C runs with a usage.json; cost at the prices recorded in run.json, recomputed from raw.jsonl by medcode_eval.run.usage. The total includes the repeat run.
+
+| Run | Model | Replies | Cost (USD) | Price in / out (USD per million tokens) | Equals the stored usage.json |
+|---|---|---|---|---|---|
+| p101-c-plain-opus-5-5 | claude-opus-5-5 | 30 | 0.3364 | 4.0 / 20.0 | yes |
+| p101-c-reminded-opus-5-5 | claude-opus-5-5 | 30 | 0.3687 | 4.0 / 20.0 | yes |
+| p101-c-checker-opus-5-5 | claude-opus-5-5 | 30 | 0.3538 | 4.0 / 20.0 | yes |
+| p101-c-reminded2-opus-5-5 (repeat; run-to-run variation only; not a reported score) | claude-opus-5-5 | 30 | 0.3440 | 4.0 / 20.0 | yes |
+| total |  | 120 | 1.4030 |  |  |

@@ -127,6 +127,5099 @@
       "what": "Part B with checker"
     }
   ],
+  "S10_part_c": [
+    {
+      "condition": "plain",
+      "gap_cases": 25,
+      "gap_cases_with_unsupported": {
+        "final": 1,
+        "first": 1
+      },
+      "gold_sha256": "76efde06e58d269baae2dcbdff5446c85aca0c64da57fca94ef74ffd72686258",
+      "gold_sha256_equals_gold_files": true,
+      "model": "claude-opus-5-5",
+      "n_cases": 30,
+      "run": "p101-c-plain-opus-5-5",
+      "second_turns": 0,
+      "summary": [
+        {
+          "answer": "first",
+          "counter_cases": 5,
+          "exact": 29,
+          "exact_counter_cases": 5,
+          "exact_gap_cases": 24,
+          "extra": 1,
+          "gap_cases": 25,
+          "gap_cases_with_unsupported": 1,
+          "invalid": 0,
+          "n": 30,
+          "optional_given": 4,
+          "required_found": 38,
+          "required_total": 39,
+          "second_turns": 0
+        }
+      ],
+      "tables": {
+        "first": {
+          "by_case_kind": {
+            "counter_case": {
+              "cases_with_error_finding": 0,
+              "correct": 6,
+              "exact": 5,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 5,
+              "gap_cases": 0,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 1,
+              "precision": 1.0,
+              "recall": 1.0
+            },
+            "gap_case": {
+              "cases_with_error_finding": 0,
+              "correct": 32,
+              "exact": 24,
+              "extra": 1,
+              "fewer_than_10": false,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 24,
+              "gap_cases": 25,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 0,
+              "missing": 1,
+              "n": 25,
+              "no_answer": 0,
+              "optional_given": 3,
+              "precision": 0.9696969696969697,
+              "recall": 0.9696969696969697
+            }
+          },
+          "by_gap_type": {
+            "not_current": {
+              "cases_with_error_finding": 0,
+              "correct": 10,
+              "exact": 5,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 5,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 2,
+              "precision": 1.0,
+              "recall": 1.0
+            },
+            "provider_statement": {
+              "cases_with_error_finding": 0,
+              "correct": 5,
+              "exact": 5,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 5,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 1.0,
+              "recall": 1.0
+            },
+            "uncertain_diagnosis": {
+              "cases_with_error_finding": 0,
+              "correct": 5,
+              "exact": 5,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 5,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 1.0,
+              "recall": 1.0
+            },
+            "unspecified_detail": {
+              "cases_with_error_finding": 0,
+              "correct": 5,
+              "exact": 4,
+              "extra": 1,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 4,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 0,
+              "missing": 1,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.8333333333333334,
+              "recall": 0.8333333333333334
+            },
+            "unstated_link": {
+              "cases_with_error_finding": 0,
+              "correct": 7,
+              "exact": 5,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 5,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 1,
+              "precision": 1.0,
+              "recall": 1.0
+            }
+          },
+          "by_specialty": {
+            "ed": {
+              "cases_with_error_finding": 0,
+              "correct": 7,
+              "exact": 6,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 6,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 1,
+              "precision": 1.0,
+              "recall": 1.0
+            },
+            "ent": {
+              "cases_with_error_finding": 0,
+              "correct": 7,
+              "exact": 6,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 6,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 1,
+              "precision": 1.0,
+              "recall": 1.0
+            },
+            "gi": {
+              "cases_with_error_finding": 0,
+              "correct": 9,
+              "exact": 6,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 6,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 1,
+              "precision": 1.0,
+              "recall": 1.0
+            },
+            "ophtho": {
+              "cases_with_error_finding": 0,
+              "correct": 7,
+              "exact": 5,
+              "extra": 1,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 5,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 0,
+              "missing": 1,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.875,
+              "recall": 0.875
+            },
+            "ortho": {
+              "cases_with_error_finding": 0,
+              "correct": 8,
+              "exact": 6,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 6,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 1,
+              "precision": 1.0,
+              "recall": 1.0
+            }
+          },
+          "overall": {
+            "cases_with_error_finding": 0,
+            "correct": 38,
+            "exact": 29,
+            "extra": 1,
+            "fewer_than_10": false,
+            "findings": {
+              "error": 0,
+              "review": 0
+            },
+            "first_listed": 29,
+            "gap_cases": 25,
+            "gap_cases_with_unsupported": 1,
+            "invalid": 0,
+            "missing": 1,
+            "n": 30,
+            "no_answer": 0,
+            "optional_given": 4,
+            "precision": 0.9743589743589743,
+            "recall": 0.9743589743589743
+          }
+        }
+      }
+    },
+    {
+      "condition": "plain",
+      "gap_cases": 25,
+      "gap_cases_with_unsupported": {
+        "final": 4,
+        "first": 4
+      },
+      "gold_sha256": "76efde06e58d269baae2dcbdff5446c85aca0c64da57fca94ef74ffd72686258",
+      "gold_sha256_equals_gold_files": true,
+      "model": "qwen3:4b",
+      "n_cases": 30,
+      "run": "p101-c-plain-qwen3-4b",
+      "second_turns": 0,
+      "summary": [
+        {
+          "answer": "first",
+          "counter_cases": 5,
+          "exact": 0,
+          "exact_counter_cases": 0,
+          "exact_gap_cases": 0,
+          "extra": 59,
+          "gap_cases": 25,
+          "gap_cases_with_unsupported": 4,
+          "invalid": 2,
+          "n": 30,
+          "optional_given": 0,
+          "required_found": 1,
+          "required_total": 39,
+          "second_turns": 0
+        }
+      ],
+      "tables": {
+        "first": {
+          "by_case_kind": {
+            "counter_case": {
+              "cases_with_error_finding": 5,
+              "correct": 0,
+              "exact": 0,
+              "extra": 11,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 9,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 0,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 6,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "gap_case": {
+              "cases_with_error_finding": 22,
+              "correct": 1,
+              "exact": 0,
+              "extra": 48,
+              "fewer_than_10": false,
+              "findings": {
+                "error": 34,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 25,
+              "gap_cases_with_unsupported": 4,
+              "invalid": 2,
+              "missing": 32,
+              "n": 25,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.02040816326530612,
+              "recall": 0.030303030303030304
+            }
+          },
+          "by_gap_type": {
+            "not_current": {
+              "cases_with_error_finding": 5,
+              "correct": 0,
+              "exact": 0,
+              "extra": 10,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 9,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 0,
+              "missing": 10,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "provider_statement": {
+              "cases_with_error_finding": 4,
+              "correct": 0,
+              "exact": 0,
+              "extra": 8,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 7,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 1,
+              "missing": 5,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "uncertain_diagnosis": {
+              "cases_with_error_finding": 5,
+              "correct": 0,
+              "exact": 0,
+              "extra": 10,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 6,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 3,
+              "invalid": 0,
+              "missing": 5,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "unspecified_detail": {
+              "cases_with_error_finding": 5,
+              "correct": 0,
+              "exact": 0,
+              "extra": 12,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 7,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 6,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "unstated_link": {
+              "cases_with_error_finding": 3,
+              "correct": 1,
+              "exact": 0,
+              "extra": 8,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 5,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 1,
+              "missing": 6,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.1111111111111111,
+              "recall": 0.14285714285714285
+            }
+          },
+          "by_specialty": {
+            "ed": {
+              "cases_with_error_finding": 5,
+              "correct": 0,
+              "exact": 0,
+              "extra": 15,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 9,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 0,
+              "missing": 7,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "ent": {
+              "cases_with_error_finding": 5,
+              "correct": 0,
+              "exact": 0,
+              "extra": 10,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 7,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 1,
+              "missing": 7,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "gi": {
+              "cases_with_error_finding": 5,
+              "correct": 0,
+              "exact": 0,
+              "extra": 10,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 7,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 1,
+              "missing": 9,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "ophtho": {
+              "cases_with_error_finding": 6,
+              "correct": 1,
+              "exact": 0,
+              "extra": 12,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 10,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 7,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.07692307692307693,
+              "recall": 0.125
+            },
+            "ortho": {
+              "cases_with_error_finding": 6,
+              "correct": 0,
+              "exact": 0,
+              "extra": 12,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 10,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 0,
+              "missing": 8,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            }
+          },
+          "overall": {
+            "cases_with_error_finding": 27,
+            "correct": 1,
+            "exact": 0,
+            "extra": 59,
+            "fewer_than_10": false,
+            "findings": {
+              "error": 43,
+              "review": 0
+            },
+            "first_listed": 0,
+            "gap_cases": 25,
+            "gap_cases_with_unsupported": 4,
+            "invalid": 2,
+            "missing": 38,
+            "n": 30,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.016666666666666666,
+            "recall": 0.02564102564102564
+          }
+        }
+      }
+    },
+    {
+      "condition": "reminded",
+      "gap_cases": 25,
+      "gap_cases_with_unsupported": {
+        "final": 1,
+        "first": 1
+      },
+      "gold_sha256": "76efde06e58d269baae2dcbdff5446c85aca0c64da57fca94ef74ffd72686258",
+      "gold_sha256_equals_gold_files": true,
+      "model": "claude-opus-5-5",
+      "n_cases": 30,
+      "run": "p101-c-reminded-opus-5-5",
+      "second_turns": 0,
+      "summary": [
+        {
+          "answer": "first",
+          "counter_cases": 5,
+          "exact": 29,
+          "exact_counter_cases": 5,
+          "exact_gap_cases": 24,
+          "extra": 1,
+          "gap_cases": 25,
+          "gap_cases_with_unsupported": 1,
+          "invalid": 0,
+          "n": 30,
+          "optional_given": 4,
+          "required_found": 38,
+          "required_total": 39,
+          "second_turns": 0
+        }
+      ],
+      "tables": {
+        "first": {
+          "by_case_kind": {
+            "counter_case": {
+              "cases_with_error_finding": 0,
+              "correct": 6,
+              "exact": 5,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 5,
+              "gap_cases": 0,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 1,
+              "precision": 1.0,
+              "recall": 1.0
+            },
+            "gap_case": {
+              "cases_with_error_finding": 0,
+              "correct": 32,
+              "exact": 24,
+              "extra": 1,
+              "fewer_than_10": false,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 24,
+              "gap_cases": 25,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 0,
+              "missing": 1,
+              "n": 25,
+              "no_answer": 0,
+              "optional_given": 3,
+              "precision": 0.9696969696969697,
+              "recall": 0.9696969696969697
+            }
+          },
+          "by_gap_type": {
+            "not_current": {
+              "cases_with_error_finding": 0,
+              "correct": 10,
+              "exact": 5,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 5,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 2,
+              "precision": 1.0,
+              "recall": 1.0
+            },
+            "provider_statement": {
+              "cases_with_error_finding": 0,
+              "correct": 5,
+              "exact": 5,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 5,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 1.0,
+              "recall": 1.0
+            },
+            "uncertain_diagnosis": {
+              "cases_with_error_finding": 0,
+              "correct": 5,
+              "exact": 5,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 5,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 1.0,
+              "recall": 1.0
+            },
+            "unspecified_detail": {
+              "cases_with_error_finding": 0,
+              "correct": 5,
+              "exact": 4,
+              "extra": 1,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 4,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 0,
+              "missing": 1,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.8333333333333334,
+              "recall": 0.8333333333333334
+            },
+            "unstated_link": {
+              "cases_with_error_finding": 0,
+              "correct": 7,
+              "exact": 5,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 5,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 1,
+              "precision": 1.0,
+              "recall": 1.0
+            }
+          },
+          "by_specialty": {
+            "ed": {
+              "cases_with_error_finding": 0,
+              "correct": 7,
+              "exact": 6,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 6,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 1,
+              "precision": 1.0,
+              "recall": 1.0
+            },
+            "ent": {
+              "cases_with_error_finding": 0,
+              "correct": 7,
+              "exact": 6,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 6,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 1,
+              "precision": 1.0,
+              "recall": 1.0
+            },
+            "gi": {
+              "cases_with_error_finding": 0,
+              "correct": 9,
+              "exact": 6,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 6,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 1,
+              "precision": 1.0,
+              "recall": 1.0
+            },
+            "ophtho": {
+              "cases_with_error_finding": 0,
+              "correct": 7,
+              "exact": 5,
+              "extra": 1,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 5,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 0,
+              "missing": 1,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.875,
+              "recall": 0.875
+            },
+            "ortho": {
+              "cases_with_error_finding": 0,
+              "correct": 8,
+              "exact": 6,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 6,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 1,
+              "precision": 1.0,
+              "recall": 1.0
+            }
+          },
+          "overall": {
+            "cases_with_error_finding": 0,
+            "correct": 38,
+            "exact": 29,
+            "extra": 1,
+            "fewer_than_10": false,
+            "findings": {
+              "error": 0,
+              "review": 0
+            },
+            "first_listed": 29,
+            "gap_cases": 25,
+            "gap_cases_with_unsupported": 1,
+            "invalid": 0,
+            "missing": 1,
+            "n": 30,
+            "no_answer": 0,
+            "optional_given": 4,
+            "precision": 0.9743589743589743,
+            "recall": 0.9743589743589743
+          }
+        }
+      }
+    },
+    {
+      "condition": "reminded",
+      "gap_cases": 25,
+      "gap_cases_with_unsupported": {
+        "final": 5,
+        "first": 5
+      },
+      "gold_sha256": "76efde06e58d269baae2dcbdff5446c85aca0c64da57fca94ef74ffd72686258",
+      "gold_sha256_equals_gold_files": true,
+      "model": "qwen3:4b",
+      "n_cases": 30,
+      "run": "p101-c-reminded-qwen3-4b",
+      "second_turns": 0,
+      "summary": [
+        {
+          "answer": "first",
+          "counter_cases": 5,
+          "exact": 0,
+          "exact_counter_cases": 0,
+          "exact_gap_cases": 0,
+          "extra": 60,
+          "gap_cases": 25,
+          "gap_cases_with_unsupported": 5,
+          "invalid": 1,
+          "n": 30,
+          "optional_given": 0,
+          "required_found": 1,
+          "required_total": 39,
+          "second_turns": 0
+        }
+      ],
+      "tables": {
+        "first": {
+          "by_case_kind": {
+            "counter_case": {
+              "cases_with_error_finding": 5,
+              "correct": 0,
+              "exact": 0,
+              "extra": 10,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 8,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 0,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 6,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "gap_case": {
+              "cases_with_error_finding": 24,
+              "correct": 1,
+              "exact": 0,
+              "extra": 50,
+              "fewer_than_10": false,
+              "findings": {
+                "error": 38,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 25,
+              "gap_cases_with_unsupported": 5,
+              "invalid": 1,
+              "missing": 32,
+              "n": 25,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0196078431372549,
+              "recall": 0.030303030303030304
+            }
+          },
+          "by_gap_type": {
+            "not_current": {
+              "cases_with_error_finding": 5,
+              "correct": 0,
+              "exact": 0,
+              "extra": 10,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 8,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 0,
+              "missing": 10,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "provider_statement": {
+              "cases_with_error_finding": 5,
+              "correct": 0,
+              "exact": 0,
+              "extra": 10,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 9,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 0,
+              "missing": 5,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "uncertain_diagnosis": {
+              "cases_with_error_finding": 5,
+              "correct": 0,
+              "exact": 0,
+              "extra": 10,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 6,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 3,
+              "invalid": 0,
+              "missing": 5,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "unspecified_detail": {
+              "cases_with_error_finding": 5,
+              "correct": 0,
+              "exact": 0,
+              "extra": 12,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 9,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 6,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "unstated_link": {
+              "cases_with_error_finding": 4,
+              "correct": 1,
+              "exact": 0,
+              "extra": 8,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 6,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 1,
+              "missing": 6,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.1111111111111111,
+              "recall": 0.14285714285714285
+            }
+          },
+          "by_specialty": {
+            "ed": {
+              "cases_with_error_finding": 6,
+              "correct": 0,
+              "exact": 0,
+              "extra": 14,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 10,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 0,
+              "missing": 7,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "ent": {
+              "cases_with_error_finding": 6,
+              "correct": 0,
+              "exact": 0,
+              "extra": 12,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 10,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 3,
+              "invalid": 0,
+              "missing": 7,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "gi": {
+              "cases_with_error_finding": 5,
+              "correct": 0,
+              "exact": 0,
+              "extra": 10,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 6,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 1,
+              "missing": 9,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "ophtho": {
+              "cases_with_error_finding": 6,
+              "correct": 1,
+              "exact": 0,
+              "extra": 12,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 9,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 7,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.07692307692307693,
+              "recall": 0.125
+            },
+            "ortho": {
+              "cases_with_error_finding": 6,
+              "correct": 0,
+              "exact": 0,
+              "extra": 12,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 11,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 8,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            }
+          },
+          "overall": {
+            "cases_with_error_finding": 29,
+            "correct": 1,
+            "exact": 0,
+            "extra": 60,
+            "fewer_than_10": false,
+            "findings": {
+              "error": 46,
+              "review": 0
+            },
+            "first_listed": 0,
+            "gap_cases": 25,
+            "gap_cases_with_unsupported": 5,
+            "invalid": 1,
+            "missing": 38,
+            "n": 30,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.01639344262295082,
+            "recall": 0.02564102564102564
+          }
+        }
+      }
+    },
+    {
+      "condition": "with_checker",
+      "gap_cases": 25,
+      "gap_cases_with_unsupported": {
+        "final": 1,
+        "first": 1
+      },
+      "gold_sha256": "76efde06e58d269baae2dcbdff5446c85aca0c64da57fca94ef74ffd72686258",
+      "gold_sha256_equals_gold_files": true,
+      "model": "claude-opus-5-5",
+      "n_cases": 30,
+      "run": "p101-c-checker-opus-5-5",
+      "second_turns": 0,
+      "summary": [
+        {
+          "answer": "first",
+          "counter_cases": 5,
+          "exact": 29,
+          "exact_counter_cases": 5,
+          "exact_gap_cases": 24,
+          "extra": 1,
+          "gap_cases": 25,
+          "gap_cases_with_unsupported": 1,
+          "invalid": 0,
+          "n": 30,
+          "optional_given": 4,
+          "required_found": 38,
+          "required_total": 39,
+          "second_turns": 0
+        },
+        {
+          "answer": "final",
+          "counter_cases": 5,
+          "exact": 29,
+          "exact_counter_cases": 5,
+          "exact_gap_cases": 24,
+          "extra": 1,
+          "gap_cases": 25,
+          "gap_cases_with_unsupported": 1,
+          "invalid": 0,
+          "n": 30,
+          "optional_given": 4,
+          "required_found": 38,
+          "required_total": 39,
+          "second_turns": 0
+        }
+      ],
+      "tables": {
+        "final": {
+          "by_case_kind": {
+            "counter_case": {
+              "cases_with_error_finding": 0,
+              "correct": 6,
+              "exact": 5,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 5,
+              "gap_cases": 0,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 1,
+              "precision": 1.0,
+              "recall": 1.0
+            },
+            "gap_case": {
+              "cases_with_error_finding": 0,
+              "correct": 32,
+              "exact": 24,
+              "extra": 1,
+              "fewer_than_10": false,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 24,
+              "gap_cases": 25,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 0,
+              "missing": 1,
+              "n": 25,
+              "no_answer": 0,
+              "optional_given": 3,
+              "precision": 0.9696969696969697,
+              "recall": 0.9696969696969697
+            }
+          },
+          "by_gap_type": {
+            "not_current": {
+              "cases_with_error_finding": 0,
+              "correct": 10,
+              "exact": 5,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 5,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 2,
+              "precision": 1.0,
+              "recall": 1.0
+            },
+            "provider_statement": {
+              "cases_with_error_finding": 0,
+              "correct": 5,
+              "exact": 5,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 5,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 1.0,
+              "recall": 1.0
+            },
+            "uncertain_diagnosis": {
+              "cases_with_error_finding": 0,
+              "correct": 5,
+              "exact": 5,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 5,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 1.0,
+              "recall": 1.0
+            },
+            "unspecified_detail": {
+              "cases_with_error_finding": 0,
+              "correct": 5,
+              "exact": 4,
+              "extra": 1,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 4,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 0,
+              "missing": 1,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.8333333333333334,
+              "recall": 0.8333333333333334
+            },
+            "unstated_link": {
+              "cases_with_error_finding": 0,
+              "correct": 7,
+              "exact": 5,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 5,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 1,
+              "precision": 1.0,
+              "recall": 1.0
+            }
+          },
+          "by_specialty": {
+            "ed": {
+              "cases_with_error_finding": 0,
+              "correct": 7,
+              "exact": 6,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 6,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 1,
+              "precision": 1.0,
+              "recall": 1.0
+            },
+            "ent": {
+              "cases_with_error_finding": 0,
+              "correct": 7,
+              "exact": 6,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 6,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 1,
+              "precision": 1.0,
+              "recall": 1.0
+            },
+            "gi": {
+              "cases_with_error_finding": 0,
+              "correct": 9,
+              "exact": 6,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 6,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 1,
+              "precision": 1.0,
+              "recall": 1.0
+            },
+            "ophtho": {
+              "cases_with_error_finding": 0,
+              "correct": 7,
+              "exact": 5,
+              "extra": 1,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 5,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 0,
+              "missing": 1,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.875,
+              "recall": 0.875
+            },
+            "ortho": {
+              "cases_with_error_finding": 0,
+              "correct": 8,
+              "exact": 6,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 6,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 1,
+              "precision": 1.0,
+              "recall": 1.0
+            }
+          },
+          "overall": {
+            "cases_with_error_finding": 0,
+            "correct": 38,
+            "exact": 29,
+            "extra": 1,
+            "fewer_than_10": false,
+            "findings": {
+              "error": 0,
+              "review": 0
+            },
+            "first_listed": 29,
+            "gap_cases": 25,
+            "gap_cases_with_unsupported": 1,
+            "invalid": 0,
+            "missing": 1,
+            "n": 30,
+            "no_answer": 0,
+            "optional_given": 4,
+            "precision": 0.9743589743589743,
+            "recall": 0.9743589743589743
+          }
+        },
+        "first": {
+          "by_case_kind": {
+            "counter_case": {
+              "cases_with_error_finding": 0,
+              "correct": 6,
+              "exact": 5,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 5,
+              "gap_cases": 0,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 1,
+              "precision": 1.0,
+              "recall": 1.0
+            },
+            "gap_case": {
+              "cases_with_error_finding": 0,
+              "correct": 32,
+              "exact": 24,
+              "extra": 1,
+              "fewer_than_10": false,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 24,
+              "gap_cases": 25,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 0,
+              "missing": 1,
+              "n": 25,
+              "no_answer": 0,
+              "optional_given": 3,
+              "precision": 0.9696969696969697,
+              "recall": 0.9696969696969697
+            }
+          },
+          "by_gap_type": {
+            "not_current": {
+              "cases_with_error_finding": 0,
+              "correct": 10,
+              "exact": 5,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 5,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 2,
+              "precision": 1.0,
+              "recall": 1.0
+            },
+            "provider_statement": {
+              "cases_with_error_finding": 0,
+              "correct": 5,
+              "exact": 5,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 5,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 1.0,
+              "recall": 1.0
+            },
+            "uncertain_diagnosis": {
+              "cases_with_error_finding": 0,
+              "correct": 5,
+              "exact": 5,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 5,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 1.0,
+              "recall": 1.0
+            },
+            "unspecified_detail": {
+              "cases_with_error_finding": 0,
+              "correct": 5,
+              "exact": 4,
+              "extra": 1,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 4,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 0,
+              "missing": 1,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.8333333333333334,
+              "recall": 0.8333333333333334
+            },
+            "unstated_link": {
+              "cases_with_error_finding": 0,
+              "correct": 7,
+              "exact": 5,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 5,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 1,
+              "precision": 1.0,
+              "recall": 1.0
+            }
+          },
+          "by_specialty": {
+            "ed": {
+              "cases_with_error_finding": 0,
+              "correct": 7,
+              "exact": 6,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 6,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 1,
+              "precision": 1.0,
+              "recall": 1.0
+            },
+            "ent": {
+              "cases_with_error_finding": 0,
+              "correct": 7,
+              "exact": 6,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 6,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 1,
+              "precision": 1.0,
+              "recall": 1.0
+            },
+            "gi": {
+              "cases_with_error_finding": 0,
+              "correct": 9,
+              "exact": 6,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 6,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 1,
+              "precision": 1.0,
+              "recall": 1.0
+            },
+            "ophtho": {
+              "cases_with_error_finding": 0,
+              "correct": 7,
+              "exact": 5,
+              "extra": 1,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 5,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 0,
+              "missing": 1,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.875,
+              "recall": 0.875
+            },
+            "ortho": {
+              "cases_with_error_finding": 0,
+              "correct": 8,
+              "exact": 6,
+              "extra": 0,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 0,
+                "review": 0
+              },
+              "first_listed": 6,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 0,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 1,
+              "precision": 1.0,
+              "recall": 1.0
+            }
+          },
+          "overall": {
+            "cases_with_error_finding": 0,
+            "correct": 38,
+            "exact": 29,
+            "extra": 1,
+            "fewer_than_10": false,
+            "findings": {
+              "error": 0,
+              "review": 0
+            },
+            "first_listed": 29,
+            "gap_cases": 25,
+            "gap_cases_with_unsupported": 1,
+            "invalid": 0,
+            "missing": 1,
+            "n": 30,
+            "no_answer": 0,
+            "optional_given": 4,
+            "precision": 0.9743589743589743,
+            "recall": 0.9743589743589743
+          }
+        }
+      }
+    },
+    {
+      "condition": "with_checker",
+      "gap_cases": 25,
+      "gap_cases_with_unsupported": {
+        "final": 4,
+        "first": 4
+      },
+      "gold_sha256": "76efde06e58d269baae2dcbdff5446c85aca0c64da57fca94ef74ffd72686258",
+      "gold_sha256_equals_gold_files": true,
+      "model": "qwen3:4b",
+      "n_cases": 30,
+      "run": "p101-c-checker-qwen3-4b",
+      "second_turns": 27,
+      "summary": [
+        {
+          "answer": "first",
+          "counter_cases": 5,
+          "exact": 0,
+          "exact_counter_cases": 0,
+          "exact_gap_cases": 0,
+          "extra": 59,
+          "gap_cases": 25,
+          "gap_cases_with_unsupported": 4,
+          "invalid": 2,
+          "n": 30,
+          "optional_given": 0,
+          "required_found": 1,
+          "required_total": 39,
+          "second_turns": 27
+        },
+        {
+          "answer": "final",
+          "counter_cases": 5,
+          "exact": 0,
+          "exact_counter_cases": 0,
+          "exact_gap_cases": 0,
+          "extra": 55,
+          "gap_cases": 25,
+          "gap_cases_with_unsupported": 4,
+          "invalid": 2,
+          "n": 30,
+          "optional_given": 0,
+          "required_found": 2,
+          "required_total": 39,
+          "second_turns": 27
+        }
+      ],
+      "tables": {
+        "final": {
+          "by_case_kind": {
+            "counter_case": {
+              "cases_with_error_finding": 4,
+              "correct": 0,
+              "exact": 0,
+              "extra": 10,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 4,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 0,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 6,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "gap_case": {
+              "cases_with_error_finding": 15,
+              "correct": 2,
+              "exact": 0,
+              "extra": 45,
+              "fewer_than_10": false,
+              "findings": {
+                "error": 20,
+                "review": 0
+              },
+              "first_listed": 1,
+              "gap_cases": 25,
+              "gap_cases_with_unsupported": 4,
+              "invalid": 2,
+              "missing": 31,
+              "n": 25,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0425531914893617,
+              "recall": 0.06060606060606061
+            }
+          },
+          "by_gap_type": {
+            "not_current": {
+              "cases_with_error_finding": 3,
+              "correct": 1,
+              "exact": 0,
+              "extra": 9,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 6,
+                "review": 0
+              },
+              "first_listed": 1,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 0,
+              "missing": 9,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.1,
+              "recall": 0.1
+            },
+            "provider_statement": {
+              "cases_with_error_finding": 2,
+              "correct": 0,
+              "exact": 0,
+              "extra": 8,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 3,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 1,
+              "missing": 5,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "uncertain_diagnosis": {
+              "cases_with_error_finding": 3,
+              "correct": 0,
+              "exact": 0,
+              "extra": 9,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 3,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 3,
+              "invalid": 0,
+              "missing": 5,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "unspecified_detail": {
+              "cases_with_error_finding": 4,
+              "correct": 0,
+              "exact": 0,
+              "extra": 11,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 5,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 6,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "unstated_link": {
+              "cases_with_error_finding": 3,
+              "correct": 1,
+              "exact": 0,
+              "extra": 8,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 3,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 1,
+              "missing": 6,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.1111111111111111,
+              "recall": 0.14285714285714285
+            }
+          },
+          "by_specialty": {
+            "ed": {
+              "cases_with_error_finding": 3,
+              "correct": 1,
+              "exact": 0,
+              "extra": 12,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 4,
+                "review": 0
+              },
+              "first_listed": 1,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 0,
+              "missing": 6,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.07692307692307693,
+              "recall": 0.14285714285714285
+            },
+            "ent": {
+              "cases_with_error_finding": 5,
+              "correct": 0,
+              "exact": 0,
+              "extra": 10,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 6,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 1,
+              "missing": 7,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "gi": {
+              "cases_with_error_finding": 3,
+              "correct": 0,
+              "exact": 0,
+              "extra": 9,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 4,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 1,
+              "missing": 9,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "ophtho": {
+              "cases_with_error_finding": 3,
+              "correct": 1,
+              "exact": 0,
+              "extra": 12,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 4,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 7,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.07692307692307693,
+              "recall": 0.125
+            },
+            "ortho": {
+              "cases_with_error_finding": 5,
+              "correct": 0,
+              "exact": 0,
+              "extra": 12,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 6,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 0,
+              "missing": 8,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            }
+          },
+          "overall": {
+            "cases_with_error_finding": 19,
+            "correct": 2,
+            "exact": 0,
+            "extra": 55,
+            "fewer_than_10": false,
+            "findings": {
+              "error": 24,
+              "review": 0
+            },
+            "first_listed": 1,
+            "gap_cases": 25,
+            "gap_cases_with_unsupported": 4,
+            "invalid": 2,
+            "missing": 37,
+            "n": 30,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.03508771929824561,
+            "recall": 0.05128205128205128
+          }
+        },
+        "first": {
+          "by_case_kind": {
+            "counter_case": {
+              "cases_with_error_finding": 5,
+              "correct": 0,
+              "exact": 0,
+              "extra": 11,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 9,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 0,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 6,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "gap_case": {
+              "cases_with_error_finding": 22,
+              "correct": 1,
+              "exact": 0,
+              "extra": 48,
+              "fewer_than_10": false,
+              "findings": {
+                "error": 34,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 25,
+              "gap_cases_with_unsupported": 4,
+              "invalid": 2,
+              "missing": 32,
+              "n": 25,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.02040816326530612,
+              "recall": 0.030303030303030304
+            }
+          },
+          "by_gap_type": {
+            "not_current": {
+              "cases_with_error_finding": 5,
+              "correct": 0,
+              "exact": 0,
+              "extra": 10,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 9,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 0,
+              "missing": 10,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "provider_statement": {
+              "cases_with_error_finding": 4,
+              "correct": 0,
+              "exact": 0,
+              "extra": 8,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 7,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 1,
+              "missing": 5,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "uncertain_diagnosis": {
+              "cases_with_error_finding": 5,
+              "correct": 0,
+              "exact": 0,
+              "extra": 10,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 6,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 3,
+              "invalid": 0,
+              "missing": 5,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "unspecified_detail": {
+              "cases_with_error_finding": 5,
+              "correct": 0,
+              "exact": 0,
+              "extra": 12,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 7,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 6,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "unstated_link": {
+              "cases_with_error_finding": 3,
+              "correct": 1,
+              "exact": 0,
+              "extra": 8,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 5,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 1,
+              "missing": 6,
+              "n": 5,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.1111111111111111,
+              "recall": 0.14285714285714285
+            }
+          },
+          "by_specialty": {
+            "ed": {
+              "cases_with_error_finding": 5,
+              "correct": 0,
+              "exact": 0,
+              "extra": 15,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 9,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 0,
+              "missing": 7,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "ent": {
+              "cases_with_error_finding": 5,
+              "correct": 0,
+              "exact": 0,
+              "extra": 10,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 7,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 1,
+              "missing": 7,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "gi": {
+              "cases_with_error_finding": 5,
+              "correct": 0,
+              "exact": 0,
+              "extra": 10,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 7,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 1,
+              "missing": 9,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            },
+            "ophtho": {
+              "cases_with_error_finding": 6,
+              "correct": 1,
+              "exact": 0,
+              "extra": 12,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 10,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 0,
+              "invalid": 0,
+              "missing": 7,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.07692307692307693,
+              "recall": 0.125
+            },
+            "ortho": {
+              "cases_with_error_finding": 6,
+              "correct": 0,
+              "exact": 0,
+              "extra": 12,
+              "fewer_than_10": true,
+              "findings": {
+                "error": 10,
+                "review": 0
+              },
+              "first_listed": 0,
+              "gap_cases": 5,
+              "gap_cases_with_unsupported": 1,
+              "invalid": 0,
+              "missing": 8,
+              "n": 6,
+              "no_answer": 0,
+              "optional_given": 0,
+              "precision": 0.0,
+              "recall": 0.0
+            }
+          },
+          "overall": {
+            "cases_with_error_finding": 27,
+            "correct": 1,
+            "exact": 0,
+            "extra": 59,
+            "fewer_than_10": false,
+            "findings": {
+              "error": 43,
+              "review": 0
+            },
+            "first_listed": 0,
+            "gap_cases": 25,
+            "gap_cases_with_unsupported": 4,
+            "invalid": 2,
+            "missing": 38,
+            "n": 30,
+            "no_answer": 0,
+            "optional_given": 0,
+            "precision": 0.016666666666666666,
+            "recall": 0.02564102564102564
+          }
+        }
+      }
+    }
+  ],
+  "S11_part_c_cases": [
+    {
+      "cases": [
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "A08.4",
+          "first": "A08.4",
+          "gap_type": "provider_statement",
+          "gold": "A08.4",
+          "id": "c-ed-001",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "R33.9 Z90.49",
+          "first": "R33.9 Z90.49",
+          "gap_type": "unstated_link",
+          "gold": "R33.9",
+          "id": "c-ed-002",
+          "optional": "Z90.49 Z96.0",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "J20.9",
+          "first": "J20.9",
+          "gap_type": "not_current",
+          "gold": "J20.9",
+          "id": "c-ed-003",
+          "optional": "Z87.09",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "I50.9",
+          "first": "I50.9",
+          "gap_type": "unspecified_detail",
+          "gold": "I50.9",
+          "id": "c-ed-004",
+          "optional": "Z79.899",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "R30.0",
+          "first": "R30.0",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "R30.0",
+          "id": "c-ed-005",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "I11.0 I50.33",
+          "first": "I11.0 I50.33",
+          "gap_type": "counter_case",
+          "gold": "I11.0 I50.33",
+          "id": "c-ed-006",
+          "optional": "Z79.899",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "J01.90",
+          "first": "J01.90",
+          "gap_type": "unspecified_detail",
+          "gold": "J01.90",
+          "id": "c-ent-001",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "R42",
+          "first": "R42",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "R42",
+          "id": "c-ent-002",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "J03.90",
+          "first": "J03.90",
+          "gap_type": "provider_statement",
+          "gold": "J03.90",
+          "id": "c-ent-003",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "H90.3",
+          "first": "H90.3",
+          "gap_type": "unstated_link",
+          "gold": "H90.3",
+          "id": "c-ent-004",
+          "optional": "Z57.0",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "Z09 Z86.69",
+          "first": "Z09 Z86.69",
+          "gap_type": "not_current",
+          "gold": "Z09 Z86.69",
+          "id": "c-ent-005",
+          "optional": "Z92.241",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "H81.01 Z79.899",
+          "first": "H81.01 Z79.899",
+          "gap_type": "counter_case",
+          "gold": "H81.01",
+          "id": "c-ent-006",
+          "optional": "Z79.899",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "K74.60 F10.20",
+          "first": "K74.60 F10.20",
+          "gap_type": "unstated_link",
+          "gold": "K74.60 F10.20",
+          "id": "c-gi-001",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "Z08 Z85.038 Z90.49 Z92.21",
+          "first": "Z08 Z85.038 Z90.49 Z92.21",
+          "gap_type": "not_current",
+          "gold": "Z08 Z85.038 Z90.49",
+          "id": "c-gi-002",
+          "optional": "Z92.21",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "B19.20",
+          "first": "B19.20",
+          "gap_type": "unspecified_detail",
+          "gold": "B19.20",
+          "id": "c-gi-003",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "R10.13",
+          "first": "R10.13",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "R10.13",
+          "id": "c-gi-004",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "K90.0",
+          "first": "K90.0",
+          "gap_type": "provider_statement",
+          "gold": "K90.0",
+          "id": "c-gi-005",
+          "optional": "Z71.3",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "K64.1",
+          "first": "K64.1",
+          "gap_type": "counter_case",
+          "gold": "K64.1",
+          "id": "c-gi-006",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "Z09 Z86.69",
+          "first": "Z09 Z86.69",
+          "gap_type": "not_current",
+          "gold": "Z09 Z86.69",
+          "id": "c-ophtho-001",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H40.1133",
+          "first": "H40.1133",
+          "gap_type": "unspecified_detail",
+          "gold": "H40.1130",
+          "id": "c-ophtho-002",
+          "optional": "Z79.899",
+          "unsupported_final": "H40.1133",
+          "unsupported_first": "H40.1133"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "H53.131",
+          "first": "H53.131",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "H53.131",
+          "id": "c-ophtho-003",
+          "optional": "H54.61",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "H35.3134",
+          "first": "H35.3134",
+          "gap_type": "provider_statement",
+          "gold": "H35.3134",
+          "id": "c-ophtho-004",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "H35.00 I10",
+          "first": "H35.00 I10",
+          "gap_type": "unstated_link",
+          "gold": "H35.00 I10",
+          "id": "c-ophtho-005",
+          "optional": "Z79.899",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "H40.013",
+          "first": "H40.013",
+          "gap_type": "counter_case",
+          "gold": "H40.013",
+          "id": "c-ophtho-006",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "M25.561",
+          "first": "M25.561",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "M25.561",
+          "id": "c-ortho-001",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "M16.12",
+          "first": "M16.12",
+          "gap_type": "provider_statement",
+          "gold": "M16.12",
+          "id": "c-ortho-002",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "M76.62",
+          "first": "M76.62",
+          "gap_type": "unstated_link",
+          "gold": "M76.62",
+          "id": "c-ortho-003",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "M81.0 Z87.310 Z79.83",
+          "first": "M81.0 Z87.310 Z79.83",
+          "gap_type": "not_current",
+          "gold": "M81.0 Z87.310",
+          "id": "c-ortho-004",
+          "optional": "Z79.83",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "S82.251E W11.XXXD",
+          "first": "S82.251E W11.XXXD",
+          "gap_type": "unspecified_detail",
+          "gold": "S82.251E W11.XXXD",
+          "id": "c-ortho-005",
+          "optional": "Z96.7",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "M65.341",
+          "first": "M65.341",
+          "gap_type": "counter_case",
+          "gold": "M65.341",
+          "id": "c-ortho-006",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        }
+      ],
+      "condition": "plain",
+      "model": "claude-opus-5-5",
+      "run": "p101-c-plain-opus-5-5"
+    },
+    {
+      "cases": [
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "B24.9 Y14.3",
+          "first": "B24.9 Y14.3",
+          "gap_type": "provider_statement",
+          "gold": "A08.4",
+          "id": "c-ed-001",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "N39.0 Z85.71",
+          "first": "N39.0 Z85.71",
+          "gap_type": "unstated_link",
+          "gold": "R33.9",
+          "id": "c-ed-002",
+          "optional": "Z90.49 Z96.0",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "J20 R05",
+          "first": "J20 R05",
+          "gap_type": "not_current",
+          "gold": "J20.9",
+          "id": "c-ed-003",
+          "optional": "Z87.09",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "I11.9 I13.9 R05 I12.9",
+          "first": "I11.9 I13.9 R05 I12.9",
+          "gap_type": "unspecified_detail",
+          "gold": "I50.9",
+          "id": "c-ed-004",
+          "optional": "Z79.899",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "N39.0 Z86.891",
+          "first": "N39.0 Z86.891",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "R30.0",
+          "id": "c-ed-005",
+          "optional": "-",
+          "unsupported_final": "N39.0",
+          "unsupported_first": "N39.0"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "I10.9 I31.9 R05",
+          "first": "I10.9 I31.9 R05",
+          "gap_type": "counter_case",
+          "gold": "I11.0 I50.33",
+          "id": "c-ed-006",
+          "optional": "Z79.899",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "R01.1 R02.11",
+          "first": "R01.1 R02.11",
+          "gap_type": "unspecified_detail",
+          "gold": "J01.90",
+          "id": "c-ent-001",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H91.82 R45.82",
+          "first": "H91.82 R45.82",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "R42",
+          "id": "c-ent-002",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "invalid",
+          "first": "invalid",
+          "gap_type": "provider_statement",
+          "gold": "J03.90",
+          "id": "c-ent-003",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H91.90 R91.83",
+          "first": "H91.90 R91.83",
+          "gap_type": "unstated_link",
+          "gold": "H90.3",
+          "id": "c-ent-004",
+          "optional": "Z57.0",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H91.89 R55.89",
+          "first": "H91.89 R55.89",
+          "gap_type": "not_current",
+          "gold": "Z09 Z86.69",
+          "id": "c-ent-005",
+          "optional": "Z92.241",
+          "unsupported_final": "H91.89",
+          "unsupported_first": "H91.89"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H91.82 Z87.0",
+          "first": "H91.82 Z87.0",
+          "gap_type": "counter_case",
+          "gold": "H81.01",
+          "id": "c-ent-006",
+          "optional": "Z79.899",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "invalid",
+          "first": "invalid",
+          "gap_type": "unstated_link",
+          "gold": "K74.60 F10.20",
+          "id": "c-gi-001",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "C78.11 Z85.31",
+          "first": "C78.11 Z85.31",
+          "gap_type": "not_current",
+          "gold": "Z08 Z85.038 Z90.49",
+          "id": "c-gi-002",
+          "optional": "Z92.21",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "B16.1 Z85.31",
+          "first": "B16.1 Z85.31",
+          "gap_type": "unspecified_detail",
+          "gold": "B19.20",
+          "id": "c-gi-003",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "K25.9 Y54.3",
+          "first": "K25.9 Y54.3",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "R10.13",
+          "id": "c-gi-004",
+          "optional": "-",
+          "unsupported_final": "K25.9",
+          "unsupported_first": "K25.9"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "E70.1 Z85.7",
+          "first": "E70.1 Z85.7",
+          "gap_type": "provider_statement",
+          "gold": "K90.0",
+          "id": "c-gi-005",
+          "optional": "Z71.3",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "I87.11 R19.1",
+          "first": "I87.11 R19.1",
+          "gap_type": "counter_case",
+          "gold": "K64.1",
+          "id": "c-gi-006",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H61.81 Z85.71",
+          "first": "H61.81 Z85.71",
+          "gap_type": "not_current",
+          "gold": "Z09 Z86.69",
+          "id": "c-ophtho-001",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H40.11 H40.12",
+          "first": "H40.11 H40.12",
+          "gap_type": "unspecified_detail",
+          "gold": "H40.1130",
+          "id": "c-ophtho-002",
+          "optional": "Z79.899",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H40.11 I69.9",
+          "first": "H40.11 I69.9",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "H53.131",
+          "id": "c-ophtho-003",
+          "optional": "H54.61",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H40.112 H40.113",
+          "first": "H40.112 H40.113",
+          "gap_type": "provider_statement",
+          "gold": "H35.3134",
+          "id": "c-ophtho-004",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H45.11 I10 Z87.0",
+          "first": "H45.11 I10 Z87.0",
+          "gap_type": "unstated_link",
+          "gold": "H35.00 I10",
+          "id": "c-ophtho-005",
+          "optional": "Z79.899",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H40.129 Z82.3",
+          "first": "H40.129 Z82.3",
+          "gap_type": "counter_case",
+          "gold": "H40.013",
+          "id": "c-ophtho-006",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "M23.21 Y93.31",
+          "first": "M23.21 Y93.31",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "M25.561",
+          "id": "c-ortho-001",
+          "optional": "-",
+          "unsupported_final": "M23.21",
+          "unsupported_first": "M23.21"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "M16.81 Z86.71",
+          "first": "M16.81 Z86.71",
+          "gap_type": "provider_statement",
+          "gold": "M16.12",
+          "id": "c-ortho-002",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "M715.21 Y54.11",
+          "first": "M715.21 Y54.11",
+          "gap_type": "unstated_link",
+          "gold": "M76.62",
+          "id": "c-ortho-003",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "M81.811 M81.819",
+          "first": "M81.811 M81.819",
+          "gap_type": "not_current",
+          "gold": "M81.0 Z87.310",
+          "id": "c-ortho-004",
+          "optional": "Z79.83",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "M22.51 T82.111A",
+          "first": "M22.51 T82.111A",
+          "gap_type": "unspecified_detail",
+          "gold": "S82.251E W11.XXXD",
+          "id": "c-ortho-005",
+          "optional": "Z96.7",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "M66.82 T82.899XA",
+          "first": "M66.82 T82.899XA",
+          "gap_type": "counter_case",
+          "gold": "M65.341",
+          "id": "c-ortho-006",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        }
+      ],
+      "condition": "plain",
+      "model": "qwen3:4b",
+      "run": "p101-c-plain-qwen3-4b"
+    },
+    {
+      "cases": [
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "A08.4",
+          "first": "A08.4",
+          "gap_type": "provider_statement",
+          "gold": "A08.4",
+          "id": "c-ed-001",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "R33.9 Z90.49",
+          "first": "R33.9 Z90.49",
+          "gap_type": "unstated_link",
+          "gold": "R33.9",
+          "id": "c-ed-002",
+          "optional": "Z90.49 Z96.0",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "J20.9",
+          "first": "J20.9",
+          "gap_type": "not_current",
+          "gold": "J20.9",
+          "id": "c-ed-003",
+          "optional": "Z87.09",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "I50.9",
+          "first": "I50.9",
+          "gap_type": "unspecified_detail",
+          "gold": "I50.9",
+          "id": "c-ed-004",
+          "optional": "Z79.899",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "R30.0",
+          "first": "R30.0",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "R30.0",
+          "id": "c-ed-005",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "I11.0 I50.33",
+          "first": "I11.0 I50.33",
+          "gap_type": "counter_case",
+          "gold": "I11.0 I50.33",
+          "id": "c-ed-006",
+          "optional": "Z79.899",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "J01.90",
+          "first": "J01.90",
+          "gap_type": "unspecified_detail",
+          "gold": "J01.90",
+          "id": "c-ent-001",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "R42",
+          "first": "R42",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "R42",
+          "id": "c-ent-002",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "J03.90",
+          "first": "J03.90",
+          "gap_type": "provider_statement",
+          "gold": "J03.90",
+          "id": "c-ent-003",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "H90.3",
+          "first": "H90.3",
+          "gap_type": "unstated_link",
+          "gold": "H90.3",
+          "id": "c-ent-004",
+          "optional": "Z57.0",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "Z09 Z86.69",
+          "first": "Z09 Z86.69",
+          "gap_type": "not_current",
+          "gold": "Z09 Z86.69",
+          "id": "c-ent-005",
+          "optional": "Z92.241",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "H81.01 Z79.899",
+          "first": "H81.01 Z79.899",
+          "gap_type": "counter_case",
+          "gold": "H81.01",
+          "id": "c-ent-006",
+          "optional": "Z79.899",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "K74.60 F10.20",
+          "first": "K74.60 F10.20",
+          "gap_type": "unstated_link",
+          "gold": "K74.60 F10.20",
+          "id": "c-gi-001",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "Z08 Z85.038 Z90.49 Z92.21",
+          "first": "Z08 Z85.038 Z90.49 Z92.21",
+          "gap_type": "not_current",
+          "gold": "Z08 Z85.038 Z90.49",
+          "id": "c-gi-002",
+          "optional": "Z92.21",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "B19.20",
+          "first": "B19.20",
+          "gap_type": "unspecified_detail",
+          "gold": "B19.20",
+          "id": "c-gi-003",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "R10.13",
+          "first": "R10.13",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "R10.13",
+          "id": "c-gi-004",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "K90.0",
+          "first": "K90.0",
+          "gap_type": "provider_statement",
+          "gold": "K90.0",
+          "id": "c-gi-005",
+          "optional": "Z71.3",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "K64.1",
+          "first": "K64.1",
+          "gap_type": "counter_case",
+          "gold": "K64.1",
+          "id": "c-gi-006",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "Z09 Z86.69",
+          "first": "Z09 Z86.69",
+          "gap_type": "not_current",
+          "gold": "Z09 Z86.69",
+          "id": "c-ophtho-001",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H40.1133",
+          "first": "H40.1133",
+          "gap_type": "unspecified_detail",
+          "gold": "H40.1130",
+          "id": "c-ophtho-002",
+          "optional": "Z79.899",
+          "unsupported_final": "H40.1133",
+          "unsupported_first": "H40.1133"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "H53.131",
+          "first": "H53.131",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "H53.131",
+          "id": "c-ophtho-003",
+          "optional": "H54.61",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "H35.3134",
+          "first": "H35.3134",
+          "gap_type": "provider_statement",
+          "gold": "H35.3134",
+          "id": "c-ophtho-004",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "H35.00 I10",
+          "first": "H35.00 I10",
+          "gap_type": "unstated_link",
+          "gold": "H35.00 I10",
+          "id": "c-ophtho-005",
+          "optional": "Z79.899",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "H40.013",
+          "first": "H40.013",
+          "gap_type": "counter_case",
+          "gold": "H40.013",
+          "id": "c-ophtho-006",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "M25.561",
+          "first": "M25.561",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "M25.561",
+          "id": "c-ortho-001",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "M16.12",
+          "first": "M16.12",
+          "gap_type": "provider_statement",
+          "gold": "M16.12",
+          "id": "c-ortho-002",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "M76.62",
+          "first": "M76.62",
+          "gap_type": "unstated_link",
+          "gold": "M76.62",
+          "id": "c-ortho-003",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "M81.0 Z87.310 Z79.83",
+          "first": "M81.0 Z87.310 Z79.83",
+          "gap_type": "not_current",
+          "gold": "M81.0 Z87.310",
+          "id": "c-ortho-004",
+          "optional": "Z79.83",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "S82.251E W11.XXXD",
+          "first": "S82.251E W11.XXXD",
+          "gap_type": "unspecified_detail",
+          "gold": "S82.251E W11.XXXD",
+          "id": "c-ortho-005",
+          "optional": "Z96.7",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "M65.341",
+          "first": "M65.341",
+          "gap_type": "counter_case",
+          "gold": "M65.341",
+          "id": "c-ortho-006",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        }
+      ],
+      "condition": "reminded",
+      "model": "claude-opus-5-5",
+      "run": "p101-c-reminded-opus-5-5"
+    },
+    {
+      "cases": [
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "B27.1 Y37.1",
+          "first": "B27.1 Y37.1",
+          "gap_type": "provider_statement",
+          "gold": "A08.4",
+          "id": "c-ed-001",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "N39.0 Z85.7",
+          "first": "N39.0 Z85.7",
+          "gap_type": "unstated_link",
+          "gold": "R33.9",
+          "id": "c-ed-002",
+          "optional": "Z90.49 Z96.0",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "J20 R05",
+          "first": "J20 R05",
+          "gap_type": "not_current",
+          "gold": "J20.9",
+          "id": "c-ed-003",
+          "optional": "Z87.09",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "I11.9 I13.9 R05 I12.9",
+          "first": "I11.9 I13.9 R05 I12.9",
+          "gap_type": "unspecified_detail",
+          "gold": "I50.9",
+          "id": "c-ed-004",
+          "optional": "Z79.899",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "N30.1 R60.11",
+          "first": "N30.1 R60.11",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "R30.0",
+          "id": "c-ed-005",
+          "optional": "-",
+          "unsupported_final": "N30.1",
+          "unsupported_first": "N30.1"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "I10 I31",
+          "first": "I10 I31",
+          "gap_type": "counter_case",
+          "gold": "I11.0 I50.33",
+          "id": "c-ed-006",
+          "optional": "Z79.899",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "R02 J36.9",
+          "first": "R02 J36.9",
+          "gap_type": "unspecified_detail",
+          "gold": "J01.90",
+          "id": "c-ent-001",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H81.42 R45.82",
+          "first": "H81.42 R45.82",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "R42",
+          "id": "c-ent-002",
+          "optional": "-",
+          "unsupported_final": "H81.42",
+          "unsupported_first": "H81.42"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "B95.89 R05",
+          "first": "B95.89 R05",
+          "gap_type": "provider_statement",
+          "gold": "J03.90",
+          "id": "c-ent-003",
+          "optional": "-",
+          "unsupported_final": "B95.89",
+          "unsupported_first": "B95.89"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H91.90 R91.83",
+          "first": "H91.90 R91.83",
+          "gap_type": "unstated_link",
+          "gold": "H90.3",
+          "id": "c-ent-004",
+          "optional": "Z57.0",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H91.89 Z85.7",
+          "first": "H91.89 Z85.7",
+          "gap_type": "not_current",
+          "gold": "Z09 Z86.69",
+          "id": "c-ent-005",
+          "optional": "Z92.241",
+          "unsupported_final": "H91.89",
+          "unsupported_first": "H91.89"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H91.81 Z87.0",
+          "first": "H91.81 Z87.0",
+          "gap_type": "counter_case",
+          "gold": "H81.01",
+          "id": "c-ent-006",
+          "optional": "Z79.899",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "invalid",
+          "first": "invalid",
+          "gap_type": "unstated_link",
+          "gold": "K74.60 F10.20",
+          "id": "c-gi-001",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "C78.1 Z85.31",
+          "first": "C78.1 Z85.31",
+          "gap_type": "not_current",
+          "gold": "Z08 Z85.038 Z90.49",
+          "id": "c-gi-002",
+          "optional": "Z92.21",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "B16.9 Z85.11",
+          "first": "B16.9 Z85.11",
+          "gap_type": "unspecified_detail",
+          "gold": "B19.20",
+          "id": "c-gi-003",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "K25.9 Z86.91",
+          "first": "K25.9 Z86.91",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "R10.13",
+          "id": "c-gi-004",
+          "optional": "-",
+          "unsupported_final": "K25.9",
+          "unsupported_first": "K25.9"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "N49.1 Z86.7",
+          "first": "N49.1 Z86.7",
+          "gap_type": "provider_statement",
+          "gold": "K90.0",
+          "id": "c-gi-005",
+          "optional": "Z71.3",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "I87.11 R19.9",
+          "first": "I87.11 R19.9",
+          "gap_type": "counter_case",
+          "gold": "K64.1",
+          "id": "c-gi-006",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H61.81 Z85.71",
+          "first": "H61.81 Z85.71",
+          "gap_type": "not_current",
+          "gold": "Z09 Z86.69",
+          "id": "c-ophtho-001",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H40.111 H40.112",
+          "first": "H40.111 H40.112",
+          "gap_type": "unspecified_detail",
+          "gold": "H40.1130",
+          "id": "c-ophtho-002",
+          "optional": "Z79.899",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H40.11 I63.9",
+          "first": "H40.11 I63.9",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "H53.131",
+          "id": "c-ophtho-003",
+          "optional": "H54.61",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H40.112 H40.113",
+          "first": "H40.112 H40.113",
+          "gap_type": "provider_statement",
+          "gold": "H35.3134",
+          "id": "c-ophtho-004",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H44.11 I10 I10.2",
+          "first": "H44.11 I10 I10.2",
+          "gap_type": "unstated_link",
+          "gold": "H35.00 I10",
+          "id": "c-ophtho-005",
+          "optional": "Z79.899",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H40.129 Z82.3",
+          "first": "H40.129 Z82.3",
+          "gap_type": "counter_case",
+          "gold": "H40.013",
+          "id": "c-ophtho-006",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "M24.2 Y93.81",
+          "first": "M24.2 Y93.81",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "M25.561",
+          "id": "c-ortho-001",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "M16.81 Z86.71",
+          "first": "M16.81 Z86.71",
+          "gap_type": "provider_statement",
+          "gold": "M16.12",
+          "id": "c-ortho-002",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "M71.510 Y54.11",
+          "first": "M71.510 Y54.11",
+          "gap_type": "unstated_link",
+          "gold": "M76.62",
+          "id": "c-ortho-003",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "M81.811 M81.812",
+          "first": "M81.811 M81.812",
+          "gap_type": "not_current",
+          "gold": "M81.0 Z87.310",
+          "id": "c-ortho-004",
+          "optional": "Z79.83",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "M22.51 T82.119XA",
+          "first": "M22.51 T82.119XA",
+          "gap_type": "unspecified_detail",
+          "gold": "S82.251E W11.XXXD",
+          "id": "c-ortho-005",
+          "optional": "Z96.7",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "M71.51 T82.891A",
+          "first": "M71.51 T82.891A",
+          "gap_type": "counter_case",
+          "gold": "M65.341",
+          "id": "c-ortho-006",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        }
+      ],
+      "condition": "reminded",
+      "model": "qwen3:4b",
+      "run": "p101-c-reminded-qwen3-4b"
+    },
+    {
+      "cases": [
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "A08.4",
+          "first": "A08.4",
+          "gap_type": "provider_statement",
+          "gold": "A08.4",
+          "id": "c-ed-001",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "R33.9 Z90.49",
+          "first": "R33.9 Z90.49",
+          "gap_type": "unstated_link",
+          "gold": "R33.9",
+          "id": "c-ed-002",
+          "optional": "Z90.49 Z96.0",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "J20.9",
+          "first": "J20.9",
+          "gap_type": "not_current",
+          "gold": "J20.9",
+          "id": "c-ed-003",
+          "optional": "Z87.09",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "I50.9",
+          "first": "I50.9",
+          "gap_type": "unspecified_detail",
+          "gold": "I50.9",
+          "id": "c-ed-004",
+          "optional": "Z79.899",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "R30.0",
+          "first": "R30.0",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "R30.0",
+          "id": "c-ed-005",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "I11.0 I50.33",
+          "first": "I11.0 I50.33",
+          "gap_type": "counter_case",
+          "gold": "I11.0 I50.33",
+          "id": "c-ed-006",
+          "optional": "Z79.899",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "J01.90",
+          "first": "J01.90",
+          "gap_type": "unspecified_detail",
+          "gold": "J01.90",
+          "id": "c-ent-001",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "R42",
+          "first": "R42",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "R42",
+          "id": "c-ent-002",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "J03.90",
+          "first": "J03.90",
+          "gap_type": "provider_statement",
+          "gold": "J03.90",
+          "id": "c-ent-003",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "H90.3",
+          "first": "H90.3",
+          "gap_type": "unstated_link",
+          "gold": "H90.3",
+          "id": "c-ent-004",
+          "optional": "Z57.0",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "Z09 Z86.69",
+          "first": "Z09 Z86.69",
+          "gap_type": "not_current",
+          "gold": "Z09 Z86.69",
+          "id": "c-ent-005",
+          "optional": "Z92.241",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "H81.01 Z79.899",
+          "first": "H81.01 Z79.899",
+          "gap_type": "counter_case",
+          "gold": "H81.01",
+          "id": "c-ent-006",
+          "optional": "Z79.899",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "K74.60 F10.20",
+          "first": "K74.60 F10.20",
+          "gap_type": "unstated_link",
+          "gold": "K74.60 F10.20",
+          "id": "c-gi-001",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "Z08 Z85.038 Z90.49 Z92.21",
+          "first": "Z08 Z85.038 Z90.49 Z92.21",
+          "gap_type": "not_current",
+          "gold": "Z08 Z85.038 Z90.49",
+          "id": "c-gi-002",
+          "optional": "Z92.21",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "B19.20",
+          "first": "B19.20",
+          "gap_type": "unspecified_detail",
+          "gold": "B19.20",
+          "id": "c-gi-003",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "R10.13",
+          "first": "R10.13",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "R10.13",
+          "id": "c-gi-004",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "K90.0",
+          "first": "K90.0",
+          "gap_type": "provider_statement",
+          "gold": "K90.0",
+          "id": "c-gi-005",
+          "optional": "Z71.3",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "K64.1",
+          "first": "K64.1",
+          "gap_type": "counter_case",
+          "gold": "K64.1",
+          "id": "c-gi-006",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "Z09 Z86.69",
+          "first": "Z09 Z86.69",
+          "gap_type": "not_current",
+          "gold": "Z09 Z86.69",
+          "id": "c-ophtho-001",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H40.1133",
+          "first": "H40.1133",
+          "gap_type": "unspecified_detail",
+          "gold": "H40.1130",
+          "id": "c-ophtho-002",
+          "optional": "Z79.899",
+          "unsupported_final": "H40.1133",
+          "unsupported_first": "H40.1133"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "H53.131",
+          "first": "H53.131",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "H53.131",
+          "id": "c-ophtho-003",
+          "optional": "H54.61",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "H35.3134",
+          "first": "H35.3134",
+          "gap_type": "provider_statement",
+          "gold": "H35.3134",
+          "id": "c-ophtho-004",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "H35.00 I10",
+          "first": "H35.00 I10",
+          "gap_type": "unstated_link",
+          "gold": "H35.00 I10",
+          "id": "c-ophtho-005",
+          "optional": "Z79.899",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "H40.013",
+          "first": "H40.013",
+          "gap_type": "counter_case",
+          "gold": "H40.013",
+          "id": "c-ophtho-006",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "M25.561",
+          "first": "M25.561",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "M25.561",
+          "id": "c-ortho-001",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "M16.12",
+          "first": "M16.12",
+          "gap_type": "provider_statement",
+          "gold": "M16.12",
+          "id": "c-ortho-002",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "M76.62",
+          "first": "M76.62",
+          "gap_type": "unstated_link",
+          "gold": "M76.62",
+          "id": "c-ortho-003",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "M81.0 Z87.310 Z79.83",
+          "first": "M81.0 Z87.310 Z79.83",
+          "gap_type": "not_current",
+          "gold": "M81.0 Z87.310",
+          "id": "c-ortho-004",
+          "optional": "Z79.83",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "S82.251E W11.XXXD",
+          "first": "S82.251E W11.XXXD",
+          "gap_type": "unspecified_detail",
+          "gold": "S82.251E W11.XXXD",
+          "id": "c-ortho-005",
+          "optional": "Z96.7",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": true,
+          "exact_first": true,
+          "final": "M65.341",
+          "first": "M65.341",
+          "gap_type": "counter_case",
+          "gold": "M65.341",
+          "id": "c-ortho-006",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        }
+      ],
+      "condition": "with_checker",
+      "model": "claude-opus-5-5",
+      "run": "p101-c-checker-opus-5-5"
+    },
+    {
+      "cases": [
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "B24.9 Y14.3",
+          "first": "B24.9 Y14.3",
+          "gap_type": "provider_statement",
+          "gold": "A08.4",
+          "id": "c-ed-001",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "N39.0 Z85.71",
+          "first": "N39.0 Z85.71",
+          "gap_type": "unstated_link",
+          "gold": "R33.9",
+          "id": "c-ed-002",
+          "optional": "Z90.49 Z96.0",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "J20.9 R05.9",
+          "first": "J20 R05",
+          "gap_type": "not_current",
+          "gold": "J20.9",
+          "id": "c-ed-003",
+          "optional": "Z87.09",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "I11.9 I12.9 R05.1",
+          "first": "I11.9 I13.9 R05 I12.9",
+          "gap_type": "unspecified_detail",
+          "gold": "I50.9",
+          "id": "c-ed-004",
+          "optional": "Z79.899",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "N39.0 Z86.891",
+          "first": "N39.0 Z86.891",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "R30.0",
+          "id": "c-ed-005",
+          "optional": "-",
+          "unsupported_final": "N39.0",
+          "unsupported_first": "N39.0"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "I10.9 I31.9",
+          "first": "I10.9 I31.9 R05",
+          "gap_type": "counter_case",
+          "gold": "I11.0 I50.33",
+          "id": "c-ed-006",
+          "optional": "Z79.899",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "R01.1 R02.1",
+          "first": "R01.1 R02.11",
+          "gap_type": "unspecified_detail",
+          "gold": "J01.90",
+          "id": "c-ent-001",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H91.82 R45.82",
+          "first": "H91.82 R45.82",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "R42",
+          "id": "c-ent-002",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "invalid",
+          "first": "invalid",
+          "gap_type": "provider_statement",
+          "gold": "J03.90",
+          "id": "c-ent-003",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H91.90 R91.83",
+          "first": "H91.90 R91.83",
+          "gap_type": "unstated_link",
+          "gold": "H90.3",
+          "id": "c-ent-004",
+          "optional": "Z57.0",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H91.89 R55.89",
+          "first": "H91.89 R55.89",
+          "gap_type": "not_current",
+          "gold": "Z09 Z86.69",
+          "id": "c-ent-005",
+          "optional": "Z92.241",
+          "unsupported_final": "H91.89",
+          "unsupported_first": "H91.89"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H91.82 Z87.01",
+          "first": "H91.82 Z87.0",
+          "gap_type": "counter_case",
+          "gold": "H81.01",
+          "id": "c-ent-006",
+          "optional": "Z79.899",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "invalid",
+          "first": "invalid",
+          "gap_type": "unstated_link",
+          "gold": "K74.60 F10.20",
+          "id": "c-gi-001",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "C78.11 Z85.31",
+          "first": "C78.11 Z85.31",
+          "gap_type": "not_current",
+          "gold": "Z08 Z85.038 Z90.49",
+          "id": "c-gi-002",
+          "optional": "Z92.21",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "B16.1 Z85.31",
+          "first": "B16.1 Z85.31",
+          "gap_type": "unspecified_detail",
+          "gold": "B19.20",
+          "id": "c-gi-003",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "K25.9",
+          "first": "K25.9 Y54.3",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "R10.13",
+          "id": "c-gi-004",
+          "optional": "-",
+          "unsupported_final": "K25.9",
+          "unsupported_first": "K25.9"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "E70.1 Z85.71",
+          "first": "E70.1 Z85.7",
+          "gap_type": "provider_statement",
+          "gold": "K90.0",
+          "id": "c-gi-005",
+          "optional": "Z71.3",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "I87.11 R19.11",
+          "first": "I87.11 R19.1",
+          "gap_type": "counter_case",
+          "gold": "K64.1",
+          "id": "c-gi-006",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H61.811 Z85.71",
+          "first": "H61.81 Z85.71",
+          "gap_type": "not_current",
+          "gold": "Z09 Z86.69",
+          "id": "c-ophtho-001",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H40.111 H40.121",
+          "first": "H40.11 H40.12",
+          "gap_type": "unspecified_detail",
+          "gold": "H40.1130",
+          "id": "c-ophtho-002",
+          "optional": "Z79.899",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H40.111 I69.90",
+          "first": "H40.11 I69.9",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "H53.131",
+          "id": "c-ophtho-003",
+          "optional": "H54.61",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H40.1120 H40.1130",
+          "first": "H40.112 H40.113",
+          "gap_type": "provider_statement",
+          "gold": "H35.3134",
+          "id": "c-ophtho-004",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H45.19 I10 Z87.01",
+          "first": "H45.11 I10 Z87.0",
+          "gap_type": "unstated_link",
+          "gold": "H35.00 I10",
+          "id": "c-ophtho-005",
+          "optional": "Z79.899",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "H40.1291 Z82.3",
+          "first": "H40.129 Z82.3",
+          "gap_type": "counter_case",
+          "gold": "H40.013",
+          "id": "c-ophtho-006",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "M23.211 Y93.31",
+          "first": "M23.21 Y93.31",
+          "gap_type": "uncertain_diagnosis",
+          "gold": "M25.561",
+          "id": "c-ortho-001",
+          "optional": "-",
+          "unsupported_final": "M23.211",
+          "unsupported_first": "M23.21"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "M16.81 Z86.711",
+          "first": "M16.81 Z86.71",
+          "gap_type": "provider_statement",
+          "gold": "M16.12",
+          "id": "c-ortho-002",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "M71.521 Y54.11",
+          "first": "M715.21 Y54.11",
+          "gap_type": "unstated_link",
+          "gold": "M76.62",
+          "id": "c-ortho-003",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "M81.811 M81.819",
+          "first": "M81.811 M81.819",
+          "gap_type": "not_current",
+          "gold": "M81.0 Z87.310",
+          "id": "c-ortho-004",
+          "optional": "Z79.83",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "M22.51 T82.111A",
+          "first": "M22.51 T82.111A",
+          "gap_type": "unspecified_detail",
+          "gold": "S82.251E W11.XXXD",
+          "id": "c-ortho-005",
+          "optional": "Z96.7",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        },
+        {
+          "exact_final": false,
+          "exact_first": false,
+          "final": "M66.821 T82.899XA",
+          "first": "M66.82 T82.899XA",
+          "gap_type": "counter_case",
+          "gold": "M65.341",
+          "id": "c-ortho-006",
+          "optional": "-",
+          "unsupported_final": "-",
+          "unsupported_first": "-"
+        }
+      ],
+      "condition": "with_checker",
+      "model": "qwen3:4b",
+      "run": "p101-c-checker-qwen3-4b"
+    }
+  ],
+  "S12_part_c_derived": [
+    {
+      "final_differs_from_first": {
+        "p101-c-checker-opus-5-5": [],
+        "p101-c-plain-opus-5-5": [],
+        "p101-c-reminded-opus-5-5": [],
+        "p101-c-reminded2-opus-5-5": []
+      },
+      "first_answer_differs_plain_vs_checker": [],
+      "first_answer_differs_plain_vs_reminded": [],
+      "first_answer_differs_repeat": {
+        "cases": [
+          {
+            "id": "c-ophtho-002",
+            "optional_only": false,
+            "order_only": false
+          },
+          {
+            "id": "c-ophtho-005",
+            "optional_only": true,
+            "order_only": false
+          }
+        ],
+        "condition": "reminded",
+        "repeat_run": "p101-c-reminded2-opus-5-5",
+        "reported_run": "p101-c-reminded-opus-5-5"
+      },
+      "model": "claude-opus-5-5",
+      "repeat_figures": {
+        "condition": "reminded",
+        "exact": 30,
+        "gap_cases": 25,
+        "gap_cases_with_unsupported": 0,
+        "label": "run-to-run variation only; not a reported score",
+        "n": 30,
+        "run": "p101-c-reminded2-opus-5-5"
+      },
+      "runner_error": {
+        "p101-c-checker-opus-5-5": [],
+        "p101-c-plain-opus-5-5": [],
+        "p101-c-reminded-opus-5-5": [],
+        "p101-c-reminded2-opus-5-5": []
+      },
+      "runs": {
+        "plain": "p101-c-plain-opus-5-5",
+        "reminded": "p101-c-reminded-opus-5-5",
+        "repeat": "p101-c-reminded2-opus-5-5",
+        "with_checker": "p101-c-checker-opus-5-5"
+      },
+      "unsupported_by_case": {
+        "cases": [
+          {
+            "gap_type": "unspecified_detail",
+            "given": [
+              "H40.1133",
+              "H40.1133",
+              "H40.1133",
+              "H40.1133",
+              "-"
+            ],
+            "id": "c-ophtho-002"
+          }
+        ],
+        "columns": [
+          {
+            "answer": "first",
+            "label": "plain",
+            "repeat": false,
+            "run": "p101-c-plain-opus-5-5"
+          },
+          {
+            "answer": "first",
+            "label": "reminded",
+            "repeat": false,
+            "run": "p101-c-reminded-opus-5-5"
+          },
+          {
+            "answer": "first",
+            "label": "with checker, first",
+            "repeat": false,
+            "run": "p101-c-checker-opus-5-5"
+          },
+          {
+            "answer": "final",
+            "label": "with checker, final",
+            "repeat": false,
+            "run": "p101-c-checker-opus-5-5"
+          },
+          {
+            "answer": "first",
+            "label": "reminded, repeat (run-to-run variation only; not a reported score)",
+            "repeat": true,
+            "run": "p101-c-reminded2-opus-5-5"
+          }
+        ]
+      },
+      "with_checker": {
+        "cases": 30,
+        "changed_answers": 0,
+        "error_findings_final": 0,
+        "error_findings_first": 0,
+        "findings_sent": 0,
+        "findings_sent_by_rule": {},
+        "run": "p101-c-checker-opus-5-5",
+        "second_turns": 0
+      }
+    },
+    {
+      "final_differs_from_first": {
+        "p101-c-checker-qwen3-4b": [
+          "c-ed-003",
+          "c-ed-004",
+          "c-ed-006",
+          "c-ent-001",
+          "c-ent-006",
+          "c-gi-004",
+          "c-gi-005",
+          "c-gi-006",
+          "c-ophtho-001",
+          "c-ophtho-002",
+          "c-ophtho-003",
+          "c-ophtho-004",
+          "c-ophtho-005",
+          "c-ophtho-006",
+          "c-ortho-001",
+          "c-ortho-002",
+          "c-ortho-003",
+          "c-ortho-006"
+        ],
+        "p101-c-plain-qwen3-4b": [],
+        "p101-c-reminded-qwen3-4b": []
+      },
+      "first_answer_differs_plain_vs_checker": [],
+      "first_answer_differs_plain_vs_reminded": [
+        {
+          "id": "c-ed-001",
+          "optional_only": false,
+          "order_only": false
+        },
+        {
+          "id": "c-ed-002",
+          "optional_only": false,
+          "order_only": false
+        },
+        {
+          "id": "c-ed-005",
+          "optional_only": false,
+          "order_only": false
+        },
+        {
+          "id": "c-ed-006",
+          "optional_only": false,
+          "order_only": false
+        },
+        {
+          "id": "c-ent-001",
+          "optional_only": false,
+          "order_only": false
+        },
+        {
+          "id": "c-ent-002",
+          "optional_only": false,
+          "order_only": false
+        },
+        {
+          "id": "c-ent-003",
+          "optional_only": false,
+          "order_only": false
+        },
+        {
+          "id": "c-ent-005",
+          "optional_only": false,
+          "order_only": false
+        },
+        {
+          "id": "c-ent-006",
+          "optional_only": false,
+          "order_only": false
+        },
+        {
+          "id": "c-gi-002",
+          "optional_only": false,
+          "order_only": false
+        },
+        {
+          "id": "c-gi-003",
+          "optional_only": false,
+          "order_only": false
+        },
+        {
+          "id": "c-gi-004",
+          "optional_only": false,
+          "order_only": false
+        },
+        {
+          "id": "c-gi-005",
+          "optional_only": false,
+          "order_only": false
+        },
+        {
+          "id": "c-gi-006",
+          "optional_only": false,
+          "order_only": false
+        },
+        {
+          "id": "c-ophtho-002",
+          "optional_only": false,
+          "order_only": false
+        },
+        {
+          "id": "c-ophtho-003",
+          "optional_only": false,
+          "order_only": false
+        },
+        {
+          "id": "c-ophtho-005",
+          "optional_only": false,
+          "order_only": false
+        },
+        {
+          "id": "c-ortho-001",
+          "optional_only": false,
+          "order_only": false
+        },
+        {
+          "id": "c-ortho-003",
+          "optional_only": false,
+          "order_only": false
+        },
+        {
+          "id": "c-ortho-004",
+          "optional_only": false,
+          "order_only": false
+        },
+        {
+          "id": "c-ortho-005",
+          "optional_only": false,
+          "order_only": false
+        },
+        {
+          "id": "c-ortho-006",
+          "optional_only": false,
+          "order_only": false
+        }
+      ],
+      "model": "qwen3:4b",
+      "runner_error": {
+        "p101-c-checker-qwen3-4b": [],
+        "p101-c-plain-qwen3-4b": [],
+        "p101-c-reminded-qwen3-4b": []
+      },
+      "runs": {
+        "plain": "p101-c-plain-qwen3-4b",
+        "reminded": "p101-c-reminded-qwen3-4b",
+        "with_checker": "p101-c-checker-qwen3-4b"
+      },
+      "unsupported_by_case": {
+        "cases": [
+          {
+            "gap_type": "uncertain_diagnosis",
+            "given": [
+              "N39.0",
+              "N30.1",
+              "N39.0",
+              "N39.0"
+            ],
+            "id": "c-ed-005"
+          },
+          {
+            "gap_type": "uncertain_diagnosis",
+            "given": [
+              "-",
+              "H81.42",
+              "-",
+              "-"
+            ],
+            "id": "c-ent-002"
+          },
+          {
+            "gap_type": "provider_statement",
+            "given": [
+              "-",
+              "B95.89",
+              "-",
+              "-"
+            ],
+            "id": "c-ent-003"
+          },
+          {
+            "gap_type": "not_current",
+            "given": [
+              "H91.89",
+              "H91.89",
+              "H91.89",
+              "H91.89"
+            ],
+            "id": "c-ent-005"
+          },
+          {
+            "gap_type": "uncertain_diagnosis",
+            "given": [
+              "K25.9",
+              "K25.9",
+              "K25.9",
+              "K25.9"
+            ],
+            "id": "c-gi-004"
+          },
+          {
+            "gap_type": "uncertain_diagnosis",
+            "given": [
+              "M23.21",
+              "-",
+              "M23.21",
+              "M23.211"
+            ],
+            "id": "c-ortho-001"
+          }
+        ],
+        "columns": [
+          {
+            "answer": "first",
+            "label": "plain",
+            "repeat": false,
+            "run": "p101-c-plain-qwen3-4b"
+          },
+          {
+            "answer": "first",
+            "label": "reminded",
+            "repeat": false,
+            "run": "p101-c-reminded-qwen3-4b"
+          },
+          {
+            "answer": "first",
+            "label": "with checker, first",
+            "repeat": false,
+            "run": "p101-c-checker-qwen3-4b"
+          },
+          {
+            "answer": "final",
+            "label": "with checker, final",
+            "repeat": false,
+            "run": "p101-c-checker-qwen3-4b"
+          }
+        ]
+      },
+      "with_checker": {
+        "cases": 30,
+        "changed_answers": 18,
+        "error_findings_final": 24,
+        "error_findings_first": 43,
+        "findings_sent": 43,
+        "findings_sent_by_rule": {
+          "header_not_billable": 19,
+          "not_in_code_set": 24
+        },
+        "run": "p101-c-checker-qwen3-4b",
+        "second_turns": 27
+      }
+    }
+  ],
+  "S13_part_c_usage": [
+    {
+      "cost_usd": 0.336444,
+      "equals_stored_usage_json": true,
+      "model": "claude-opus-5-5",
+      "price_in_usd_per_mtok": 4.0,
+      "price_out_usd_per_mtok": 20.0,
+      "repeat": false,
+      "replies": 30,
+      "run": "p101-c-plain-opus-5-5"
+    },
+    {
+      "cost_usd": 0.368724,
+      "equals_stored_usage_json": true,
+      "model": "claude-opus-5-5",
+      "price_in_usd_per_mtok": 4.0,
+      "price_out_usd_per_mtok": 20.0,
+      "repeat": false,
+      "replies": 30,
+      "run": "p101-c-reminded-opus-5-5"
+    },
+    {
+      "cost_usd": 0.353784,
+      "equals_stored_usage_json": true,
+      "model": "claude-opus-5-5",
+      "price_in_usd_per_mtok": 4.0,
+      "price_out_usd_per_mtok": 20.0,
+      "repeat": false,
+      "replies": 30,
+      "run": "p101-c-checker-opus-5-5"
+    },
+    {
+      "cost_usd": 0.344024,
+      "equals_stored_usage_json": true,
+      "model": "claude-opus-5-5",
+      "price_in_usd_per_mtok": 4.0,
+      "price_out_usd_per_mtok": 20.0,
+      "repeat": true,
+      "replies": 30,
+      "run": "p101-c-reminded2-opus-5-5"
+    }
+  ],
   "S1_part_a_lite": [
     {
       "by_type": {
@@ -3720,6 +8813,106 @@
       "price_out_usd_per_mtok": 20.0,
       "replies": 27,
       "run": "p612-b-checker-opus-5-5"
+    }
+  ],
+  "S9_part_c_runs": [
+    {
+      "backend": "remote",
+      "cases_answered": 30,
+      "effort": "medium",
+      "model": "claude-opus-5-5",
+      "part": "part_c",
+      "prompt_suffix": "",
+      "repeat": false,
+      "run": "p101-c-plain-opus-5-5",
+      "seed": null,
+      "started": "2026-11-23",
+      "temperature": null,
+      "what": "Part C plain"
+    },
+    {
+      "backend": "ollama",
+      "cases_answered": 30,
+      "effort": null,
+      "model": "qwen3:4b",
+      "part": "part_c",
+      "prompt_suffix": "/no_think",
+      "repeat": false,
+      "run": "p101-c-plain-qwen3-4b",
+      "seed": 20261001,
+      "started": "2026-11-23",
+      "temperature": 0,
+      "what": "Part C plain"
+    },
+    {
+      "backend": "remote",
+      "cases_answered": 30,
+      "effort": "medium",
+      "model": "claude-opus-5-5",
+      "part": "part_c",
+      "prompt_suffix": "",
+      "repeat": false,
+      "run": "p101-c-reminded-opus-5-5",
+      "seed": null,
+      "started": "2026-11-23",
+      "temperature": null,
+      "what": "Part C reminded"
+    },
+    {
+      "backend": "ollama",
+      "cases_answered": 30,
+      "effort": null,
+      "model": "qwen3:4b",
+      "part": "part_c",
+      "prompt_suffix": "/no_think",
+      "repeat": false,
+      "run": "p101-c-reminded-qwen3-4b",
+      "seed": 20261001,
+      "started": "2026-11-23",
+      "temperature": 0,
+      "what": "Part C reminded"
+    },
+    {
+      "backend": "remote",
+      "cases_answered": 30,
+      "effort": "medium",
+      "model": "claude-opus-5-5",
+      "part": "part_c",
+      "prompt_suffix": "",
+      "repeat": false,
+      "run": "p101-c-checker-opus-5-5",
+      "seed": null,
+      "started": "2026-11-23",
+      "temperature": null,
+      "what": "Part C with checker"
+    },
+    {
+      "backend": "ollama",
+      "cases_answered": 30,
+      "effort": null,
+      "model": "qwen3:4b",
+      "part": "part_c",
+      "prompt_suffix": "/no_think",
+      "repeat": false,
+      "run": "p101-c-checker-qwen3-4b",
+      "seed": 20261001,
+      "started": "2026-11-23",
+      "temperature": 0,
+      "what": "Part C with checker"
+    },
+    {
+      "backend": "remote",
+      "cases_answered": 30,
+      "effort": "medium",
+      "model": "claude-opus-5-5",
+      "part": "part_c",
+      "prompt_suffix": "",
+      "repeat": true,
+      "run": "p101-c-reminded2-opus-5-5",
+      "seed": null,
+      "started": "2026-11-23",
+      "temperature": null,
+      "what": "Part C reminded, repeat (run-to-run variation only; not a reported score)"
     }
   ],
   "code_set": "ICD-10-CM FY2027 (October 1, 2026 release)"
